@@ -15,7 +15,7 @@
         <NavigationView Margin="0,20,0,0">
             <NavigationView.AutoSuggestBox>
             
-                <AutoSuggestBox x:Name="NavViewSearchBox" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" QuerySubmitted="AutoSuggestBox_QuerySubmitted" SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
+                <AutoSuggestBox x:Name="NavViewSearchBox" QueryIcon="Find"/>
             </NavigationView.AutoSuggestBox>
             <NavigationView.MenuItems>
                 
@@ -24,35 +24,19 @@
                 <NavigationViewItem Content="Design guidance" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="Color" Icon="Page" ToolTipService.ToolTip="Color"/>
-                        <NavigationViewItem Content="Geometry" Icon="Mail" ToolTipService.ToolTip="Geometry"/>
-                        <NavigationViewItem Content="Iconography" Icon="Mail" ToolTipService.ToolTip="Iconography"/>
-                        <NavigationViewItem Content="Spacing" Icon="Mail" ToolTipService.ToolTip="Spacing"/>
-                        <NavigationViewItem Content="Typography" Icon="Mail" ToolTipService.ToolTip="Typography"/>
-                        <NavigationViewItem Content="Accesibility" Icon="Mail" ToolTipService.ToolTip="Accesibility"/>
+
+
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
                 
-                <NavigationViewItem Content="All samples" Icon="Home" ToolTipService.ToolTip="All samples"/>
                 
                 <NavigationViewItemSeparator/>
 
                 <NavigationViewItem Content="Basic Input" Icon="MapPin" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
-                        <NavigationViewItem Content="InputValidation"  ToolTipService.ToolTip="InputValidation"/>
+                     
                         <NavigationViewItem Content="Button" ToolTipService.ToolTip="Button"/>
-                        <NavigationViewItem Content="DropDownButton" ToolTipService.ToolTip="DropDownButton"/>
-                        <NavigationViewItem Content="HyperlinkButton" ToolTipService.ToolTip="HyperlinkButton"/>
-                        <NavigationViewItem Content="RepeatButton" ToolTipService.ToolTip="RepeatButton"/>
-                        <NavigationViewItem Content="ToggleButton" ToolTipService.ToolTip="ToggleButton"/>
-                        <NavigationViewItem Content="SplitButton"  ToolTipService.ToolTip="SplitButton"/>
-                        <NavigationViewItem Content="ToggleSplitButton"  ToolTipService.ToolTip="ToggleSplitButton"/>
-                        <NavigationViewItem Content="CheckBox"  ToolTipService.ToolTip="CheckBox"/>
-                        <NavigationViewItem Content="ColorPicker"  ToolTipService.ToolTip="ColorPicker"/>
-                        <NavigationViewItem Content="ComboBox"  ToolTipService.ToolTip="ComboBox"/>
-                        <NavigationViewItem Content="RadioButton"  ToolTipService.ToolTip="RadioButton"/>
-                        <NavigationViewItem Content="RatingControl"  ToolTipService.ToolTip="RatingControl"/>
-                        <NavigationViewItem Content="Slider"  ToolTipService.ToolTip="Slider"/>
-                        <NavigationViewItem Content="ToggleSwitch"  ToolTipService.ToolTip="ToggleSwitch"/>
+             
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
 
