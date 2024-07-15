@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="Navigation.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Navigation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    mc:Ignorable="d">
+    <Window.SystemBackdrop>
+        <MicaBackdrop Kind="BaseAlt"/>
+    </Window.SystemBackdrop>
+    <Grid x:Name="LayoutRoot"  >
+        <NavigationView Margin="0,20,0,0">
+            <NavigationView.AutoSuggestBox>
+            
+                <AutoSuggestBox x:Name="NavViewSearchBox" QueryIcon="Find" TextChanged="AutoSuggestBox_TextChanged" QuerySubmitted="AutoSuggestBox_QuerySubmitted" SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
+            </NavigationView.AutoSuggestBox>
+            <NavigationView.MenuItems>
+                
+                <NavigationViewItem Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>
+                
+                <NavigationViewItem Content="Design guidance" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="Color" Icon="Page" ToolTipService.ToolTip="Color"/>
+                        <NavigationViewItem Content="Geometry" Icon="Mail" ToolTipService.ToolTip="Geometry"/>
+                        <NavigationViewItem Content="Iconography" Icon="Mail" ToolTipService.ToolTip="Iconography"/>
+                        <NavigationViewItem Content="Spacing" Icon="Mail" ToolTipService.ToolTip="Spacing"/>
+                        <NavigationViewItem Content="Typography" Icon="Mail" ToolTipService.ToolTip="Typography"/>
+                        <NavigationViewItem Content="Accesibility" Icon="Mail" ToolTipService.ToolTip="Accesibility"/>
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+                
+                <NavigationViewItem Content="All samples" Icon="Home" ToolTipService.ToolTip="All samples"/>
+                
+                <NavigationViewItemSeparator/>
+
+                <NavigationViewItem Content="Basic Input" Icon="MapPin" ToolTipService.ToolTip="Design guidance">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="InputValidation"  ToolTipService.ToolTip="InputValidation"/>
+                        <NavigationViewItem Content="Button" ToolTipService.ToolTip="Button"/>
+                        <NavigationViewItem Content="DropDownButton" ToolTipService.ToolTip="DropDownButton"/>
+                        <NavigationViewItem Content="HyperlinkButton" ToolTipService.ToolTip="HyperlinkButton"/>
+                        <NavigationViewItem Content="RepeatButton" ToolTipService.ToolTip="RepeatButton"/>
+                        <NavigationViewItem Content="ToggleButton" ToolTipService.ToolTip="ToggleButton"/>
+                        <NavigationViewItem Content="SplitButton"  ToolTipService.ToolTip="SplitButton"/>
+                        <NavigationViewItem Content="ToggleSplitButton"  ToolTipService.ToolTip="ToggleSplitButton"/>
+                        <NavigationViewItem Content="CheckBox"  ToolTipService.ToolTip="CheckBox"/>
+                        <NavigationViewItem Content="ColorPicker"  ToolTipService.ToolTip="ColorPicker"/>
+                        <NavigationViewItem Content="ComboBox"  ToolTipService.ToolTip="ComboBox"/>
+                        <NavigationViewItem Content="RadioButton"  ToolTipService.ToolTip="RadioButton"/>
+                        <NavigationViewItem Content="RatingControl"  ToolTipService.ToolTip="RatingControl"/>
+                        <NavigationViewItem Content="Slider"  ToolTipService.ToolTip="Slider"/>
+                        <NavigationViewItem Content="ToggleSwitch"  ToolTipService.ToolTip="ToggleSwitch"/>
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+
+                <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="FlipView" ToolTipService.ToolTip="FlipView" />
+                        <NavigationViewItem Content="GridView" ToolTipService.ToolTip="GridView"/>
+                        <NavigationViewItem Content="ItemsView" ToolTipService.ToolTip="ItemsView"/>
+                        <NavigationViewItem Content="ListBox" ToolTipService.ToolTip="ListBox"/>
+                        <NavigationViewItem Content="ListView" ToolTipService.ToolTip="ListView"/>
+                        <NavigationViewItem Content="PullToRefresh" ToolTipService.ToolTip="PullToRefresh"/>
+                        <NavigationViewItem Content="TreeView"  ToolTipService.ToolTip="TreeView"/>
+                        <NavigationViewItem Content="DataGrid"  ToolTipService.ToolTip="DataGrid"/>
+       
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+
+                <NavigationViewItem Content="Date &amp; time" Icon="Keyboard" ToolTipService.ToolTip="Date &amp; time">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="CalendarDatePicker" ToolTipService.ToolTip="CalendarDatePicker" />
+                        <NavigationViewItem Content="CalendarView" ToolTipService.ToolTip="CalendarView"/>
+                        <NavigationViewItem Content="DatePicker" ToolTipService.ToolTip="DatePicker"/>
+                        <NavigationViewItem Content="TimePicker" ToolTipService.ToolTip="TimePicker"/>
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+
+                <NavigationViewItem Content="Dialogs &amp; flyouts" Icon="Keyboard" ToolTipService.ToolTip="Dialogs &amp; flyouts">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="ContentDialog" ToolTipService.ToolTip="ContentDialog" />
+                        <NavigationViewItem Content="FlyOut" ToolTipService.ToolTip="FlyOut"/>
+                        <NavigationViewItem Content="TeachingTip" ToolTipService.ToolTip="TeachingTip"/>
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+
+                <NavigationViewItem Content="Layout" Icon="Keyboard" ToolTipService.ToolTip="Layout">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="Border" ToolTipService.ToolTip="Border" />
+                        <NavigationViewItem Content="Canvas" ToolTipService.ToolTip="Canvas"/>
+                        <NavigationViewItem Content="Expander" ToolTipService.ToolTip="Expander"/>
+                        <NavigationViewItem Content="ItemsRepeater" ToolTipService.ToolTip="ItemsRepeater" />
+                        <NavigationViewItem Content="Grid" ToolTipService.ToolTip="Grid"/>
+                        <NavigationViewItem Content="RadioButtons" ToolTipService.ToolTip="RadioButtons"/>
+                        <NavigationViewItem Content="RelativePanel" ToolTipService.ToolTip="RelativePanel" />
+                        <NavigationViewItem Content="SplitView" ToolTipService.ToolTip="SplitView"/>
+                        <NavigationViewItem Content="StackPanel" ToolTipService.ToolTip="StackPanel"/>
+                        <NavigationViewItem Content="VariableSizedWrapGrid" ToolTipService.ToolTip="VariableSizedWrapGrid" />
+                        <NavigationViewItem Content="Viewbox" ToolTipService.ToolTip="Viewbox"/>
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+
+                <NavigationViewItem Content="Media" Icon="Keyboard" ToolTipService.ToolTip="Media">
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="AnimatedVisualPlayer" ToolTipService.ToolTip="AnimatedVisualPlayer" />
+                        <NavigationViewItem Content="Capture Element / Camera Preview" ToolTipService.ToolTip="Capture Element / Camera Preview"/>
+                        <NavigationViewItem Content="Image" ToolTipService.ToolTip="Image"/>
+                        <NavigationViewItem Content="MapControl" ToolTipService.ToolTip="MapControl" />
+                        <NavigationViewItem Content="MediaPlayerElement" ToolTipService.ToolTip="MediaPlayerElement"/>
+                        <NavigationViewItem Content="PersonPicture" ToolTipService.ToolTip="PersonPicture"/>
+                        <NavigationViewItem Content="Sound" ToolTipService.ToolTip="Sound" />
+                        <NavigationViewItem Content="WebView2" ToolTipService.ToolTip="WebView2"/>
+                        <NavigationViewItem Content="PersonPicture" ToolTipService.ToolTip="PersonPicture"/>
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>-->
+
+
+            </NavigationView.MenuItems>
+        </NavigationView> 
+
+       
+    </Grid>
+</Window>
