@@ -23,3 +23,9 @@
 #include <winrt/Microsoft.UI.Xaml.Shapes.h>
 #include <winrt/Microsoft.UI.Dispatching.h>
 #include <wil/cppwinrt_helpers.h>
+
+#include <iostream>
+#include <Windows.h>
+
+#include "winrt/Windows.Ui.Xaml.Interop.h"
+

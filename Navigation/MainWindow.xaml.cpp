@@ -4,12 +4,6 @@
 #include "MainWindow.g.cpp"
 #endif
 
-#include <iostream>
-#include <Windows.h>
-
-#include <HomePage.g.h>
-#include "Windows.Ui.Xaml.Interop.h"
-
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
@@ -39,7 +33,8 @@ namespace winrt::Navigation::implementation
 
             //winrt::Navigation::HomePage l;
             if (hstr == L"Home")
-                ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{L"Navigation.HomePage"});
+                ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{ L"Navigation.HomePage" });
+//            ContentFrame().Navigate(winrt::xaml_typename<Navigation::HomePage>());
 
             if (hstr == L"Color")
                 OutputDebugString(L"this is color!\n");
