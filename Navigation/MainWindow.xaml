@@ -11,35 +11,31 @@
     <Window.SystemBackdrop>
         <MicaBackdrop Kind="BaseAlt"/>
     </Window.SystemBackdrop>
-    <Grid x:Name="LayoutRoot"  >
-        <NavigationView Margin="0,20,0,0">
+    <Grid x:Name="Root"  >
+        <NavigationView x:Name="NavView"
+                        ItemInvoked="NavView_ItemInvoked"
+                    >
+            <NavigationView.PaneHeader>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="R.png" Width="240" Height="60" Margin="10,0,0,9"/>
+                </StackPanel>
+            </NavigationView.PaneHeader>
             <NavigationView.AutoSuggestBox>
-            
                 <AutoSuggestBox x:Name="NavViewSearchBox" QueryIcon="Find"/>
             </NavigationView.AutoSuggestBox>
             <NavigationView.MenuItems>
-                
-                <NavigationViewItem Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>
-                
+                <NavigationViewItem Tag="Home" Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>
                 <NavigationViewItem Content="Design guidance" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="Color" Icon="Page" ToolTipService.ToolTip="Color"/>
-
-
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
-                
-                
                 <NavigationViewItemSeparator/>
-
                 <NavigationViewItem Content="Basic Input" Icon="MapPin" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
-                     
                         <NavigationViewItem Content="Button" ToolTipService.ToolTip="Button"/>
-             
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
-
                 <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="FlipView" ToolTipService.ToolTip="FlipView" />
@@ -50,10 +46,8 @@
                         <NavigationViewItem Content="PullToRefresh" ToolTipService.ToolTip="PullToRefresh"/>
                         <NavigationViewItem Content="TreeView"  ToolTipService.ToolTip="TreeView"/>
                         <NavigationViewItem Content="DataGrid"  ToolTipService.ToolTip="DataGrid"/>
-       
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
-
                 <NavigationViewItem Content="Date &amp; time" Icon="Keyboard" ToolTipService.ToolTip="Date &amp; time">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="CalendarDatePicker" ToolTipService.ToolTip="CalendarDatePicker" />
@@ -62,7 +56,6 @@
                         <NavigationViewItem Content="TimePicker" ToolTipService.ToolTip="TimePicker"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
-
                 <NavigationViewItem Content="Dialogs &amp; flyouts" Icon="Keyboard" ToolTipService.ToolTip="Dialogs &amp; flyouts">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="ContentDialog" ToolTipService.ToolTip="ContentDialog" />
@@ -70,7 +63,6 @@
                         <NavigationViewItem Content="TeachingTip" ToolTipService.ToolTip="TeachingTip"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
-
                 <NavigationViewItem Content="Layout" Icon="Keyboard" ToolTipService.ToolTip="Layout">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="Border" ToolTipService.ToolTip="Border" />
@@ -86,7 +78,6 @@
                         <NavigationViewItem Content="Viewbox" ToolTipService.ToolTip="Viewbox"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
-
                 <NavigationViewItem Content="Media" Icon="Keyboard" ToolTipService.ToolTip="Media">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="AnimatedVisualPlayer" ToolTipService.ToolTip="AnimatedVisualPlayer" />
@@ -100,11 +91,18 @@
                         <NavigationViewItem Content="PersonPicture" ToolTipService.ToolTip="PersonPicture"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>-->
-
-
             </NavigationView.MenuItems>
-        </NavigationView> 
-
-       
+            <Frame x:Name="ContentFrame"/>
+        </NavigationView>
+        <!--Work in progress - Light/Dark Mode Slide Button-->
+        <!--<Button >
+            <StackPanel Orientation="Horizontal" >
+                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE706;" Margin="0,0,5,0"/>
+                <TextBlock Text="Light"/>
+                <Rectangle Width="1" Height="16" Fill="Gray" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xED3A;"/>
+                <TextBlock Text="Dark"/>
+            </StackPanel>
+        </Button>-->
     </Grid>
-</Window>
+    </Window>
