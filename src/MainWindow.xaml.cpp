@@ -35,7 +35,9 @@ namespace winrt::CppWinUIGallery::implementation
             if (hstr == L"Home")
                 ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{ L"CppWinUIGallery.HomePage" });
 //            ContentFrame().Navigate(winrt::xaml_typename<Navigation::HomePage>());
-
+            if (hstr == L"Gallery")
+                ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{ L"CppWinUIGallery.PhotoGallery" });
+            //            ContentFrame().Navigate(winrt::xaml_typename<Navigation::HomePage>());
             if (hstr == L"Color")
                 OutputDebugString(L"this is color!\n");
 
