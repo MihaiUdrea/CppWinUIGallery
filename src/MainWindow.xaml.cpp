@@ -3,15 +3,19 @@
 #if __has_include("MainWindow.g.cpp")
 #include "MainWindow.g.cpp"
 #endif
-#include <cstring>
+
 
 #include "winrt\Windows.Foundation.Collections.h"
+
+#include <algorithm>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
+
+
 
 namespace winrt::CppWinUIGallery::implementation
 {
@@ -51,6 +55,8 @@ namespace winrt::CppWinUIGallery::implementation
         
     }
 
+    
+
 	void MainWindow::NavViewSearchBox_TextChanged(winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBox const& sender, winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBoxTextChangedEventArgs const& args)
 	{
         // Since selecting an item will also change the text,
@@ -61,22 +67,31 @@ namespace winrt::CppWinUIGallery::implementation
 
             std::vector<std::string> splitText;
             auto senderText = to_string(sender.Text());
-            //transform(senderText.begin(), senderText.end(), aux.begin(), ::tolower);
+
+            // Convert sender text to lowercase
+            std::transform(senderText.begin(), senderText.end(), senderText.begin(), ::tolower);
 
             std::string delimiter = " ";
             std::size_t pos = 0;
-            while (pos = senderText.find(delimiter) != std::string::npos) {
+            while ((pos = senderText.find(delimiter)) != std::string::npos) {
                 splitText.push_back(senderText.substr(0, pos)); // split text by " " character
                 senderText.erase(0, pos + delimiter.length());
             }
             // Add the last word
             splitText.push_back(senderText);
 
-            for (const auto& element : navViewElementsList) {
+            for (auto element : navViewElementsList) {
                 bool found = false;
+                
+                std::string lowerElement;
+                lowerElement.resize(element.size());
+                std::transform(element.begin(), element.end(), lowerElement.begin(), ::tolower);
 
-                for (const auto& myInput : splitText) {
-                    if (element == myInput) {
+                for (auto myInput : splitText) {
+                    // Convert user input to lowercase for non-case sensitive search
+                    // std::transform(myInput.begin(), myInput.end(), myInput.begin(), ::tolower);
+
+                    if (lowerElement == myInput) {
                         found = true;
                         break;
                     }

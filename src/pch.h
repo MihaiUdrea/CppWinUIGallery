@@ -26,6 +26,7 @@
 
 #include <iostream>
 #include <Windows.h>
+#include <algorithm>
 
 #include "winrt/Windows.Ui.Xaml.Interop.h"
 

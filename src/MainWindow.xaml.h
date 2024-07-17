@@ -21,6 +21,8 @@ namespace winrt::CppWinUIGallery::implementation
             // ...
         };
 
+        
+
     public:
 
         MainWindow()
