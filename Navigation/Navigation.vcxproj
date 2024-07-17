@@ -8,8 +8,8 @@
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
     <MinimalCoreWin>true</MinimalCoreWin>
     <ProjectGuid>{8eca5124-ee32-4220-a026-d063b9129c5c}</ProjectGuid>
-    <ProjectName>Navigation</ProjectName>
-    <RootNamespace>Navigation</RootNamespace>
+    <ProjectName>CppWinUIGallery</ProjectName>
+    <RootNamespace>CppWinUIGallery</RootNamespace>
     <!--
       $(TargetName) should be same as $(RootNamespace) so that the produced binaries (.exe/.pri/etc.)
       have a name that matches the .winmd
@@ -158,7 +158,7 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Desktop\r.png" />
+    <Image Include="..\..\R.png" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
     <Image Include="Assets\SplashScreen.scale-200.png" />
     <Image Include="Assets\Square150x150Logo.scale-200.png" />

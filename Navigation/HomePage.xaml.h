@@ -2,7 +2,7 @@
 
 #include "HomePage.g.h"
 
-namespace winrt::Navigation::implementation
+namespace winrt::CppWinUIGallery::implementation
 {
     struct HomePage : HomePageT<HomePage>
     {
@@ -19,7 +19,7 @@ namespace winrt::Navigation::implementation
     };
 }
 
-namespace winrt::Navigation::factory_implementation
+namespace winrt::CppWinUIGallery::factory_implementation
 {
     struct HomePage : HomePageT<HomePage, implementation::HomePage>
     {

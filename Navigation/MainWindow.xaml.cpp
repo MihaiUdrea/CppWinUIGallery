@@ -11,7 +11,7 @@ using namespace Microsoft::UI::Xaml;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
-namespace winrt::Navigation::implementation
+namespace winrt::CppWinUIGallery::implementation
 {
     int32_t MainWindow::MyProperty()
     {
@@ -31,9 +31,9 @@ namespace winrt::Navigation::implementation
             //OutputDebugString(L"is a hstring!");
             //The try_as<winrt::hstring>() method tries to cast the IInspectable object (in this case the tag) to a winrt::hstring. If successful, it returns a winrt::hstring object.
 
-            //winrt::Navigation::HomePage l;
+            //winrt::CppWinUIGallery::HomePage l;
             if (hstr == L"Home")
-                ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{ L"Navigation.HomePage" });
+                ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{ L"CppWinUIGallery.HomePage" });
 //            ContentFrame().Navigate(winrt::xaml_typename<Navigation::HomePage>());
 
             if (hstr == L"Color")

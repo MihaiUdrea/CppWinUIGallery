@@ -1,4 +1,4 @@
-namespace Navigation
+namespace CppWinUIGallery
 {
     [default_interface]
     runtimeclass HomePage : Microsoft.UI.Xaml.Controls.Page

@@ -2,7 +2,7 @@
 
 #include "App.xaml.g.h"
 
-namespace winrt::Navigation::implementation
+namespace winrt::CppWinUIGallery::implementation
 {
     struct App : AppT<App>
     {
