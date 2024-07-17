@@ -17,7 +17,7 @@
                     >
             <NavigationView.PaneHeader>
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="R.png" Width="240" Height="60" Margin="10,0,0,9"/>
+                    <Image Source="Assets/R.png" Width="240" Height="60" Margin="10,0,0,9"/>
                 </StackPanel>
             </NavigationView.PaneHeader>
             <NavigationView.AutoSuggestBox>
