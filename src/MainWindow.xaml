@@ -36,6 +36,7 @@
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="Color" Icon="Page" ToolTipService.ToolTip="Color"/>
                         <NavigationViewItem Content="Button" ToolTipService.ToolTip="Button"/>
+                        <NavigationViewItem Tag="CppWinUIGallery.PhotoGallery" Content="Gallery" Icon="BrowsePhotos" ToolTipService.ToolTip="Gallery"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
                 <NavigationViewItemSeparator/>

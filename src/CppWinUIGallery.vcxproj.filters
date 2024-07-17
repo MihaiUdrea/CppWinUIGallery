@@ -6,6 +6,7 @@
   <ItemGroup>
     <Page Include="MainWindow.xaml" />
     <Page Include="HomePage.xaml" />
+    <Page Include="PhotoGallery.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
@@ -40,6 +41,36 @@
       <Filter>Assets</Filter>
     </Image>
     <Image Include="Assets\R.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\awr.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\ai.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\clang.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\wattspeed.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\awr_logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\clang_logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\wattspeed_logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\ai_logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\bytes.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\bytes_logo.png">
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>
