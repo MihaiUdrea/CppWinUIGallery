@@ -3,7 +3,9 @@
 #if __has_include("MainWindow.g.cpp")
 #include "MainWindow.g.cpp"
 #endif
+#include <cstring>
 
+#include "winrt\Windows.Foundation.Collections.h"
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
@@ -48,10 +50,56 @@ namespace winrt::CppWinUIGallery::implementation
     {
         
     }
+
+	void MainWindow::NavViewSearchBox_TextChanged(winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBox const& sender, winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBoxTextChangedEventArgs const& args)
+	{
+        // Since selecting an item will also change the text,
+        // only listen to changes caused by user entering text.
+        
+        if (args.Reason() == winrt::Microsoft::UI::Xaml::Controls::AutoSuggestionBoxTextChangeReason::UserInput) {
+            std::vector<std::string> suitableItems;
+
+            std::vector<std::string> splitText;
+            auto senderText = to_string(sender.Text());
+            //transform(senderText.begin(), senderText.end(), aux.begin(), ::tolower);
+
+            std::string delimiter = " ";
+            std::size_t pos = 0;
+            while (pos = senderText.find(delimiter) != std::string::npos) {
+                splitText.push_back(senderText.substr(0, pos)); // split text by " " character
+                senderText.erase(0, pos + delimiter.length());
+            }
+            // Add the last word
+            splitText.push_back(senderText);
+
+            for (const auto& element : navViewElementsList) {
+                bool found = false;
+
+                for (const auto& myInput : splitText) {
+                    if (element == myInput) {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (found)
+                    suitableItems.push_back(element);
+            }
+
+            if (suitableItems.size() == 0)
+                suitableItems.push_back("No items found!");
+            std::vector<winrt::hstring>s;
+            auto col = winrt::single_threaded_observable_vector<winrt::hstring>(std::move(s));
+
+            for (const auto& el : suitableItems) {
+                col.Append(to_hstring(el));
+            }
+            sender.ItemsSource(col);
+        }
+
+	}
+
 }
-
-
-
 
 
 

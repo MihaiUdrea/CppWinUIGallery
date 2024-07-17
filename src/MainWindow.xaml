@@ -21,7 +21,9 @@
                 </StackPanel>
             </NavigationView.PaneHeader>
             <NavigationView.AutoSuggestBox>
-                <AutoSuggestBox x:Name="NavViewSearchBox" QueryIcon="Find"/>
+                <AutoSuggestBox x:Name="NavViewSearchBox" QueryIcon="Find" 
+                                TextChanged="NavViewSearchBox_TextChanged"
+                                />
             </NavigationView.AutoSuggestBox>
             <NavigationView.MenuItems>
                 <NavigationViewItem Tag="Home" Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>
