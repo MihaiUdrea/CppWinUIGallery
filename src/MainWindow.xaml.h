@@ -3,25 +3,17 @@
 #include "MainWindow.g.h"
 #include <vector>
 #include <string>
+#include <set>
+#include <map>
 
 namespace winrt::CppWinUIGallery::implementation
 {
     struct MainWindow : MainWindowT<MainWindow>
     {
+
     private:
-        const std::vector<std::string> &navViewElementsList = {
-            "Home",
-
-            "Design guidance",
-            "Color",
-            // ...
-
-            "Basic input",
-            "Button"
-            // ...
-        };
-
-        
+        std::vector<std::string> navViewElementsList;
+        std::set<std::string> navViewVisibleElements; // memorise elements by their content
 
     public:
 

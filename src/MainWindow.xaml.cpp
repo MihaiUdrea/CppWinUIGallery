@@ -52,7 +52,18 @@ namespace winrt::CppWinUIGallery::implementation
 
     void MainWindow::NavView_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-        
+        for (auto item : NavView().MenuItems())
+        {
+            if (auto navItem = item.try_as<Controls::NavigationViewItem>())
+            {
+                auto text = navItem.Content().as<hstring>();
+                auto str = to_string(text);
+                navViewElementsList.push_back(str);
+            }
+        }
+
+        for (auto el : navViewElementsList)
+            navViewVisibleElements.insert(el);
     }
 
     bool MainWindow::isSubstring(const std::string& mainString, const std::string& subString) {
@@ -109,15 +120,37 @@ namespace winrt::CppWinUIGallery::implementation
                     suitableItems.push_back(element);
             }
 
-            if (suitableItems.size() == 0)
-                suitableItems.push_back("No items found!");
-            std::vector<winrt::hstring>s;
-            auto col = winrt::single_threaded_observable_vector<winrt::hstring>(std::move(s));
+            navViewVisibleElements.clear();
 
-            for (const auto& el : suitableItems) {
-                col.Append(to_hstring(el));
+            for (auto item : suitableItems) {
+                navViewVisibleElements.insert(item);
             }
-            sender.ItemsSource(col);
+
+            for (auto item : NavView().MenuItems()) {
+                // Try to cast the item to a NavigationViewItem                
+
+                if (auto navItem = item.try_as<Controls::NavigationViewItem>())
+                {
+                    navItem.Visibility(Visibility::Visible);
+                    auto text = to_string(navItem.Content().as<hstring>());
+                    if (auto search = navViewVisibleElements.find(text); search != navViewVisibleElements.end()) {
+                        // item is visible
+                        navItem.Visibility(Visibility::Visible);
+                    }
+                    else
+                        navItem.Visibility(Visibility::Collapsed);
+                }
+            }
+
+            //if (suitableItems.size() == 0)
+            //    suitableItems.push_back("No items found!");
+            //std::vector<winrt::hstring>s;
+            //auto col = winrt::single_threaded_observable_vector<winrt::hstring>(std::move(s));
+            //
+            //for (const auto& el : suitableItems) {
+            //    col.Append(to_hstring(el));
+            //}
+            //sender.ItemsSource(col);
         }
 
 	}

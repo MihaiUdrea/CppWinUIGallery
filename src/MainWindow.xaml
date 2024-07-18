@@ -14,6 +14,7 @@
     <Grid x:Name="Root"  >
         <NavigationView x:Name="NavView"
                         ItemInvoked="NavView_ItemInvoked"
+                        Loaded="NavView_Loaded"
                     >
             <NavigationView.PaneHeader>
                 <StackPanel Orientation="Horizontal">
@@ -30,6 +31,7 @@
                 <NavigationViewItem Content="Design guidance" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="Color" Icon="Page" ToolTipService.ToolTip="Color"/>
+                        <NavigationViewItem Content="Button" ToolTipService.ToolTip="Button"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
                 <NavigationViewItemSeparator/>
@@ -38,7 +40,9 @@
                         <NavigationViewItem Content="Button" ToolTipService.ToolTip="Button"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
-                <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
+
+                <NavigationViewItem Content="foo" Icon="MapPin" ToolTipService.ToolTip="Design guidance"/>
+                    <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="FlipView" ToolTipService.ToolTip="FlipView" />
                         <NavigationViewItem Content="GridView" ToolTipService.ToolTip="GridView"/>
