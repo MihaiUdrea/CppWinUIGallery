@@ -15,7 +15,7 @@ namespace winrt::CppWinUIGallery::implementation
         int32_t MyProperty();
         void MyProperty(int32_t value);
         void ThemeButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& args);
-        
+
         /*void myButton_Click(IInspectable const& sender, Microsoft::UI::Xaml::RoutedEventArgs const& args);*/
     };
 }
