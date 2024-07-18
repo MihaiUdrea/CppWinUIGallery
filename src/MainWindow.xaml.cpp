@@ -55,7 +55,15 @@ namespace winrt::CppWinUIGallery::implementation
         
     }
 
-    
+    bool MainWindow::isSubstring(const std::string& mainString, const std::string& subString) {
+        // using find method to check if subString is
+        // a substring of mainString
+
+        if (mainString.find(subString) != std::string::npos)
+            return true;
+        return false;
+    }
+
 
 	void MainWindow::NavViewSearchBox_TextChanged(winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBox const& sender, winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBoxTextChangedEventArgs const& args)
 	{
@@ -91,7 +99,7 @@ namespace winrt::CppWinUIGallery::implementation
                     // Convert user input to lowercase for non-case sensitive search
                     // std::transform(myInput.begin(), myInput.end(), myInput.begin(), ::tolower);
 
-                    if (lowerElement == myInput) {
+                    if (isSubstring(lowerElement, myInput)) {
                         found = true;
                         break;
                     }
