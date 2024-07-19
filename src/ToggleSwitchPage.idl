@@ -1,0 +1,9 @@
+namespace CppWinUIGallery
+{
+    [default_interface]
+    runtimeclass ToggleSwitchPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        ToggleSwitchPage();
+        Int32 MyProperty;
+    }
+}

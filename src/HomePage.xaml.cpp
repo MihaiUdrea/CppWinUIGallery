@@ -22,8 +22,13 @@ namespace winrt::CppWinUIGallery::implementation
         throw hresult_not_implemented();
     }
 
-    void HomePage::myButton_Click(IInspectable const&, RoutedEventArgs const&)
-    {
-        myButton().Content(box_value(L"Clicked"));
-    }
+   
+}
+
+
+void winrt::CppWinUIGallery::implementation::HomePage::Button_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    MyInfoBar().IsOpen(false);
+
+
 }

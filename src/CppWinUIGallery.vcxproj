@@ -118,6 +118,14 @@
     <ClInclude Include="MainWindow.xaml.h">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </ClInclude>
+    <ClInclude Include="PhotoGallery.xaml.h">
+      <DependentUpon>PhotoGallery.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="ToggleSwitchPage.xaml.h">
+      <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -125,6 +133,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml" />
+    <Page Include="PhotoGallery.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ToggleSwitchPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HomePage.xaml.cpp">
@@ -141,6 +155,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </ClCompile>
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="PhotoGallery.xaml.cpp">
+      <DependentUpon>PhotoGallery.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="ToggleSwitchPage.xaml.cpp">
+      <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="HomePage.idl">
@@ -151,6 +173,14 @@
       <SubType>Code</SubType>
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Midl>
+    <Midl Include="PhotoGallery.idl">
+      <DependentUpon>PhotoGallery.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="ToggleSwitchPage.idl">
+      <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt">
@@ -158,6 +188,14 @@
     </Text>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="Assets\ai.png" />
+    <Image Include="Assets\ai_logo.png" />
+    <Image Include="Assets\awr.png" />
+    <Image Include="Assets\awr_logo.png" />
+    <Image Include="Assets\bytes.png" />
+    <Image Include="Assets\bytes_logo.png" />
+    <Image Include="Assets\clang.png" />
+    <Image Include="Assets\clang_logo.png" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
     <Image Include="Assets\R.png" />
     <Image Include="Assets\SplashScreen.scale-200.png" />
@@ -165,6 +203,8 @@
     <Image Include="Assets\Square44x44Logo.scale-200.png" />
     <Image Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
     <Image Include="Assets\StoreLogo.png" />
+    <Image Include="Assets\wattspeed.png" />
+    <Image Include="Assets\wattspeed_logo.png" />
     <Image Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <!--
