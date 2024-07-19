@@ -11,23 +11,31 @@
     <Window.SystemBackdrop>
         <MicaBackdrop Kind="BaseAlt"/>
     </Window.SystemBackdrop>
+    
+    
+    
+
     <Grid x:Name="Root"  >
         <NavigationView x:Name="NavView"
                         ItemInvoked="NavView_ItemInvoked"
+                        Loaded="NavView_Loaded"
                     >
             <NavigationView.PaneHeader>
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="R.png" Width="240" Height="60" Margin="10,0,0,9"/>
+                    <Image Source="Assets/R.png" Width="240" Height="60" Margin="10,0,0,9"/>
                 </StackPanel>
             </NavigationView.PaneHeader>
             <NavigationView.AutoSuggestBox>
-                <AutoSuggestBox x:Name="NavViewSearchBox" QueryIcon="Find"/>
+                <AutoSuggestBox x:Name="NavViewSearchBox" 
+                                TextChanged="NavViewSearchBox_TextChanged"/>
+
             </NavigationView.AutoSuggestBox>
             <NavigationView.MenuItems>
                 <NavigationViewItem Tag="Home" Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>
                 <NavigationViewItem Content="Design guidance" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="Color" Icon="Page" ToolTipService.ToolTip="Color"/>
+                        <NavigationViewItem Content="Button" ToolTipService.ToolTip="Button"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
                 <NavigationViewItemSeparator/>
@@ -36,7 +44,9 @@
                         <NavigationViewItem Content="Button" ToolTipService.ToolTip="Button"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
-                <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
+
+                <NavigationViewItem Content="foo" Icon="MapPin" ToolTipService.ToolTip="Design guidance"/>
+                    <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="FlipView" ToolTipService.ToolTip="FlipView" />
                         <NavigationViewItem Content="GridView" ToolTipService.ToolTip="GridView"/>
