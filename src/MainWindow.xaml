@@ -43,7 +43,7 @@
                 <NavigationViewItem Content="Basic Input" Icon="MapPin" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="Button" ToolTipService.ToolTip="Button"/>
-                        <NavigationViewItem Content="ToggleSwitch" ToolTipService.ToolTip="ToggleSwitch" Tag="ToggleSwitch"/>
+                        <NavigationViewItem Content="ToggleSwitch" ToolTipService.ToolTip="ToggleSwitch" Tag="CppWinUIGallery.ToggleSwitchPage"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
 
