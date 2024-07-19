@@ -38,15 +38,8 @@ namespace winrt::CppWinUIGallery::implementation
             //The try_as<winrt::hstring>() method tries to cast the IInspectable object (in this case the tag) to a winrt::hstring. If successful, it returns a winrt::hstring object.
 
             //winrt::CppWinUIGallery::HomePage l;
-            if (hstr == L"Home")
-                ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{ L"CppWinUIGallery.HomePage" });
-//            ContentFrame().Navigate(winrt::xaml_typename<Navigation::HomePage>());
-
-            if (hstr == L"Color")
-                OutputDebugString(L"this is color!\n");
-
-            if (hstr == L"Button")
-                OutputDebugString(L"this is button!\n");
+            const hstring FILEPATH = myTag.as<hstring>();
+            ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{FILEPATH});
         }
     }
 

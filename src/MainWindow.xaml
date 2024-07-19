@@ -31,7 +31,7 @@
 
             </NavigationView.AutoSuggestBox>
             <NavigationView.MenuItems>
-                <NavigationViewItem Tag="Home" Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>
+                <NavigationViewItem Tag="CppWinUIGallery.HomePage" Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>
                 <NavigationViewItem Content="Design guidance" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="Color" Icon="Page" ToolTipService.ToolTip="Color"/>
