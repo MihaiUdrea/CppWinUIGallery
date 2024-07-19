@@ -41,7 +41,6 @@
         <StackPanel Margin="45,200">
             <!-- A Button to show code -->
             <Button x:Name="ShowHideButton" Content="Show XAML" Click="ShowSourceCode_Click" Margin="0,0,0,10" />
-
             <!-- A ScrollViewer to enable scrolling -->
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300">
                 <!-- A TextBox to display source code -->
@@ -54,6 +53,22 @@
                          HorizontalAlignment="Stretch"
                          MinWidth="300"
                          Visibility="Collapsed" />
+            </ScrollViewer>
+        </StackPanel>
+        <!-- Container for the StackPanel -->
+        <StackPanel>
+            <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="160,200,0,10" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="46,0,0,10">
+                <!-- A TextBox to display source code -->
+                <TextBox x:Name="CppCodeTextBox" 
+             IsReadOnly="True" 
+             AcceptsReturn="True"
+             TextWrapping="Wrap"
+             Margin="0"
+             VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch"
+             MinWidth="300"
+             Visibility="Collapsed" />
             </ScrollViewer>
         </StackPanel>
     </Grid>
