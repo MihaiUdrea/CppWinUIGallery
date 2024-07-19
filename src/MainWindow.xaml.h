@@ -1,10 +1,7 @@
 #pragma once
 
 #include "MainWindow.g.h"
-#include <vector>
-#include <string>
-#include <set>
-#include <map>
+
 
 namespace winrt::CppWinUIGallery::implementation
 {

@@ -27,6 +27,10 @@
 #include <iostream>
 #include <Windows.h>
 #include <algorithm>
+#include <vector>
+#include <string>
+#include <set>
+#include <map>
 
 #include "winrt/Windows.Ui.Xaml.Interop.h"
 

@@ -11,6 +11,10 @@
     <Window.SystemBackdrop>
         <MicaBackdrop Kind="BaseAlt"/>
     </Window.SystemBackdrop>
+    
+    
+    
+
     <Grid x:Name="Root"  >
         <NavigationView x:Name="NavView"
                         ItemInvoked="NavView_ItemInvoked"
@@ -22,9 +26,9 @@
                 </StackPanel>
             </NavigationView.PaneHeader>
             <NavigationView.AutoSuggestBox>
-                <AutoSuggestBox x:Name="NavViewSearchBox" QueryIcon="Find" 
-                                TextChanged="NavViewSearchBox_TextChanged"
-                                />
+                <AutoSuggestBox x:Name="NavViewSearchBox" 
+                                TextChanged="NavViewSearchBox_TextChanged"/>
+
             </NavigationView.AutoSuggestBox>
             <NavigationView.MenuItems>
                 <NavigationViewItem Tag="Home" Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>

@@ -7,7 +7,7 @@
 
 #include "winrt\Windows.Foundation.Collections.h"
 
-#include <algorithm>
+//#include <algorithm>
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
@@ -56,6 +56,7 @@ namespace winrt::CppWinUIGallery::implementation
         {
             if (auto navItem = item.try_as<Controls::NavigationViewItem>())
             {
+                
                 auto text = navItem.Content().as<hstring>();
                 auto str = to_string(text);
                 navViewElementsList.push_back(str);
@@ -80,6 +81,11 @@ namespace winrt::CppWinUIGallery::implementation
 	{
         // Since selecting an item will also change the text,
         // only listen to changes caused by user entering text.
+
+        //Controls::ControlTemplate myTemplate;
+        //myTemplate.TargetType(Windows::UI::Xaml::Interop::TypeName{ L"AutoSuggestBox" });
+
+        
         
         if (args.Reason() == winrt::Microsoft::UI::Xaml::Controls::AutoSuggestionBoxTextChangeReason::UserInput) {
             std::vector<std::string> suitableItems;
