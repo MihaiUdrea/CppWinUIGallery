@@ -122,6 +122,10 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="ToggleSwitchPage.xaml.h">
+      <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -130,6 +134,9 @@
     </Page>
     <Page Include="MainWindow.xaml" />
     <Page Include="PhotoGallery.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ToggleSwitchPage.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
@@ -152,6 +159,10 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="ToggleSwitchPage.xaml.cpp">
+      <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Midl Include="HomePage.idl">
@@ -164,6 +175,10 @@
     </Midl>
     <Midl Include="PhotoGallery.idl">
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="ToggleSwitchPage.idl">
+      <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
   </ItemGroup>
