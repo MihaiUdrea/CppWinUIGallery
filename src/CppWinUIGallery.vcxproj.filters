@@ -10,6 +10,7 @@
     <Page Include="ButtonPage.xaml" />
     <Page Include="PhotoGallery.xaml" />
     <Page Include="ToggleSwitchPage.xaml" />
+    <Page Include="FloatingElementPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
@@ -74,6 +75,9 @@
       <Filter>Assets</Filter>
     </Image>
     <Image Include="Assets\bytes_logo.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\ai_logo_img.png">
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>

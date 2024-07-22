@@ -115,6 +115,10 @@
       <DependentUpon>ButtonPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="FloatingElementPage.xaml.h">
+      <DependentUpon>FloatingElementPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="HomePage.xaml.h">
       <DependentUpon>HomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -143,6 +147,9 @@
     <Page Include="ButtonPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="FloatingElementPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -161,6 +168,10 @@
     </ClCompile>
     <ClCompile Include="ButtonPage.xaml.cpp">
       <DependentUpon>ButtonPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="FloatingElementPage.xaml.cpp">
+      <DependentUpon>FloatingElementPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="HomePage.xaml.cpp">
@@ -195,6 +206,10 @@
       <DependentUpon>ButtonPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
+    <Midl Include="FloatingElementPage.idl">
+      <DependentUpon>FloatingElementPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
     <Midl Include="HomePage.idl">
       <DependentUpon>HomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -220,6 +235,7 @@
   <ItemGroup>
     <Image Include="Assets\ai.png" />
     <Image Include="Assets\ai_logo.png" />
+    <Image Include="Assets\ai_logo_img.png" />
     <Image Include="Assets\awr.png" />
     <Image Include="Assets\awr_logo.png" />
     <Image Include="Assets\bytes.png" />
