@@ -6,6 +6,8 @@
   <ItemGroup>
     <Page Include="MainWindow.xaml" />
     <Page Include="HomePage.xaml" />
+    <Page Include="AutoSuggestPage.xaml" />
+    <Page Include="ButtonPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />

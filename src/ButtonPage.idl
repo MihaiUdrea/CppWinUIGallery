@@ -1,0 +1,9 @@
+namespace CppWinUIGallery
+{
+    [default_interface]
+    runtimeclass ButtonPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        ButtonPage();
+        Int32 MyProperty;
+    }
+}
