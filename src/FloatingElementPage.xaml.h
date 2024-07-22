@@ -1,21 +1,22 @@
 #pragma once
 
 #include "FloatingElementPage.g.h"
+#include <winrt/Microsoft.UI.Xaml.Media.h> // For Storyboard
+#include <winrt/Microsoft.UI.Xaml.Controls.h> // For Controls
+#include <winrt/Microsoft.UI.Xaml.h> // For XAML types
 
 namespace winrt::CppWinUIGallery::implementation
 {
     struct FloatingElementPage : FloatingElementPageT<FloatingElementPage>
     {
-        FloatingElementPage()
-        {
-            // Xaml objects should not call InitializeComponent during construction.
-            // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
-        }
+        FloatingElementPage();
 
         int32_t MyProperty();
         void MyProperty(int32_t value);
 
-
+        void Page_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+        void ScrollViewer_ViewChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Controls::ScrollViewerViewChangedEventArgs const& e);
+        void CheckTargetElementVisibility();
     };
 }
 
