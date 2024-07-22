@@ -37,15 +37,31 @@
             </ToggleSwitch.Resources>
         </ToggleSwitch>
 
-        <!-- Container for the StackPanel -->
-        <StackPanel Margin="45,200">
-            <!-- A Button to show code -->
+        <!-- Container for the StackPanel with XAML Code -->
+        <StackPanel Margin="45,200,0,0">
+            <!-- A Button to show XAML -->
             <Button x:Name="ShowHideButton" Content="Show XAML" Click="ShowSourceCode_Click" Margin="0,0,0,10" />
-
             <!-- A ScrollViewer to enable scrolling -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300">
-                <!-- A TextBox to display source code -->
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
+                <!-- A TextBox to display XAML code -->
                 <TextBox x:Name="SourceCodeTextBox" 
+                         IsReadOnly="True" 
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         Margin="0"
+                         VerticalAlignment="Stretch"
+                         HorizontalAlignment="Stretch"
+                         MinWidth="300"
+                         Visibility="Collapsed" />
+            </ScrollViewer>
+        </StackPanel>
+
+        <!-- Container for the StackPanel with C++ Code -->
+        <StackPanel Margin="45,520,0,0">
+            <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,60,0,10" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
+                <!-- A TextBox to display C++ code -->
+                <TextBox x:Name="CppCodeTextBox" 
                          IsReadOnly="True" 
                          AcceptsReturn="True"
                          TextWrapping="Wrap"
