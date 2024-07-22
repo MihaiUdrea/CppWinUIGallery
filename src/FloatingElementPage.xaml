@@ -40,14 +40,14 @@
 
 
     <Grid>
-        
-        <ScrollViewer x:Name="mainScrollViewer" ViewChanged="ScrollViewer_ViewChanged">
+
+        <ScrollViewer   x:Name="mainScrollViewer" ViewChanged="ScrollViewer_ViewChanged">
             <StackPanel>
                 <StackPanel>
                     <TextBlock Text="Animated Floating InfoBar" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Margin="0,40"/>
                 </StackPanel>
-                <StackPanel>
-                    <Image x:Name="targetImage" Source="ms-appx:///Assets/ai_logo_img.png" AutomationProperties.Name="AdvancedInstaller" HorizontalAlignment="Left" Width="200" Height="200" Margin="36,140"/>
+                <StackPanel Background="#80000000" Width="900" CornerRadius="60" HorizontalAlignment="Left" Margin="36" Height="400">
+                    <Image x:Name="targetImage" Source="ms-appx:///Assets/ai_logo_img.png" VerticalAlignment="Top" AutomationProperties.Name="AdvancedInstaller" HorizontalAlignment="Left" Width="200" Height="200" Margin="36,100"/>
                     <TextBlock Text="Windows Installer Packaging Tool for Developers, ISVs &amp; Enterprises" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Left" Width="400" Margin="260,-350"/>
                     <Button Style="{StaticResource AccentButtonStyle}" Content="Get" Width="195" HorizontalAlignment="Left" Margin="670,-655,0,0"/>
                 </StackPanel>
