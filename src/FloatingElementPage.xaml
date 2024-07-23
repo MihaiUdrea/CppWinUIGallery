@@ -8,43 +8,40 @@
     mc:Ignorable="d">
 
     <Page.Resources>
+        <!-- Slide in animation -->
         <Storyboard x:Key="SlideInAnimation">
-            <!-- Slide in animation -->
             <DoubleAnimation 
-            Storyboard.TargetName="infoBarBorder"
-            Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-            From="-100" To="0" Duration="0:0:1"
-            EnableDependentAnimation="True"/>
-            <!-- Fade in animation -->
+                Storyboard.TargetName="infoBarBorder"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                From="-100" To="0" Duration="0:0:0.4"
+                EnableDependentAnimation="True"/>
             <DoubleAnimation 
-            Storyboard.TargetName="infoBarBorder"
-            Storyboard.TargetProperty="(UIElement.Opacity)"
-            From="0" To="1" Duration="0:0:1"
-            EnableDependentAnimation="True"/>
+                Storyboard.TargetName="infoBarBorder"
+                Storyboard.TargetProperty="(UIElement.Opacity)"
+                From="0" To="1" Duration="0:0:0.4"
+                EnableDependentAnimation="True"/>
         </Storyboard>
+
+        <!-- Slide out animation -->
         <Storyboard x:Key="SlideOutAnimation">
-            <!-- Slide out animation -->
             <DoubleAnimation 
-            Storyboard.TargetName="infoBarBorder"
-            Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-            From="0" To="-100" Duration="0:0:1"
-            EnableDependentAnimation="True"/>
-            <!-- Fade out animation -->
+                Storyboard.TargetName="infoBarBorder"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                From="0" To="-100" Duration="0:0:0.4"
+                EnableDependentAnimation="True"/>
             <DoubleAnimation 
-            Storyboard.TargetName="infoBarBorder"
-            Storyboard.TargetProperty="(UIElement.Opacity)"
-            From="1" To="0" Duration="0:0:1"
-            EnableDependentAnimation="True"/>
+                Storyboard.TargetName="infoBarBorder"
+                Storyboard.TargetProperty="(UIElement.Opacity)"
+                From="1" To="0" Duration="0:0:0.4"
+                EnableDependentAnimation="True"/>
         </Storyboard>
     </Page.Resources>
 
-
     <Grid>
-
-        <ScrollViewer   x:Name="mainScrollViewer" ViewChanged="ScrollViewer_ViewChanged">
+        <ScrollViewer x:Name="mainScrollViewer" ViewChanged="ScrollViewer_ViewChanged">
             <StackPanel>
                 <StackPanel>
-                    <TextBlock Text="Animated Floating InfoBar" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Margin="0,40"/>
+                    <TextBlock Text="Animated Floating InfoBar - Scroll down!" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Margin="0,40"/>
                 </StackPanel>
                 <StackPanel Background="#80000000" Width="900" CornerRadius="60" HorizontalAlignment="Left" Margin="36" Height="400">
                     <Image x:Name="targetImage" Source="ms-appx:///Assets/ai_logo_img.png" VerticalAlignment="Top" AutomationProperties.Name="AdvancedInstaller" HorizontalAlignment="Left" Width="200" Height="200" Margin="36,100"/>
@@ -55,7 +52,10 @@
             </StackPanel>
         </ScrollViewer>
 
-        <Border x:Name="infoBarBorder" Background="#80000000" Margin="0,10" HorizontalAlignment="Center" VerticalAlignment="Top" CornerRadius="10" Visibility="Collapsed">
+        <Border x:Name="infoBarBorder" Background="#80000000" Margin="0,10" HorizontalAlignment="Center" VerticalAlignment="Top" CornerRadius="10" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+            <Border.RenderTransform>
+                <TranslateTransform Y="-100"/>
+            </Border.RenderTransform>
             <InfoBar
                 x:Name="customInfoBar"
                 VerticalAlignment="Top"

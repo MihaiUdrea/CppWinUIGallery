@@ -74,7 +74,7 @@ namespace winrt::CppWinUIGallery::implementation
             if (!targetImage || !scrollViewer || !infoBarBorder)
             {
                 OutputDebugStringW(L"One or more elements are null.\n");
-                return; // Exit if any of the required elements are null
+                return;
             }
 
             // Transform the target element's coordinates to the ScrollViewer's coordinate space
@@ -92,40 +92,58 @@ namespace winrt::CppWinUIGallery::implementation
             viewportRect.X += horizontalOffset;
             viewportRect.Y += verticalOffset;
 
-            // Debugging output for viewport and element coordinates
-            std::wstring viewportDebug = L"Viewport: (" + std::to_wstring(viewportRect.X) + L", " +
-                std::to_wstring(viewportRect.Y) + L") - (" +
-                std::to_wstring(viewportRect.Width) + L", " +
-                std::to_wstring(viewportRect.Height) + L")\n";
-            OutputDebugStringW(viewportDebug.c_str());
-
-            std::wstring elementDebug = L"Element: (" + std::to_wstring(elementRect.X) + L", " +
-                std::to_wstring(elementRect.Y) + L") - (" +
-                std::to_wstring(elementRect.Width) + L", " +
-                std::to_wstring(elementRect.Height) + L")\n";
-            OutputDebugStringW(elementDebug.c_str());
-
             // Check if the target element's bounds intersect with the viewport bounds
             bool isInView = (elementRect.X + elementRect.Width > viewportRect.X) &&
                 (elementRect.X < viewportRect.X + viewportRect.Width) &&
                 (elementRect.Y + elementRect.Height > viewportRect.Y) &&
                 (elementRect.Y < viewportRect.Y + viewportRect.Height);
 
-            // Debugging output
-            OutputDebugStringW(L"Setting InfoBar visibility...\n");
-            OutputDebugStringW(isInView ? L"InfoBar should be hidden.\n" : L"InfoBar should be visible.\n");
-
             // Toggle InfoBar visibility based on the target element's visibility
             if (infoBarBorder)
             {
-                infoBarBorder.Visibility(isInView ? Visibility::Collapsed : Visibility::Visible);
-                OutputDebugStringW(isInView ? L"InfoBar is hidden.\n" : L"InfoBar is visible.\n");
+                if (isInView)
+                {
+                    if (infoBarBorder.Visibility() == Visibility::Visible)
+                    {
+                        auto slideOut = this->Resources().Lookup(box_value(L"SlideOutAnimation")).try_as<Storyboard>();
+                        if (slideOut)
+                        {
+                            // Create a weak reference to infoBarBorder
+                            auto weakInfoBarBorder = winrt::weak_ref<winrt::Microsoft::UI::Xaml::FrameworkElement>{ infoBarBorder };
+
+                            // Attach a completed handler
+                            slideOut.Completed([weakInfoBarBorder](IInspectable const& sender, IInspectable const& args)
+                                {
+                                    if (auto infoBarBorder = weakInfoBarBorder.get())
+                                    {
+                                        infoBarBorder.Visibility(Visibility::Collapsed);
+                                    }
+                                });
+
+                            slideOut.Begin();
+                        }
+                    }
+                }
+                else
+                {
+                    if (infoBarBorder.Visibility() == Visibility::Collapsed)
+                    {
+                        infoBarBorder.Visibility(Visibility::Visible);
+                        auto slideIn = this->Resources().Lookup(box_value(L"SlideInAnimation")).try_as<Storyboard>();
+                        if (slideIn)
+                        {
+                            slideIn.Begin();
+                        }
+                    }
+
+                    OutputDebugStringW(L"InfoBar is visible.\n");
+                }
+
+                OutputDebugStringW(L"InfoBar visibility set.\n");
             }
 
             // Force a UI update
             this->UpdateLayout();
-
-            OutputDebugStringW(L"InfoBar visibility set.\n");
         }
         catch (const hresult_error& ex)
         {
@@ -133,4 +151,5 @@ namespace winrt::CppWinUIGallery::implementation
             OutputDebugStringW(ex.message().c_str());
         }
     }
+
 }
