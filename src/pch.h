@@ -25,6 +25,7 @@
 #include <wil/cppwinrt_helpers.h>
 #include <winrt/Microsoft.UI.Xaml.Media.Animation.h>
 #include <winrt/Windows.Foundation.h>
+#include <winrt/Windows.UI.Core.h>
 
 #include <iostream>
 #include <Windows.h>
