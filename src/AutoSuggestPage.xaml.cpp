@@ -33,6 +33,7 @@ namespace winrt::CppWinUIGallery::implementation
         return false;
     }
 
+
     void AutoSuggestPage::SearchBox_TextChanged(winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBox const& sender, winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBoxTextChangedEventArgs const& args)
     {
         // Since selecting an item will also change the text,
@@ -53,12 +54,16 @@ namespace winrt::CppWinUIGallery::implementation
             auto mySearchBox = this->FindName(L"SearchBox").as<Controls::AutoSuggestBox>();
             auto overlayIcon = mySearchBox.GetTemplateChild(L"searchIconOverlay").as<Controls::TextBlock>();
 
-            if (senderText == "")
+            if (senderText == "") {
                 overlayIcon.Visibility(Visibility::Visible);
-            else
+                isTextBoxEmpty = true;
+            }
+            else 
+            {
                 overlayIcon.Visibility(Visibility::Collapsed);
-
-
+                isTextBoxEmpty = false;
+            }
+                
 
 
             // Convert sender text to lowercase
@@ -104,9 +109,10 @@ namespace winrt::CppWinUIGallery::implementation
             for (const auto& el : suitableItems) {
                 col.Append(to_hstring(el));
             }
-            /*if (col.Size() == ElementsList.size())
-                col.Clear();*/
             sender.ItemsSource(col);
+
+            if (col.Size() == ElementsList.size())
+                isTextBoxEmpty = false;
         }
     }
 
@@ -127,8 +133,8 @@ namespace winrt::CppWinUIGallery::implementation
         auto mySearchBox = sender.as<Controls::AutoSuggestBox>();
         auto overlayIcon = mySearchBox.GetTemplateChild(L"searchIconOverlay").as<Controls::TextBlock>();
 
-        //if (!mySearchBox.Text().empty())      //             ICON OVERLAY BUG: After being in out of focus with an element selected inside the search box, when being selected back on focus the Text atribute behaves like if it contains an empty string
-        overlayIcon.Visibility(Visibility::Collapsed);
+        if (!isTextBoxEmpty)      //             ICON OVERLAY BUG: After being in out of focus with an element selected inside the search box, when being selected back on focus the Text atribute behaves like if it contains an empty string
+            overlayIcon.Visibility(Visibility::Collapsed);
     }
 
 
@@ -140,5 +146,13 @@ namespace winrt::CppWinUIGallery::implementation
 
         overlayIcon.Visibility(Visibility::Visible);
     }
-
 }
+
+
+
+
+
+
+
+
+

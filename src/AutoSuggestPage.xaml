@@ -19,7 +19,7 @@
                         <Grid>
                             <!-- Placeholder for icon overlay and TextBox -->
                                 <!-- TextBox for user input -->
-                                <AutoSuggestBox
+                            <AutoSuggestBox
                                     x:Name="TextBox"
                                     PlaceholderText="{TemplateBinding PlaceholderText}"
                                     IsEnabled="{TemplateBinding IsEnabled}"
@@ -29,7 +29,9 @@
                                     BorderThickness="0"
                                     Padding="10,0,0,0"
                                     Margin="0"
-                                    TextChanged="SearchBox_TextChanged"/>
+                                    TextChanged="SearchBox_TextChanged">
+                                
+                            </AutoSuggestBox>
 
                                     <!-- Icon overlay -->
                                 <TextBlock

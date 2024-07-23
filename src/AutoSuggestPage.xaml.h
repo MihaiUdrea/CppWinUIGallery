@@ -20,6 +20,7 @@ namespace winrt::CppWinUIGallery::implementation
         "Medlar", "Soursop", "Mangosteen", "Rambutan", "Longan"
         };
 
+        bool isTextBoxEmpty = true;
 
     public:
         AutoSuggestPage()
@@ -28,15 +29,22 @@ namespace winrt::CppWinUIGallery::implementation
             // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
         }
 
+        
+
         int32_t MyProperty();
         void MyProperty(int32_t value);
 
         void myButton_Click(IInspectable const& sender, Microsoft::UI::Xaml::RoutedEventArgs const& args);
         bool isSubstring(const std::string& mainString, const std::string& subString);
+
         void SearchBox_TextChanged(winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBox const& sender, winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBoxTextChangedEventArgs const& args);
         void SearchBox_KeyDown(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
         void SearchBox_GotFocus(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
         void SearchBox_LostFocus(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+        
+        
+        
+        void SearchBox_PointerEntered(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
     };
 }
 
