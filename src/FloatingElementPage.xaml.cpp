@@ -45,8 +45,8 @@ namespace winrt::CppWinUIGallery::implementation
         }
         catch (const hresult_error& ex)
         {
-           /* OutputDebugStringW(L"Exception in Page_Loaded: ");
-            OutputDebugStringW(ex.message().c_str());*/
+            /* OutputDebugStringW(L"Exception in Page_Loaded: ");
+             OutputDebugStringW(ex.message().c_str());*/
         }
     }
 
@@ -58,8 +58,8 @@ namespace winrt::CppWinUIGallery::implementation
         }
         catch (const hresult_error& ex)
         {
-          /*  OutputDebugStringW(L"Exception in ScrollViewer_ViewChanged: ");
-            OutputDebugStringW(ex.message().c_str());*/
+            /*  OutputDebugStringW(L"Exception in ScrollViewer_ViewChanged: ");
+              OutputDebugStringW(ex.message().c_str());*/
         }
     }
 
@@ -67,12 +67,13 @@ namespace winrt::CppWinUIGallery::implementation
     {
         try
         {
-            // Retrieve the UI elements
-            auto scrollViewer = FindName(L"mainScrollViewer").try_as<ScrollViewer>();
-            auto targetImage = FindName(L"targetImage").try_as<Image>();
+            auto scrollViewer = FindName(L"mainScrollViewer").as<ScrollViewer>();
+            auto targetImage = FindName(L"targetImage").try_as<FrameworkElement>();
+            auto targetTextBlock = FindName(L"targetTextBlock").try_as<FrameworkElement>();
+            auto targetButton = FindName(L"targetButton").try_as<FrameworkElement>();
             auto infoBarBorder = FindName(L"infoBarBorder").try_as<Border>();
 
-            if (!scrollViewer || !targetImage || !infoBarBorder)
+            if (!scrollViewer || !targetImage || !targetTextBlock || !targetButton || !infoBarBorder)
             {
                 return;
             }
@@ -81,30 +82,21 @@ namespace winrt::CppWinUIGallery::implementation
             float viewportWidth = static_cast<float>(scrollViewer.ViewportWidth());
             float viewportHeight = static_cast<float>(scrollViewer.ViewportHeight());
 
-            // Transform target image to scroll viewer coordinates
-            auto targetImageTransform = targetImage.TransformToVisual(scrollViewer);
-            auto targetImagePosition = targetImageTransform.TransformPoint(Point(0, 0));
+            // Helper function to check if a FrameworkElement is nearly out of view
+            auto isElementNearlyOutOfView = [&](FrameworkElement const& element) {
+                auto transform = element.TransformToVisual(scrollViewer);
+                auto position = transform.TransformPoint(Point(0, 0));
+                float elementY = static_cast<float>(position.Y);
+                float elementHeight = static_cast<float>(element.ActualHeight());
 
-            float targetImageX = static_cast<float>(targetImagePosition.X);
-            float targetImageY = static_cast<float>(targetImagePosition.Y);
-            float targetImageWidth = static_cast<float>(targetImage.ActualWidth());
-            float targetImageHeight = static_cast<float>(targetImage.ActualHeight());
+                return (elementY + elementHeight) < 150; // Adjust this threshold as needed
+                };
 
-            Rect targetImageRect(targetImageX, targetImageY, targetImageWidth, targetImageHeight);
-
-            // Determine if the target image is in view
-            float targetImageTop = targetImageRect.Y;
-            float targetImageBottom = targetImageRect.Y + targetImageRect.Height;
-            float targetImageLeft = targetImageRect.X;
-            float targetImageRight = targetImageRect.X + targetImageRect.Width;
-
-            bool isInView = (targetImageBottom > 0 &&
-                targetImageTop < viewportHeight) &&
-                (targetImageRight > 0 &&
-                    targetImageLeft < viewportWidth);
+            // Check if any of the target elements are nearly out of view
+            bool isAnyElementNearlyOutOfView = isElementNearlyOutOfView(targetImage) || isElementNearlyOutOfView(targetTextBlock) || isElementNearlyOutOfView(targetButton);
 
             // Determine the storyboard to use based on visibility
-            auto storyboardName = isInView ? L"SlideOutAnimation" : L"SlideInAnimation";
+            auto storyboardName = isAnyElementNearlyOutOfView ? L"MinimizeElements" : L"RestoreElements";
             auto storyboard = this->Resources().Lookup(box_value(storyboardName)).try_as<Storyboard>();
 
             if (!storyboard)
@@ -112,17 +104,34 @@ namespace winrt::CppWinUIGallery::implementation
                 return;
             }
 
+            storyboard.Begin();
+
+            // Handle InfoBar visibility
+            auto infoBarStoryboardName = isAnyElementNearlyOutOfView ? L"SlideInAnimation" : L"SlideOutAnimation";
+            auto infoBarStoryboard = this->Resources().Lookup(box_value(infoBarStoryboardName)).try_as<Storyboard>();
+
+            if (!infoBarStoryboard)
+            {
+                return;
+            }
+
             if (infoBarBorder)
             {
-                if (isInView)
+                if (isAnyElementNearlyOutOfView)
                 {
-                    // Image is in view; InfoBar should slide out and become collapsed
-                    if (infoBarBorder.Visibility() == Visibility::Visible && storyboard.GetCurrentState() != ClockState::Active)
+                    if (infoBarBorder.Visibility() == Visibility::Collapsed && infoBarStoryboard.GetCurrentState() != ClockState::Active)
                     {
-                        // Slide out animation
+                        infoBarBorder.Visibility(Visibility::Visible);
+                        infoBarStoryboard.Begin();
+                    }
+                }
+                else
+                {
+                    if (infoBarBorder.Visibility() == Visibility::Visible && infoBarStoryboard.GetCurrentState() != ClockState::Active)
+                    {
                         auto weakInfoBarBorder = winrt::weak_ref<winrt::Microsoft::UI::Xaml::FrameworkElement>{ infoBarBorder };
 
-                        storyboard.Completed([weakInfoBarBorder](IInspectable const&, IInspectable const&)
+                        infoBarStoryboard.Completed([weakInfoBarBorder](IInspectable const&, IInspectable const&)
                             {
                                 if (auto strongInfoBarBorder = weakInfoBarBorder.get())
                                 {
@@ -130,16 +139,7 @@ namespace winrt::CppWinUIGallery::implementation
                                 }
                             });
 
-                        storyboard.Begin();
-                    }
-                }
-                else
-                {
-                    // Image is not in view; InfoBar should slide in and become visible
-                    if (infoBarBorder.Visibility() == Visibility::Collapsed && storyboard.GetCurrentState() != ClockState::Active)
-                    {
-                        infoBarBorder.Visibility(Visibility::Visible);
-                        storyboard.Begin();
+                        infoBarStoryboard.Begin();
                     }
                 }
             }
@@ -153,6 +153,10 @@ namespace winrt::CppWinUIGallery::implementation
             // For example: OutputDebugStringW(ex.message().c_str());
         }
     }
+
+
+
+
 
 
 

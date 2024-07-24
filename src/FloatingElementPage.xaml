@@ -36,6 +36,82 @@
                 From="1" To="0" Duration="0:0:0.4"
                 EnableDependentAnimation="True"/>
         </Storyboard>
+
+        <Storyboard x:Key="MinimizeElements">
+            <DoubleAnimation 
+                Storyboard.TargetName="targetImage"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                To="0.5" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetImage"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                To="0.5" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetTextBlock"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                To="0.5" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetTextBlock"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                To="0.5" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetButton"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                To="0.5" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetButton"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                To="0.5" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetStackPanel"
+                Storyboard.TargetProperty="Opacity"
+                To="0" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+        </Storyboard>
+
+        <Storyboard x:Key="RestoreElements">
+            <DoubleAnimation 
+                Storyboard.TargetName="targetImage"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                To="1" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetImage"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                To="1" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetTextBlock"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                To="1" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetTextBlock"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                To="1" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetButton"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+                To="1" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetButton"
+                Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+                To="1" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+            <DoubleAnimation 
+                Storyboard.TargetName="targetStackPanel"
+                Storyboard.TargetProperty="Opacity"
+                To="1" Duration="0:0:0.3"
+                EnableDependentAnimation="True"/>
+        </Storyboard>
     </Page.Resources>
 
     <Grid>
@@ -44,10 +120,22 @@
                 <StackPanel>
                     <TextBlock Text="Animated Floating InfoBar - Scroll down!" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Margin="0,40"/>
                 </StackPanel>
-                <StackPanel  x:Name="targetStackPanel" Background="#80000000" Width="900" CornerRadius="60" HorizontalAlignment="Left" Margin="36" Height="400">
-                    <Image x:Name="targetImage" Source="ms-appx:///Assets/ai_logo_img.png" VerticalAlignment="Top" AutomationProperties.Name="AdvancedInstaller" HorizontalAlignment="Left" Width="200" Height="200" Margin="36,100"/>
-                    <TextBlock Text="Windows Installer Packaging Tool for Developers, ISVs &amp; Enterprises" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Left" Width="400" Margin="260,-350"/>
-                    <Button Style="{StaticResource AccentButtonStyle}" Content="Get" Width="195" HorizontalAlignment="Left" Margin="670,-655,0,0"/>
+                <StackPanel x:Name="targetStackPanel" Background="#80000000" Width="900" CornerRadius="60" HorizontalAlignment="Center" Margin="36" Height="360" Opacity="1">
+                    <Image x:Name="targetImage" Source="ms-appx:///Assets/ai_logo_img.png" VerticalAlignment="Top" AutomationProperties.Name="AdvancedInstaller" HorizontalAlignment="Left" Width="200" Height="200" Margin="36,80">
+                        <Image.RenderTransform>
+                            <CompositeTransform/>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock x:Name="targetTextBlock" Text="Windows Installer Packaging Tool for Developers, ISVs &amp; Enterprises" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Margin="260,-290">
+                        <TextBlock.RenderTransform>
+                            <CompositeTransform/>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <Button x:Name="targetButton" Style="{StaticResource AccentButtonStyle}" Content="Get" Width="195" HorizontalAlignment="Left" Margin="670,-530,0,0">
+                        <Button.RenderTransform>
+                            <CompositeTransform/>
+                        </Button.RenderTransform>
+                    </Button>
                 </StackPanel>
                 <TextBlock Margin="240,1500,950,0" Text="Screenshots"/>
             </StackPanel>
@@ -57,33 +145,38 @@
             <Border.RenderTransform>
                 <TranslateTransform Y="-100"/>
             </Border.RenderTransform>
-            <InfoBar
-                x:Name="customInfoBar"
-                VerticalAlignment="Top"
-                Margin="0"
-                Height="80"
-                Width="830"
-                HorizontalAlignment="Center"
-                Title="Advanced Installer: Windows Installer Packaging Tool for Developers, ISVs &amp; Enterprises"
-                Message="">
+            <InfoBar x:Name="customInfoBar" VerticalAlignment="Top" Margin="0" Height="80" Width="830" HorizontalAlignment="Center" Title="Advanced Installer: Windows Installer Packaging Tool for Developers, ISVs &amp; Enterprises" Message="">
                 <InfoBar.Template>
                     <ControlTemplate TargetType="InfoBar">
                         <Grid>
-                            <Image Source="ms-appx:///Assets/ai_logo_img.png" Width="65" Height="65" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="12,0,0,0"/>
+                            <Image x:Name="infoBarImage" Source="ms-appx:///Assets/ai_logo_img.png" Width="65" Height="65" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="12,0,0,0">
+                                <Image.RenderTransform>
+                                    <CompositeTransform x:Name="infoBarImageTransform"/>
+                                </Image.RenderTransform>
+                            </Image>
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Margin="90,0,0,0">
-                                <TextBlock Text="{TemplateBinding Title}" FontWeight="Bold" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                                <TextBlock x:Name="infoBarTextBlock" Text="{TemplateBinding Title}" FontWeight="Bold" Margin="0,0,20,0" VerticalAlignment="Center">
+                                    <TextBlock.RenderTransform>
+                                        <CompositeTransform x:Name="infoBarTextBlockTransform"/>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
                                 <StackPanel Orientation="Vertical" VerticalAlignment="Center">
                                     <TextBlock Text="{TemplateBinding Message}" FontWeight="SemiLight" VerticalAlignment="Center" Margin="0,0,0,-15"/>
-                                    <ContentControl Content="{TemplateBinding ActionButton}" VerticalAlignment="Center"/>
+                                    <ContentControl Content="{TemplateBinding ActionButton}" VerticalAlignment="Center">
+                                        <ContentControl.RenderTransform>
+                                            <CompositeTransform x:Name="infoBarButtonTransform"/>
+                                        </ContentControl.RenderTransform>
+                                    </ContentControl>
                                 </StackPanel>
                             </StackPanel>
                         </Grid>
                     </ControlTemplate>
                 </InfoBar.Template>
                 <InfoBar.ActionButton>
-                    <Button Content="Get" Width="120" Style="{StaticResource AccentButtonStyle}" />
+                    <Button x:Name="infoBarButton" Content="Get" Width="120" Style="{StaticResource AccentButtonStyle}" />
                 </InfoBar.ActionButton>
             </InfoBar>
+
         </Border>
     </Grid>
 </Page>
