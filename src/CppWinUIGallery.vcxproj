@@ -107,6 +107,14 @@
     <Manifest Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AutoSuggestPage.xaml.h">
+      <DependentUpon>AutoSuggestPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="ButtonPage.xaml.h">
+      <DependentUpon>ButtonPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="HomePage.xaml.h">
       <DependentUpon>HomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -129,6 +137,12 @@
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
+    <Page Include="AutoSuggestPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ButtonPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -141,6 +155,14 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AutoSuggestPage.xaml.cpp">
+      <DependentUpon>AutoSuggestPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="ButtonPage.xaml.cpp">
+      <DependentUpon>ButtonPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="HomePage.xaml.cpp">
       <DependentUpon>HomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -165,6 +187,14 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="AutoSuggestPage.idl">
+      <DependentUpon>AutoSuggestPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="ButtonPage.idl">
+      <DependentUpon>ButtonPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
     <Midl Include="HomePage.idl">
       <DependentUpon>HomePage.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -6,6 +6,8 @@
   <ItemGroup>
     <Page Include="MainWindow.xaml" />
     <Page Include="HomePage.xaml" />
+    <Page Include="AutoSuggestPage.xaml" />
+    <Page Include="ButtonPage.xaml" />
     <Page Include="PhotoGallery.xaml" />
     <Page Include="ToggleSwitchPage.xaml" />
   </ItemGroup>
