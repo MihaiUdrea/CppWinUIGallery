@@ -36,8 +36,6 @@
                 <NavigationViewItem Tag="CppWinUIGallery.HomePage" Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>
                 <NavigationViewItem Content="Design guidance" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
-                        <NavigationViewItem Content="Color" Icon="Page" ToolTipService.ToolTip="Color"/>
-                        <NavigationViewItem Content="Button" ToolTipService.ToolTip="Button"/>
                         <NavigationViewItem Tag="CppWinUIGallery.PhotoGallery" Content="Gallery" Icon="BrowsePhotos" ToolTipService.ToolTip="Gallery"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
@@ -45,7 +43,6 @@
                 <NavigationViewItem Content="Basic Input" Icon="MapPin" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Tag="CppWinUIGallery.ButtonPage" Content="Button" ToolTipService.ToolTip="Button"/>
-                        <NavigationViewItem Content="Button" ToolTipService.ToolTip="Button"/>
                         <NavigationViewItem Content="ToggleSwitch" ToolTipService.ToolTip="ToggleSwitch" Tag="CppWinUIGallery.ToggleSwitchPage"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
