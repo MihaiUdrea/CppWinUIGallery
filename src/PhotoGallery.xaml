@@ -1,0 +1,57 @@
+<Page
+x:Class="CppWinUIGallery.PhotoGallery"
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:local="using:CppWinUIGallery"
+xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+mc:Ignorable="d">
+    <Grid x:Name="ThemeExampleGrid" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.BackgroundTransition>
+            <BrushTransition />
+        </Grid.BackgroundTransition>
+
+        <StackPanel Margin="30,20" Spacing="6" >
+            <TextBlock Text="Products" Style="{ThemeResource SubheaderTextBlockStyle}" />
+            <TextBlock Text="Want to know more? Press the &quot;Show details&quot; button below. " TextWrapping="WrapWholeWords" />
+            <Button Content="Show details" Click="ThemeButton_Click"/>
+        </StackPanel>
+
+        <StackPanel >
+            <FlipView x:Name="flipView" MaxWidth="500" Height="300" VerticalAlignment="Top" Margin="0,145,0,0" HorizontalAlignment="Left" >
+                <Image Source="ms-appx:///Assets/ai.png" AutomationProperties.Name="ai"/>
+                <Image Source="ms-appx:///Assets/awr.png" AutomationProperties.Name="awr"/>
+                <Image Source="ms-appx:///Assets/clang.png" AutomationProperties.Name="Clang"/>
+                <Image Source="ms-appx:///Assets/wattspeed.png" AutomationProperties.Name="Wattspeed"/>
+                <Image Source="ms-appx:///Assets/bytes.png" AutomationProperties.Name="Wattspeed"/>
+            </FlipView>
+            <ListView x:Name="itemListView" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Visibility="Collapsed">
+                <ListView.Items>
+
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
+                        <BitmapIcon UriSource="ms-appx:///Assets/awr_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
+                        <TextBlock TextWrapping="WrapWholeWords" Text="Advanced Webranking - Advanced Web Ranking gives individuals and businesses with websites the ability to discover and monitor their positioning in search engines such as Google, Yahoo and Bing for various keywords." VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="5">
+                        <BitmapIcon UriSource="ms-appx:///Assets/ai_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
+                        <TextBlock TextWrapping="WrapWholeWords" Text="Advanced Installer - Advanced Installer is a Windows Installer package development tool. It has the ability to create (or convert) installers, patches, and other types of Windows Installer modules for delivery online or in enterprise environments." VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
+                        <BitmapIcon UriSource="ms-appx:///Assets/clang_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
+                        <TextBlock TextWrapping="WrapWholeWords" Text="Clang Power Tools - Clang Power Tools is an extension for Visual Studio that helps C++ programmers upgrade their code to the C++11/14/17 standard using the LLVM static analyzer and CppCoreGuidelines." VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
+                        <BitmapIcon UriSource="ms-appx:///Assets/wattspeed_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
+                        <TextBlock Text="wattspeed - Wattspeed helps programmers as well as marketing teams monitor and evaluate web page performance over time." VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
+                        <BitmapIcon UriSource="ms-appx:///Assets/bytes_logo.png" Width="150" Height="60" Margin="0,0,10,0"/>
+                        <TextBlock Text="bytesroute - BytesRoute enables users to make interactive tutorials for any web page without writing a line of code. " VerticalAlignment="Center"/>
+                    </StackPanel>
+                </ListView.Items>
+            </ListView>
+        </StackPanel>
+
+
+    </Grid>
+</Page>

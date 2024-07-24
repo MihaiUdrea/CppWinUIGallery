@@ -1,6 +1,7 @@
 #pragma once
 
 #include "HomePage.g.h"
+#include "winrt/Microsoft.UI.Xaml.Controls.h"
 
 namespace winrt::CppWinUIGallery::implementation
 {
@@ -16,7 +17,9 @@ namespace winrt::CppWinUIGallery::implementation
         void MyProperty(int32_t value);
 
         void myButton_Click(IInspectable const& sender, Microsoft::UI::Xaml::RoutedEventArgs const& args);
+        void Button_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
     };
+
 }
 
 namespace winrt::CppWinUIGallery::factory_implementation

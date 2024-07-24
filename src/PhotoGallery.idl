@@ -1,0 +1,9 @@
+namespace CppWinUIGallery
+{
+    [default_interface]
+    runtimeclass PhotoGallery : Microsoft.UI.Xaml.Controls.Page
+    {
+        PhotoGallery();
+        Int32 MyProperty;
+    }
+}

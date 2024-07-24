@@ -6,9 +6,23 @@
     xmlns:local="using:CppWinUIGallery"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
-
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+    <Grid>
+        <StackPanel>
+           <InfoBar
+               x:Name="MyInfoBar"
+               IsOpen="True"
+               Title="Info"
+               IsClosable="False"
+               Message="This app is still being worked on. Please be patient." VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,40,0,0"  >  
+               <InfoBar.ActionButton>
+                   <Button Content="Got it" Click="Button_Click" />
+               </InfoBar.ActionButton>
+           </InfoBar>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,40">
+            <controls:WebView2 x:Name="MyWebView2" Source="https://caphyon.ro/" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Grid.Row="1" MinHeight="800" MinWidth="1500"/>
+        </StackPanel>
+    </Grid>
 </Page>
