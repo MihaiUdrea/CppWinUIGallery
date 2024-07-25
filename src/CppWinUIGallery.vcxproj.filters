@@ -11,6 +11,7 @@
     <Page Include="PhotoGallery.xaml" />
     <Page Include="ToggleSwitchPage.xaml" />
     <Page Include="FloatingElementPage.xaml" />
+    <Page Include="FloatingStackPanel.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />

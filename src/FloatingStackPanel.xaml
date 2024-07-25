@@ -1,0 +1,63 @@
+<Page
+    x:Class="CppWinUIGallery.FloatingStackPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CppWinUIGallery"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+    <Storyboard x:Name="ScaleStoryboard">
+        <DoubleAnimation
+            Storyboard.TargetName="targetStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+            From="1"
+            To="1"
+            Duration="0:0:0.5"
+            EnableDependentAnimation="True" />
+        <DoubleAnimation
+            Storyboard.TargetName="targetStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+            From="1"
+            To="1"
+            Duration="0:0:0.5"
+            EnableDependentAnimation="True" />
+        <!-- Add animations for Image, TextBlock, and Button here -->
+    </Storyboard>
+</Page.Resources>
+
+    <Grid x:Name="PageRoot">
+        <ScrollViewer x:Name="mainScrollViewer" VerticalScrollBarVisibility="Auto" ViewChanged="OnScrollViewerViewChanged">
+            <StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Animated Floating InfoBar - Scroll down!" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Margin="0,40"/>
+                </StackPanel>
+                <StackPanel x:Name="targetStackPanel" Background="#80000000" Width="900" CornerRadius="60" HorizontalAlignment="Center" Margin="36,0,36,0" Height="360" Opacity="1">
+                    <StackPanel.RenderTransform>
+                        <CompositeTransform x:Name="stackPanelTransform" CenterX="450" CenterY="180"/>
+                    </StackPanel.RenderTransform>
+                    <Image x:Name="targetImage" Source="ms-appx:///Assets/ai_logo_img.png" VerticalAlignment="Top" AutomationProperties.Name="AdvancedInstaller" HorizontalAlignment="Left" Width="200" Height="200" Margin="36,80">
+                        <Image.RenderTransform>
+                            <CompositeTransform x:Name="imageTransform" CenterX="100" CenterY="100"/>
+                        </Image.RenderTransform>
+                    </Image>
+                    <TextBlock x:Name="targetTextBlock" Text="Windows Installer Packaging Tool for Developers, ISVs &amp; Enterprises" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Margin="260,-290">
+                        <TextBlock.RenderTransform>
+                            <CompositeTransform x:Name="textTransform" CenterX="200" CenterY="30"/>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <Button x:Name="targetButton" Style="{StaticResource AccentButtonStyle}" Content="Get" Width="195" HorizontalAlignment="Left" Margin="670,-530,0,0">
+                        <Button.RenderTransform>
+                            <CompositeTransform x:Name="buttonTransform" CenterX="97.5" CenterY="22.5"/>
+                        </Button.RenderTransform>
+                    </Button>
+                </StackPanel>
+                <TextBlock Text="-- 100px" Margin="0,100"/>
+                <TextBlock Text="-- 200px" Margin="0,100"/>
+                <TextBlock Text="-- 300px" Margin="0,100"/>
+                <TextBlock Text="-- 400px" Margin="0,100"/>
+                <TextBlock Text="-- 500px" Margin="0,100"/>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

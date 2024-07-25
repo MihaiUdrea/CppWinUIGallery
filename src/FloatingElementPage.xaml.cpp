@@ -68,19 +68,14 @@ namespace winrt::CppWinUIGallery::implementation
         try
         {
             auto scrollViewer = FindName(L"mainScrollViewer").as<ScrollViewer>();
-            auto targetImage = FindName(L"targetImage").try_as<FrameworkElement>();
-            auto targetTextBlock = FindName(L"targetTextBlock").try_as<FrameworkElement>();
-            auto targetButton = FindName(L"targetButton").try_as<FrameworkElement>();
+            auto targetButton = FindName(L"targetButton").try_as<Button>();
             auto infoBarBorder = FindName(L"infoBarBorder").try_as<Border>();
+            auto infoBarButton = FindName(L"infoBarButton").try_as<Button>();
 
-            if (!scrollViewer || !targetImage || !targetTextBlock || !targetButton || !infoBarBorder)
+            if (!scrollViewer || !targetButton || !infoBarBorder || !infoBarButton)
             {
                 return;
             }
-
-            // Get viewport dimensions
-            float viewportWidth = static_cast<float>(scrollViewer.ViewportWidth());
-            float viewportHeight = static_cast<float>(scrollViewer.ViewportHeight());
 
             // Helper function to check if a FrameworkElement is nearly out of view
             auto isElementNearlyOutOfView = [&](FrameworkElement const& element) {
@@ -92,54 +87,72 @@ namespace winrt::CppWinUIGallery::implementation
                 return (elementY + elementHeight) < 150; // Adjust this threshold as needed
                 };
 
-            // Check if any of the target elements are nearly out of view
-            bool isAnyElementNearlyOutOfView = isElementNearlyOutOfView(targetImage) || isElementNearlyOutOfView(targetTextBlock) || isElementNearlyOutOfView(targetButton);
+            // Check if the targetButton is nearly out of view
+            bool isButtonNearlyOutOfView = isElementNearlyOutOfView(targetButton);
 
             // Determine the storyboard to use based on visibility
-            auto storyboardName = isAnyElementNearlyOutOfView ? L"MinimizeElements" : L"RestoreElements";
-            auto storyboard = this->Resources().Lookup(box_value(storyboardName)).try_as<Storyboard>();
-
-            if (!storyboard)
-            {
-                return;
-            }
-
-            storyboard.Begin();
-
-            // Handle InfoBar visibility
-            auto infoBarStoryboardName = isAnyElementNearlyOutOfView ? L"SlideInAnimation" : L"SlideOutAnimation";
+            auto infoBarStoryboardName = isButtonNearlyOutOfView ? L"SlideInAnimation" : L"SlideOutAnimation";
             auto infoBarStoryboard = this->Resources().Lookup(box_value(infoBarStoryboardName)).try_as<Storyboard>();
 
-            if (!infoBarStoryboard)
+            if (infoBarStoryboard)
             {
-                return;
-            }
-
-            if (infoBarBorder)
-            {
-                if (isAnyElementNearlyOutOfView)
+                if (infoBarBorder)
                 {
-                    if (infoBarBorder.Visibility() == Visibility::Collapsed && infoBarStoryboard.GetCurrentState() != ClockState::Active)
+                    if (isButtonNearlyOutOfView)
                     {
-                        infoBarBorder.Visibility(Visibility::Visible);
-                        infoBarStoryboard.Begin();
-                    }
-                }
-                else
-                {
-                    if (infoBarBorder.Visibility() == Visibility::Visible && infoBarStoryboard.GetCurrentState() != ClockState::Active)
-                    {
-                        auto weakInfoBarBorder = winrt::weak_ref<winrt::Microsoft::UI::Xaml::FrameworkElement>{ infoBarBorder };
+                        if (infoBarBorder.Visibility() == Visibility::Collapsed && infoBarStoryboard.GetCurrentState() != ClockState::Active)
+                        {
+                            // Show the InfoBar
+                            infoBarBorder.Visibility(Visibility::Visible);
 
-                        infoBarStoryboard.Completed([weakInfoBarBorder](IInspectable const&, IInspectable const&)
-                            {
-                                if (auto strongInfoBarBorder = weakInfoBarBorder.get())
+                            // Prepare and start the connected animation for the targetButton
+                            auto connectedAnimationService = ConnectedAnimationService::GetForCurrentView();
+                            infoBarStoryboard.Completed([this, connectedAnimationService, targetButton, infoBarButton](IInspectable const&, IInspectable const&)
                                 {
-                                    strongInfoBarBorder.Visibility(Visibility::Collapsed);
-                                }
-                            });
+                                    // Prepare the connected animation to transition from infoBarButton to targetButton
+                                    connectedAnimationService.PrepareToAnimate(L"targetButtonAnimation", targetButton);
 
-                        infoBarStoryboard.Begin();
+                                    auto animation = connectedAnimationService.GetAnimation(L"targetButtonAnimation");
+                                    if (animation)
+                                    {
+                                        animation.Configuration(DirectConnectedAnimationConfiguration());
+                                        animation.TryStart(infoBarButton);
+
+                                        // Hide the targetButton after the animation starts
+                                        targetButton.Visibility(Visibility::Collapsed);
+                                    }
+                                });
+
+                            infoBarStoryboard.Begin();
+                        }
+                    }
+                    else
+                    {
+                        if (infoBarBorder.Visibility() == Visibility::Visible && infoBarStoryboard.GetCurrentState() != ClockState::Active)
+                        {
+                            // Hide the InfoBar first
+
+                            // Prepare and start the reverse connected animation
+                            auto connectedAnimationService = ConnectedAnimationService::GetForCurrentView();
+                            connectedAnimationService.PrepareToAnimate(L"infoBarButtonAnimation", infoBarButton);
+
+                            auto reverseAnimation = connectedAnimationService.GetAnimation(L"infoBarButtonAnimation");
+                            if (reverseAnimation)
+                            {
+                                reverseAnimation.Configuration(DirectConnectedAnimationConfiguration());
+
+                                reverseAnimation.Completed([this, targetButton](IInspectable const&, IInspectable const&)
+                                    {
+                                        // Make sure to show the targetButton after the reverse animation completes
+                                        targetButton.Visibility(Visibility::Visible);
+                                    });
+
+                                reverseAnimation.TryStart(targetButton);
+                            }
+
+                            // Start the storyboard after hiding the InfoBar
+                            infoBarStoryboard.Begin();
+                        }
                     }
                 }
             }
@@ -150,9 +163,24 @@ namespace winrt::CppWinUIGallery::implementation
         catch (const hresult_error& ex)
         {
             // Handle exception
-            // For example: OutputDebugStringW(ex.message().c_str());
+            UNREFERENCED_PARAMETER(ex); // Remove unused variable warning
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -472,6 +500,5 @@ void FloatingElementPage::ScrollViewer_ViewChanged(IInspectable const&, ScrollVi
 
 
 }
-
 
 
