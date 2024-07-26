@@ -8,6 +8,7 @@ using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 using namespace Microsoft::UI::Xaml::Controls;
 using namespace Microsoft::UI::Xaml::Media;
+using namespace Microsoft::UI::Xaml::Media::Animation;
 
 namespace winrt::CppWinUIGallery::implementation
 {
@@ -25,116 +26,67 @@ namespace winrt::CppWinUIGallery::implementation
 
     void FloatingStackPanel::OnScrollViewerViewChanged(IInspectable const& sender, ScrollViewerViewChangedEventArgs const& args)
     {
-        // Cast sender to ScrollViewer
         auto scrollViewer = sender.as<ScrollViewer>();
         double offsetY = scrollViewer.VerticalOffset();
 
-        // Define thresholds and minimum scale
-        const double startScalingOffset = 200; // The point where scaling starts
-        const double stopScalingOffset = 600;  // The point where scaling stops and the panel sticks to the top
-        const double minScale = 0.1;
+        // Define thresholds and scale factors
+        const double startScalingOffset = 350; // The point where scaling starts
+        const double stopScalingOffset = 900;  // The point where scaling stops and the panel sticks to the top
+        const double infobarScale = 0.55; // Scale factor for the infobar size
+        const double infobarTopOffset = 200; // Offset from the top of the screen when in infobar mode
+        const double infobarWidth = 900; // Width of the infobar when scaled (unchanged)
 
-        // Calculate scale based on scroll offset
+        // Calculate scale and translation based on scroll offset
         double scale = 1.0;
+        double translationY = 0;
+        double horizontalOffset = 0;
+
         if (offsetY > startScalingOffset)
         {
-            double scaleFactor = 1.0 - (offsetY - startScalingOffset) / (stopScalingOffset - startScalingOffset);
-            scale = scaleFactor < minScale ? minScale : scaleFactor;
+            scale = infobarScale;
+            translationY = offsetY - startScalingOffset + infobarTopOffset;
+            horizontalOffset = 0;
+        }
+        else
+        {
+            scale = 1.0;
+            translationY = 0;
+            horizontalOffset = 0;
         }
 
-        // Calculate translation to stick the panel to the top of the viewport
-        double translationY = 0;
-        if (offsetY > stopScalingOffset)
+        // Retrieve the Storyboard from XAML
+        auto scaleStoryboard = this->FindName(L"ScaleStoryboard").as<Storyboard>();
+        if (scaleStoryboard)
         {
-            translationY = -(offsetY - stopScalingOffset) * (1.0 - minScale);
+            // Set the target properties for animation
+            auto scaleXAnimation = scaleStoryboard.Children().GetAt(0).as<DoubleAnimation>();
+            auto scaleYAnimation = scaleStoryboard.Children().GetAt(1).as<DoubleAnimation>();
+            auto translateXAnimation = scaleStoryboard.Children().GetAt(2).as<DoubleAnimation>();
+            auto translateYAnimation = scaleStoryboard.Children().GetAt(3).as<DoubleAnimation>();
+
+            if (scaleXAnimation)
+            {
+                scaleXAnimation.To(scale);
+            }
+            if (scaleYAnimation)
+            {
+                scaleYAnimation.To(scale);
+            }
+            if (translateXAnimation)
+            {
+                translateXAnimation.To(horizontalOffset);
+            }
+            if (translateYAnimation)
+            {
+                translateYAnimation.To(translationY);
+            }
+
+            // Start the storyboard
+            scaleStoryboard.Begin();
         }
 
-        // Retrieve and update transforms for the StackPanel and its children
-        auto stackPanelTransform = targetStackPanel().RenderTransform().as<CompositeTransform>();
-        if (!stackPanelTransform)
-        {
-            stackPanelTransform = CompositeTransform();
-            targetStackPanel().RenderTransform(stackPanelTransform);
-        }
-
-        // Apply scaling and translation only once when needed
-        if (offsetY > startScalingOffset && !isScaledDown)
-        {
-            stackPanelTransform.ScaleX(scale);
-            stackPanelTransform.ScaleY(scale);
-            stackPanelTransform.TranslateY(translationY);
-            isScaledDown = true; // Mark scaling as applied
-        }
-        else if (offsetY <= startScalingOffset && isScaledDown)
-        {
-            stackPanelTransform.ScaleX(1.0);
-            stackPanelTransform.ScaleY(1.0);
-            stackPanelTransform.TranslateY(0);
-            isScaledDown = false; // Mark scaling as reset
-        }
-
-        auto imageTransform = targetImage().RenderTransform().as<CompositeTransform>();
-        if (!imageTransform)
-        {
-            imageTransform = CompositeTransform();
-            targetImage().RenderTransform(imageTransform);
-        }
-
-        // Update image transform only if the scale or translation has changed
-        if (offsetY > startScalingOffset && !isScaledDown)
-        {
-            imageTransform.ScaleX(scale);
-            imageTransform.ScaleY(scale);
-            imageTransform.TranslateY(translationY);
-        }
-        else if (offsetY <= startScalingOffset && isScaledDown)
-        {
-            imageTransform.ScaleX(1.0);
-            imageTransform.ScaleY(1.0);
-            imageTransform.TranslateY(0);
-        }
-
-        auto textTransform = targetTextBlock().RenderTransform().as<CompositeTransform>();
-        if (!textTransform)
-        {
-            textTransform = CompositeTransform();
-            targetTextBlock().RenderTransform(textTransform);
-        }
-
-        // Update text transform only if the scale or translation has changed
-        if (offsetY > startScalingOffset && !isScaledDown)
-        {
-            textTransform.ScaleX(scale);
-            textTransform.ScaleY(scale);
-            textTransform.TranslateY(translationY);
-        }
-        else if (offsetY <= startScalingOffset && isScaledDown)
-        {
-            textTransform.ScaleX(1.0);
-            textTransform.ScaleY(1.0);
-            textTransform.TranslateY(0);
-        }
-
-        auto buttonTransform = targetButton().RenderTransform().as<CompositeTransform>();
-        if (!buttonTransform)
-        {
-            buttonTransform = CompositeTransform();
-            targetButton().RenderTransform(buttonTransform);
-        }
-
-        // Update button transform only if the scale or translation has changed
-        if (offsetY > startScalingOffset && !isScaledDown)
-        {
-            buttonTransform.ScaleX(scale);
-            buttonTransform.ScaleY(scale);
-            buttonTransform.TranslateY(translationY);
-        }
-        else if (offsetY <= startScalingOffset && isScaledDown)
-        {
-            buttonTransform.ScaleX(1.0);
-            buttonTransform.ScaleY(1.0);
-            buttonTransform.TranslateY(0);
-        }
+        // Maintain the fixed width of the StackPanel
+        targetStackPanel().Width(infobarWidth);
 
         // Change background color based on scale
         auto stackPanelBackground = targetStackPanel().Background().as<SolidColorBrush>();

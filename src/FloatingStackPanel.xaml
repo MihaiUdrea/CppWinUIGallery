@@ -6,25 +6,35 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+
     <Page.Resources>
-    <Storyboard x:Name="ScaleStoryboard">
-        <DoubleAnimation
-            Storyboard.TargetName="targetStackPanel"
-            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
-            From="1"
-            To="1"
-            Duration="0:0:0.5"
-            EnableDependentAnimation="True" />
-        <DoubleAnimation
-            Storyboard.TargetName="targetStackPanel"
-            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
-            From="1"
-            To="1"
-            Duration="0:0:0.5"
-            EnableDependentAnimation="True" />
-        <!-- Add animations for Image, TextBlock, and Button here -->
-    </Storyboard>
-</Page.Resources>
+        <Storyboard x:Name="ScaleStoryboard">
+            <!-- Animation for ScaleX -->
+            <DoubleAnimation
+                Storyboard.TargetName="stackPanelTransform"
+                Storyboard.TargetProperty="ScaleX"
+                Duration="0:0:0.5"
+                EnableDependentAnimation="True" />
+            <!-- Animation for ScaleY -->
+            <DoubleAnimation
+                Storyboard.TargetName="stackPanelTransform"
+                Storyboard.TargetProperty="ScaleY"
+                Duration="0:0:0.5"
+                EnableDependentAnimation="True" />
+            <!-- Animation for TranslateX -->
+            <DoubleAnimation
+                Storyboard.TargetName="stackPanelTransform"
+                Storyboard.TargetProperty="TranslateX"
+                Duration="0:0:0.5"
+                EnableDependentAnimation="True" />
+            <!-- Animation for TranslateY -->
+            <DoubleAnimation
+                Storyboard.TargetName="stackPanelTransform"
+                Storyboard.TargetProperty="TranslateY"
+                Duration="0:0:0.5"
+                EnableDependentAnimation="True" />
+        </Storyboard>
+    </Page.Resources>
 
     <Grid x:Name="PageRoot">
         <ScrollViewer x:Name="mainScrollViewer" VerticalScrollBarVisibility="Auto" ViewChanged="OnScrollViewerViewChanged">
@@ -52,11 +62,11 @@
                         </Button.RenderTransform>
                     </Button>
                 </StackPanel>
-                <TextBlock Text="-- 100px" Margin="0,100"/>
-                <TextBlock Text="-- 200px" Margin="0,100"/>
-                <TextBlock Text="-- 300px" Margin="0,100"/>
-                <TextBlock Text="-- 400px" Margin="0,100"/>
-                <TextBlock Text="-- 500px" Margin="0,100"/>
+                <TextBlock Text="-- 100px" Margin="0,90"/>
+                <TextBlock Text="-- 200px" Margin="0,190"/>
+                <TextBlock Text="-- 300px" Margin="0,290"/>
+                <TextBlock Text="-- 400px" Margin="0,390"/>
+                <TextBlock Text="-- 500px" Margin="0,490"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
