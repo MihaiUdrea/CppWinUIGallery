@@ -39,51 +39,21 @@ namespace winrt::CppWinUIGallery::implementation
         // Calculate scale and translation based on scroll offset
         double scale = 1.0;
         double translationY = 0;
-        double horizontalOffset = 0;
 
         if (offsetY > startScalingOffset)
         {
             scale = infobarScale;
             translationY = offsetY - startScalingOffset + infobarTopOffset;
-            horizontalOffset = 0;
         }
         else
         {
             scale = 1.0;
             translationY = 0;
-            horizontalOffset = 0;
         }
 
-        // Retrieve the Storyboard from XAML
-        auto scaleStoryboard = this->FindName(L"ScaleStoryboard").as<Storyboard>();
-        if (scaleStoryboard)
-        {
-            // Set the target properties for animation
-            auto scaleXAnimation = scaleStoryboard.Children().GetAt(0).as<DoubleAnimation>();
-            auto scaleYAnimation = scaleStoryboard.Children().GetAt(1).as<DoubleAnimation>();
-            auto translateXAnimation = scaleStoryboard.Children().GetAt(2).as<DoubleAnimation>();
-            auto translateYAnimation = scaleStoryboard.Children().GetAt(3).as<DoubleAnimation>();
-
-            if (scaleXAnimation)
-            {
-                scaleXAnimation.To(scale);
-            }
-            if (scaleYAnimation)
-            {
-                scaleYAnimation.To(scale);
-            }
-            if (translateXAnimation)
-            {
-                translateXAnimation.To(horizontalOffset);
-            }
-            if (translateYAnimation)
-            {
-                translateYAnimation.To(translationY);
-            }
-
-            // Start the storyboard
-            scaleStoryboard.Begin();
-        }
+        // Apply transformations directly
+        auto transform = targetStackPanel().RenderTransform().as<CompositeTransform>();
+        transform.TranslateY(translationY);
 
         // Maintain the fixed width of the StackPanel
         targetStackPanel().Width(infobarWidth);
@@ -95,6 +65,18 @@ namespace winrt::CppWinUIGallery::implementation
         if (!stackPanelBackground || stackPanelBackground.Color() != newColor)
         {
             targetStackPanel().Background(SolidColorBrush(newColor));
+        }
+
+        // Trigger animations when transitioning
+        if (scale < 1.0 && !isScaledDown)
+        {
+            isScaledDown = true;
+            ScaleDownStoryboard().Begin();
+        }
+        else if (scale == 1.0 && isScaledDown)
+        {
+            isScaledDown = false;
+            ScaleUpStoryboard().Begin();
         }
     }
 }

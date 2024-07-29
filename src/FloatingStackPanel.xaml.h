@@ -18,8 +18,8 @@ namespace winrt::CppWinUIGallery::implementation
         void FloatingStackPanel::OnScrollViewerViewChanged(IInspectable const& sender, Microsoft::UI::Xaml::Controls::ScrollViewerViewChangedEventArgs const& args);
         void ApplyFinalPosition(winrt::Microsoft::UI::Xaml::Controls::ScrollViewer const& scrollViewer, double scale);
         void FloatingStackPanel::AnimateInfobarTransition();
- 
-
+        bool isInInfobarMode = false;
+        double lastScale{ 1.0 };
 
 
     };

@@ -8,31 +8,29 @@
     mc:Ignorable="d">
 
     <Page.Resources>
-        <Storyboard x:Name="ScaleStoryboard">
-            <!-- Animation for ScaleX -->
+        <Storyboard x:Name="ScaleUpStoryboard">
             <DoubleAnimation
                 Storyboard.TargetName="stackPanelTransform"
                 Storyboard.TargetProperty="ScaleX"
-                Duration="0:0:0.5"
-                EnableDependentAnimation="True" />
-            <!-- Animation for ScaleY -->
+                To="1.0"
+                Duration="0:0:0.3" />
             <DoubleAnimation
                 Storyboard.TargetName="stackPanelTransform"
                 Storyboard.TargetProperty="ScaleY"
-                Duration="0:0:0.5"
-                EnableDependentAnimation="True" />
-            <!-- Animation for TranslateX -->
+                To="1.0"
+                Duration="0:0:0.3" />
+        </Storyboard>
+        <Storyboard x:Name="ScaleDownStoryboard">
             <DoubleAnimation
                 Storyboard.TargetName="stackPanelTransform"
-                Storyboard.TargetProperty="TranslateX"
-                Duration="0:0:0.5"
-                EnableDependentAnimation="True" />
-            <!-- Animation for TranslateY -->
+                Storyboard.TargetProperty="ScaleX"
+                To="0.55"
+                Duration="0:0:0.3" />
             <DoubleAnimation
                 Storyboard.TargetName="stackPanelTransform"
-                Storyboard.TargetProperty="TranslateY"
-                Duration="0:0:0.5"
-                EnableDependentAnimation="True" />
+                Storyboard.TargetProperty="ScaleY"
+                To="0.55"
+                Duration="0:0:0.3" />
         </Storyboard>
     </Page.Resources>
 
