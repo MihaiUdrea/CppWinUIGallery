@@ -74,7 +74,7 @@
             <DoubleAnimation
                 Storyboard.TargetName="imageTransform"
                 Storyboard.TargetProperty="ScaleY"
-                To="1.5"
+                To="1.55"
                 Duration="0:0:0.3" />
             <DoubleAnimation
                 Storyboard.TargetName="textTransform"
