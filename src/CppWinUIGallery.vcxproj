@@ -224,6 +224,7 @@
     <Image Include="Assets\awr_logo.png" />
     <Image Include="Assets\bytes.png" />
     <Image Include="Assets\bytes_logo.png" />
+    <Image Include="Assets\caphyon_logo.png" />
     <Image Include="Assets\clang.png" />
     <Image Include="Assets\clang_logo.png" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />

@@ -37,7 +37,23 @@ namespace winrt::CppWinUIGallery::implementation
     /// <param name="e">Details about the launch request and process.</param>
     void App::OnLaunched([[maybe_unused]] LaunchActivatedEventArgs const& e)
     {
+        
+        
         window = make<MainWindow>();
         window.Activate();
+
+
+        // At this moment CoreWindow class is unsupported in desktop apps
+        // See documentation bellow
+        // https://learn.microsoft.com/en-us/windows/apps/desktop/modernize/desktop-to-uwp-supported-api#apis-that-have-dependencies-on-uwp-only-ui-features
+        // following the documentation I couldn't find an alternative for ApplicationView::GetForCurrentView()
+        // as it returns null by defaul cancelation
+        // 
+        //auto applicationView = Windows::UI::ViewManagement::ApplicationView::GetForCurrentView();
+        //if (applicationView == nullptr)
+        //{
+        //    // applicationView.SetPreferredMinSize(Windows::Foundation::Size(200, 200));
+        //    throw winrt::hresult_error(E_POINTER, L"ApplicationView::GetForCurrentView() returned null.");
+        //}
     }
 }

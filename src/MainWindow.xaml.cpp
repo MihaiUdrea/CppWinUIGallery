@@ -19,6 +19,15 @@ using namespace Microsoft::UI::Xaml;
 
 namespace winrt::CppWinUIGallery::implementation
 {
+    MainWindow::MainWindow()
+    {
+        InitializeComponent();
+        ExtendsContentIntoTitleBar(true);
+         
+        // Windows::UI::ViewManagement::ApplicationView::GetForCurrentView().SetPreferredMinSize(Windows::Foundation::Size(500, 300));
+
+    }
+
     int32_t MainWindow::MyProperty()
     {
         throw hresult_not_implemented();
@@ -27,6 +36,42 @@ namespace winrt::CppWinUIGallery::implementation
     void MainWindow::MyProperty(int32_t /* value */)
     {
         throw hresult_not_implemented();
+    }
+
+   
+
+    void MainWindow::AppTitleBar_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {   
+
+        if (ExtendsContentIntoTitleBar() == true) {
+            // Set the initial interactive regions.
+            SetRegionsForCustomTitleBar();
+        }
+
+
+
+    }
+
+    void MainWindow::AppTitleBar_SizeChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::SizeChangedEventArgs const& e)
+    {
+
+        if (ExtendsContentIntoTitleBar() == true) {
+            // Set the initial interactive regions.
+            SetRegionsForCustomTitleBar();
+        }
+        
+    }
+
+    void MainWindow::SetRegionsForCustomTitleBar()
+    {
+        double scaleAdjustment = AppTitleBar().XamlRoot().RasterizationScale();
+        auto m_AppWindow = this->AppWindow();
+        
+
+        AppTitleBar().Margin(ThicknessHelper::FromLengths(0, 0, m_AppWindow.TitleBar().RightInset(), 0));
+        AppTitleBar().Width(m_AppWindow.ClientSize().Width - m_AppWindow.TitleBar().RightInset());
+
+       
     }
 
     void MainWindow::NavView_ItemInvoked(winrt::Microsoft::UI::Xaml::Controls::NavigationView const& sender, winrt::Microsoft::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs const& args)
@@ -155,6 +200,3 @@ namespace winrt::CppWinUIGallery::implementation
 	}
 
 }
-
-
-
