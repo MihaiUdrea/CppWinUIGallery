@@ -67,6 +67,10 @@ namespace winrt::CppWinUIGallery::implementation
             targetStackPanel().Background(SolidColorBrush(newColor));
         }
 
+        // Update text wrapping based on scale
+        auto targetTextBlock = targetStackPanel().FindName(L"targetTextBlock").as<TextBlock>();
+
+
         // Trigger animations when transitioning
         if (scale < 1.0 && !isScaledDown)
         {

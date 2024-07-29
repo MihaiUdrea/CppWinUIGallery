@@ -19,17 +19,77 @@
                 Storyboard.TargetProperty="ScaleY"
                 To="1.0"
                 Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="imageTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="1.0"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="imageTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="1.0"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="buttonTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="1.0"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                 Storyboard.TargetName="buttonTransform"
+                 Storyboard.TargetProperty="ScaleY"
+                 To="1.0"
+                 Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="textTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="1.0"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="textTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="1.0"
+                Duration="0:0:0.3" />
         </Storyboard>
         <Storyboard x:Name="ScaleDownStoryboard">
             <DoubleAnimation
                 Storyboard.TargetName="stackPanelTransform"
                 Storyboard.TargetProperty="ScaleX"
-                To="0.55"
+                To="0.65"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="buttonTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="3.60"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="buttonTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="1.25"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="imageTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="0.65"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="imageTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="1.5"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="textTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="0.9"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="textTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="2.5"
                 Duration="0:0:0.3" />
             <DoubleAnimation
                 Storyboard.TargetName="stackPanelTransform"
                 Storyboard.TargetProperty="ScaleY"
-                To="0.55"
+                To="0.25"
                 Duration="0:0:0.3" />
         </Storyboard>
     </Page.Resources>
@@ -49,16 +109,17 @@
                             <CompositeTransform x:Name="imageTransform" CenterX="100" CenterY="100"/>
                         </Image.RenderTransform>
                     </Image>
-                    <TextBlock x:Name="targetTextBlock" Text="Windows Installer Packaging Tool for Developers, ISVs &amp; Enterprises" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Margin="260,-290">
-                        <TextBlock.RenderTransform>
-                            <CompositeTransform x:Name="textTransform" CenterX="200" CenterY="30"/>
-                        </TextBlock.RenderTransform>
-                    </TextBlock>
-                    <Button x:Name="targetButton" Style="{StaticResource AccentButtonStyle}" Content="Get" Width="195" HorizontalAlignment="Left" Margin="670,-530,0,0">
+                    <Button x:Name="targetButton" Style="{StaticResource AccentButtonStyle}" Content="Get" Width="195" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="655,-590,0,0">
                         <Button.RenderTransform>
-                            <CompositeTransform x:Name="buttonTransform" CenterX="97.5" CenterY="22.5"/>
+                            <CompositeTransform x:Name="buttonTransform" CenterX="97.5" CenterY="-16.5"/>
                         </Button.RenderTransform>
                     </Button>
+                    <TextBlock x:Name="targetTextBlock" Text="Windows Installer Packaging Tool for Developers, ISVs &amp; Enterprises" Style="{StaticResource TitleTextBlockStyle }" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Margin="250,-320">
+                        <TextBlock.RenderTransform>
+                            <CompositeTransform x:Name="textTransform"/>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    
                 </StackPanel>
                 <TextBlock Text="-- 100px" Margin="0,90"/>
                 <TextBlock Text="-- 200px" Margin="0,190"/>
