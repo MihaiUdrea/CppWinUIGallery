@@ -1,0 +1,9 @@
+namespace CppWinUIGallery
+{
+    [default_interface]
+    runtimeclass FloatingElementPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        FloatingElementPage();
+        Int32 MyProperty;
+    }
+}

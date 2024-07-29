@@ -54,7 +54,9 @@
                 
 
                 
-                    <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
+                <NavigationViewItem Tag="CppWinUIGallery.FloatingElementPage" Content="Floating InfoBar" Icon="Admin" ToolTipService.ToolTip="Floating InfoBar"/>
+                <NavigationViewItem Tag="CppWinUIGallery.FloatingStackPanel" Content="Floating StackPanel" Icon="Admin" ToolTipService.ToolTip="Floating StackPanel"/>
+                <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Content="FlipView" ToolTipService.ToolTip="FlipView" />
                         <NavigationViewItem Content="GridView" ToolTipService.ToolTip="GridView"/>

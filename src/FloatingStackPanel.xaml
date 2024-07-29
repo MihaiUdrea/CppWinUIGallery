@@ -1,0 +1,167 @@
+<Page
+    x:Class="CppWinUIGallery.FloatingStackPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CppWinUIGallery"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Storyboard x:Name="ScaleUpStoryboard">
+            <DoubleAnimation
+                Storyboard.TargetName="stackPanelTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="1.0"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="stackPanelTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="1.0"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="imageTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="1.0"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="imageTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="1.0"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="buttonTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="1.0"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                 Storyboard.TargetName="buttonTransform"
+                 Storyboard.TargetProperty="ScaleY"
+                 To="1.0"
+                 Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="textTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="1.0"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="textTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="1.0"
+                Duration="0:0:0.3" />
+        </Storyboard>
+        <Storyboard x:Name="ScaleDownStoryboard">
+            <DoubleAnimation
+                Storyboard.TargetName="stackPanelTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="0.65"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="buttonTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="3.60"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="buttonTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="1.25"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="imageTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="0.65"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="imageTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="1.55"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="textTransform"
+                Storyboard.TargetProperty="ScaleX"
+                To="0.9"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="textTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="2.5"
+                Duration="0:0:0.3" />
+            <DoubleAnimation
+                Storyboard.TargetName="stackPanelTransform"
+                Storyboard.TargetProperty="ScaleY"
+                To="0.25"
+                Duration="0:0:0.3" />
+        </Storyboard>
+    </Page.Resources>
+
+    <Grid x:Name="PageRoot">
+        <ScrollViewer x:Name="mainScrollViewer" VerticalScrollBarVisibility="Auto" ViewChanged="OnScrollViewerViewChanged">
+            <StackPanel>
+                <StackPanel>
+                    <TextBlock Text="Animated Floating InfoBar - Scroll down!" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Margin="0,40"/>
+                </StackPanel>
+                <StackPanel x:Name="targetStackPanel" Background="#80000000" Width="900" CornerRadius="60" HorizontalAlignment="Center" Margin="36,0,36,0" Height="360" Opacity="1">
+                    <StackPanel.RenderTransform>
+                        <CompositeTransform x:Name="stackPanelTransform" CenterX="450" CenterY="180"/>
+                    </StackPanel.RenderTransform>
+                    <Image x:Name="targetImage" Source="ms-appx:///Assets/ai_logo_img.png" VerticalAlignment="Top" AutomationProperties.Name="AdvancedInstaller" HorizontalAlignment="Left" Width="200" Height="200" Margin="36,80">
+                        <Image.RenderTransform>
+                            <CompositeTransform x:Name="imageTransform" CenterX="100" CenterY="100"/>
+                        </Image.RenderTransform>
+                    </Image>
+                    <Button x:Name="targetButton" Style="{StaticResource AccentButtonStyle}" Content="Get" Width="195" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="655,-590,0,0">
+                        <Button.RenderTransform>
+                            <CompositeTransform x:Name="buttonTransform" CenterX="97.5" CenterY="-16.5"/>
+                        </Button.RenderTransform>
+                    </Button>
+                    <TextBlock x:Name="targetTextBlock" Text="Windows Installer Packaging Tool for Developers, ISVs &amp; Enterprises" Style="{StaticResource TitleTextBlockStyle }" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Margin="250,-320">
+                        <TextBlock.RenderTransform>
+                            <CompositeTransform x:Name="textTransform"/>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+
+                </StackPanel>
+                <StackPanel Margin="75,200,0,0">
+                    <!-- A Button to show XAML -->
+                    <Button x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,-120,0,10" />
+                    <!-- A ScrollViewer to enable scrolling -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,-40,0,10">
+                        <!-- A TextBox to display XAML code -->
+                        <TextBox x:Name="SourceCodeTextBox" 
+            IsReadOnly="True" 
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            Margin="0"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            MinWidth="300"
+            Visibility="Collapsed" />
+                    </ScrollViewer>
+                </StackPanel>
+
+                <!-- Container for the StackPanel with C++ Code -->
+                <StackPanel Margin="75,0,0,0">
+                    <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,20,0,10" />
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,0,0,10">
+                        <!-- A TextBox to display C++ code -->
+                        <TextBox x:Name="CppCodeTextBox" 
+            IsReadOnly="True" 
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            Margin="0"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            MinWidth="300"
+            Visibility="Collapsed" />
+                    </ScrollViewer>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="" Margin="0,500"></TextBlock>
+                </StackPanel>
+               
+            </StackPanel>
+            
+        </ScrollViewer>
+        
+    </Grid>
+</Page>
