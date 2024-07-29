@@ -23,6 +23,7 @@ namespace winrt::CppWinUIGallery::implementation
     {
         InitializeComponent();
         ExtendsContentIntoTitleBar(true);
+        AppWindow().TitleBar().PreferredHeightOption(Microsoft::UI::Windowing::TitleBarHeightOption::Standard);
          
         // Windows::UI::ViewManagement::ApplicationView::GetForCurrentView().SetPreferredMinSize(Windows::Foundation::Size(500, 300));
 

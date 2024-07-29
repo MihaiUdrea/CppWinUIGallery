@@ -26,7 +26,7 @@
         <Grid x:Name="AppTitleBar"
                     Loaded="AppTitleBar_Loaded"
                     SizeChanged="AppTitleBar_SizeChanged"
-                    Height="32"
+                    Height="48"
                     VerticalAlignment="Top"
                     HorizontalAlignment="Stretch"
                     MinWidth="280">
@@ -40,20 +40,20 @@
                    Source="ms-appx:///Assets/caphyon_logo.png"
                    Grid.Column="1"
                    HorizontalAlignment="Left"
-                   Width="16" Height="16"
-                   Margin="8,0,0,0"/>
+                   Width="20" Height="20"
+                   Margin="15,0,0,0"/>
             <TextBlock x:Name="TitleBarTextBlock"
                Text="Cpp WinUI 3 Gallery" 
                Style="{StaticResource CaptionTextBlockStyle}"
                Grid.Column="2"
                VerticalAlignment="Center"
-               Margin="28,0,0,0"/>
+               Margin="45,0,0,0"/>
         </Grid>
 
         <NavigationView x:Name="NavView"
                         ItemInvoked="NavView_ItemInvoked"
                         Loaded="NavView_Loaded"
-                        Margin="0,32,0,0"
+                        Margin="0,48,0,0"
                         IsBackButtonVisible="Collapsed">
             <NavigationView.PaneHeader>
                 <StackPanel Orientation="Horizontal">
