@@ -119,14 +119,49 @@
                             <CompositeTransform x:Name="textTransform"/>
                         </TextBlock.RenderTransform>
                     </TextBlock>
-                    
+
                 </StackPanel>
-                <TextBlock Text="-- 100px" Margin="0,90"/>
-                <TextBlock Text="-- 200px" Margin="0,190"/>
-                <TextBlock Text="-- 300px" Margin="0,290"/>
-                <TextBlock Text="-- 400px" Margin="0,390"/>
-                <TextBlock Text="-- 500px" Margin="0,490"/>
+                <StackPanel Margin="75,200,0,0">
+                    <!-- A Button to show XAML -->
+                    <Button x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,-120,0,10" />
+                    <!-- A ScrollViewer to enable scrolling -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,-40,0,10">
+                        <!-- A TextBox to display XAML code -->
+                        <TextBox x:Name="SourceCodeTextBox" 
+            IsReadOnly="True" 
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            Margin="0"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            MinWidth="300"
+            Visibility="Collapsed" />
+                    </ScrollViewer>
+                </StackPanel>
+
+                <!-- Container for the StackPanel with C++ Code -->
+                <StackPanel Margin="75,0,0,0">
+                    <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,20,0,10" />
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,0,0,10">
+                        <!-- A TextBox to display C++ code -->
+                        <TextBox x:Name="CppCodeTextBox" 
+            IsReadOnly="True" 
+            AcceptsReturn="True"
+            TextWrapping="Wrap"
+            Margin="0"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            MinWidth="300"
+            Visibility="Collapsed" />
+                    </ScrollViewer>
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Text="" Margin="0,500"></TextBlock>
+                </StackPanel>
+               
             </StackPanel>
+            
         </ScrollViewer>
+        
     </Grid>
 </Page>
