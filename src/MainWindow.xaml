@@ -92,7 +92,6 @@
                 <NavigationViewItemSeparator/>
                 <NavigationViewItem Content="Basic Input" Icon="MapPin" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
-                        <NavigationViewItem Tag="CppWinUIGallery.ButtonPage" Content="Button" ToolTipService.ToolTip="Button"/>
                         <NavigationViewItem Content="ToggleSwitch" ToolTipService.ToolTip="ToggleSwitch" Tag="CppWinUIGallery.ToggleSwitchPage"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
@@ -105,7 +104,8 @@
                 <NavigationViewItem Content="Animated Content" Icon="Library" ToolTipService.ToolTip="Animated Content">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Tag="CppWinUIGallery.FloatingElementPage" Content="Floating InfoBar" Icon="Admin" ToolTipService.ToolTip="Floating InfoBar"/>
-                        <NavigationViewItem Tag="CppWinUIGallery.FloatingStackPanel" Content="Floating StackPanel" Icon="Admin" ToolTipService.ToolTip="Floating StackPanel"/>
+                        <NavigationViewItem Tag="CppWinUIGallery.FloatingStackPanel" Content="Floating StackPanel" Icon="ContactInfo" ToolTipService.ToolTip="Floating StackPanel"/>
+                        <NavigationViewItem Tag="CppWinUIGallery.ConnectedAnimation" Content="App Selection Animation" Icon="Directions" ToolTipService.ToolTip="App Selection Animation"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>    
             

@@ -275,6 +275,7 @@
     <Image Include="Assets\clang_logo.png" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
     <Image Include="Assets\R.png" />
+    <Image Include="Assets\simple_logo.png" />
     <Image Include="Assets\SplashScreen.scale-200.png" />
     <Image Include="Assets\Square150x150Logo.scale-200.png" />
     <Image Include="Assets\Square44x44Logo.scale-200.png" />

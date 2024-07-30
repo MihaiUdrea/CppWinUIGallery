@@ -12,6 +12,7 @@
     <Page Include="ToggleSwitchPage.xaml" />
     <Page Include="FloatingElementPage.xaml" />
     <Page Include="FloatingStackPanel.xaml" />
+    <Page Include="ConnectedAnimation.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
@@ -82,6 +83,9 @@
       <Filter>Assets</Filter>
     </Image>
     <Image Include="Assets\ai_logo_img.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\simple_logo.png">
       <Filter>Assets</Filter>
     </Image>
   </ItemGroup>

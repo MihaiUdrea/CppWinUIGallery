@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <Page
     x:Class="CppWinUIGallery.ConnectedAnimation"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -8,7 +7,57 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-    </StackPanel>
+    <!--<Page.Resources>
+        <Storyboard x:Name="ScaleUpStoryboard">
+            <DoubleAnimation
+             Storyboard.TargetName="stackPanelTransform"
+             Storyboard.TargetProperty="ScaleX"
+             To="1.0"
+             Duration="0:0:0.3" />
+            <DoubleAnimation
+             Storyboard.TargetName="stackPanelTransform"
+             Storyboard.TargetProperty="ScaleY"
+             To="1.0"
+             Duration="0:0:0.3" />
+        </Storyboard>
+        <Storyboard x:Name="ScaleDownStoryboard">
+            <DoubleAnimation
+         Storyboard.TargetName="stackPanelTransform"
+         Storyboard.TargetProperty="ScaleX"
+         To="0.65"
+         Duration="0:0:0.3" />
+        </Storyboard>
+    </Page.Resources>-->
+    <Grid>
+
+        <StackPanel>
+            <TextBlock Text="App Selection Animation" Margin="0,32" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
+            <Rectangle Margin="36,69" HorizontalAlignment="Left" Width="175" Height="185" RadiusX="10" RadiusY="10">
+                <Rectangle.Fill>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#344EB7" Offset="0.0"/>
+                        <GradientStop Color="#3D54B2" Offset="0.2"/>
+                        <GradientStop Color="#6C80D3" Offset="0.8"/>
+                        <GradientStop Color="#5C6EB8" Offset="0.7"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+        </StackPanel>
+        <StackPanel>
+            <Border Background="#353036" Margin="36,326" HorizontalAlignment="Left" Width="175" Height="95" CornerRadius="0,0,10,10"/>
+            <TextBlock Margin="45,-415,0,0" Width="175" HorizontalAlignment="Left"    Style="{StaticResource BodyStrongTextBlockStyle}"  TextWrapping="Wrap" Text="Caphyon Ltd. : Independent software products"></TextBlock>
+        </StackPanel>
+        <StackPanel>
+            <Rectangle Fill="#8898DE" Margin="77,207" HorizontalAlignment="Left" Width="90" Height="90" RadiusX="10" RadiusY="10"/>
+        </StackPanel>
+        <StackPanel>
+            <Image Source="ms-appx:///Assets/simple_logo.png" Width="80" Height="80" HorizontalAlignment="Left" Margin="85,210"></Image>
+            <TextBlock Foreground="DarkGray" Text="5.0 ★" Margin="45,-105" Style="{StaticResource BodyTextBlockStyle}"></TextBlock>
+        </StackPanel>
+        <StackPanel>
+            <Rectangle Fill="#463F47" Margin="154,390" HorizontalAlignment="Left" Width="45" Height="23" RadiusX="8" RadiusY="8"/>
+            <TextBlock Margin="163,-412" Text="Free" FontSize="14"></TextBlock>
+        </StackPanel>
+    </Grid>
 </Page>
