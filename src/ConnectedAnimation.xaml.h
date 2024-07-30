@@ -15,6 +15,11 @@ namespace winrt::CppWinUIGallery::implementation
         int32_t MyProperty();
         void MyProperty(int32_t value);
 
+        void OnPointerExit(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
+        void OnPointerEnter(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
+        bool m_hovered = false;
+        bool m_pointerInside = false;  // Track whether the pointer is inside the element
+
     };
 }
 
