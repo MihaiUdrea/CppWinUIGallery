@@ -23,23 +23,39 @@
 
     <Grid x:Name="Root" MinWidth="200">
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
         <Grid x:Name="AppTitleBar"
                     Loaded="AppTitleBar_Loaded"
                     SizeChanged="AppTitleBar_SizeChanged"
                     Height="48"
-                    VerticalAlignment="Top"
-                    HorizontalAlignment="Stretch"
-                    MinWidth="280">
+                    Grid.Row="0">
+
             <Grid.ColumnDefinitions>
-                
+                <ColumnDefinition x:Name="BackButtonColumn" Width="48"/>
                 <ColumnDefinition x:Name="IconColumn" Width="Auto"/>
-                <ColumnDefinition x:Name="TitleColumn" Width="*"/>
-                
+                <ColumnDefinition x:Name="TitleColumn" Width="Auto"/>
             </Grid.ColumnDefinitions>
+
+            <Button x:Name="TitleBar_BackButton"
+                    Click="TitleBar_BackButton_Click"
+                    Style="{StaticResource NavigationBackButtonNormalStyle}"
+                    Foreground="{StaticResource BackButtonDisabledForegroundThemeBrush}"
+                    HorizontalContentAlignment="Center"
+                    VerticalAlignment="Center"
+                    IsEnabled="False"/>
+
             <Image x:Name="TitleBarIcon"
                    Source="ms-appx:///Assets/caphyon_logo.png"
                    Grid.Column="1"
-                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
                    Width="20" Height="20"
                    Margin="15,0,0,0"/>
             <TextBlock x:Name="TitleBarTextBlock"
@@ -47,13 +63,13 @@
                Style="{StaticResource CaptionTextBlockStyle}"
                Grid.Column="2"
                VerticalAlignment="Center"
-               Margin="45,0,0,0"/>
+               Margin="15,0,0,0"/>
         </Grid>
 
         <NavigationView x:Name="NavView"
                         ItemInvoked="NavView_ItemInvoked"
                         Loaded="NavView_Loaded"
-                        Margin="0,48,0,0"
+                        Grid.Row="1"
                         IsBackButtonVisible="Collapsed">
             <NavigationView.PaneHeader>
                 <StackPanel Orientation="Horizontal">
@@ -67,7 +83,7 @@
 
             </NavigationView.AutoSuggestBox>
             <NavigationView.MenuItems>
-                <NavigationViewItem Tag="CppWinUIGallery.HomePage" Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>
+                <NavigationViewItem x:Name="NavHomePage" Tag="CppWinUIGallery.HomePage" Content="Home" Icon="Home" ToolTipService.ToolTip="Home"/>
                 <NavigationViewItem Content="Design guidance" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Tag="CppWinUIGallery.PhotoGallery" Content="Gallery" Icon="BrowsePhotos" ToolTipService.ToolTip="Gallery"/>
@@ -144,7 +160,8 @@
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>-->
             </NavigationView.MenuItems>
-            <Frame x:Name="ContentFrame"/>
+            <Frame x:Name="ContentFrame"
+                   Loaded="ContentFrame_Loaded"/>
         </NavigationView>
         <!--Work in progress - Light/Dark Mode Slide Button-->
         <!--<Button >
