@@ -115,6 +115,10 @@
       <DependentUpon>ButtonPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="ConnectedAnimation.xaml.h">
+      <DependentUpon>ConnectedAnimation.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="FloatingElementPage.xaml.h">
       <DependentUpon>FloatingElementPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -151,6 +155,9 @@
     <Page Include="ButtonPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="ConnectedAnimation.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="FloatingElementPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -175,6 +182,10 @@
     </ClCompile>
     <ClCompile Include="ButtonPage.xaml.cpp">
       <DependentUpon>ButtonPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="ConnectedAnimation.xaml.cpp">
+      <DependentUpon>ConnectedAnimation.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="FloatingElementPage.xaml.cpp">
@@ -215,6 +226,10 @@
     </Midl>
     <Midl Include="ButtonPage.idl">
       <DependentUpon>ButtonPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="ConnectedAnimation.idl">
+      <DependentUpon>ConnectedAnimation.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="FloatingElementPage.idl">
