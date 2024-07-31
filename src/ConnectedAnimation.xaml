@@ -50,6 +50,9 @@
              Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
              From="0" To="-3"
              Duration="0:0:0.1" />
+            
+            
+            
         </Storyboard>
         <Storyboard x:Name="HoverDownStoryboard">
             <DoubleAnimation
@@ -57,7 +60,7 @@
              Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
              From="-3" To="0"
              Duration="0:0:0.1" />
-            
+
             <DoubleAnimation
              Storyboard.TargetName="grayStackPanel"
              Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
@@ -103,38 +106,38 @@
         </StackPanel>
 
         <Grid>
-        <StackPanel 
+            <StackPanel 
             Height="1359"
             x:Name="blueStackPanel">
 
-            <Rectangle Margin="36,160" HorizontalAlignment="Left" Width="175" Height="185" RadiusX="10" RadiusY="10">
-                <Rectangle.Fill>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#344EB7" Offset="0.0"/>
-                        <GradientStop Color="#3D54B2" Offset="0.2"/>
-                        <GradientStop Color="#6C80D3" Offset="0.8"/>
-                        <GradientStop Color="#5C6EB8" Offset="0.7"/>
-                    </LinearGradientBrush>
-                </Rectangle.Fill>
-            </Rectangle>
-            <StackPanel.RenderTransform>
-                <CompositeTransform />
-            </StackPanel.RenderTransform>
-        </StackPanel>
-            
-            <StackPanel x:Name="grayStackPanel">
-            <StackPanel.RenderTransform>
-                <CompositeTransform  CenterX="100" CenterY="100"/>
-            </StackPanel.RenderTransform>
-            <Border Background="#353036" Margin="36,326" HorizontalAlignment="Left" Width="175" Height="95" CornerRadius="0,0,10,10"/>
-        </StackPanel>
+                <Rectangle Margin="36,160" HorizontalAlignment="Left" Width="175" Height="185" RadiusX="10" RadiusY="10">
+                    <Rectangle.Fill>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                            <GradientStop Color="#344EB7" Offset="0.0"/>
+                            <GradientStop Color="#3D54B2" Offset="0.2"/>
+                            <GradientStop Color="#6C80D3" Offset="0.8"/>
+                            <GradientStop Color="#5C6EB8" Offset="0.7"/>
+                        </LinearGradientBrush>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <StackPanel.RenderTransform>
+                    <CompositeTransform />
+                </StackPanel.RenderTransform>
+            </StackPanel>
 
-        <StackPanel x:Name="appBackgroundStackPanel">
-            <StackPanel.RenderTransform>
-                <CompositeTransform  CenterX="100" CenterY="100"/>
-            </StackPanel.RenderTransform>
-            <Rectangle Fill="#8898DE" Margin="77,207" HorizontalAlignment="Left" Width="90" Height="90" RadiusX="10" RadiusY="10"/>
-        </StackPanel>
+            <StackPanel x:Name="grayStackPanel">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform  CenterX="100" CenterY="100"/>
+                </StackPanel.RenderTransform>
+                <Border Background="#353036" Margin="36,326" HorizontalAlignment="Left" Width="175" Height="95" CornerRadius="0,0,10,10"/>
+            </StackPanel>
+
+            <StackPanel x:Name="appBackgroundStackPanel">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform  CenterX="100" CenterY="100"/>
+                </StackPanel.RenderTransform>
+                <Rectangle Fill="#8898DE" Margin="77,207" HorizontalAlignment="Left" Width="90" Height="90" RadiusX="10" RadiusY="10"/>
+            </StackPanel>
             <StackPanel x:Name="nameStackPanel">
                 <StackPanel.RenderTransform>
                     <CompositeTransform  CenterX="100" CenterY="100"/>
@@ -149,24 +152,24 @@
             </StackPanel>
 
             <StackPanel x:Name="logoStackPanel">
-            <StackPanel.RenderTransform>
-                <CompositeTransform  CenterX="100" CenterY="100"/>
-            </StackPanel.RenderTransform>
-            <Image Source="ms-appx:///Assets/simple_logo.png" Width="80" Height="80" HorizontalAlignment="Left" Margin="85,210"/>
-        </StackPanel>
-        <Grid Margin="0,0,100,0">
-        <StackPanel x:Name="freeStackPanel">
-            <StackPanel.RenderTransform>
-                <CompositeTransform  CenterX="100" CenterY="100"/>
-            </StackPanel.RenderTransform>
-            <Rectangle Fill="#463F47" Margin="154,390" HorizontalAlignment="Left" Width="45" Height="23" RadiusX="8" RadiusY="8"/>
-        </StackPanel>
-            <StackPanel x:Name="freeButtonStackPanel">    
                 <StackPanel.RenderTransform>
                     <CompositeTransform  CenterX="100" CenterY="100"/>
                 </StackPanel.RenderTransform>
-                <TextBlock Margin="163,391,1294,0" Text="Free" FontSize="14" />
+                <Image Source="ms-appx:///Assets/simple_logo.png" Width="80" Height="80" HorizontalAlignment="Left" Margin="85,210"/>
             </StackPanel>
+            <Grid Margin="0,0,100,0">
+                <StackPanel x:Name="freeStackPanel">
+                    <StackPanel.RenderTransform>
+                        <CompositeTransform  CenterX="100" CenterY="100"/>
+                    </StackPanel.RenderTransform>
+                    <Rectangle Fill="#463F47" Margin="154,390" HorizontalAlignment="Left" Width="45" Height="23" RadiusX="8" RadiusY="8"/>
+                </StackPanel>
+                <StackPanel x:Name="freeButtonStackPanel">
+                    <StackPanel.RenderTransform>
+                        <CompositeTransform  CenterX="100" CenterY="100"/>
+                    </StackPanel.RenderTransform>
+                    <TextBlock Margin="163,391,1294,0" Text="Free" FontSize="14" />
+                </StackPanel>
             </Grid>
             <Grid >
                 <StackPanel x:Name="helperStackPanel"
