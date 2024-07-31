@@ -12,6 +12,17 @@ using namespace Microsoft::UI::Xaml;
 
 namespace winrt::CppWinUIGallery::implementation
 {
+    /*HomePage::HomePage() 
+    {
+        this->InitializeComponent();
+   
+    }*/
+
+    HomePage::~HomePage()
+    {
+        MyWebView2().Close();
+    }
+
     int32_t HomePage::MyProperty()
     {
         throw hresult_not_implemented();
