@@ -50,9 +50,6 @@
              Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
              From="0" To="-3"
              Duration="0:0:0.1" />
-            
-            
-            
         </Storyboard>
         <Storyboard x:Name="HoverDownStoryboard">
             <DoubleAnimation
@@ -97,6 +94,21 @@
              From="-3" To="0"
              Duration="0:0:0.1" />
         </Storyboard>
+        <Storyboard x:Name="sizeUp">
+            <DoubleAnimation
+              Storyboard.TargetName="blueStackPanel"
+              Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+              From="1" To="2.06"
+              Duration="0:0:0.3" />
+            <DoubleAnimation
+              Storyboard.TargetName="blueStackPanel"
+              Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+              To="1.8"
+              Duration="0:0:0.3" />
+        </Storyboard>
+
+
+
     </Page.Resources>
 
     <Grid>
@@ -107,8 +119,8 @@
 
         <Grid>
             <StackPanel 
-            Height="1359"
-            x:Name="blueStackPanel">
+              Height="1359"
+              x:Name="blueStackPanel">
 
                 <Rectangle Margin="36,160" HorizontalAlignment="Left" Width="175" Height="185" RadiusX="10" RadiusY="10">
                     <Rectangle.Fill>
@@ -121,9 +133,10 @@
                     </Rectangle.Fill>
                 </Rectangle>
                 <StackPanel.RenderTransform>
-                    <CompositeTransform />
+                    <CompositeTransform x:Name="stackPanelTransform"  CenterY="180"/>
                 </StackPanel.RenderTransform>
             </StackPanel>
+
 
             <StackPanel x:Name="grayStackPanel">
                 <StackPanel.RenderTransform>
