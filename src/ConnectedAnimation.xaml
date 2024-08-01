@@ -50,6 +50,8 @@
              Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
              From="0" To="-3"
              Duration="0:0:0.1" />
+           
+
         </Storyboard>
         <Storyboard x:Name="HoverDownStoryboard">
             <DoubleAnimation
@@ -95,20 +97,280 @@
              Duration="0:0:0.1" />
         </Storyboard>
         <Storyboard x:Name="sizeUp">
+
+            <ObjectAnimationUsingKeyFrames
+        Storyboard.TargetName="getStackPanel"
+        Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+
+            <ObjectAnimationUsingKeyFrames
+            Storyboard.TargetName="inAppStackPanel"
+            Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+
+            <ObjectAnimationUsingKeyFrames
+             Storyboard.TargetName="aboutStackPanel"
+             Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+            <ObjectAnimationUsingKeyFrames
+             Storyboard.TargetName="separatorStackPanel"
+             Storyboard.TargetProperty="Visibility">
+                            <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                <DiscreteObjectKeyFrame.Value>
+                                    <Visibility>Visible</Visibility>
+                                </DiscreteObjectKeyFrame.Value>
+                            </DiscreteObjectKeyFrame>
+                        </ObjectAnimationUsingKeyFrames>
+
+
+
+            <ObjectAnimationUsingKeyFrames
+        Storyboard.TargetName="ratedEStackPanel"
+        Storyboard.TargetProperty="Visibility">
+                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                    <DiscreteObjectKeyFrame.Value>
+                        <Visibility>Visible</Visibility>
+                    </DiscreteObjectKeyFrame.Value>
+                </DiscreteObjectKeyFrame>
+            </ObjectAnimationUsingKeyFrames>
+
+            <ObjectAnimationUsingKeyFrames
+                Storyboard.TargetName="sampleImageStackPanel"
+                Storyboard.TargetProperty="Visibility">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <Visibility>Visible</Visibility>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+            <!--<ObjectAnimationUsingKeyFrames
+            Storyboard.TargetName="ratingEStackPanel"
+            Storyboard.TargetProperty="Visibility">
+                        <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                            <DiscreteObjectKeyFrame.Value>
+                                <Visibility>Visible</Visibility>
+                            </DiscreteObjectKeyFrame.Value>
+                        </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>-->
+
             <DoubleAnimation
-              Storyboard.TargetName="blueStackPanel"
-              Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
-              From="1" To="2.06"
-              Duration="0:0:0.3" />
+             Storyboard.TargetName ="grayStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleY)"
+             To="2.4"
+             Duration="0:0:0.3" />
+          
             <DoubleAnimation
-              Storyboard.TargetName="blueStackPanel"
-              Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
-              To="1.8"
-              Duration="0:0:0.3" />
+            Storyboard.TargetName ="grayStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleX)"
+            To="2.1"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="grayStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+            To="180"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="grayStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            To="-160"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="blueStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleX)"
+            To="2.1"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="blueStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleY)"
+            To="1.5"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="blueStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+            To="70"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="blueStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            To="0"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="logoStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+            To="75"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="logoStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            To="76"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="logoStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+            To="0.8"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="logoStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+            To="0.8"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="appBackgroundStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+            To="75"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="appBackgroundStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            To="75"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="appBackgroundStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+            To="0.8"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="appBackgroundStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+            To="0.8"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="nameStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+            To="-73"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+            Storyboard.TargetName ="nameStackPanel"
+            Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+            To="195"
+            Duration="0:0:0.3" />
+            <DoubleAnimation
+             Storyboard.TargetName="ratingStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+             To="-47"
+             Duration="0:0:0.1" />
+            <DoubleAnimation
+             Storyboard.TargetName="ratingStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+             To="190"
+             Duration="0:0:0.1" />
+            <DoubleAnimation
+             Storyboard.TargetName="ratingStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleX)"
+             To="0.9"
+             Duration="0:0:0.1" />
+            <DoubleAnimation
+             Storyboard.TargetName="ratingStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.ScaleY)"
+             To="0.9"
+             Duration="0:0:0.1" />
+            <DoubleAnimation
+             Storyboard.TargetName="freeStackPanel"
+             Storyboard.TargetProperty="Opacity"
+             To="0"
+             Duration="0:0:0.1" />
+            <DoubleAnimation
+             Storyboard.TargetName="freeButtonStackPanel"
+             Storyboard.TargetProperty="Opacity"
+             To="0"
+             Duration="0:0:0.1" />
+            <DoubleAnimation
+             Storyboard.TargetName="getStackPanel"
+             Storyboard.TargetProperty="(UIElement.Opacity)"
+             From="0" To="1"
+             Duration="0:0:0.4" />
+            <DoubleAnimation
+             Storyboard.TargetName ="getStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+             To="180"
+             Duration="0:0:0.3" />
+            <DoubleAnimation
+             Storyboard.TargetName ="getStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+             To="0"
+             Duration="0:0:0.3" />
+            <DoubleAnimation
+             Storyboard.TargetName="inAppStackPanel"
+             Storyboard.TargetProperty="(UIElement.Opacity)"
+             From="0" To="1"
+             Duration="0:0:0.5" />
+            <DoubleAnimation
+             Storyboard.TargetName="inAppStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+             To="115"
+             Duration="0:0:0.3" />
+            <DoubleAnimation
+             Storyboard.TargetName="inAppStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+             To="-49"
+             Duration="0:0:0.3" />
+            <DoubleAnimation
+             Storyboard.TargetName="aboutStackPanel"
+             Storyboard.TargetProperty="(UIElement.Opacity)"
+             From="0" To="1"
+             Duration="0:0:0.5" />
+            <DoubleAnimation
+             Storyboard.TargetName="aboutStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+             To="-120"
+             Duration="0:0:0.3" />
+            <DoubleAnimation
+             Storyboard.TargetName="separatorStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateX)"
+             To="-145"
+             Duration="0:0:0.3" />
+            <DoubleAnimation
+             Storyboard.TargetName="separatorStackPanel"
+             Storyboard.TargetProperty="(UIElement.Opacity)"
+             From="0" To="1"
+             Duration="0:0:0.5" />
+            <DoubleAnimation
+             Storyboard.TargetName="sampleImageStackPanel"
+             Storyboard.TargetProperty="(UIElement.Opacity)"
+             From="0" To="1"
+             Duration="0:0:0.9" />
+            <DoubleAnimation
+             Storyboard.TargetName="sampleImageStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+             To="30"
+             Duration="0:0:0.3" />
+            <DoubleAnimation
+             Storyboard.TargetName="ratedEStackPanel"
+             Storyboard.TargetProperty="(UIElement.Opacity)"
+             From="0" To="1"
+             Duration="0:0:0.9" />      
+            <DoubleAnimation
+             Storyboard.TargetName="ratedEStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+             To="-13"
+             Duration="0:0:0.3" />
+            <!--<DoubleAnimation
+             Storyboard.TargetName="ratingEStackPanel"
+             Storyboard.TargetProperty="(UIElement.Opacity)"
+             From="0" To="1"
+             Duration="0:0:0.9" />
+            <DoubleAnimation
+             Storyboard.TargetName="ratingEStackPanel"
+             Storyboard.TargetProperty="(UIElement.RenderTransform).(CompositeTransform.TranslateY)"
+             To="13"
+             Duration="0:0:0.3" />-->
+
         </Storyboard>
-
-
-
     </Page.Resources>
 
     <Grid>
@@ -119,8 +381,8 @@
 
         <Grid>
             <StackPanel 
-              Height="1359"
-              x:Name="blueStackPanel">
+            Height="1359"
+            x:Name="blueStackPanel">
 
                 <Rectangle Margin="36,160" HorizontalAlignment="Left" Width="175" Height="185" RadiusX="10" RadiusY="10">
                     <Rectangle.Fill>
@@ -133,12 +395,11 @@
                     </Rectangle.Fill>
                 </Rectangle>
                 <StackPanel.RenderTransform>
-                    <CompositeTransform x:Name="stackPanelTransform"  CenterY="180"/>
+                    <CompositeTransform />
                 </StackPanel.RenderTransform>
             </StackPanel>
 
-
-            <StackPanel x:Name="grayStackPanel">
+            <StackPanel x:Name="grayStackPanel" >
                 <StackPanel.RenderTransform>
                     <CompositeTransform  CenterX="100" CenterY="100"/>
                 </StackPanel.RenderTransform>
@@ -153,7 +414,7 @@
             </StackPanel>
             <StackPanel x:Name="nameStackPanel">
                 <StackPanel.RenderTransform>
-                    <CompositeTransform  CenterX="100" CenterY="100"/>
+                    <CompositeTransform  />
                 </StackPanel.RenderTransform>
                 <TextBlock Margin="45,332,1394,0" Width="175" HorizontalAlignment="Left" Style="{StaticResource BodyStrongTextBlockStyle}" TextWrapping="Wrap" Text="Caphyon Ltd. : Independent software products"/>
             </StackPanel>
@@ -195,6 +456,68 @@
                     <Rectangle Fill="Transparent" HorizontalAlignment="Left" Margin="36,159" Height="259" Width="175" RadiusX="10" RadiusY="10"></Rectangle>
                 </StackPanel>
             </Grid>
+            <StackPanel x:Name="getStackPanel" Visibility="Collapsed"  RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform  />
+                </StackPanel.RenderTransform>
+                <Button Style="{StaticResource AccentButtonStyle}"   Margin="265" Content="Get" ></Button>
+            </StackPanel>
+            <StackPanel x:Name="inAppStackPanel" Visibility="Collapsed"  RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform  />
+                </StackPanel.RenderTransform>
+                <TextBlock Text="In-app purchases"  Foreground="Gray" Style="{StaticResource BaseTextBlockStyle}" Margin="275,350" ></TextBlock>
+            
+            </StackPanel>
+            <StackPanel x:Name="aboutStackPanel" Width="950" HorizontalAlignment="Left"  Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform  />
+                </StackPanel.RenderTransform>
+                <TextBlock TextWrapping="Wrap"  Text="Independent software company founded in 2002 and headquartered in the city of Craiova, Romania. Caphy..."  Foreground="Gray" Style="{StaticResource BaseTextBlockStyle}" Margin="275,350" ></TextBlock>
+            </StackPanel>
+
+            <StackPanel x:Name="sampleImageStackPanel" Width="950" HorizontalAlignment="Left" Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform />
+                </StackPanel.RenderTransform>
+                <Border 
+        CornerRadius="20" 
+        Width="330" 
+        Height="175" 
+        Margin="163,370" 
+        HorizontalAlignment="Left" 
+        Background="Transparent" 
+        BorderBrush="Transparent" 
+        BorderThickness="0">
+                    <Image 
+            Source="ms-appx:///Assets/app_ss.png" 
+            Stretch="UniformToFill" 
+            Width="360" 
+            Height="175" />
+                </Border>
+            </StackPanel>
+            <StackPanel x:Name="separatorStackPanel"  Width="950" HorizontalAlignment="Left"  Visibility="Collapsed" RenderTransformOrigin="0.5,0.5">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform  />
+                </StackPanel.RenderTransform>
+                <Rectangle Height="0.8" Width="370" Fill="Gray" HorizontalAlignment="Left"   Margin="289,610" />
+            </StackPanel>
+
+            <StackPanel x:Name="ratedEStackPanel" Visibility="Collapsed">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform/>
+                </StackPanel.RenderTransform>
+                <Image Source="ms-appx:///Assets/esrb.png" Width="45" HorizontalAlignment="Left" Margin="177,640"   ></Image>
+
+            </StackPanel>
+            <!--<StackPanel x:Name="ratingEStackPanel" Margin="200,470" Visibility="Visible">
+                <StackPanel.RenderTransform>
+                    <CompositeTransform/>
+                </StackPanel.RenderTransform>
+                <TextBlock Text="EVERYONE "   Foreground="Red" Style="{StaticResource BodyStrongTextBlockStyle}" ></TextBlock>
+                <TextBlock Text="In-App purchases" Foreground="Red" Margin="0,10"></TextBlock>
+            </StackPanel>-->
+
         </Grid>
     </Grid>
 </Page>

@@ -3,7 +3,7 @@
 #if __has_include("ConnectedAnimation.g.cpp")
 #include "ConnectedAnimation.g.cpp"
 #endif
-#include <cstring>
+
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 using namespace Microsoft::UI::Xaml::Media;
@@ -28,7 +28,6 @@ namespace winrt::CppWinUIGallery::implementation
 
     void ConnectedAnimation::OnPointerEnter(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e)
     {
-       
         if (!m_pointerInside)
         {
             m_pointerInside = true;
@@ -39,8 +38,11 @@ namespace winrt::CppWinUIGallery::implementation
 
                 // Create a DispatcherTimer to introduce a delay
                 auto timer = winrt::Microsoft::UI::Xaml::DispatcherTimer();
+
+                // Set the interval for the timer (300 milliseconds)
                 timer.Interval(std::chrono::milliseconds(300));
 
+                // Capture the local variables in the lambda
                 timer.Tick([this, timer](IInspectable const&, IInspectable const&)
                     {
                         // Timer callback
@@ -48,39 +50,27 @@ namespace winrt::CppWinUIGallery::implementation
                         {
                             auto rectangle = blueStackPanel().Children().GetAt(0).as<Microsoft::UI::Xaml::Shapes::Rectangle>();
                             if (rectangle)
-
                             {
-
                                 rectangle.Fill(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(255, 53, 48, 54)));
                                 sizeUp().Begin();
-
                             }
-
-
                         }
 
                         // Stop the timer after it has executed
                         timer.Stop();
-
                     });
 
                 timer.Start();
-               
-
             }
-         
-               
-           
-
         }
-    
+        
     }
-    
+
     void ConnectedAnimation::OnPointerExit(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e)
     {
         try
         {
-            
+
 
             if (m_pointerInside)
             {

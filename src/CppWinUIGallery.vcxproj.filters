@@ -88,6 +88,12 @@
     <Image Include="Assets\simple_logo.png">
       <Filter>Assets</Filter>
     </Image>
+    <Image Include="Assets\app_ss.png">
+      <Filter>Assets</Filter>
+    </Image>
+    <Image Include="Assets\esrb.png">
+      <Filter>Assets</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Assets">

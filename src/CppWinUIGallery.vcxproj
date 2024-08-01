@@ -266,6 +266,7 @@
     <Image Include="Assets\ai.png" />
     <Image Include="Assets\ai_logo.png" />
     <Image Include="Assets\ai_logo_img.png" />
+    <Image Include="Assets\app_ss.png" />
     <Image Include="Assets\awr.png" />
     <Image Include="Assets\awr_logo.png" />
     <Image Include="Assets\bytes.png" />
@@ -273,6 +274,7 @@
     <Image Include="Assets\caphyon_logo.png" />
     <Image Include="Assets\clang.png" />
     <Image Include="Assets\clang_logo.png" />
+    <Image Include="Assets\esrb.png" />
     <Image Include="Assets\LockScreenLogo.scale-200.png" />
     <Image Include="Assets\R.png" />
     <Image Include="Assets\simple_logo.png" />
