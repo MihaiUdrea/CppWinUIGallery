@@ -12,6 +12,9 @@ using namespace Microsoft::UI::Xaml;
 
 namespace winrt::CppWinUIGallery::implementation
 {
+    
+
+    
     int32_t HomePage::MyProperty()
     {
         throw hresult_not_implemented();
