@@ -40,7 +40,7 @@ namespace winrt::CppWinUIGallery::implementation
                 auto timer = winrt::Microsoft::UI::Xaml::DispatcherTimer();
 
                 // Set the interval for the timer (300 milliseconds)
-                timer.Interval(std::chrono::milliseconds(300));
+                timer.Interval(std::chrono::milliseconds(600));
 
                 // Capture the local variables in the lambda
                 timer.Tick([this, timer](IInspectable const&, IInspectable const&)
