@@ -54,7 +54,7 @@ namespace winrt::CppWinUIGallery::implementation
     {
 
         if (ExtendsContentIntoTitleBar() == true) {
-            // Set the initial interactive regions.
+            // Set the interactive regions for app size modification.
             SetRegionsForCustomTitleBar();
         }
         

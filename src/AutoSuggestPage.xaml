@@ -21,6 +21,8 @@
                        Opacity="60"/>
 
 
+            <!--search box-->
+            
             <RelativePanel x:Name="Root" HorizontalAlignment="Center">
 
 
@@ -95,7 +97,7 @@
                              />
                 </ScrollViewer>
             </StackPanel>
-    </Grid>
+        </Grid>
     </ScrollViewer>
 
 

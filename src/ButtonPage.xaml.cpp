@@ -22,8 +22,108 @@ namespace winrt::CppWinUIGallery::implementation
         throw hresult_not_implemented();
     }
 
-    void ButtonPage::myButton_Click(IInspectable const&, RoutedEventArgs const&)
+    
+    void ButtonPage::BackButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-        myButton().Content(box_value(L"Clicked"));
+        BackButton().Foreground(Media::SolidColorBrush(Microsoft::UI::Colors::White()));
     }
+
+
+    void ButtonPage::ShowHideButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        auto button = ShowHideButton();
+        auto textBox = SourceCodeTextBox();
+        auto cppTextBox = CppCodeTextBox();
+        auto cppButton = ShowCppButton(); // Ensure ShowCppButton is correctly named and initialized
+
+        if (textBox.Visibility() == Visibility::Collapsed)
+        {
+            // Hide C++ code if visible
+           /* if (cppTextBox.Visibility() == Visibility::Visible)
+            {
+                cppTextBox.Visibility(Visibility::Collapsed);
+                cppButton.Content(box_value(L"Show C++"));
+            }*/
+
+            // Show XAML source code
+            hstring xamlSourceCode = LR"( <Button x:Name="BackButton"
+                Click="BackButton_Click"
+                Style="{StaticResource NavigationBackButtonNormalStyle}"
+                Foreground="{StaticResource BackButtonDisabledForegroundThemeBrush}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                Margin="0, 250, 0, 50"
+                IsEnabled="True"/>})";
+            textBox.Text(xamlSourceCode);
+            textBox.Visibility(Visibility::Visible);
+            button.Content(box_value(L"Hide XAML"));
+        }
+        else
+        {
+            textBox.Visibility(Visibility::Collapsed);
+            button.Content(box_value(L"Show XAML"));
+        }
+    }
+
+
+
+    void ButtonPage::ShowCppButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        auto button = ShowCppButton(); // Make sure the button is named correctly
+        auto textBox = CppCodeTextBox();
+        auto xamlTextBox = SourceCodeTextBox();
+        auto xamlButton = ShowHideButton(); // Ensure ShowHideButton is correctly named and initialized
+
+        if (textBox.Visibility() == Visibility::Collapsed)
+        {
+            // Hide XAML code if visible
+           /* if (xamlTextBox.Visibility() == Visibility::Visible)
+            {
+                xamlTextBox.Visibility(Visibility::Collapsed);
+                xamlButton.Content(box_value(L"Show XAML"));
+            }*/
+
+            // Show C++ source code
+            hstring cppSourceCode = LR"(void MainWindow::TitleBar_BackButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        if (ContentFrame().CanGoBack())
+            ContentFrame().GoBack();
+        if (!ContentFrame().CanGoBack()) {
+            TitleBar_BackButton().Foreground(Media::SolidColorBrush(Microsoft::UI::Colors::Gray()));
+            TitleBar_BackButton().IsEnabled(false);
+        }
+            
+    }
+    void MainWindow::NavView_ItemInvoked(winrt::Microsoft::UI::Xaml::Controls::NavigationView const& sender, winrt::Microsoft::UI::Xaml::Controls::NavigationViewItemInvokedEventArgs const& args)
+    {
+        auto myTag = args.InvokedItemContainer().Tag();
+
+        if (auto hstr = myTag.try_as<hstring>()) {
+            //OutputDebugString(L"is a hstring!");
+            //The try_as<winrt::hstring>() method tries to cast the IInspectable object (in this case the tag) to a winrt::hstring. If successful, it returns a winrt::hstring object.
+
+            //winrt::CppWinUIGallery::HomePage l;
+            const hstring FILEPATH = myTag.as<hstring>();
+            ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{FILEPATH});
+            if (ContentFrame().CanGoBack())
+            {
+                TitleBar_BackButton().Foreground(Media::SolidColorBrush(Microsoft::UI::Colors::White()));
+                TitleBar_BackButton().IsEnabled(true);
+            }
+        }
+    })";
+            textBox.Text(cppSourceCode);
+            textBox.Visibility(Visibility::Visible);
+            button.Content(box_value(L"Hide C++"));
+        }
+        else
+        {
+            textBox.Visibility(Visibility::Collapsed);
+            button.Content(box_value(L"Show C++"));
+        }
+    }
+
 }
+
+
+
