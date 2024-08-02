@@ -134,6 +134,25 @@ namespace winrt::CppWinUIGallery::implementation
         return false;
     }
 
+    bool MainWindow::NavViewSearchBox_SuitableItemFound(Controls::NavigationViewItem navItem, std::vector<std::string> splitText)
+    {
+        auto element = to_string(navItem.Content().as<hstring>());
+
+        std::string lowerElement;
+        lowerElement.resize(element.size());
+        std::transform(element.begin(), element.end(), lowerElement.begin(), ::tolower);
+
+        for (auto myInput : splitText) {
+            // Convert user input to lowercase for non-case sensitive search
+            std::transform(myInput.begin(), myInput.end(), myInput.begin(), ::tolower);
+
+            if (isSubstring(lowerElement, myInput)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
 	void MainWindow::NavViewSearchBox_TextChanged(winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBox const& sender, winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBoxTextChangedEventArgs const& args)
 	{
@@ -163,25 +182,27 @@ namespace winrt::CppWinUIGallery::implementation
             // Add the last word
             splitText.push_back(senderText);
 
-            for (auto element : navViewElementsList) {
-                bool found = false;
-                
-                std::string lowerElement;
-                lowerElement.resize(element.size());
-                std::transform(element.begin(), element.end(), lowerElement.begin(), ::tolower);
+            for (auto item : NavView().MenuItems()) {
+                if (auto navItem = item.try_as<Controls::NavigationViewItem>())
+                {
 
-                for (auto myInput : splitText) {
-                    // Convert user input to lowercase for non-case sensitive search
-                    // std::transform(myInput.begin(), myInput.end(), myInput.begin(), ::tolower);
+                    if (NavViewSearchBox_SuitableItemFound(navItem, splitText))
+                        suitableItems.push_back(to_string(navItem.Content().as<hstring>()));
 
-                    if (isSubstring(lowerElement, myInput)) {
-                        found = true;
-                        break;
+                    if (navItem.MenuItems().Size() > 0)
+                    {
+                        for (auto subItem : navItem.MenuItems()) {
+                            if (auto subNavItem = subItem.try_as<Controls::NavigationViewItem>())
+                            {
+                                if (NavViewSearchBox_SuitableItemFound(subNavItem, splitText))
+                                    suitableItems.push_back(to_string(subNavItem.Content().as<hstring>()));
+                            }
+                        }
                     }
-                }
 
-                if (found)
-                    suitableItems.push_back(element);
+                    
+                }
+                
             }
 
             navViewVisibleElements.clear();
@@ -195,15 +216,46 @@ namespace winrt::CppWinUIGallery::implementation
 
                 if (auto navItem = item.try_as<Controls::NavigationViewItem>())
                 {
-                    navItem.Visibility(Visibility::Visible);
-                    auto text = to_string(navItem.Content().as<hstring>());
-                    if (auto search = navViewVisibleElements.find(text); search != navViewVisibleElements.end()) {
-                        // item is visible
-                        navItem.Visibility(Visibility::Visible);
+                    
+                    bool subItemIsVisible = false;
+
+                    for (auto subItem : navItem.MenuItems())
+                    {
+                        // Try to cast the item to a NavigationViewItem                
+
+                        if (auto navSubItem = subItem.try_as<Controls::NavigationViewItem>()) {
+                            auto text = to_string(navSubItem.Content().as<hstring>());
+                            if (auto search = navViewVisibleElements.find(text); search != navViewVisibleElements.end()) {
+                                // item is visible
+                                navSubItem.Visibility(Visibility::Visible);
+                                subItemIsVisible = true;
+                            }
+                            else
+                                navSubItem.Visibility(Visibility::Collapsed);
+                        }
                     }
-                    else
-                        navItem.Visibility(Visibility::Collapsed);
+
+                    if (subItemIsVisible)
+                    {
+                        navItem.Visibility(Visibility::Visible);
+                        navItem.IsExpanded(true);
+                    }
+                        
+                    else {
+                        auto text = to_string(navItem.Content().as<hstring>());
+                        if (auto search = navViewVisibleElements.find(text); search != navViewVisibleElements.end()) {
+                            // item is visible
+                            navItem.Visibility(Visibility::Visible);
+                        }
+                        else
+                            navItem.Visibility(Visibility::Collapsed);
+                    }
+                    
+
+                    if (senderText == "")
+                        navItem.IsExpanded(false);
                 }
+
             }
 
             //if (suitableItems.size() == 0)
