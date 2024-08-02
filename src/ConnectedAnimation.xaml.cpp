@@ -59,8 +59,19 @@ namespace winrt::CppWinUIGallery::implementation
                                 sizeUpStoryboard.Completed([this](IInspectable const&, IInspectable const&)
                                     {
                                         m_animationInProgress = false; // Reset the flag
+                                        if (!m_pointerInside) // Check if the pointer is still inside
+                                        {
+                                            // If the pointer is not inside, start the sizeDown animation
+                                            OnPointerExit(nullptr, nullptr);
+                                        }
                                     });
 
+                                // Make helper2StackPanel visible and collapse helperStackPanel
+                                if (helperStackPanel() && helper2StackPanel())
+                                {
+                                    helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+                                    helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+                                }
                                 sizeUpStoryboard.Begin();
                             }
                         }
@@ -70,7 +81,9 @@ namespace winrt::CppWinUIGallery::implementation
                     });
 
                 timer.Start();
+         
             }
+          
         }
     }
 
@@ -88,6 +101,8 @@ namespace winrt::CppWinUIGallery::implementation
                     /* HoverDownStoryboard().Begin(); */
                     sizeDown().Begin();
 
+                    // Make helperStackPanel visible and collapse helper2StackPanel
+             
                     if (blueStackPanel() && blueStackPanel().Children().Size() > 0)
                     {
                         auto rectangle = blueStackPanel().Children().GetAt(0).as<Microsoft::UI::Xaml::Shapes::Rectangle>();
@@ -130,6 +145,12 @@ namespace winrt::CppWinUIGallery::implementation
                             m_animationInProgress = false; // Reset the flag
                         });
 
+                    
+                    if (helperStackPanel() && helper2StackPanel())
+                    {
+                        helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+                        helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+                    }
                     sizeDownStoryboard.Begin();
                 }
             }
@@ -139,6 +160,7 @@ namespace winrt::CppWinUIGallery::implementation
             OutputDebugStringA(ex.what());
         }
     }
+
 
 
 }
