@@ -19,7 +19,7 @@ namespace winrt::CppWinUIGallery::implementation
         void OnPointerEnter(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
         bool m_hovered = false;
         bool m_pointerInside = false;  // Track whether the pointer is inside the element
-
+        bool m_animationInProgress = false;
     };
 }
 

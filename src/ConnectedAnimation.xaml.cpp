@@ -31,15 +31,16 @@ namespace winrt::CppWinUIGallery::implementation
         if (!m_pointerInside)
         {
             m_pointerInside = true;
-            if (!m_hovered)
+            if (!m_hovered && !m_animationInProgress)
             {
                 m_hovered = true;
+                m_animationInProgress = true; // Set the flag to indicate an animation is in progress
                 HoverUpStoryboard().Begin();
 
                 // Create a DispatcherTimer to introduce a delay
                 auto timer = winrt::Microsoft::UI::Xaml::DispatcherTimer();
 
-                // Set the interval for the timer (300 milliseconds)
+                // Set the interval for the timer (600 milliseconds)
                 timer.Interval(std::chrono::milliseconds(600));
 
                 // Capture the local variables in the lambda
@@ -52,7 +53,15 @@ namespace winrt::CppWinUIGallery::implementation
                             if (rectangle)
                             {
                                 rectangle.Fill(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(255, 53, 48, 54)));
-                                sizeUp().Begin();
+                                auto sizeUpStoryboard = sizeUp();
+
+                                // Attach Completed event to reset the flag when the animation is done
+                                sizeUpStoryboard.Completed([this](IInspectable const&, IInspectable const&)
+                                    {
+                                        m_animationInProgress = false; // Reset the flag
+                                    });
+
+                                sizeUpStoryboard.Begin();
                             }
                         }
 
@@ -63,22 +72,21 @@ namespace winrt::CppWinUIGallery::implementation
                 timer.Start();
             }
         }
-        
     }
 
     void ConnectedAnimation::OnPointerExit(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e)
     {
         try
         {
-
-
             if (m_pointerInside)
             {
                 m_pointerInside = false;
-                if (m_hovered)
+                if (m_hovered && !m_animationInProgress)
                 {
                     m_hovered = false;
-                    HoverDownStoryboard().Begin();
+                    m_animationInProgress = true; // Set the flag to indicate an animation is in progress
+                    /* HoverDownStoryboard().Begin(); */
+                    sizeDown().Begin();
 
                     if (blueStackPanel() && blueStackPanel().Children().Size() > 0)
                     {
@@ -114,6 +122,15 @@ namespace winrt::CppWinUIGallery::implementation
                             rectangle.Fill(gradientBrush);
                         }
                     }
+
+                    // Attach Completed event to reset the flag when the animation is done
+                    auto sizeDownStoryboard = sizeDown();
+                    sizeDownStoryboard.Completed([this](IInspectable const&, IInspectable const&)
+                        {
+                            m_animationInProgress = false; // Reset the flag
+                        });
+
+                    sizeDownStoryboard.Begin();
                 }
             }
         }
@@ -122,4 +139,6 @@ namespace winrt::CppWinUIGallery::implementation
             OutputDebugStringA(ex.what());
         }
     }
+
+
 }
