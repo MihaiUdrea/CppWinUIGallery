@@ -1,4 +1,4 @@
-#pragma once
+    #pragma once
 
 #include "MainWindow.g.h"
 
@@ -33,6 +33,7 @@ namespace winrt::CppWinUIGallery::implementation
 
         //Search box with folding navview
         bool isSubstring(const std::string& mainString, const std::string& subString);
+        bool NavViewSearchBox_SuitableItemFound(winrt::Microsoft::UI::Xaml::Controls::NavigationViewItem navItem, std::vector<std::string> splitText);
         void NavViewSearchBox_TextChanged(winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBox const& sender, winrt::Microsoft::UI::Xaml::Controls::AutoSuggestBoxTextChangedEventArgs const& args);
         
         
