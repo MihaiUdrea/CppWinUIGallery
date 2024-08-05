@@ -28,25 +28,27 @@ namespace winrt::CppWinUIGallery::implementation
 
     void ConnectedAnimation::OnPointerEnter(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e)
     {
+
         if (!m_pointerInside)
         {
+
             m_pointerInside = true;
             if (!m_hovered && !m_animationInProgress)
             {
                 m_hovered = true;
-                m_animationInProgress = true; // Set the flag to indicate an animation is in progress
+                m_animationInProgress = true;
+                helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+
                 HoverUpStoryboard().Begin();
 
-                // Create a DispatcherTimer to introduce a delay
+           
                 auto timer = winrt::Microsoft::UI::Xaml::DispatcherTimer();
 
-                // Set the interval for the timer (600 milliseconds)
                 timer.Interval(std::chrono::milliseconds(600));
 
-                // Capture the local variables in the lambda
+           
                 timer.Tick([this, timer](IInspectable const&, IInspectable const&)
                     {
-                        // Timer callback
                         if (blueStackPanel() && blueStackPanel().Children().Size() > 0)
                         {
                             auto rectangle = blueStackPanel().Children().GetAt(0).as<Microsoft::UI::Xaml::Shapes::Rectangle>();
@@ -55,30 +57,81 @@ namespace winrt::CppWinUIGallery::implementation
                                 rectangle.Fill(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(255, 53, 48, 54)));
                                 auto sizeUpStoryboard = sizeUp();
 
-                                // Attach Completed event to reset the flag when the animation is done
                                 sizeUpStoryboard.Completed([this](IInspectable const&, IInspectable const&)
                                     {
-                                        m_animationInProgress = false; // Reset the flag
-                                        if (!m_pointerInside) // Check if the pointer is still inside
+                                        m_animationInProgress = false; 
+                                        if (!m_pointerInside) 
                                         {
-                                            // If the pointer is not inside, start the sizeDown animation
-                                            OnPointerExit(nullptr, nullptr);
-                                        }
-                                    });
+                                            
+                                  
+                                            sizeDown().Begin();
+                                            m_hovered = false;
+                                            m_animationInProgress = false;
+                                            
 
-                                // Make helper2StackPanel visible and collapse helperStackPanel
-                                if (helperStackPanel() && helper2StackPanel())
+                                            if (blueStackPanel() && blueStackPanel().Children().Size() > 0)
+                                            {
+                                                auto rectangle = blueStackPanel().Children().GetAt(0).as<Microsoft::UI::Xaml::Shapes::Rectangle>();
+                                                if (rectangle)
+                                                {
+                                                    auto gradientBrush = Microsoft::UI::Xaml::Media::LinearGradientBrush();
+                                                    gradientBrush.StartPoint({ 0, 0 });
+                                                    gradientBrush.EndPoint({ 1, 1 });
+
+                                                    gradientBrush.GradientStops().Clear();
+
+                                                    auto stop1 = Microsoft::UI::Xaml::Media::GradientStop();
+                                                    stop1.Color(Windows::UI::ColorHelper::FromArgb(255, 52, 78, 183)); // #344EB7
+                                                    stop1.Offset(0.0);
+                                                    gradientBrush.GradientStops().Append(stop1);
+
+                                                    auto stop2 = Microsoft::UI::Xaml::Media::GradientStop();
+                                                    stop2.Color(Windows::UI::ColorHelper::FromArgb(255, 61, 84, 178)); // #3D54B2
+                                                    stop2.Offset(0.2);
+                                                    gradientBrush.GradientStops().Append(stop2);
+
+                                                    auto stop3 = Microsoft::UI::Xaml::Media::GradientStop();
+                                                    stop3.Color(Windows::UI::ColorHelper::FromArgb(255, 108, 128, 211)); // #6C80D3
+                                                    stop3.Offset(0.8);
+                                                    gradientBrush.GradientStops().Append(stop3);
+
+                                                    auto stop4 = Microsoft::UI::Xaml::Media::GradientStop();
+                                                    stop4.Color(Windows::UI::ColorHelper::FromArgb(255, 92, 110, 184)); // #5C6EB8
+                                                    stop4.Offset(0.7);
+                                                    gradientBrush.GradientStops().Append(stop4);
+
+                                                    rectangle.Fill(gradientBrush);
+                                                    helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+
+                                                }
+
+                                            }
+                                            OnPointerExit(nullptr, nullptr);
+
+                                        }
+                                       
+
+                                    
+                                    });
+                                auto rectangle = blueStackPanel().Children().GetAt(0).as<Microsoft::UI::Xaml::Shapes::Rectangle>();
+
+                                rectangle.Fill(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(255, 53, 48, 54)));
+                                
+
+                                if (helperStackPanel()  )
                                 {
-                                    helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
-                                    helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+                                    helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+                                    helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+                                     sizeUpStoryboard.Begin();
+
+                                     helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
                                 }
-                                sizeUpStoryboard.Begin();
+                               
                             }
                         }
-
-                        // Stop the timer after it has executed
                         timer.Stop();
                     });
+               
 
                 timer.Start();
          
@@ -97,9 +150,10 @@ namespace winrt::CppWinUIGallery::implementation
                 if (m_hovered && !m_animationInProgress)
                 {
                     m_hovered = false;
-                    m_animationInProgress = true; // Set the flag to indicate an animation is in progress
+                    m_animationInProgress = false; // Set the flag to indicate an animation is in progress
                     /* HoverDownStoryboard().Begin(); */
-                    sizeDown().Begin();
+                 
+                    helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
 
                     // Make helperStackPanel visible and collapse helper2StackPanel
              
@@ -149,9 +203,12 @@ namespace winrt::CppWinUIGallery::implementation
                     if (helperStackPanel() && helper2StackPanel())
                     {
                         helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
-                        helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+                        helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
                     }
                     sizeDownStoryboard.Begin();
+                 
+
+
                 }
             }
         }

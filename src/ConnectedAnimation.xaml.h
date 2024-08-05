@@ -20,6 +20,9 @@ namespace winrt::CppWinUIGallery::implementation
         bool m_hovered = false;
         bool m_pointerInside = false;  // Track whether the pointer is inside the element
         bool m_animationInProgress = false;
+        bool m_autoReverseRequested= false ; // New flag to track auto-reverse requests
+        bool m_sizedDown = false;
+
     };
 }
 

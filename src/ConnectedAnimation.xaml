@@ -622,7 +622,7 @@ Storyboard.TargetName="helper2StackPanel"
 Storyboard.TargetProperty="Visibility">
                 <DiscreteObjectKeyFrame KeyTime="0:0:0">
                     <DiscreteObjectKeyFrame.Value>
-                        <Visibility>Visible</Visibility>
+                        <Visibility>Collapsed</Visibility>
                     </DiscreteObjectKeyFrame.Value>
                 </DiscreteObjectKeyFrame>
             </ObjectAnimationUsingKeyFrames>
