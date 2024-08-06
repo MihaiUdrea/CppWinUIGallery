@@ -867,7 +867,7 @@ Storyboard.TargetProperty="Visibility">
             <TextBlock Text="• Middle State - The StackPanel is raised up for a moment, action triggered by the user hovering over the app with the cursor
 " Foreground="LightGray" Margin="90,10" Style="{StaticResource BaseTextBlockStyle}"/>
             <TextBlock Text="• Final State - The StackPanel is transformed into a much larger one, creating space for app details, preview, detailed rating and download button.
-" Foreground="LightGray" Margin="90,-5" Style="{StaticResource BaseTextBlockStyle}"/>
+" Foreground="LightGray" Margin="90,1" Style="{StaticResource BaseTextBlockStyle}"/>
             <TextBlock Text="A similar Selection Animation can be found in the Microsoft Store App for applications displayed. in either horizontal or vertical StackPanels.
 " Foreground="LightGray" Margin="50,15" Style="{StaticResource BaseTextBlockStyle}"/>
 
