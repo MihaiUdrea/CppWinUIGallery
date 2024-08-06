@@ -29,6 +29,7 @@
 #include <winrt/Microsoft.UI.Xaml.Media.Animation.h>
 #include <winrt/Windows.Foundation.h>
 #include <winrt/Windows.UI.Core.h>
+#include <chrono>
 
 #include <iostream>
 #include <Windows.h>

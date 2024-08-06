@@ -1,0 +1,9 @@
+namespace CppWinUIGallery
+{
+    [default_interface]
+    runtimeclass ConnectedAnimation : Microsoft.UI.Xaml.Controls.Page
+    {
+        ConnectedAnimation();
+        Int32 MyProperty;
+    }
+}

@@ -98,7 +98,7 @@
         <ScrollViewer x:Name="mainScrollViewer" VerticalScrollBarVisibility="Auto" ViewChanged="OnScrollViewerViewChanged">
             <StackPanel>
                 <StackPanel>
-                    <TextBlock Text="Animated Floating InfoBar - Scroll down!" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Margin="0,40"/>
+                    <TextBlock Text="Animated Floating StackPanel - Scroll down!" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Margin="0,40"/>
                 </StackPanel>
                 <StackPanel x:Name="targetStackPanel" Background="#80000000" Width="900" CornerRadius="60" HorizontalAlignment="Center" Margin="36,0,36,0" Height="360" Opacity="1">
                     <StackPanel.RenderTransform>

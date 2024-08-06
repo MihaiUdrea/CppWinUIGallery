@@ -113,14 +113,14 @@ namespace winrt::CppWinUIGallery::implementation
                                     connectedAnimationService.PrepareToAnimate(L"targetButtonAnimation", targetButton);
 
                                     auto animation = connectedAnimationService.GetAnimation(L"targetButtonAnimation");
-                                    if (animation)
-                                    {
-                                        animation.Configuration(DirectConnectedAnimationConfiguration());
-                                        animation.TryStart(infoBarButton);
+                                    //if (animation)
+                                    //{
+                                    //    animation.Configuration(DirectConnectedAnimationConfiguration());
+                                    //    animation.TryStart(infoBarButton);
 
-                                        // Hide the targetButton after the animation starts
-                                        targetButton.Visibility(Visibility::Collapsed);
-                                    }
+                                    //    // Hide the targetButton after the animation starts
+                                    //    targetButton.Visibility(Visibility::Collapsed);
+                                    //}
                                 });
 
                             infoBarStoryboard.Begin();
