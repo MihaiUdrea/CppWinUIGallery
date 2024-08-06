@@ -25,7 +25,7 @@ namespace winrt::CppWinUIGallery::implementation
         void ShowSourceCode_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
         void ShowCppCode_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
         winrt::fire_and_forget LoadFileContent(hstring const& filePath, winrt::Microsoft::UI::Xaml::Controls::TextBox textBox);
-
+        std::wstring GetCurrentWorkingDirectory();
     };
 }
 

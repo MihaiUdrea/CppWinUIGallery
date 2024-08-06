@@ -3,10 +3,14 @@
 #if __has_include("ConnectedAnimation.g.cpp")
 #include "ConnectedAnimation.g.cpp"
 #endif
+#include <Shlwapi.h>
+#pragma comment(lib, "Shlwapi.lib") // Link with Shlwapi.lib for Path* functions
 #include <winrt/Windows.Storage.h>
 #include <winrt/Windows.Storage.Streams.h>
 #include <filesystem>
 #include <fstream>
+#include <Windows.h> // For OutputDebugString
+
 #include <sstream>
 #include <string>
 using namespace winrt;
@@ -254,25 +258,44 @@ namespace winrt::CppWinUIGallery::implementation
         auto button = ShowHideButton();
         auto textBox = SourceCodeTextBox();
         auto cppTextBox = CppCodeTextBox();
-        auto cppButton = ShowCppButton(); 
+        auto cppButton = ShowCppButton();
+
+       
+        WCHAR exePath[MAX_PATH];
+        GetModuleFileName(nullptr, exePath, MAX_PATH);
+        PathRemoveFileSpec(exePath); 
+
+        std::wstring exeDirectory = exePath;
+        
+        std::filesystem::path fsPath(exeDirectory);
+        fsPath = fsPath.parent_path(); 
+        fsPath = fsPath.parent_path();
+        fsPath = fsPath.parent_path();
+        fsPath = fsPath.parent_path();
+        std::wstring newPath = fsPath.wstring();
+   
+
+      
+        std::filesystem::path relativePath = L"\src\\ConnectedAnimation.xaml"; 
+        std::filesystem::path fullPath = fsPath;
+        fullPath /= relativePath;
 
         if (textBox.Visibility() == Visibility::Collapsed)
         {
-        
-            std::ifstream fileStream("D:\\job\\src\\ConnectedAnimation.xaml");
-
+            std::ifstream fileStream(fullPath.c_str());
+         
             if (fileStream.is_open())
             {
                 std::stringstream buffer;
-                buffer << fileStream.rdbuf(); 
+                buffer << fileStream.rdbuf();
                 std::string fileContent = buffer.str();
-                textBox.Text(winrt::to_hstring(fileContent)); 
+                textBox.Text(winrt::to_hstring(fileContent));
             }
             else
             {
-                textBox.Text(L"Error loading file.");
+                textBox.Text(L"Error loading file");
             }
-          
+
             textBox.Visibility(Visibility::Visible);
             button.Content(box_value(L"Hide XAML"));
         }
@@ -282,6 +305,7 @@ namespace winrt::CppWinUIGallery::implementation
             button.Content(box_value(L"Show XAML"));
         }
     }
+
     void ConnectedAnimation::ShowCppCode_Click(
 
         winrt::Windows::Foundation::IInspectable const& sender,
@@ -292,20 +316,39 @@ namespace winrt::CppWinUIGallery::implementation
         auto xamlTextBox = SourceCodeTextBox();
         auto xamlButton = ShowHideButton();
 
+        WCHAR exePath[MAX_PATH];
+        GetModuleFileName(nullptr, exePath, MAX_PATH);
+        PathRemoveFileSpec(exePath);
+
+        std::wstring exeDirectory = exePath;
+
+        std::filesystem::path fsPath(exeDirectory);
+        fsPath = fsPath.parent_path();
+        fsPath = fsPath.parent_path();
+        fsPath = fsPath.parent_path();
+        fsPath = fsPath.parent_path();
+        std::wstring newPath = fsPath.wstring();
+
+        std::filesystem::path relativePath = L"\src\\ConnectedAnimation.xaml.cpp";
+        std::filesystem::path fullPath = fsPath;
+        fullPath /= relativePath;
+
+
         if (textBox.Visibility() == Visibility::Collapsed)
         {
-            std::ifstream fileStream("D:\\job\\src\\ConnectedAnimation.xaml.cpp");
+
+            std::ifstream fileStream(fullPath.c_str());
 
             if (fileStream.is_open())
             {
                 std::stringstream buffer;
-                buffer << fileStream.rdbuf(); 
+                buffer << fileStream.rdbuf();
                 std::string fileContent = buffer.str();
                 textBox.Text(winrt::to_hstring(fileContent));
             }
             else
             {
-                textBox.Text(L"Error loading file.");
+                textBox.Text(L"Error loading file");
             }
             textBox.Visibility(Visibility::Visible);
             button.Content(box_value(L"Hide C++"));
