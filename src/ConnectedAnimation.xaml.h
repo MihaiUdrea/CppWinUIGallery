@@ -22,6 +22,9 @@ namespace winrt::CppWinUIGallery::implementation
         bool m_animationInProgress = false;
         bool m_autoReverseRequested= false ; // New flag to track auto-reverse requests
         bool m_sizedDown = false;
+        void ShowSourceCode_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+        void ShowCppCode_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+        winrt::fire_and_forget LoadFileContent(hstring const& filePath, winrt::Microsoft::UI::Xaml::Controls::TextBox textBox);
 
     };
 }

@@ -3,12 +3,20 @@
 #if __has_include("ConnectedAnimation.g.cpp")
 #include "ConnectedAnimation.g.cpp"
 #endif
-
+#include <winrt/Windows.Storage.h>
+#include <winrt/Windows.Storage.Streams.h>
+#include <filesystem>
+#include <fstream>
+#include <sstream>
+#include <string>
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 using namespace Microsoft::UI::Xaml::Media;
 using namespace Microsoft::UI::Xaml::Media::Animation;
 using namespace std::chrono;
+using namespace Windows::UI::Xaml::Controls;
+using namespace Windows::Storage;
+using namespace Windows::Storage::Pickers;
 using namespace Windows::Foundation;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -30,17 +38,18 @@ namespace winrt::CppWinUIGallery::implementation
     {
         if (!m_pointerInside)
         {
-            
+
             m_pointerInside = true;
             if (!m_hovered && !m_animationInProgress)
             {
                 m_hovered = true;
-                
+
                 helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
                 if (helperStackPanel().Visibility() == winrt::Microsoft::UI::Xaml::Visibility::Visible)
                 {
+
                     HoverUpStoryboard().Begin();
-            
+
 
                 }
                 m_animationInProgress = true;
@@ -65,8 +74,11 @@ namespace winrt::CppWinUIGallery::implementation
                                         if (!m_pointerInside)
                                         {
                                             sizeUp().Pause();
-                                       
+
+                                            helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+
                                             sizeDown().Begin();
+
                                             sizeDown().Completed([this](auto&&, auto&&)
                                                 {
                                                     helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
@@ -112,12 +124,13 @@ namespace winrt::CppWinUIGallery::implementation
                                                     helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
                                                 }
                                             }
-                                      
+
                                             OnPointerExit(nullptr, nullptr);
                                             helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
-                                            helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+                                            helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
 
                                         }
+
                                     });
 
                                 auto rectangle = blueStackPanel().Children().GetAt(0).as<Microsoft::UI::Xaml::Shapes::Rectangle>();
@@ -132,10 +145,14 @@ namespace winrt::CppWinUIGallery::implementation
                                     helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
                                     helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
                                 }
+                                helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+
                             }
                         }
                         timer.Stop();
                     });
+                helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+
 
                 timer.Start();
             }
@@ -152,12 +169,12 @@ namespace winrt::CppWinUIGallery::implementation
                 if (m_hovered && !m_animationInProgress)
                 {
                     m_hovered = false;
-                    m_animationInProgress = false; 
-                 
+                    m_animationInProgress = false;
+
                     helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
 
-                  
-             
+
+
                     if (blueStackPanel() && blueStackPanel().Children().Size() > 0)
                     {
                         auto rectangle = blueStackPanel().Children().GetAt(0).as<Microsoft::UI::Xaml::Shapes::Rectangle>();
@@ -193,26 +210,27 @@ namespace winrt::CppWinUIGallery::implementation
                         }
                     }
 
-                    
+
                     auto sizeDownStoryboard = sizeDownHover();
-                   
 
 
-                    
+
+
                     sizeDownStoryboard.Completed([this](IInspectable const&, IInspectable const&)
                         {
-                            m_animationInProgress = false; 
+                            m_animationInProgress = false;
                         });
 
-                    
+
                     if (helperStackPanel() && helper2StackPanel())
                     {
                         helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
                         helper2StackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
                     }
+                    helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
 
                     sizeDownStoryboard.Begin();
-                 
+
                     sizeDownStoryboard.Completed([this](auto&&, auto&&)
                         {
                             helperStackPanel().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
@@ -229,6 +247,74 @@ namespace winrt::CppWinUIGallery::implementation
         }
     }
 
+    void ConnectedAnimation::ShowSourceCode_Click(
+        winrt::Windows::Foundation::IInspectable const& sender,
+        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        auto button = ShowHideButton();
+        auto textBox = SourceCodeTextBox();
+        auto cppTextBox = CppCodeTextBox();
+        auto cppButton = ShowCppButton(); 
 
+        if (textBox.Visibility() == Visibility::Collapsed)
+        {
+        
+            std::ifstream fileStream("D:\\job\\src\\ConnectedAnimation.xaml");
+
+            if (fileStream.is_open())
+            {
+                std::stringstream buffer;
+                buffer << fileStream.rdbuf(); 
+                std::string fileContent = buffer.str();
+                textBox.Text(winrt::to_hstring(fileContent)); 
+            }
+            else
+            {
+                textBox.Text(L"Error loading file.");
+            }
+          
+            textBox.Visibility(Visibility::Visible);
+            button.Content(box_value(L"Hide XAML"));
+        }
+        else
+        {
+            textBox.Visibility(Visibility::Collapsed);
+            button.Content(box_value(L"Show XAML"));
+        }
+    }
+    void ConnectedAnimation::ShowCppCode_Click(
+
+        winrt::Windows::Foundation::IInspectable const& sender,
+        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        auto button = ShowCppButton();
+        auto textBox = CppCodeTextBox();
+        auto xamlTextBox = SourceCodeTextBox();
+        auto xamlButton = ShowHideButton();
+
+        if (textBox.Visibility() == Visibility::Collapsed)
+        {
+            std::ifstream fileStream("D:\\job\\src\\ConnectedAnimation.xaml.cpp");
+
+            if (fileStream.is_open())
+            {
+                std::stringstream buffer;
+                buffer << fileStream.rdbuf(); 
+                std::string fileContent = buffer.str();
+                textBox.Text(winrt::to_hstring(fileContent));
+            }
+            else
+            {
+                textBox.Text(L"Error loading file.");
+            }
+            textBox.Visibility(Visibility::Visible);
+            button.Content(box_value(L"Hide C++"));
+        }
+        else
+        {
+            textBox.Visibility(Visibility::Collapsed);
+            button.Content(box_value(L"Show C++"));
+        }
+    }
 
 }

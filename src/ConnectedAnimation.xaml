@@ -853,16 +853,29 @@ Storyboard.TargetProperty="Visibility">
 
         </Storyboard>
     </Page.Resources>
-
+    <ScrollViewer>
     <Grid>
-
+        
         <StackPanel>
-            <TextBlock Text="App Selection Animation" Margin="0,32" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}"/>
-        </StackPanel>
+            <TextBlock Text="App Selection Animation" Margin="50,40" HorizontalAlignment="Left" Style="{StaticResource TitleLargeTextBlockStyle}"/>
+            <TextBlock Text="In this example, we'll explain the whole process of a custom App Selection Menu that transitions between three states, thus allowing the user to see a more detailed version of the chosen app:"
+           Style="{StaticResource BaseTextBlockStyle}" 
+           Margin="50,-30,300,0"
+           Foreground="LightGray"
+           Opacity="60"/>
+            <TextBlock Text="• Base State - Basic aspects of the app (logo, name, rating or price) only" Foreground="LightGray" Margin="90,-0" Style="{StaticResource BaseTextBlockStyle}"/>
+            <TextBlock Text="• Middle State - The StackPanel is raised up for a moment, action triggered by the user hovering over the app with the cursor
+" Foreground="LightGray" Margin="90,10" Style="{StaticResource BaseTextBlockStyle}"/>
+            <TextBlock Text="• Final State - The StackPanel is transformed into a much larger one, creating space for app details, preview, detailed rating and download button.
+" Foreground="LightGray" Margin="90,-5" Style="{StaticResource BaseTextBlockStyle}"/>
+            <TextBlock Text="A similar Selection Animation can be found in the Microsoft Store App for applications displayed. in either horizontal or vertical StackPanels.
+" Foreground="LightGray" Margin="50,15" Style="{StaticResource BaseTextBlockStyle}"/>
 
-        <Grid>
+        </StackPanel>
+        
+        <Grid Margin="0,130">
             <StackPanel 
-            Height="1359"
+            Height="2359"
             x:Name="blueStackPanel">
 
                 <Rectangle Margin="36,160" HorizontalAlignment="Left" Width="175" Height="185" RadiusX="10" RadiusY="10">
@@ -1004,7 +1017,46 @@ Storyboard.TargetProperty="Visibility">
                 <!--margin from left - 146-->
             </StackPanel>
 
-
+        
         </Grid>
-    </Grid>
+            <Grid>
+                <TextBlock Text="The XAML and C++ code used for this implementation can be found below:" Margin="50,900"></TextBlock>
+                <StackPanel>
+                    <!-- A Button to show XAML -->
+                    <Button x:Name="ShowHideButton" Content="Show XAML" Click="ShowSourceCode_Click" Margin="50,940,0,10" />
+                    <!-- A ScrollViewer to enable scrolling -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="50,10,0,10">
+                        <!-- A TextBox to display XAML code -->
+                        <TextBox x:Name="SourceCodeTextBox" 
+                  IsReadOnly="True" 
+                  AcceptsReturn="True"
+                  TextWrapping="Wrap"
+                  Margin="0"
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
+                  MinWidth="300"
+                  Visibility="Collapsed" />
+                    </ScrollViewer>
+               
+
+                <!-- Container for the StackPanel with C++ Code -->
+                
+                    <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="50,30,0,10" />
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="50,10,0,10">
+                        <!-- A TextBox to display C++ code -->
+                        <TextBox x:Name="CppCodeTextBox" 
+                  IsReadOnly="True" 
+                  AcceptsReturn="True"
+                  TextWrapping="Wrap"
+                  Margin="0"
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
+                  MinWidth="300"
+                  Visibility="Collapsed" />
+                    </ScrollViewer>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        
+    </ScrollViewer>
 </Page>
