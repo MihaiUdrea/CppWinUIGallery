@@ -109,7 +109,7 @@
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>    
             
-                <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance">
+                <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance"-->
 
 
             </NavigationView.MenuItems>
