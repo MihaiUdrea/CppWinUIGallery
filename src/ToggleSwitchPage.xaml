@@ -6,16 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
+    <ScrollViewer>
     <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
         <TextBlock Text="ToggleSwitch" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50,40"/>
 
         <TextBlock Text="In this example, the ToggleSwitch is a bit different from the one provided by WinUI 3 Gallery, but still uses some aspects of it: it presents users with exactly two mutually exclusive options. For this, we are going to use:
 " Margin="50,100" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
-        <TextBlock Text="• Two corresponding boxes for each state, that change from dull to vibrant colours when active." Margin="80,130" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
-        <TextBlock Text="• The ToggleSwitch itself from the WinUI 3 Gallery that will be placed in the middle. This switch will be used for switching the states and the color of the boxes." Margin="80,160" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
+        <TextBlock Text="- Two corresponding boxes for each state, that change from dull to vibrant colours when active." Margin="80,130" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
+        <TextBlock Text="- The ToggleSwitch itself from the WinUI 3 Gallery that will be placed in the middle. This switch will be used for switching the states and the color of the boxes." Margin="80,160" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
 
-        <Grid Margin="0,100">
+        <Grid Margin="0,80">
         <!-- Subscription Border -->
         <Border x:Name="SubscriptionBorder" Background="Green" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="40,116,140,0" CornerRadius="20" Width="210" Canvas.ZIndex="0">
             <TextBlock x:Name="SubscriptionText" Text="Subscription" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" />
@@ -42,7 +42,7 @@
                 </Style>
             </ToggleSwitch.Resources>
         </ToggleSwitch>
-            <TextBlock Text="The XAML and C++ files used for this implementation are provided below:" Margin="50,170" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
+            <TextBlock Text="A similar approach to this can be found on the Advanced Installer Purchase page. The XAML and C++ files used for this implementation are provided below:" Margin="50,170" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
 
             <!-- Container for the StackPanel with XAML Code -->
         <StackPanel Margin="45,210,0,0">
@@ -81,4 +81,5 @@
         </StackPanel>
     </Grid>
     </Grid>
+    </ScrollViewer>
 </Page>

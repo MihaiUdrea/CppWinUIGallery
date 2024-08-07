@@ -33,7 +33,7 @@ namespace winrt::CppWinUIGallery::implementation
         const double startScalingOffset = 350; // The point where scaling starts
         const double stopScalingOffset = 900;  // The point where scaling stops and the panel sticks to the top
         const double infobarScale = 0.55; // Scale factor for the infobar size
-        const double infobarTopOffset = 200; // Offset from the top of the screen when in infobar mode
+        const double infobarTopOffset = 30; // Offset from the top of the screen when in infobar mode
         const double infobarWidth = 900; // Width of the infobar when scaled (unchanged)
 
         // Calculate scale and translation based on scroll offset
@@ -43,7 +43,7 @@ namespace winrt::CppWinUIGallery::implementation
         if (offsetY > startScalingOffset)
         {
             scale = infobarScale;
-            translationY = offsetY - startScalingOffset + infobarTopOffset;
+            translationY = offsetY - startScalingOffset + infobarTopOffset-120;
         }
         else
         {
