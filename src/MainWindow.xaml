@@ -106,6 +106,8 @@
                         <NavigationViewItem Tag="CppWinUIGallery.FloatingElementPage" Content="Floating InfoBar" Icon="Admin" ToolTipService.ToolTip="Floating InfoBar"/>
                         <NavigationViewItem Tag="CppWinUIGallery.FloatingStackPanel" Content="Floating StackPanel" Icon="ContactInfo" ToolTipService.ToolTip="Floating StackPanel"/>
                         <NavigationViewItem Tag="CppWinUIGallery.ConnectedAnimation" Content="App Selection Animation" Icon="Directions" ToolTipService.ToolTip="App Selection Animation"/>
+                        <NavigationViewItem Tag="CppWinUIGallery.LottieIcon" Content="Custom Animated Icon" Icon="Directions" ToolTipService.ToolTip="LottieIcon"/>
+
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>    
             

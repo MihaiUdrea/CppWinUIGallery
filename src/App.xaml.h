@@ -1,6 +1,7 @@
 #pragma once
 
 #include "App.xaml.g.h"
+#include "Test.h"
 
 namespace winrt::CppWinUIGallery::implementation
 {
