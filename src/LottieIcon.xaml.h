@@ -15,6 +15,8 @@ namespace winrt::CppWinUIGallery::implementation
         int32_t MyProperty();
         void MyProperty(int32_t value);
 
+        void Button_PointerEntered(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
+        void Button_PointerExited(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
     };
 
 }

@@ -6,10 +6,10 @@
 //           8.0.280225.1+7cd366a738
 //       
 //       Command:
-//           LottieGen -Language Cppwinrt -Namespace CppWinUIGallery -WinUIVersion 3.0 -InputFile Test.json
+//           LottieGen -Language Cppwinrt -Namespace CppWinUIGallery -WinUIVersion 3.0 -InputFile AnimatedLogo.json
 //       
 //       Input file:
-//           Test.json (52737 bytes created 15:04+03:00 Aug 7 2024)
+//           AnimatedLogo.json (193407 bytes created 17:21+03:00 Aug 8 2024)
 //       
 //       LottieGen source:
 //           http://aka.ms/Lottie
@@ -20,12 +20,12 @@
 //------------------------------------------------------------------------------
 namespace CppWinUIGallery
 {
-    runtimeclass Test
+    runtimeclass AnimatedLogo
         : [default] Microsoft.UI.Xaml.Controls.IDynamicAnimatedVisualSource
         , Microsoft.UI.Xaml.Controls.IAnimatedVisualSource2
         , Microsoft.UI.Xaml.Data.INotifyPropertyChanged
     {
-        Test();
+        AnimatedLogo();
 
         Boolean IsImageLoadingAsynchronous;
         Boolean IsImageLoadingCompleted { get; };

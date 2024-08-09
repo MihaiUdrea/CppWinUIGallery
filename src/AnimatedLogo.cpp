@@ -6,10 +6,10 @@
 //           8.0.280225.1+7cd366a738
 //       
 //       Command:
-//           LottieGen -Language Cppwinrt -Namespace CppWinUIGallery -WinUIVersion 3.0 -InputFile Test.json
+//           LottieGen -Language Cppwinrt -Namespace CppWinUIGallery -WinUIVersion 3.0 -InputFile AnimatedLogo.json
 //       
 //       Input file:
-//           Test.json (52737 bytes created 15:04+03:00 Aug 7 2024)
+//           AnimatedLogo.json (193407 bytes created 17:21+03:00 Aug 8 2024)
 //       
 //       LottieGen source:
 //           http://aka.ms/Lottie
@@ -21,32 +21,32 @@
 // ____________________________________
 // |       Object stats       | Count |
 // |__________________________|_______|
-// | All CompositionObjects   |   126 |
+// | All CompositionObjects   |   178 |
 // |--------------------------+-------|
 // | Expression animators     |     1 |
-// | KeyFrame animators       |     3 |
+// | KeyFrame animators       |     6 |
 // | Reference parameters     |     1 |
 // | Expression operations    |     0 |
 // |--------------------------+-------|
-// | Animated brushes         |     - |
+// | Animated brushes         |     3 |
 // | Animated gradient stops  |     - |
 // | ExpressionAnimations     |     1 |
 // | PathKeyFrameAnimations   |     - |
 // |--------------------------+-------|
 // | ContainerVisuals         |     1 |
-// | ShapeVisuals             |     1 |
+// | ShapeVisuals             |     2 |
 // |--------------------------+-------|
 // | ContainerShapes          |     - |
-// | CompositionSpriteShapes  |    23 |
+// | CompositionSpriteShapes  |    35 |
 // |--------------------------+-------|
-// | Brushes                  |     5 |
+// | Brushes                  |     8 |
 // | Gradient stops           |     - |
 // | CompositionVisualSurface |     - |
 // ------------------------------------
 #include "pch.h"
-#include "Test.h"
-#if __has_include ("Test.g.cpp")
-#include "Test.g.cpp"
+#include "AnimatedLogo.h"
+#if __has_include ("AnimatedLogo.g.cpp")
+#include "AnimatedLogo.g.cpp"
 #endif
 #include <winrt/Windows.Foundation.Metadata.h>
 #include <winrt/Windows.Foundation.Collections.h>
@@ -326,7 +326,7 @@ namespace winrt::CppWinUIGallery::implementation
         96, 130
     };
 
-    class Test_AnimatedVisual : public winrt::implements<Test_AnimatedVisual,
+    class AnimatedLogo_AnimatedVisual : public winrt::implements<AnimatedLogo_AnimatedVisual,
             winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual2,
             winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual,
             IClosable>
@@ -339,7 +339,12 @@ namespace winrt::CppWinUIGallery::implementation
         LoadedImageSurface const _image_1{ nullptr };
         LoadedImageSurface const _image_2{ nullptr };
         AnimationController _animationController_0{ nullptr };
+        CompositionColorBrush _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0{ nullptr };
+        CompositionColorBrush _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_1{ nullptr };
+        CompositionColorBrush _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_2{ nullptr };
         CompositionColorBrush _colorBrush_White{ nullptr };
+        CompositionPathGeometry _pathGeometry_22{ nullptr };
+        CompositionPathGeometry _pathGeometry_23{ nullptr };
         ContainerVisual _root{ nullptr };
         CubicBezierEasingFunction _cubicBezierEasingFunction_0{ nullptr };
         SpriteVisual _spriteVisual_0{ nullptr };
@@ -358,6 +363,15 @@ namespace winrt::CppWinUIGallery::implementation
             _reusableExpressionAnimation.Expression(expression);
             _reusableExpressionAnimation.SetReferenceParameter(referenceParameterName, referencedObject);
             target.StartAnimation(animatedPropertyName, _reusableExpressionAnimation);
+        }
+
+        ColorKeyFrameAnimation CreateColorKeyFrameAnimation(float initialProgress, Color initialValue, CompositionEasingFunction initialEasingFunction)
+        {
+            const auto result = _c.CreateColorKeyFrameAnimation();
+            result.Duration(TimeSpan{ c_durationTicks });
+            result.InterpolationColorSpace(CompositionColorSpace::Rgb);
+            result.InsertKeyFrame(initialProgress, initialValue, initialEasingFunction);
+            return result;
         }
 
         Vector3KeyFrameAnimation CreateVector3KeyFrameAnimation(float initialProgress, float3 initialValue, CompositionEasingFunction initialEasingFunction)
@@ -1098,6 +1112,197 @@ namespace winrt::CppWinUIGallery::implementation
             return result;
         }
 
+        winrt::com_ptr<CanvasGeometry> Geometry_22()
+        {
+            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
+            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
+            winrt::check_hresult(path->Open(sink.put()));
+            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+            sink->BeginFigure({ 6.6987462F, 3.7889483F }, D2D1_FIGURE_BEGIN_FILLED);
+            sink->AddLine({ -6.6987462F, 3.7889483F });
+            sink->AddLine({ -1.42090497E-15F, -7.5778966F });
+            sink->AddLine({ 6.6987462F, 3.7889483F });
+            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+            winrt::check_hresult(sink->Close());
+            auto result = winrt::make_self<CanvasGeometry>(path);
+            return result;
+        }
+
+        winrt::com_ptr<CanvasGeometry> Geometry_23()
+        {
+            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
+            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
+            winrt::check_hresult(path->Open(sink.put()));
+            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+            sink->BeginFigure({ 3.42419887F, 2.09566426F }, D2D1_FIGURE_BEGIN_FILLED);
+            sink->AddLine({ -3.42419887F, 2.09566426F });
+            sink->AddLine({ -7.26324082E-16F, -4.19132853F });
+            sink->AddLine({ 3.42419887F, 2.09566426F });
+            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+            winrt::check_hresult(sink->Close());
+            auto result = winrt::make_self<CanvasGeometry>(path);
+            return result;
+        }
+
+        // - - - Layer aggregator
+        // - -  Offset:<60.57122, 16.405792>
+        winrt::com_ptr<CanvasGeometry> Geometry_24()
+        {
+            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
+            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
+            winrt::check_hresult(path->Open(sink.put()));
+            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+            sink->BeginFigure({ 11.7322235F, -3.35177875F }, D2D1_FIGURE_BEGIN_FILLED);
+            sink->AddLine({ 4.48131037F, 1.28026557F });
+            sink->AddLine({ 7.25091267F, 8.77507114F });
+            sink->AddLine({ 2.88522424E-16F, 4.14302635F });
+            sink->AddLine({ -7.25091267F, 8.77507114F });
+            sink->AddLine({ -4.48131037F, 1.28026557F });
+            sink->AddLine({ -11.7322235F, -3.35177875F });
+            sink->AddLine({ -2.7696023F, -3.35177875F });
+            sink->AddLine({ -2.2660844E-15F, -10.8465843F });
+            sink->AddLine({ 2.7696023F, -3.35177875F });
+            sink->AddLine({ 11.7322235F, -3.35177875F });
+            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+            winrt::check_hresult(sink->Close());
+            auto result = winrt::make_self<CanvasGeometry>(path);
+            return result;
+        }
+
+        // - - - Layer aggregator
+        // - -  Offset:<46.481583, 25.491581>
+        winrt::com_ptr<CanvasGeometry> Geometry_25()
+        {
+            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
+            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
+            winrt::check_hresult(path->Open(sink.put()));
+            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+            sink->BeginFigure({ 6.04357481F, -1.85670352F }, D2D1_FIGURE_BEGIN_FILLED);
+            sink->AddLine({ 2.30844021F, 0.70919764F });
+            sink->AddLine({ 3.7351346F, 4.8609128F });
+            sink->AddLine({ 1.48625443E-16F, 2.29501176F });
+            sink->AddLine({ -3.7351346F, 4.8609128F });
+            sink->AddLine({ -2.30844021F, 0.70919764F });
+            sink->AddLine({ -6.04357481F, -1.85670352F });
+            sink->AddLine({ -1.42669451F, -1.85670352F });
+            sink->AddLine({ -1.1673194E-15F, -6.00841904F });
+            sink->AddLine({ 1.42669451F, -1.85670352F });
+            sink->AddLine({ 6.04357481F, -1.85670352F });
+            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+            winrt::check_hresult(sink->Close());
+            auto result = winrt::make_self<CanvasGeometry>(path);
+            return result;
+        }
+
+        // - - - Layer aggregator
+        // - -  Offset:<60.57122, 27.888523>
+        winrt::com_ptr<CanvasGeometry> Geometry_26()
+        {
+            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
+            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
+            winrt::check_hresult(path->Open(sink.put()));
+            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+            sink->BeginFigure({ 4.79576874F, -1.42502487F }, D2D1_FIGURE_BEGIN_FILLED);
+            sink->AddLine({ 1.83182061F, 0.544311047F });
+            sink->AddLine({ 2.96394801F, 3.73076344F });
+            sink->AddLine({ 1.17939001E-16F, 1.76142752F });
+            sink->AddLine({ -2.96394801F, 3.73076344F });
+            sink->AddLine({ -1.83182061F, 0.544311047F });
+            sink->AddLine({ -4.79576874F, -1.42502487F });
+            sink->AddLine({ -1.1321274F, -1.42502487F });
+            sink->AddLine({ -9.26304961E-16F, -4.61147738F });
+            sink->AddLine({ 1.1321274F, -1.42502487F });
+            sink->AddLine({ 4.79576874F, -1.42502487F });
+            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+            winrt::check_hresult(sink->Close());
+            auto result = winrt::make_self<CanvasGeometry>(path);
+            return result;
+        }
+
+        // Color
+        ColorKeyFrameAnimation ColorAnimation_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0()
+        {
+            // Frame 0.
+            const auto result = CreateColorKeyFrameAnimation(0.0F, { 0x00, 0xFF, 0xD6, 0x40 }, StepThenHoldEasingFunction());
+            // Frame 72.
+            // TransparentAlmostSandyBrown_00FFD640
+            result.InsertKeyFrame(0.239999995F, { 0x00, 0xFF, 0xD6, 0x40 }, HoldThenStepEasingFunction());
+            // Frame 125.
+            // AlmostSandyBrown_FFFFD640
+            result.InsertKeyFrame(0.416666657F, { 0xFF, 0xFF, 0xD6, 0x40 }, CubicBezierEasingFunction_0());
+            // Frame 146.
+            // TransparentAlmostSandyBrown_00FFD640
+            result.InsertKeyFrame(0.486666679F, { 0x00, 0xFF, 0xD6, 0x40 }, CubicBezierEasingFunction_0());
+            return result;
+        }
+
+        // - - Layer aggregator
+        // -  Offset:<60.57122, 16.405792>
+        // Color
+        ColorKeyFrameAnimation ColorAnimation_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_1()
+        {
+            // Frame 0.
+            const auto result = CreateColorKeyFrameAnimation(0.0F, { 0x00, 0xFF, 0xD6, 0x40 }, HoldThenStepEasingFunction());
+            // Frame 170.
+            // TransparentAlmostSandyBrown_00FFD640
+            result.InsertKeyFrame(0.566666663F, { 0x00, 0xFF, 0xD6, 0x40 }, CubicBezierEasingFunction_0());
+            // Frame 216.
+            // AlmostSandyBrown_FFFFD640
+            result.InsertKeyFrame(0.720000029F, { 0xFF, 0xFF, 0xD6, 0x40 }, CubicBezierEasingFunction_0());
+            // Frame 226.
+            // TransparentAlmostSandyBrown_00FFD640
+            result.InsertKeyFrame(0.75333333F, { 0x00, 0xFF, 0xD6, 0x40 }, CubicBezierEasingFunction_0());
+            return result;
+        }
+
+        // Color
+        ColorKeyFrameAnimation ColorAnimation_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_2()
+        {
+            // Frame 0.
+            const auto result = CreateColorKeyFrameAnimation(0.0F, { 0x00, 0xFF, 0xD6, 0x40 }, HoldThenStepEasingFunction());
+            // Frame 170.
+            // TransparentAlmostSandyBrown_00FFD640
+            result.InsertKeyFrame(0.566666663F, { 0x00, 0xFF, 0xD6, 0x40 }, CubicBezierEasingFunction_0());
+            // Frame 205.
+            // SemiTransparentAlmostSandyBrown_7FFFD640
+            result.InsertKeyFrame(0.683333337F, { 0x7F, 0xFF, 0xD6, 0x40 }, CubicBezierEasingFunction_0());
+            // Frame 216.
+            // AlmostSandyBrown_FFFFD640
+            result.InsertKeyFrame(0.720000029F, { 0xFF, 0xFF, 0xD6, 0x40 }, CubicBezierEasingFunction_0());
+            // Frame 226.
+            // TransparentAlmostSandyBrown_00FFD640
+            result.InsertKeyFrame(0.75333333F, { 0x00, 0xFF, 0xD6, 0x40 }, CubicBezierEasingFunction_0());
+            return result;
+        }
+
+        CompositionColorBrush AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0()
+        {
+            if (_animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0 != nullptr) { return _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0; }
+            const auto result = _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0 = _c.CreateColorBrush();
+            return result;
+        }
+
+        // - Layer aggregator
+        // Offset:<60.57122, 16.405792>
+        CompositionColorBrush AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_1()
+        {
+            if (_animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_1 != nullptr) { return _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_1; }
+            const auto result = _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_1 = _c.CreateColorBrush();
+            return result;
+        }
+
+        CompositionColorBrush AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_2()
+        {
+            if (_animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_2 != nullptr) { return _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_2; }
+            const auto result = _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_2 = _c.CreateColorBrush();
+            return result;
+        }
+
         // - Shape tree root for layer: Group Layer 8
         // Scale:0.09221312,0.09221312, Offset:<65.7, 83.58935>
         CompositionColorBrush ColorBrush_SemiTransparentBlack()
@@ -1110,6 +1315,16 @@ namespace winrt::CppWinUIGallery::implementation
             return (_colorBrush_White == nullptr)
                 ? _colorBrush_White = _c.CreateColorBrush({ 0xFF, 0xFF, 0xFF, 0xFF })
                 : _colorBrush_White;
+        }
+
+        // - Layer aggregator
+        // Offset:<60.875, 20.559483>
+        // .EllipseGeometry
+        CompositionEllipseGeometry Ellipse_7p431x7p232()
+        {
+            const auto result = _c.CreateEllipseGeometry();
+            result.Radius({ 7.43126583F, 7.23156548F });
+            return result;
         }
 
         // - Shape tree root for layer: Group Layer 8
@@ -1264,6 +1479,41 @@ namespace winrt::CppWinUIGallery::implementation
         CompositionPathGeometry PathGeometry_21()
         {
             return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_21())));
+        }
+
+        CompositionPathGeometry PathGeometry_22()
+        {
+            return (_pathGeometry_22 == nullptr)
+                ? _pathGeometry_22 = _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_22())))
+                : _pathGeometry_22;
+        }
+
+        CompositionPathGeometry PathGeometry_23()
+        {
+            return (_pathGeometry_23 == nullptr)
+                ? _pathGeometry_23 = _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_23())))
+                : _pathGeometry_23;
+        }
+
+        // - Layer aggregator
+        // Offset:<60.57122, 16.405792>
+        CompositionPathGeometry PathGeometry_24()
+        {
+            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_24())));
+        }
+
+        // - Layer aggregator
+        // Offset:<46.481583, 25.491581>
+        CompositionPathGeometry PathGeometry_25()
+        {
+            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_25())));
+        }
+
+        // - Layer aggregator
+        // Offset:<60.57122, 27.888523>
+        CompositionPathGeometry PathGeometry_26()
+        {
+            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_26())));
         }
 
         // - Shape tree root for layer: Group Layer 8
@@ -1531,6 +1781,127 @@ namespace winrt::CppWinUIGallery::implementation
             return result;
         }
 
+        // Layer aggregator
+        // Offset:<60.875, 20.559483>
+        CompositionSpriteShape SpriteShape_23()
+        {
+            // Offset:<60.875, 20.559483>
+            const auto geometry = Ellipse_7p431x7p232();
+            const auto result = CreateSpriteShape(geometry, { 1.0F, 0.0F, 0.0F, 1.0F, 60.875F, 20.5594826F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0());;
+            return result;
+        }
+
+        // Layer aggregator
+        // Offset:<60.57122, 8.827896>
+        CompositionSpriteShape SpriteShape_24()
+        {
+            // Offset:<60.57122, 8.827896>
+            const auto geometry = PathGeometry_22();
+            const auto result = CreateSpriteShape(geometry, { 1.0F, 0.0F, 0.0F, 1.0F, 60.5712204F, 8.82789612F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0());;
+            return result;
+        }
+
+        // Layer aggregator
+        // RotationDegrees:180, Offset:<60.57122, 32.5>
+        CompositionSpriteShape SpriteShape_25()
+        {
+            // Offset:<60.57122, 32.5>, Rotation:-180 degrees
+            const auto geometry = PathGeometry_22();
+            const auto result = CreateSpriteShape(geometry, { -1.0F, 0.0F, -0.0F, -1.0F, 60.5712204F, 32.5F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0());;
+            return result;
+        }
+
+        // Layer aggregator
+        // RotationDegrees:149.4335479736328, Offset:<47.80654, 20.559483>
+        CompositionSpriteShape SpriteShape_26()
+        {
+            // Offset:<47.80654, 20.559483>, Rotation:149.43354146662534 degrees
+            const auto geometry = PathGeometry_22();
+            const auto result = CreateSpriteShape(geometry, { -0.861039877F, 0.508537412F, -0.508537412F, -0.861039877F, 47.8065414F, 20.5594826F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0());;
+            return result;
+        }
+
+        // Layer aggregator
+        // RotationDegrees:90.60527801513672, Offset:<73.30654, 20.559483>
+        CompositionSpriteShape SpriteShape_27()
+        {
+            // Offset:<73.30654, 20.559483>, Rotation:90.60528021092793 degrees
+            const auto geometry = PathGeometry_22();
+            const auto result = CreateSpriteShape(geometry, { -0.0105639361F, 0.99994421F, -0.99994421F, -0.0105639361F, 73.3065414F, 20.5594826F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0());;
+            return result;
+        }
+
+        // Layer aggregator
+        // RotationDegrees:101.8282470703125, Offset:<49.982864, 30.65942>
+        CompositionSpriteShape SpriteShape_28()
+        {
+            // Offset:<49.982864, 30.65942>, Rotation:101.82824406540925 degrees,
+            // Scale:<0.99999994, 0.99999994>
+            const auto geometry = PathGeometry_23();
+            const auto result = CreateSpriteShape(geometry, { -0.204978555F, 0.978766441F, -0.978766441F, -0.204978555F, 49.9828644F, 30.65942F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0());;
+            return result;
+        }
+
+        // Layer aggregator
+        // RotationDegrees:80.00962829589844, Offset:<50.001896, 10.16107>
+        CompositionSpriteShape SpriteShape_29()
+        {
+            // Offset:<50.001896, 10.16107>, Rotation:80.00962808983671 degrees
+            const auto geometry = PathGeometry_23();
+            const auto result = CreateSpriteShape(geometry, { 0.173482686F, 0.984836936F, -0.984836936F, 0.173482686F, 50.0018959F, 10.1610699F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0());;
+            return result;
+        }
+
+        // Layer aggregator
+        // RotationDegrees:138.46319580078125, Offset:<71.06964, 30.50243>
+        CompositionSpriteShape SpriteShape_30()
+        {
+            // Offset:<71.06964, 30.50243>, Rotation:138.4631942177965 degrees
+            const auto geometry = PathGeometry_23();
+            const auto result = CreateSpriteShape(geometry, { -0.748529911F, 0.663101017F, -0.663101017F, -0.748529911F, 71.0696411F, 30.50243F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0());;
+            return result;
+        }
+
+        // Layer aggregator
+        // RotationDegrees:35.58753204345703, Offset:<71.25, 10.696317>
+        CompositionSpriteShape SpriteShape_31()
+        {
+            // Offset:<71.25, 10.696317>, Rotation:35.587532110465304 degrees
+            const auto geometry = PathGeometry_23();
+            const auto result = CreateSpriteShape(geometry, { 0.813227415F, 0.581946015F, -0.581946015F, 0.813227415F, 71.25F, 10.6963167F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0());;
+            return result;
+        }
+
+        // Layer aggregator
+        // Offset:<60.57122, 16.405792>
+        CompositionSpriteShape SpriteShape_32()
+        {
+            // Offset:<60.57122, 16.405792>
+            const auto geometry = PathGeometry_24();
+            const auto result = CreateSpriteShape(geometry, { 1.0F, 0.0F, 0.0F, 1.0F, 60.5712204F, 16.4057922F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_1());;
+            return result;
+        }
+
+        // Layer aggregator
+        // Offset:<46.481583, 25.491581>
+        CompositionSpriteShape SpriteShape_33()
+        {
+            // Offset:<46.481583, 25.491581>
+            const auto geometry = PathGeometry_25();
+            const auto result = CreateSpriteShape(geometry, { 1.0F, 0.0F, 0.0F, 1.0F, 46.4815826F, 25.491581F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_2());;
+            return result;
+        }
+
+        // Layer aggregator
+        // Offset:<60.57122, 27.888523>
+        CompositionSpriteShape SpriteShape_34()
+        {
+            // Offset:<60.57122, 27.888523>
+            const auto geometry = PathGeometry_26();
+            const auto result = CreateSpriteShape(geometry, { 1.0F, 0.0F, 0.0F, 1.0F, 60.5712204F, 27.8885231F }, AnimatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_2());;
+            return result;
+        }
+
         // Transforms for simple_logo.png 1
         CompositionSurfaceBrush SurfaceBrush_0()
         {
@@ -1565,13 +1936,15 @@ namespace winrt::CppWinUIGallery::implementation
             children.InsertAtTop(SpriteVisual_1());
             // Transforms for simple_logo - Copy (2).png 1
             children.InsertAtTop(SpriteVisual_2());
+            // Layer aggregator
+            children.InsertAtTop(ShapeVisual_1());
             return result;
         }
 
         CubicBezierEasingFunction CubicBezierEasingFunction_0()
         {
             return (_cubicBezierEasingFunction_0 == nullptr)
-                ? _cubicBezierEasingFunction_0 = _c.CreateCubicBezierEasingFunction({ 0.5F, 0.0F }, { 0.200000003F, 1.0F })
+                ? _cubicBezierEasingFunction_0 = _c.CreateCubicBezierEasingFunction({ 0.25F, 0.25F }, { 0.75F, 0.75F })
                 : _cubicBezierEasingFunction_0;
         }
 
@@ -1630,6 +2003,39 @@ namespace winrt::CppWinUIGallery::implementation
             return result;
         }
 
+        // Layer aggregator
+        ShapeVisual ShapeVisual_1()
+        {
+            const auto result = _c.CreateShapeVisual();
+            result.Size({ 90.0F, 90.0F });
+            const auto shapes = result.Shapes();
+            // Offset:<60.875, 20.559483>
+            shapes.Append(SpriteShape_23());
+            // Offset:<60.57122, 8.827896>
+            shapes.Append(SpriteShape_24());
+            // RotationDegrees:180, Offset:<60.57122, 32.5>
+            shapes.Append(SpriteShape_25());
+            // RotationDegrees:149.4335479736328, Offset:<47.80654, 20.559483>
+            shapes.Append(SpriteShape_26());
+            // RotationDegrees:90.60527801513672, Offset:<73.30654, 20.559483>
+            shapes.Append(SpriteShape_27());
+            // RotationDegrees:101.8282470703125, Offset:<49.982864, 30.65942>
+            shapes.Append(SpriteShape_28());
+            // RotationDegrees:80.00962829589844, Offset:<50.001896, 10.16107>
+            shapes.Append(SpriteShape_29());
+            // RotationDegrees:138.46319580078125, Offset:<71.06964, 30.50243>
+            shapes.Append(SpriteShape_30());
+            // RotationDegrees:35.58753204345703, Offset:<71.25, 10.696317>
+            shapes.Append(SpriteShape_31());
+            // Offset:<60.57122, 16.405792>
+            shapes.Append(SpriteShape_32());
+            // Offset:<46.481583, 25.491581>
+            shapes.Append(SpriteShape_33());
+            // Offset:<60.57122, 27.888523>
+            shapes.Append(SpriteShape_34());
+            return result;
+        }
+
         // Transforms for simple_logo.png 1
         SpriteVisual SpriteVisual_0()
         {
@@ -1674,14 +2080,26 @@ namespace winrt::CppWinUIGallery::implementation
             return result;
         }
 
+        // Color
+        StepEasingFunction StepThenHoldEasingFunction()
+        {
+            const auto result = _c.CreateStepEasingFunction();
+            result.IsInitialStepSingleFrame(true);
+            return result;
+        }
+
         // Transforms for simple_logo.png 1
         // Offset
         Vector3KeyFrameAnimation OffsetVector3Animation_0()
         {
             // Frame 0.
-            const auto result = CreateVector3KeyFrameAnimation(0.0F, { 2.25F, 35.5F, 0.0F }, HoldThenStepEasingFunction());
-            // Frame 61.
-            result.InsertKeyFrame(0.203333333F, { 12.75F, 31.5F, 0.0F }, CubicBezierEasingFunction_0());
+            const auto result = CreateVector3KeyFrameAnimation(0.0F, { 2.68797421F, 35.3331528F, 0.0F }, HoldThenStepEasingFunction());
+            // Frame 60.
+            result.InsertKeyFrame(0.200000003F, { 14.4815836F, 32.5F, 0.0F }, CubicBezierEasingFunction_0());
+            // Frame 230.
+            result.InsertKeyFrame(0.766666651F, { 14.4815836F, 32.5F, 0.0F }, CubicBezierEasingFunction_0());
+            // Frame 290.
+            result.InsertKeyFrame(0.966666639F, { 2.68797421F, 35.3885193F, 0.0F }, CubicBezierEasingFunction_0());
             return result;
         }
 
@@ -1690,9 +2108,13 @@ namespace winrt::CppWinUIGallery::implementation
         Vector3KeyFrameAnimation OffsetVector3Animation_1()
         {
             // Frame 0.
-            const auto result = CreateVector3KeyFrameAnimation(0.0F, { 56.25F, 36.5F, 0.0F }, HoldThenStepEasingFunction());
-            // Frame 61.
-            result.InsertKeyFrame(0.203333333F, { 47.25F, 32.5F, 0.0F }, CubicBezierEasingFunction_0());
+            const auto result = CreateVector3KeyFrameAnimation(0.0F, { 54.815609F, 36.2616158F, 0.0F }, HoldThenStepEasingFunction());
+            // Frame 60.
+            result.InsertKeyFrame(0.200000003F, { 46.6909981F, 33.6702538F, 0.0F }, CubicBezierEasingFunction_0());
+            // Frame 230.
+            result.InsertKeyFrame(0.766666651F, { 46.6909981F, 33.6702538F, 0.0F }, CubicBezierEasingFunction_0());
+            // Frame 290.
+            result.InsertKeyFrame(0.966666639F, { 55.5286484F, 36.2616158F, 0.0F }, CubicBezierEasingFunction_0());
             return result;
         }
 
@@ -1701,9 +2123,13 @@ namespace winrt::CppWinUIGallery::implementation
         Vector3KeyFrameAnimation OffsetVector3Animation_2()
         {
             // Frame 0.
-            const auto result = CreateVector3KeyFrameAnimation(0.0F, { 18.25F, 3.5F, 0.0F }, HoldThenStepEasingFunction());
-            // Frame 61.
-            result.InsertKeyFrame(0.203333333F, { 18.25F, 10.5F, 0.0F }, CubicBezierEasingFunction_0());
+            const auto result = CreateVector3KeyFrameAnimation(0.0F, { 18.25F, 3.8024106F, 0.0F }, HoldThenStepEasingFunction());
+            // Frame 60.
+            result.InsertKeyFrame(0.200000003F, { 18.25F, 13.3279181F, 0.0F }, CubicBezierEasingFunction_0());
+            // Frame 230.
+            result.InsertKeyFrame(0.766666651F, { 18.25F, 13.3279181F, 0.0F }, CubicBezierEasingFunction_0());
+            // Frame 290.
+            result.InsertKeyFrame(0.966666639F, { 18.25F, 3.38851786F, 0.0F }, CubicBezierEasingFunction_0());
             return result;
         }
 
@@ -1713,7 +2139,7 @@ namespace winrt::CppWinUIGallery::implementation
         }
 
     public:
-        Test_AnimatedVisual(
+        AnimatedLogo_AnimatedVisual(
             Compositor compositor,
             LoadedImageSurface image_0,
             LoadedImageSurface image_1,
@@ -1753,6 +2179,9 @@ namespace winrt::CppWinUIGallery::implementation
 
         void CreateAnimations()
         {
+            _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0.StartAnimation(L"Color", ColorAnimation_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0(), AnimationController_0());
+            _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_1.StartAnimation(L"Color", ColorAnimation_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_1(), AnimationController_0());
+            _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_2.StartAnimation(L"Color", ColorAnimation_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_2(), AnimationController_0());
             _spriteVisual_0.StartAnimation(L"Offset", OffsetVector3Animation_0(), AnimationController_0());
             _spriteVisual_1.StartAnimation(L"Offset", OffsetVector3Animation_1(), AnimationController_0());
             _spriteVisual_2.StartAnimation(L"Offset", OffsetVector3Animation_2(), AnimationController_0());
@@ -1760,6 +2189,9 @@ namespace winrt::CppWinUIGallery::implementation
 
         void DestroyAnimations()
         {
+            _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_0.StopAnimation(L"Color");
+            _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_1.StopAnimation(L"Color");
+            _animatedColorBrush_TransparentAlmostSandyBrown_00FFD640_to_TransparentAlmostSandyBrown_00FFD640_2.StopAnimation(L"Color");
             _spriteVisual_0.StopAnimation(L"Offset");
             _spriteVisual_1.StopAnimation(L"Offset");
             _spriteVisual_2.StopAnimation(L"Offset");
@@ -1767,14 +2199,14 @@ namespace winrt::CppWinUIGallery::implementation
 
     };
 
-    winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual Test::TryCreateAnimatedVisual(
+    winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual AnimatedLogo::TryCreateAnimatedVisual(
         Compositor const& compositor)
     {
         IInspectable diagnostics = nullptr;
         return TryCreateAnimatedVisual(compositor, diagnostics);
     }
 
-    winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual Test::TryCreateAnimatedVisual(
+    winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual AnimatedLogo::TryCreateAnimatedVisual(
         Compositor const& compositor,
         IInspectable& diagnostics)
     {
@@ -1788,7 +2220,7 @@ namespace winrt::CppWinUIGallery::implementation
         {
             return nullptr;
         }
-        auto result = winrt::make<Test_AnimatedVisual>(
+        auto result = winrt::make<AnimatedLogo_AnimatedVisual>(
             compositor,
             _image_0,
             _image_1,
@@ -1797,12 +2229,12 @@ namespace winrt::CppWinUIGallery::implementation
         return result;
     }
 
-    bool Test::IsImageLoadingAsynchronous()
+    bool AnimatedLogo::IsImageLoadingAsynchronous()
     {
         return m_isImageLoadingAsynchronous;
     }
 
-    void Test::IsImageLoadingAsynchronous(bool value)
+    void AnimatedLogo::IsImageLoadingAsynchronous(bool value)
     {
         if (!m_isTryCreateAnimatedVisualCalled && m_isImageLoadingAsynchronous != value)
         {
@@ -1811,17 +2243,17 @@ namespace winrt::CppWinUIGallery::implementation
         }
     }
 
-    bool Test::IsImageLoadingCompleted()
+    bool AnimatedLogo::IsImageLoadingCompleted()
     {
         return m_isImageLoadingCompleted;
     }
 
-    void Test::EnsureImageLoadingStarted()
+    void AnimatedLogo::EnsureImageLoadingStarted()
     {
         if (!m_isImageLoadingStarted)
         {
             m_isImageLoadingStarted = true;
-            TypedEventHandler<LoadedImageSurface, LoadedImageSourceLoadCompletedEventArgs> eventHandler{ get_weak(), &Test::HandleLoadCompleted };
+            TypedEventHandler<LoadedImageSurface, LoadedImageSourceLoadCompletedEventArgs> eventHandler{ get_weak(), &AnimatedLogo::HandleLoadCompleted };
             {
                 InMemoryRandomAccessStream stream{};
                 DataWriter dataWriter{ stream.GetOutputStreamAt(0) };
@@ -1852,7 +2284,7 @@ namespace winrt::CppWinUIGallery::implementation
         }
     }
 
-    void Test::HandleLoadCompleted(LoadedImageSurface sender, LoadedImageSourceLoadCompletedEventArgs e)
+    void AnimatedLogo::HandleLoadCompleted(LoadedImageSurface sender, LoadedImageSourceLoadCompletedEventArgs e)
     {
         m_loadCompletedEventCount++;
 
@@ -1867,65 +2299,71 @@ namespace winrt::CppWinUIGallery::implementation
         }
     }
 
-    winrt::event_token Test::PropertyChanged(Microsoft::UI::Xaml::Data::PropertyChangedEventHandler const& handler)
+    winrt::event_token AnimatedLogo::PropertyChanged(Microsoft::UI::Xaml::Data::PropertyChangedEventHandler const& handler)
     {
         return m_PropertyChanged.add(handler);
     }
 
-    void Test::PropertyChanged(winrt::event_token const& token) noexcept
+    void AnimatedLogo::PropertyChanged(winrt::event_token const& token) noexcept
     {
         m_PropertyChanged.remove(token);
     }
 
-    winrt::event_token Test::AnimatedVisualInvalidated(TypedEventHandler<Microsoft::UI::Xaml::Controls::IDynamicAnimatedVisualSource, IInspectable> const& handler)
+    winrt::event_token AnimatedLogo::AnimatedVisualInvalidated(TypedEventHandler<Microsoft::UI::Xaml::Controls::IDynamicAnimatedVisualSource, IInspectable> const& handler)
     {
         return m_IDynamicAnimatedVisualSourceEvent.add(handler);
     }
 
-    void Test::AnimatedVisualInvalidated(winrt::event_token const& token) noexcept
+    void AnimatedLogo::AnimatedVisualInvalidated(winrt::event_token const& token) noexcept
     {
         m_IDynamicAnimatedVisualSourceEvent.remove(token);
     }
 
 
-    double Test::FrameCount()
+    double AnimatedLogo::FrameCount()
     {
         return 300.0;
     }
 
-    double Test::Framerate()
+    double AnimatedLogo::Framerate()
     {
         return 100.0;
     }
 
-    TimeSpan Test::Duration()
+    TimeSpan AnimatedLogo::Duration()
     {
         return TimeSpan{ 30000000L };
     }
 
-    double Test::FrameToProgress(double frameNumber)
+    double AnimatedLogo::FrameToProgress(double frameNumber)
     {
         return frameNumber / 300.0;
     }
 
-    winrt::Windows::Foundation::Collections::IMapView<hstring, double> Test::Markers()
+    winrt::Windows::Foundation::Collections::IMapView<hstring, double> AnimatedLogo::Markers()
     {
         return winrt::single_threaded_map<winrt::hstring, double>(
             std::map<winrt::hstring, double>
             {
                 { L"NormalToPointerOver_Start", 0.0 },
-                { L"NormalToPointerOver_End", 0.0301666666666667 },
-                { L"PointerOverToPressed_Start", 0.100166666666667 },
-                { L"PointerOverToPressed_End", 0.130166666666667 },
+                { L"PointerOverToNormal_End", 0.0 },
+                { L"NormalToPointerOver_End", 0.400166666666667 },
+                { L"PointerOverToNormal_Start", 0.400166666666667 },
+                { L"PointerOverToPressed_Start", 0.400166666666667 },
+                { L"PressedToPointerOver_End", 0.416833333333333 },
+                { L"PointerOverToPressed_End", 0.720166666666667 },
+                { L"PressedToPointerOver_Start", 0.720166666666667 },
+                { L"PressedToNormal_Start", 0.766833333333333 },
+                { L"PressedToNormal_End", 1.0 },
             }
         ).GetView();
     }
 
-    void Test::SetColorProperty(hstring const&, Color)
+    void AnimatedLogo::SetColorProperty(hstring const&, Color)
     {
     }
 
-    void Test::SetScalarProperty(hstring const&, double)
+    void AnimatedLogo::SetScalarProperty(hstring const&, double)
     {
     }
 } // end namespace

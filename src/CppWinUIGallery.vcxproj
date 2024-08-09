@@ -107,6 +107,7 @@
     <Manifest Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedLogo.h" />
     <ClInclude Include="AutoSuggestPage.xaml.h">
       <DependentUpon>AutoSuggestPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -146,7 +147,6 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
-    <ClInclude Include="Test.h" />
     <ClInclude Include="ToggleSwitchPage.xaml.h">
       <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -184,6 +184,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedLogo.cpp" />
     <ClCompile Include="AutoSuggestPage.xaml.cpp">
       <DependentUpon>AutoSuggestPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -226,13 +227,13 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
-    <ClCompile Include="Test.cpp" />
     <ClCompile Include="ToggleSwitchPage.xaml.cpp">
       <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="AnimatedLogo.idl" />
     <Midl Include="AutoSuggestPage.idl">
       <DependentUpon>AutoSuggestPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -269,7 +270,6 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
-    <Midl Include="Test.idl" />
     <Midl Include="ToggleSwitchPage.idl">
       <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
       <SubType>Code</SubType>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "App.xaml.g.h"
-#include "Test.h"
+#include "AnimatedLogo.h"
 
 namespace winrt::CppWinUIGallery::implementation
 {

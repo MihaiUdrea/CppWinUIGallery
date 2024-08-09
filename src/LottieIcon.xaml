@@ -9,11 +9,17 @@
     xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button Width="75" >
+    <Grid>
+        <StackPanel Orientation="Horizontal"  VerticalAlignment="Top" HorizontalAlignment="Left" >
+            <TextBlock Text="Custom Animated Icon" HorizontalAlignment="Left" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50,40"/>
+            <TextBlock HorizontalAlignment="Left" Margin="-465,105" Text="In this example, the custom Animated Icon's implementation is a bit different from the usual one provided by the WinUI 3 Gallery. The concept of Lottie Files will be explained, as well as the process of using this type of file, adjusting its time intervals, and then converting it to actual code." Foreground="LightGray" Style="{StaticResource BaseTextBlockStyle}"/>
+        </StackPanel>
+        <StackPanel Margin="50,135">
+            <TextBlock Text="How it works:" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
+            <Button Width="75"  Margin="0,10,0,10" >
             <AnimatedIcon x:Name="SearchAnimatedIcon">
                 <AnimatedIcon.Source>
-                    <local:Test/>
+                    <local:AnimatedLogo/>
                 </AnimatedIcon.Source>
 
                 <AnimatedIcon.FallbackIconSource>
@@ -21,6 +27,11 @@
                 </AnimatedIcon.FallbackIconSource>
             </AnimatedIcon>
         </Button>
+        <TextBlock Margin="0,5" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="State 1: Hovering in with the cursor"/>
+        <TextBlock Margin="0,5" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="State 2: Keeping the button pressed"/>
+        <TextBlock Margin="0,5" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="State 3: Hovering out with the cursor"/>
 
-    </StackPanel>
+        
+        </StackPanel>
+    </Grid>
 </Page>
