@@ -15,6 +15,8 @@ using namespace Microsoft::UI::Xaml::Controls;
 
 namespace winrt::CppWinUIGallery::implementation
 {
+    bool isPressedState = false;
+
     int32_t LottieIcon::MyProperty()
     {
         throw hresult_not_implemented();
@@ -24,8 +26,37 @@ namespace winrt::CppWinUIGallery::implementation
     {
         throw hresult_not_implemented();
     }
+    void LottieIcon::ShowSourceCode_Click(
+        winrt::Windows::Foundation::IInspectable const& sender,
+        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        auto button = ShowHideButton();
+        auto textBox = SourceCodeTextBox();
 
-    
+        if (textBox.Visibility() == Visibility::Collapsed)
+        {
+            // Hide C++ code if visible
+           /* if (cppTextBox.Visibility() == Visibility::Visible)
+            {
+                cppTextBox.Visibility(Visibility::Collapsed);
+                cppButton.Content(box_value(L"Show C++"));
+            }*/
+
+            // Show XAML source code
+            hstring xamlSourceCode = LR"(Placeholder Text)";
+            textBox.Text(xamlSourceCode);
+            textBox.Visibility(Visibility::Visible);
+            button.Content(box_value(L"Hide XAML"));
+        }
+        else
+        {
+            textBox.Visibility(Visibility::Collapsed);
+            button.Content(box_value(L"Show XAML"));
+        }
+    }
+
 }
+
+
 
 
