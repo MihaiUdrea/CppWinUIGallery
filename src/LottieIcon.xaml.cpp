@@ -3,6 +3,7 @@
 #if __has_include("LottieIcon.g.cpp")
 #include "LottieIcon.g.cpp"
 #endif
+#include "winrt/Windows.UI.Xaml.Media.Animation.h"
 
 #include <winrt/Microsoft.UI.Xaml.Controls.h>
 #include <winrt/Microsoft.UI.Xaml.Input.h>
@@ -54,6 +55,45 @@ namespace winrt::CppWinUIGallery::implementation
             button.Content(box_value(L"Show XAML"));
         }
     }
+   
+
+    void LottieIcon::LottieButton_Click(IInspectable const& sender, RoutedEventArgs const& e)
+    {
+       
+
+        if (LottieButton().IsChecked().GetBoolean() == true)
+            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Pressed");
+        else
+            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
+        return;
+     
+    }
+    void LottieIcon::Button_PointerEntered(IInspectable const& sender, PointerRoutedEventArgs const& e)
+    {
+    //    if (!isPressedState)
+        {
+
+            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"PointerOver");
+        }
+    }
+
+    // Handle pointer exiting the button area
+    void LottieIcon::Button_PointerExited(IInspectable const& sender, PointerRoutedEventArgs const& e)
+    {
+        if (LottieButton().IsChecked().GetBoolean() == false
+            )
+        {
+            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
+        }
+        else
+        {
+            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Pressed");
+
+        }
+    }
+   
+
+    
 
 }
 

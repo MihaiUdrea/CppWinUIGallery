@@ -9,6 +9,56 @@
     xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     xmlns:controls="using:Microsoft.UI.Xaml.Controls"
     mc:Ignorable="d">
+    <Page.Resources>
+       
+        <ControlTemplate x:Key="LottieButtonTemplate" TargetType="Button">
+            <Grid Width="75" Height="50">
+                <!-- Use a Border to host the background color -->
+                <Border x:Name="BackgroundBorder" Background="LightGray">
+                    <ContentPresenter
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="{TemplateBinding Content}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                </Border>
+
+                <VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal"/>
+
+                        <!-- PointerOver state with visual feedback -->
+                        <VisualState x:Name="PointerOver">
+                            <Storyboard>
+                                <ColorAnimation
+                                Storyboard.TargetName="BackgroundBorder"
+                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                To="LightCoral"
+                                Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </VisualState>
+
+                        <VisualState x:Name="Pressed">
+                            <Storyboard>
+                                <ColorAnimation
+                                Storyboard.TargetName="BackgroundBorder"
+                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                To="DarkSalmon"
+                                Duration="0:0:0.3"/>
+                            </Storyboard>
+                        </VisualState>
+
+                        <VisualStateGroup.Transitions>
+                            <!-- Shortened transition duration for testing -->
+                            <VisualTransition From="Normal" To="PointerOver" GeneratedDuration="0:0:0.3"/>
+                            <VisualTransition From="PointerOver" To="Pressed" GeneratedDuration="0:0:0.3"/>
+                            <VisualTransition From="Pressed" To="Normal" GeneratedDuration="0:0:0.3"/>
+                        </VisualStateGroup.Transitions>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>
+            </Grid>
+        </ControlTemplate>
+    </Page.Resources>
+
     <ScrollViewer>
     <Grid>
         
@@ -18,24 +68,23 @@
         </StackPanel>
         <StackPanel Margin="50,135">
             <TextBlock Text="How it works:" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
-            
-            <Button Width="75"  Margin="0,10,0,10" >
-                
-            <AnimatedIcon x:Name="SearchAnimatedIcon">
 
-                <AnimatedIcon.Source>
-                    <local:AnimatedLogo/>
-                </AnimatedIcon.Source>
+                <ToggleButton  Width="75" IsEnabled="True" x:Name="LottieButton" Margin="0,10,0,10"  Click="LottieButton_Click" BorderBrush="Transparent" Foreground="Transparent" Background="Transparent" PointerExited="Button_PointerExited" PointerEntered="Button_PointerEntered">
+                   
 
-                <AnimatedIcon.FallbackIconSource>
-                    <SymbolIconSource Symbol="GlobalNavigationButton"/>
-                </AnimatedIcon.FallbackIconSource>
-            </AnimatedIcon>
-                
-        </Button>
+                    <AnimatedIcon x:Name="SearchAnimatedIcon">
+                        <AnimatedIcon.Source>
+                            <local:AnimatedLogo/>
+                        </AnimatedIcon.Source>
+                        <AnimatedIcon.FallbackIconSource>
+                            <SymbolIconSource Symbol="GlobalNavigationButton"/>
+                        </AnimatedIcon.FallbackIconSource>
+                    </AnimatedIcon>
+                </ToggleButton>
             
-            
-        <TextBlock Margin="110,-85" Style="{StaticResource TitleTextBlockStyle}" Text="States:"/>
+                <!--<Button Click="LottieButton_Click"    x:Name="SwitchAnimation" Content="Switch"/>-->
+
+                <TextBlock Margin="110,-85" Style="{StaticResource TitleTextBlockStyle}" Text="States:"/>
                 <TextBlock Margin="120,-76" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 1: Hovering in with the cursor"/>
                 <TextBlock Margin="120,-39" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 2: Keeping the button pressed"/>
                 <TextBlock Margin="120,-0" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 3: Hovering out with the cursor"/>
@@ -77,6 +126,9 @@
                         Visibility="Collapsed" />
                 </ScrollViewer>
             </StackPanel>
+    
     </Grid>
+         
     </ScrollViewer>    
+    
 </Page>

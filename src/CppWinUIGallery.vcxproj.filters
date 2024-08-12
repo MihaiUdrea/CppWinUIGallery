@@ -17,7 +17,6 @@
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
-    <Midl Include="Test.idl" />
     <Midl Include="AnimatedLogo.idl">
       <Filter>AnimatedLogoFolder</Filter>
     </Midl>
@@ -25,14 +24,12 @@
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
-    <ClCompile Include="Test.cpp" />
     <ClCompile Include="AnimatedLogo.cpp">
       <Filter>AnimatedLogoFolder</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
-    <ClInclude Include="Test.h" />
     <ClInclude Include="AnimatedLogo.h">
       <Filter>AnimatedLogoFolder</Filter>
     </ClInclude>
