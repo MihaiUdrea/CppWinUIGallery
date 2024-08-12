@@ -69,7 +69,7 @@
         <StackPanel Margin="50,135">
             <TextBlock Text="How it works:" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
 
-                <ToggleButton Loaded="LottieButton_Loaded"  Width="75" IsEnabled="True" x:Name="LottieButton" Margin="0,10,0,10"  Click="LottieButton_Click" BorderBrush="Transparent" Foreground="Transparent" Background="Transparent" PointerExited="Button_PointerExited" PointerEntered="Button_PointerEntered">
+                <ToggleButton Loaded="LottieButton_Loaded"  Width="75" IsEnabled="True" x:Name="LottieButton" Margin="0,10,0,10"  Click="LottieButton_Click"  PointerExited="Button_PointerExited" PointerEntered="Button_PointerEntered">
                    
 
                     <AnimatedIcon x:Name="SearchAnimatedIcon">
@@ -85,9 +85,9 @@
                 <!--<Button Click="LottieButton_Click"    x:Name="SwitchAnimation" Content="Switch"/>-->
 
                 <TextBlock Margin="110,-85" Style="{StaticResource TitleTextBlockStyle}" Text="States:"/>
-                <TextBlock Margin="120,-76" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 1: Hovering in with the cursor"/>
-                <TextBlock Margin="120,-39" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 2: Keeping the button pressed"/>
-                <TextBlock Margin="120,-0" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 3: Hovering out with the cursor"/>
+                <TextBlock Margin="120,-76" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 1: Hovering in"/>
+                <TextBlock Margin="120,-39" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 2: Clicking the button - Toggle-On"/>
+                <TextBlock Margin="120,-0" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 3: Clicking the button - Toggle-Off / Hovering out if button wasn't clicked"/>
         <TextBlock Margin="0,15" Style="{StaticResource TitleTextBlockStyle}"  Text="Lottie Files - What are they?"/>
         <TextBlock Margin="0,-10" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"  Text="WinUI 3 uses a certain file format for the implementation of its Animated Icon feature - Lottie files. Created for vector graphics animation, they are based on JSON files.However, since they use keys of 1-2 characters in length, they are not readable by humans. Intended as a lighter alternative to GIFs and APNG files, they allow for the inclusion of interactive elements."/>
         <TextBlock Margin="0,20" Style="{StaticResource BaseTextBlockStyle}" Text="The content of these files, specifically, the animations can be created in Adobe After Effects, as advised on the Microsoft AnimatedIcon docmentation page. They can be also created on online platforms like LottieFiles or LottieLab." Foreground="LightGray"/>
@@ -110,24 +110,45 @@
                 Margin="700,-110,0,0"
                 HorizontalAlignment="Left"
                 Message="Before adding these files to the project, remove the &quot;CppWinUIGallery &quot; namespace from the name of each file. (e.g. AnimatedLogo.cpp). Traces of this namespace should be also deleted in the .cpp file itself. (e.g. #include &quot;CppWinUIGallery.AnimatedLogo.h&quot;)" />
-                <TextBlock Style="{StaticResource BaseTextBlockStyle}"  HorizontalAlignment="Left"  Text="The XAML for this implementation is minimal:" Foreground="LightGray"></TextBlock>
-                <Button x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,20,0,10" />
-          
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,-40,0,10">
-           
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}"  HorizontalAlignment="Left"  Text="The XAML for this implementation is based on a ToggleButton mechanism:" Foreground="LightGray"></TextBlock>
+                
+            </StackPanel>
+            <StackPanel Margin="50,940,0,0">
+                <!-- A Button to show XAML -->
+                <Button x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,-120,0,10" />
+                <!-- A ScrollViewer to enable scrolling -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="260" Margin="0,-40,0,10">
+                    <!-- A TextBox to display XAML code -->
                     <TextBox x:Name="SourceCodeTextBox" 
-                        IsReadOnly="True" 
-                        AcceptsReturn="True"
-                        TextWrapping="Wrap"
-                        Margin="0,50"
-                        VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        MinWidth="300"
-                        Visibility="Collapsed" />
+IsReadOnly="True" 
+AcceptsReturn="True"
+TextWrapping="Wrap"
+Margin="0"
+VerticalAlignment="Stretch"
+HorizontalAlignment="Stretch"
+MinWidth="300"
+Visibility="Collapsed" />
                 </ScrollViewer>
             </StackPanel>
-    
-    </Grid>
+            <StackPanel Margin="50,1190">
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Before converting the Lottie file into C++ code, we have to take note of markers - These are important in mapping the animations to their corresponding time intervals"></TextBlock>
+                <TextBlock Margin="0,10,0,5" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="For our implementation we are going to use:"></TextBlock>
+                <TextBlock Margin="60,5" Foreground="LightGray" Text="• Normal" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                <TextBlock Margin="60,5" Foreground="LightGray" Text="• PointerOver" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                <TextBlock Margin="60,5" Foreground="LightGray" Text="• Pressed" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                <TextBlock Margin="0,5" Foreground="LightGray" Style="{StaticResource BaseTextBlockStyle}" Text="In the provided documentation for the AnimatedIcon more information is presented on this matter. We can insert &quot;To&quot; and in between states (e.g.NormalToPressed) and _Start/_End (e.g.NormalToPressed_Start) , however, omitting at least one of these two markers (if choosing to use them) will result in a hard cut of the animation (the transitions won't take place). "></TextBlock>
+                <TextBlock Margin="0,5" Foreground="LightGray" Style="{StaticResource BaseTextBlockStyle}" Text="After converting the file , these markers will be automatically placed in the C++ source code, thus defining the time intervals used in the mapping." ></TextBlock>
+            
+            </StackPanel>
+            <StackPanel Margin="50,1410">
+                <TextBlock  Style="{StaticResource BaseTextBlockStyle}" Text="Regarding the C++ source code, mapping the animation time intervals according to the user's interactions can be done using four methods: "></TextBlock>
+                <TextBlock Margin="60,10,0,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• InitializeIconState - Used to start the animation from the very first state - Normal." ></TextBlock>
+                <TextBlock Margin="60,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• Button_PointerEntered - Used to detect when the user hovers in. It also checks if the button has already been toggled, so it doesn't accidentally play the hover in animation again in case the button has been clicked." ></TextBlock>
+                <TextBlock Margin="60,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• Button_PointerExited" ></TextBlock>
+                <TextBlock Margin="60,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• LottieButton_Click" ></TextBlock>
+            </StackPanel>
+            
+        </Grid>
          
     </ScrollViewer>    
     

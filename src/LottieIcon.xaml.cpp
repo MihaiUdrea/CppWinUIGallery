@@ -27,34 +27,7 @@ namespace winrt::CppWinUIGallery::implementation
     {
         throw hresult_not_implemented();
     }
-    void LottieIcon::ShowSourceCode_Click(
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        auto button = ShowHideButton();
-        auto textBox = SourceCodeTextBox();
-
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
-            // Hide C++ code if visible
-           /* if (cppTextBox.Visibility() == Visibility::Visible)
-            {
-                cppTextBox.Visibility(Visibility::Collapsed);
-                cppButton.Content(box_value(L"Show C++"));
-            }*/
-
-            // Show XAML source code
-            hstring xamlSourceCode = LR"(Placeholder Text)";
-            textBox.Text(xamlSourceCode);
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide XAML"));
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show XAML"));
-        }
-    }
+    
    
 
     void LottieIcon::LottieButton_Click(IInspectable const& sender, RoutedEventArgs const& e)
@@ -107,7 +80,48 @@ namespace winrt::CppWinUIGallery::implementation
     {
         InitializeIconState();
     }
+    void LottieIcon::ShowSourceCode_Click(
+        winrt::Windows::Foundation::IInspectable const& sender,
+        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        auto button = ShowHideButton();
+        auto textBox = SourceCodeTextBox();
 
+
+        if (textBox.Visibility() == Visibility::Collapsed)
+        {
+            // Hide C++ code if visible
+           /* if (cppTextBox.Visibility() == Visibility::Visible)
+            {
+                cppTextBox.Visibility(Visibility::Collapsed);
+                cppButton.Content(box_value(L"Show C++"));
+            }*/
+
+            // Show XAML source code
+            hstring xamlSourceCode = LR"(
+<ToggleButton Loaded="LottieButton_Loaded"  Width="75" IsEnabled="True" x:Name="LottieButton" Margin="0,10,0,10"  Click="LottieButton_Click" PointerExited="Button_PointerExited" PointerEntered="Button_PointerEntered">
+                   
+
+                    <AnimatedIcon x:Name="SearchAnimatedIcon">
+                        <AnimatedIcon.Source>
+                            <local:AnimatedLogo/>
+                        </AnimatedIcon.Source>
+                        <AnimatedIcon.FallbackIconSource>
+                            <SymbolIconSource Symbol="GlobalNavigationButton"/>
+                        </AnimatedIcon.FallbackIconSource>
+                    </AnimatedIcon>
+                </ToggleButton>
+)";
+            textBox.Text(xamlSourceCode);
+            textBox.Visibility(Visibility::Visible);
+            button.Content(box_value(L"Hide XAML"));
+        }
+        else
+        {
+            textBox.Visibility(Visibility::Collapsed);
+            button.Content(box_value(L"Show XAML"));
+        }
+    }
     
 
 }
