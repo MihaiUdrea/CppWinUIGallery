@@ -69,7 +69,7 @@
         <StackPanel Margin="50,135">
             <TextBlock Text="How it works:" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
 
-                <ToggleButton  Width="75" IsEnabled="True" x:Name="LottieButton" Margin="0,10,0,10"  Click="LottieButton_Click" BorderBrush="Transparent" Foreground="Transparent" Background="Transparent" PointerExited="Button_PointerExited" PointerEntered="Button_PointerEntered">
+                <ToggleButton Loaded="LottieButton_Loaded"  Width="75" IsEnabled="True" x:Name="LottieButton" Margin="0,10,0,10"  Click="LottieButton_Click" BorderBrush="Transparent" Foreground="Transparent" Background="Transparent" PointerExited="Button_PointerExited" PointerEntered="Button_PointerEntered">
                    
 
                     <AnimatedIcon x:Name="SearchAnimatedIcon">

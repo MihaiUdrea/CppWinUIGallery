@@ -59,21 +59,28 @@ namespace winrt::CppWinUIGallery::implementation
 
     void LottieIcon::LottieButton_Click(IInspectable const& sender, RoutedEventArgs const& e)
     {
-       
+
 
         if (LottieButton().IsChecked().GetBoolean() == true)
+        {
             AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Pressed");
+            return;
+        }
         else
             AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
         return;
-     
+
     }
     void LottieIcon::Button_PointerEntered(IInspectable const& sender, PointerRoutedEventArgs const& e)
     {
     //    if (!isPressedState)
+        if (LottieButton().IsChecked().GetBoolean() == true)
+            return;
+        else
         {
 
             AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"PointerOver");
+            return;
         }
     }
 
@@ -88,10 +95,18 @@ namespace winrt::CppWinUIGallery::implementation
         else
         {
             AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Pressed");
-
+            return;
         }
     }
-   
+    void LottieIcon::InitializeIconState()
+    {
+       
+            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
+    }
+    void LottieIcon::LottieButton_Loaded(IInspectable const& sender, RoutedEventArgs const& e)
+    {
+        InitializeIconState();
+    }
 
     
 
