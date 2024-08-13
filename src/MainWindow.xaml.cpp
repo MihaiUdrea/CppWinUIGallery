@@ -13,6 +13,7 @@ using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 using namespace Microsoft::UI::Xaml::Input;
 using namespace Microsoft::UI::Xaml::Controls;
+using namespace Microsoft::UI::Input;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -95,8 +96,8 @@ namespace winrt::CppWinUIGallery::implementation
         auto rectArray = array_view<Windows::Graphics::RectInt32>(rects);
 
         
-        Microsoft::UI::Input::InputNonClientPointerSource nonClientInputSrc = Microsoft::UI::Input::InputNonClientPointerSource::GetForWindowId(this->AppWindow().Id());
-        nonClientInputSrc.SetRegionRects(Microsoft::UI::Input::NonClientRegionKind::Passthrough, rectArray);
+        InputNonClientPointerSource nonClientInputSrc = InputNonClientPointerSource::GetForWindowId(this->AppWindow().Id());
+        nonClientInputSrc.SetRegionRects(NonClientRegionKind::Passthrough, rectArray);
     }
 
     void MainWindow::TitleBar_BackButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
