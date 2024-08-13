@@ -25,7 +25,7 @@ namespace winrt::CppWinUIGallery::implementation
         void LottieButton_Loaded(IInspectable const& sender, Microsoft::UI::Xaml::RoutedEventArgs const& e);
 
         void ShowSourceCode_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-
+        void ShowCppCode_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
     };
 
 }

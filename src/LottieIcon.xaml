@@ -140,12 +140,28 @@ Visibility="Collapsed" />
                 <TextBlock Margin="0,5" Foreground="LightGray" Style="{StaticResource BaseTextBlockStyle}" Text="After converting the file , these markers will be automatically placed in the C++ source code, thus defining the time intervals used in the mapping." ></TextBlock>
             
             </StackPanel>
-            <StackPanel Margin="50,1410">
+            <StackPanel Margin="50,1420">
                 <TextBlock  Style="{StaticResource BaseTextBlockStyle}" Text="Regarding the C++ source code, mapping the animation time intervals according to the user's interactions can be done using four methods: "></TextBlock>
                 <TextBlock Margin="60,10,0,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• InitializeIconState - Used to start the animation from the very first state - Normal." ></TextBlock>
                 <TextBlock Margin="60,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• Button_PointerEntered - Used to detect when the user hovers in. It also checks if the button has already been toggled, so it doesn't accidentally play the hover in animation again in case the button has been clicked." ></TextBlock>
-                <TextBlock Margin="60,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• Button_PointerExited" ></TextBlock>
-                <TextBlock Margin="60,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• LottieButton_Click" ></TextBlock>
+                <TextBlock Margin="60,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• Button_PointerExited - Used to detect when the user hovers out." ></TextBlock>
+                <TextBlock Margin="60,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• LottieButton_Click - Used to identify whether the button has been pressed or not." ></TextBlock>
+                <TextBlock  Style="{StaticResource BaseTextBlockStyle}" Text="The C++ source code is provided below:"></TextBlock>
+                <StackPanel Margin="0,0,0,0">
+                    <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,20,0,10" />
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,0,0,10">
+                        <!-- A TextBox to display C++ code -->
+                        <TextBox x:Name="CppCodeTextBox" 
+IsReadOnly="True" 
+AcceptsReturn="True"
+TextWrapping="Wrap"
+Margin="0"
+VerticalAlignment="Stretch"
+HorizontalAlignment="Stretch"
+MinWidth="300"
+Visibility="Collapsed" />
+                    </ScrollViewer>
+                </StackPanel>
             </StackPanel>
             
         </Grid>
