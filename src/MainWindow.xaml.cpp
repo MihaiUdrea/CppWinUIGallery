@@ -62,6 +62,18 @@ namespace winrt::CppWinUIGallery::implementation
         
     }
 
+    Windows::Graphics::RectInt32 MainWindow::GetRect(winrt::Windows::Foundation::Rect bounds, double scale)
+    {
+        winrt::Windows::Graphics::RectInt32 rect;
+
+        rect.X = (int)round(bounds.X * scale);
+        rect.Y = (int)round(bounds.Y * scale);
+        rect.Width = (int)round(bounds.Width * scale);
+        rect.Height = (int)round(bounds.Height * scale);
+
+        return rect;
+    }
+
     void MainWindow::SetRegionsForCustomTitleBar()
     {
         double scaleAdjustment = AppTitleBar().XamlRoot().RasterizationScale();
@@ -71,7 +83,20 @@ namespace winrt::CppWinUIGallery::implementation
         AppTitleBar().Margin(ThicknessHelper::FromLengths(0, 0, m_AppWindow.TitleBar().RightInset(), 0));
         AppTitleBar().Width(m_AppWindow.ClientSize().Width - m_AppWindow.TitleBar().RightInset());
 
-       
+        Media::GeneralTransform transform = TitleBar_BackButton().TransformToVisual(nullptr);
+
+        Windows::Foundation::Rect bounds = transform.TransformBounds(Windows::Foundation::Rect
+            { 0, 0, (float)TitleBar_BackButton().ActualWidth(), (float)TitleBar_BackButton().ActualHeight() });
+
+        Windows::Graphics::RectInt32 BackButtonRect = GetRect(bounds, scaleAdjustment);
+
+
+        std::vector<Windows::Graphics::RectInt32> rects = { BackButtonRect };
+        auto rectArray = array_view<Windows::Graphics::RectInt32>(rects);
+
+        
+        Microsoft::UI::Input::InputNonClientPointerSource nonClientInputSrc = Microsoft::UI::Input::InputNonClientPointerSource::GetForWindowId(this->AppWindow().Id());
+        nonClientInputSrc.SetRegionRects(Microsoft::UI::Input::NonClientRegionKind::Passthrough, rectArray);
     }
 
     void MainWindow::TitleBar_BackButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
