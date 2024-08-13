@@ -11,6 +11,8 @@
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
+using namespace Microsoft::UI::Xaml::Input;
+using namespace Microsoft::UI::Xaml::Controls;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -270,7 +272,23 @@ namespace winrt::CppWinUIGallery::implementation
         }
 
 	}
+    void MainWindow::LottieButton_Click(IInspectable const& sender, RoutedEventArgs const& e)
+    {
 
+        AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"NormalToPointerOver_End");
+
+        if (isPressed)
+        {
+            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"NormalToPointerOver_End");
+            isPressed = false;
+
+        }
+        else
+        {
+            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"PointerOverToPressed_End");
+            isPressed = true;
+        }
+    }
     
 
 }

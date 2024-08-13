@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:animatedvisuals="using:Microsoft.UI.Xaml.Controls.AnimatedVisuals"
     mc:Ignorable="d">
     <Window.SystemBackdrop>
         <MicaBackdrop Kind="BaseAlt"/>
@@ -106,6 +107,20 @@
                         <NavigationViewItem Tag="CppWinUIGallery.FloatingElementPage" Content="Floating InfoBar" Icon="Admin" ToolTipService.ToolTip="Floating InfoBar"/>
                         <NavigationViewItem Tag="CppWinUIGallery.FloatingStackPanel" Content="Floating StackPanel" Icon="ContactInfo" ToolTipService.ToolTip="Floating StackPanel"/>
                         <NavigationViewItem Tag="CppWinUIGallery.ConnectedAnimation" Content="App Selection Animation" Icon="Directions" ToolTipService.ToolTip="App Selection Animation"/>
+                        <NavigationViewItem Tag="CppWinUIGallery.LottieIcon" Content="Custom Animated Icon" ToolTipService.ToolTip="LottieIcon">
+                            <NavigationViewItem.Icon >
+                                <AnimatedIcon x:Name="SearchAnimatedIcon" >
+                                    <AnimatedIcon.Source>
+                                        <local:AnimatedLogo/>
+                                    </AnimatedIcon.Source>
+                                    <AnimatedIcon.FallbackIconSource>
+                                        <SymbolIconSource Symbol="GlobalNavigationButton"/>
+                                    </AnimatedIcon.FallbackIconSource>
+                                </AnimatedIcon>
+                            </NavigationViewItem.Icon>
+                        </NavigationViewItem>
+
+
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>    
             

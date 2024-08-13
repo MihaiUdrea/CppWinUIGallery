@@ -107,6 +107,7 @@
     <Manifest Include="app.manifest" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AnimatedLogo.h" />
     <ClInclude Include="AutoSuggestPage.xaml.h">
       <DependentUpon>AutoSuggestPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -129,6 +130,10 @@
     </ClInclude>
     <ClInclude Include="HomePage.xaml.h">
       <DependentUpon>HomePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="LottieIcon.xaml.h">
+      <DependentUpon>LottieIcon.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="pch.h" />
@@ -167,6 +172,9 @@
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="LottieIcon.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="MainWindow.xaml" />
     <Page Include="PhotoGallery.xaml">
       <SubType>Designer</SubType>
@@ -176,6 +184,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AnimatedLogo.cpp" />
     <ClCompile Include="AutoSuggestPage.xaml.cpp">
       <DependentUpon>AutoSuggestPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -200,6 +209,10 @@
       <DependentUpon>HomePage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="LottieIcon.xaml.cpp">
+      <DependentUpon>LottieIcon.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
@@ -220,6 +233,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Midl Include="AnimatedLogo.idl" />
     <Midl Include="AutoSuggestPage.idl">
       <DependentUpon>AutoSuggestPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -242,6 +256,10 @@
     </Midl>
     <Midl Include="HomePage.idl">
       <DependentUpon>HomePage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="LottieIcon.idl">
+      <DependentUpon>LottieIcon.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="MainWindow.idl">

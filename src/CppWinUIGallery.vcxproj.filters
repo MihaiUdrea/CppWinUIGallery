@@ -13,16 +13,26 @@
     <Page Include="FloatingElementPage.xaml" />
     <Page Include="FloatingStackPanel.xaml" />
     <Page Include="ConnectedAnimation.xaml" />
+    <Page Include="LottieIcon.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
+    <Midl Include="AnimatedLogo.idl">
+      <Filter>AnimatedLogoFolder</Filter>
+    </Midl>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
     <ClCompile Include="$(GeneratedFilesDir)module.g.cpp" />
+    <ClCompile Include="AnimatedLogo.cpp">
+      <Filter>AnimatedLogoFolder</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
+    <ClInclude Include="AnimatedLogo.h">
+      <Filter>AnimatedLogoFolder</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="Assets\Wide310x150Logo.scale-200.png">
@@ -98,6 +108,12 @@
   <ItemGroup>
     <Filter Include="Assets">
       <UniqueIdentifier>{8eca5124-ee32-4220-a026-d063b9129c5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AnimatedLogo">
+      <UniqueIdentifier>{f37dff32-1090-4a5d-844e-0c9744783b46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="AnimatedLogoFolder">
+      <UniqueIdentifier>{93459d71-5f3b-4396-97d0-5afc9485cfbd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
