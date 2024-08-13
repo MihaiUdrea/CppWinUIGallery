@@ -27,7 +27,6 @@ namespace winrt::CppWinUIGallery::implementation
         InitializeComponent();
         ExtendsContentIntoTitleBar(true);
         AppWindow().TitleBar().PreferredHeightOption(Microsoft::UI::Windowing::TitleBarHeightOption::Standard);
-         
         // Windows::UI::ViewManagement::ApplicationView::GetForCurrentView().SetPreferredMinSize(Windows::Foundation::Size(500, 300));
 
     }
@@ -63,6 +62,8 @@ namespace winrt::CppWinUIGallery::implementation
         
     }
 
+    
+
     Windows::Graphics::RectInt32 MainWindow::GetRect(winrt::Windows::Foundation::Rect bounds, double scale)
     {
         winrt::Windows::Graphics::RectInt32 rect;
@@ -79,25 +80,53 @@ namespace winrt::CppWinUIGallery::implementation
     {
         double scaleAdjustment = AppTitleBar().XamlRoot().RasterizationScale();
         auto m_AppWindow = this->AppWindow();
+
         
+        Windows::Foundation::Rect bounds;
+        std::vector<Windows::Graphics::RectInt32> rects;
+        
+
+        // Setting system capture buttons margin
 
         AppTitleBar().Margin(ThicknessHelper::FromLengths(0, 0, m_AppWindow.TitleBar().RightInset(), 0));
         AppTitleBar().Width(m_AppWindow.ClientSize().Width - m_AppWindow.TitleBar().RightInset());
 
-        Media::GeneralTransform transform = TitleBar_BackButton().TransformToVisual(nullptr);
 
-        Windows::Foundation::Rect bounds = transform.TransformBounds(Windows::Foundation::Rect
+        // Setting custom tall title bar drag region
+        
+        auto transform = AppTitleBar().TransformToVisual(nullptr);
+        bounds = transform.TransformBounds(Windows::Foundation::Rect
+            { 0, 0, (float)AppTitleBar().ActualWidth(), (float)AppTitleBar().ActualHeight() });
+
+        Windows::Graphics::RectInt32 TitleBarRect = GetRect(bounds, scaleAdjustment);
+
+        rects = { TitleBarRect };
+        auto rectArray = array_view<Windows::Graphics::RectInt32>(rects);
+
+        this->AppWindow().TitleBar().SetDragRectangles(rectArray);
+
+        rects.clear();
+
+
+        // Setting back button custom nno-dragable region
+
+        transform = TitleBar_BackButton().TransformToVisual(nullptr);
+
+        bounds = transform.TransformBounds(Windows::Foundation::Rect
             { 0, 0, (float)TitleBar_BackButton().ActualWidth(), (float)TitleBar_BackButton().ActualHeight() });
 
         Windows::Graphics::RectInt32 BackButtonRect = GetRect(bounds, scaleAdjustment);
 
 
-        std::vector<Windows::Graphics::RectInt32> rects = { BackButtonRect };
-        auto rectArray = array_view<Windows::Graphics::RectInt32>(rects);
+        rects = { BackButtonRect };
+        rectArray = array_view<Windows::Graphics::RectInt32>(rects);
 
         
         InputNonClientPointerSource nonClientInputSrc = InputNonClientPointerSource::GetForWindowId(this->AppWindow().Id());
         nonClientInputSrc.SetRegionRects(NonClientRegionKind::Passthrough, rectArray);
+
+
+        
     }
 
     void MainWindow::TitleBar_BackButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)

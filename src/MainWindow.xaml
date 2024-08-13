@@ -37,7 +37,8 @@
                     Loaded="AppTitleBar_Loaded"
                     SizeChanged="AppTitleBar_SizeChanged"
                     Height="48"
-                    Grid.Row="0">
+                    Grid.Row="0"
+                    Grid.Column="0">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="BackButtonColumn" Width="48"/>
