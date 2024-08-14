@@ -1,0 +1,61 @@
+<Page
+    x:Class="CppWinUIGallery.PVSlider"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CppWinUIGallery"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Page.Resources>
+        <Style x:Key="Switch" TargetType="ToggleSwitch">
+            <Setter Property="Background" Value="{StaticResource ToggleSwitchKnobFillOff}" />
+            <Setter Property="Foreground" Value="{StaticResource ToggleSwitchKnobFillOff}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleSwitch">
+                        <Grid CornerRadius="7" Background="{TemplateBinding Background}">
+                         
+                            <Thumb x:Name="KnobThumb" Canvas.Left="70"
+            Canvas.Top="20" Margin="0,0,0,0" Width="45" Height="38"
+             CornerRadius="7" HorizontalAlignment="Left"
+            DragStarted="OnThumbDragStarted"
+            DragDelta="OnThumbDragDelta" 
+            DragCompleted="OnThumbDragCompleted" BorderThickness="1" BorderBrush="Gray">
+                                <Thumb.Background>
+                                    <SolidColorBrush Color="#807a7679"/>
+                                    <!-- Semi-transparent Thistle color -->
+                                </Thumb.Background>
+
+                                <Thumb.RenderTransform>
+                                    <TranslateTransform x:Name="KnobTransform"/>
+                                </Thumb.RenderTransform>
+                            </Thumb>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid>
+        <StackPanel Margin="0">
+            <TextBlock Text="Photo/Video Slider" Margin="50,40" Style="{StaticResource TitleLargeTextBlockStyle}"/>
+        </StackPanel>
+        <StackPanel x:Name="SliderPanel" Margin="45,120" Orientation="Horizontal" CornerRadius="8" Height="45" BorderBrush="#30292f" BorderThickness="1.5" HorizontalAlignment="Left" VerticalAlignment="Top">
+            <Grid>
+                <Rectangle Fill="#211a20" Height="45" Width="90"/>
+                <StackPanel VerticalAlignment="Center" Margin="11" HorizontalAlignment="Left">
+                    <SymbolIcon Symbol="Camera" />
+                </StackPanel>
+                <StackPanel VerticalAlignment="Center" Margin="0,0,11,0" HorizontalAlignment="Right">
+                    <SymbolIcon Symbol="Video"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+        <StackPanel Margin="46,123,0,0">
+            <ToggleSwitch Width="90" Background="Transparent" x:Name="Switch" Style="{StaticResource Switch}" OffContent=""/>
+        </StackPanel>
+    </Grid>
+</Page>
