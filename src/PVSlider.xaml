@@ -23,7 +23,36 @@
             DragDelta="OnThumbDragDelta" 
             DragCompleted="OnThumbDragCompleted" BorderThickness="1" BorderBrush="Gray">
                                 <Thumb.Background>
-                                    <SolidColorBrush Color="#807a7679"/>
+                                    <SolidColorBrush Color="#007a7679"/>
+                                    <!-- Semi-transparent Thistle color -->
+                                </Thumb.Background>
+                                
+                                <Thumb.RenderTransform>
+                                    <TranslateTransform x:Name="KnobTransform"/>
+                                </Thumb.RenderTransform>
+                            </Thumb>
+                        
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="Status" TargetType="ToggleSwitch">
+   
+       
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleSwitch">
+                        <Grid CornerRadius="7" Background="{TemplateBinding Background}">
+
+                            <Thumb x:Name="StatusKnob" Canvas.Left="70"
+  Canvas.Top="20" Margin="14,27,0,0" Width="16" Height="3"
+   CornerRadius="7" HorizontalAlignment="Left"
+  
+  BorderThickness="1" BorderBrush="HotPink">
+                                <Thumb.Background>
+                                    <SolidColorBrush Color="HotPink"/>
                                     <!-- Semi-transparent Thistle color -->
                                 </Thumb.Background>
 
@@ -31,12 +60,13 @@
                                     <TranslateTransform x:Name="KnobTransform"/>
                                 </Thumb.RenderTransform>
                             </Thumb>
+
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
+        
     </Page.Resources>
 
     <Grid>
@@ -47,15 +77,18 @@
             <Grid>
                 <Rectangle Fill="#211a20" Height="45" Width="90"/>
                 <StackPanel VerticalAlignment="Center" Margin="11" HorizontalAlignment="Left">
-                    <SymbolIcon Symbol="Camera" />
+                    <SymbolIcon x:Name="CameraIcon" Symbol="Camera" Foreground="#FFFFFF" />
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Margin="0,0,11,0" HorizontalAlignment="Right">
-                    <SymbolIcon Symbol="Video"/>
+                    <SymbolIcon x:Name="VideoIcon" Symbol="Video" Foreground="#80FFFFFF" />
                 </StackPanel>
+
             </Grid>
         </StackPanel>
         <StackPanel Margin="46,123,0,0">
+            <Grid>
             <ToggleSwitch Width="90" Background="Transparent" x:Name="Switch" Style="{StaticResource Switch}" OffContent=""/>
-        </StackPanel>
+            </Grid>
+            </StackPanel>
     </Grid>
 </Page>
