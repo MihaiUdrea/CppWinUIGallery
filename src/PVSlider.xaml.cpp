@@ -83,36 +83,47 @@ namespace winrt::CppWinUIGallery::implementation
 
 
 
-    void PVSlider::OnThumbDragCompleted(IInspectable const& sender, DragCompletedEventArgs const& e)
+  void PVSlider::OnThumbDragCompleted(IInspectable const& sender, DragCompletedEventArgs const& e)
+{
+    auto thumb = sender.as<Thumb>();
+    auto transform = thumb.RenderTransform().as<TranslateTransform>();
+
+    if (transform)
     {
-        auto thumb = sender.as<Thumb>();
-        auto transform = thumb.RenderTransform().as<TranslateTransform>();
+        // Get the container's size
+        double containerWidth = SliderPanel().ActualWidth();
 
-        if (transform)
+        // Define the two possible snap positions
+        double leftPosition = 0.0;
+        double rightPosition = containerWidth - thumb.ActualWidth();
+
+        // Snap to the nearest position
+        if (transform.X() < (leftPosition + rightPosition) / 2)
         {
-            // Get the container's size
-            double containerWidth = SliderPanel().ActualWidth();
+            transform.X(leftPosition);
 
-            // Define the two possible snap positions
-            double leftPosition = 0.0;
-            double rightPosition = containerWidth - thumb.ActualWidth();
+            // Update SymbolIcon colors
+            CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0xFF, 0xFF, 0xFF)));
+            VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0xFF, 0xFF)));
+        }
+        else
+        {
+            transform.X(rightPosition);
 
-            // Snap to the nearest position
-            if (transform.X() < (leftPosition + rightPosition) / 2)
-            {
-                transform.X(leftPosition);
-            }
-            else
-            {
-                transform.X(rightPosition);
-            }
-
-            OutputDebugString(L"Drag completed, snapped to position\n");
+            // Update SymbolIcon colors
+            CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0xFF, 0xFF)));
+            VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0xFF, 0xFF, 0xFF)));
         }
 
-        dragging = false;
+      
+
+        OutputDebugString(L"Drag completed, snapped to position\n");
     }
 
+    dragging = false;
+}
 
-  
+
+
+
 }
