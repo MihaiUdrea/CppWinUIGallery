@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="CppWinUIGallery.TitleBarPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CppWinUIGallery"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" 
+            VerticalScrollBarVisibility="Auto">
+
+
+        <StackPanel Orientation="Vertical">
+
+            <TextBlock Text="TitleBar" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50, 40, 0, 10" Height="Auto" VerticalAlignment="Top"/>
+            <TextBlock Text="In this model I will explain the title bar customisation and detail c++ scriptg for setting proper drag regions and system's capture buttons margin"
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="LightGray"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock Text="We will focus on the full customisation aspect. Because3 of this, the system title bar is hidden, so our custom title bar is built using a grid."
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="LightGray"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock Text="We present you a tall title bar design and slim standard buttons, wich give a cleaner and more similar look to the WinUI 3 Gallery App created by Microsoft. In order to achieve this style, the title bar height is set in the custom xaml grid, rather them TitleBar.PreferredHeightOption script property, this keeps the system capture buttons in the standard size. To maintatin the proper ttitle bar behaviour we have to implement custom drag regions wich is shown bellow in the cpp code example"
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="LightGray"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock Text="The title bar is built inside a grid with defined columns in order to easily maintain the proper element's spacing"
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="LightGray"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBox IsReadOnly="True"
+                     Text="ExtendsContentIntoTitleBar shows in the XAML IntelliSense for Window, but setting it in XAML causes an error. Set this property in code instead."
+                     Margin="50,10,300,0"/>
+
+
+
+
+            <!-- Container for the StackPanel with XAML Code -->
+            <StackPanel Margin="45,50,45,0">
+                <!-- A Button to show XAML -->
+                <Button x:Name="ShowHideButton" Content="Show XAML" Click="ShowHideButton_Click" />
+                <!-- A ScrollViewer to enable scrolling -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10" VerticalScrollMode="Enabled">
+                    <!-- A TextBox to display XAML code -->
+                    <TextBox x:Name="SourceCodeTextBox" 
+                    IsReadOnly="True" 
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    MinWidth="300"
+                    Visibility="Collapsed" />
+                </ScrollViewer>
+            </StackPanel>
+
+            <TextBlock Text="Short explanation of the c++ scripting necessary for proper custom title bar behavior"
+                Style="{StaticResource SubtitleTextBlockStyle}" 
+                Margin="50,20,300,0"
+                Foreground="LightGray"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock Text=" - Set the preferred title bar height to standard, to keep a slimmer appearance for the system capture buttons"
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="LightGray"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock Text=" - Explicitly define title bar button colors in order to avoid the invisible system capture button bug, that occurs when changing system to dark or light mode with the app open"
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="LightGray"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock Text=" - Calculate proper margins for the system capture buttons, to avoid overing by the items when the taskbar is shrank"
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="LightGray"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock Text="-  Set the custom draggable and non-draggable regions"
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="LightGray"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <!-- Container for the StackPanel with C++ Code -->
+            <StackPanel Margin="45,10,45,0">
+                <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppButton_Click" />
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
+                    <!-- A TextBox to display C++ code -->
+                    <TextBox x:Name="CppCodeTextBox" 
+                    IsReadOnly="True" 
+                    AcceptsReturn="True"
+                    TextWrapping="Wrap"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    MinWidth="300"
+                    Visibility="Collapsed"
+             />
+                </ScrollViewer>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Spacing="20" HorizontalAlignment="Center">
+
+                <InfoBar
+                    IsOpen="True"
+                    IsIconVisible="True"
+                    Foreground="OrangeRed"
+                    IsClosable="False"
+                    Width="Auto"
+                    Margin="0, 30, 0, 50"
+                    Message="WARNING: Make sure to also set again the regions for the custom title bar after the size changed event!" />
+
+                <InfoBar
+                    IsOpen="True"
+                    IsIconVisible="True"
+                    Foreground="OrangeRed"
+                    IsClosable="False"
+                    Width="Auto"
+                    Margin="0, 30, 0, 50"
+                    Message= "WARNING GetForCurrentView automatically throws an exception as the method is no longer supported" />
+
+            </StackPanel>
+        </StackPanel>
+
+    </ScrollViewer>
+</Page>

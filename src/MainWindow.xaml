@@ -103,6 +103,14 @@
                         <NavigationViewItem Tag="CppWinUIGallery.AutoSuggestPage" Content="AutoSuggestBox" ToolTipService.ToolTip="AutoSuggestBox"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
+                <NavigationViewItem Content="Windowing">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE7C4;" />
+                    </NavigationViewItem.Icon>
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Tag="CppWinUIGallery.TitleBarPage" Content="TitleBar" ToolTipService.ToolTip="TitleBar"/>
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
 
                 <NavigationViewItem Content="Animated Content" Icon="Library" ToolTipService.ToolTip="Animated Content">
                     <NavigationViewItem.MenuItems>

@@ -26,9 +26,12 @@ namespace winrt::CppWinUIGallery::implementation
     {
         InitializeComponent();
         ExtendsContentIntoTitleBar(true);
-        AppWindow().TitleBar().PreferredHeightOption(Microsoft::UI::Windowing::TitleBarHeightOption::Standard);
+        this->AppWindow().TitleBar().PreferredHeightOption(Microsoft::UI::Windowing::TitleBarHeightOption::Standard);
+        
+        // THIS IS NOT WORKING ON CURRENT WINDOWS APP SDK VERSION 
+        // WARNING GetForCurrentView automatically throws an exception as the method is no longer supported
         // Windows::UI::ViewManagement::ApplicationView::GetForCurrentView().SetPreferredMinSize(Windows::Foundation::Size(500, 300));
-
+        
     }
 
     int32_t MainWindow::MyProperty()
@@ -44,10 +47,13 @@ namespace winrt::CppWinUIGallery::implementation
    
 
     void MainWindow::AppTitleBar_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {   
-
+    {  
+        this->AppWindow().TitleBar().ButtonForegroundColor(Microsoft::UI::Colors::White());
+        this->AppWindow().TitleBar().ButtonHoverForegroundColor(Microsoft::UI::Colors::White());
+        this->AppWindow().TitleBar().ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 90, 90 , 90 });
+        
         if (ExtendsContentIntoTitleBar() == true) {
-            // Set the initial interactive regions.
+            // Set the initial interactive regions
             SetRegionsForCustomTitleBar();
         }
     }
@@ -86,7 +92,7 @@ namespace winrt::CppWinUIGallery::implementation
         std::vector<Windows::Graphics::RectInt32> rects;
         
 
-        // Setting system capture buttons margin
+        // Setting sstem capture buttons margin
 
         AppTitleBar().Margin(ThicknessHelper::FromLengths(0, 0, m_AppWindow.TitleBar().RightInset(), 0));
         AppTitleBar().Width(m_AppWindow.ClientSize().Width - m_AppWindow.TitleBar().RightInset());
