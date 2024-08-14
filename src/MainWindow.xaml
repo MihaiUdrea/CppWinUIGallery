@@ -119,6 +119,7 @@
                                 </AnimatedIcon>
                             </NavigationViewItem.Icon>
                         </NavigationViewItem>
+                        <NavigationViewItem Tag="CppWinUIGallery.PVSlider" Content="Photo/Video Slider" Icon="SlideShow" ToolTipService.ToolTip="PVSlider"/>
 
 
                     </NavigationViewItem.MenuItems>
