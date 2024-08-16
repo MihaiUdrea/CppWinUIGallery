@@ -23,10 +23,16 @@ namespace winrt::CppWinUIGallery::implementation
 
 
 
+
+
         double initialX{ 0 };
         double initialY{ 0 };
         bool dragging{ false };
 
+       
+
+
+        void Switch_PointerPressed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
     };
 }
 

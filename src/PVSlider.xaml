@@ -9,19 +9,22 @@
 
     <Page.Resources>
         <Style x:Key="Switch" TargetType="ToggleSwitch">
-            <Setter Property="Background" Value="{StaticResource ToggleSwitchKnobFillOff}" />
-            <Setter Property="Foreground" Value="{StaticResource ToggleSwitchKnobFillOff}" />
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ToggleSwitch">
-                        <Grid CornerRadius="7" Background="{TemplateBinding Background}">
-                         
+    <Setter Property="Background" Value="{StaticResource ToggleSwitchKnobFillOff}" />
+    <Setter Property="Foreground" Value="{StaticResource ToggleSwitchKnobFillOff}" />
+    <Setter Property="Template">
+        <Setter.Value>
+            <ControlTemplate TargetType="ToggleSwitch" x:Name="ToggleSwitchTemplate">
+                <Grid x:Name="RootGrid" CornerRadius="7" Background="{TemplateBinding Background}">
+                    <Grid x:Name="Container">
+                        <!-- This is the container for both Thumb and TextBlock -->
+                        <Grid>
                             <Thumb x:Name="KnobThumb" Canvas.Left="70"
-            Canvas.Top="20" Margin="0,0,0,0" Width="45" Height="38"
-             CornerRadius="7" HorizontalAlignment="Left"
-            DragStarted="OnThumbDragStarted"
-            DragDelta="OnThumbDragDelta" 
-            DragCompleted="OnThumbDragCompleted" BorderThickness="1" BorderBrush="Gray">
+                           Canvas.Top="20" Margin="0,0,0,0" Width="45" Height="38"
+                           CornerRadius="7" HorizontalAlignment="Left"
+                           DragStarted="OnThumbDragStarted"
+                           DragDelta="OnThumbDragDelta" 
+                           DragCompleted="OnThumbDragCompleted"
+                           BorderThickness="1" BorderBrush="Gray">
                                 <Thumb.Background>
                                     <SolidColorBrush Color="#007a7679"/>
                                     <!-- Semi-transparent Thistle color -->
@@ -31,12 +34,17 @@
                                     <TranslateTransform x:Name="KnobTransform"/>
                                 </Thumb.RenderTransform>
                             </Thumb>
-                        
+    
+                            <!-- Add a TextBlock as a child of the Grid -->
+                           
                         </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+                    </Grid>
+                </Grid>
+            </ControlTemplate>
+        </Setter.Value>
+    </Setter>
+</Style>
+
 
         <Style x:Key="Status" TargetType="ToggleSwitch">
    
@@ -47,10 +55,9 @@
                         <Grid CornerRadius="7" Background="{TemplateBinding Background}">
 
                             <Thumb x:Name="StatusKnob" Canvas.Left="70"
-  Canvas.Top="20" Margin="14,27,0,0" Width="16" Height="3"
-   CornerRadius="7" HorizontalAlignment="Left"
-  
-  BorderThickness="1" BorderBrush="HotPink">
+                                Canvas.Top="20" Margin="14,27,0,0" Width="16" Height="3"
+                                CornerRadius="7" HorizontalAlignment="Left"
+                                BorderThickness="1" BorderBrush="HotPink">
                                 <Thumb.Background>
                                     <SolidColorBrush Color="HotPink"/>
                                     <!-- Semi-transparent Thistle color -->
@@ -73,22 +80,21 @@
         <StackPanel Margin="0">
             <TextBlock Text="Photo/Video Slider" Margin="50,40" Style="{StaticResource TitleLargeTextBlockStyle}"/>
         </StackPanel>
-        <StackPanel x:Name="SliderPanel" Margin="45,120" Orientation="Horizontal" CornerRadius="8" Height="45" BorderBrush="#30292f" BorderThickness="1.5" HorizontalAlignment="Left" VerticalAlignment="Top">
+        <StackPanel x:Name="SliderPanel" Margin="45,120" Orientation="Horizontal" CornerRadius="8" Height="45" BorderBrush="#30292f" BorderThickness="1.5" HorizontalAlignment="Left" VerticalAlignment="Top" >
             <Grid>
                 <Rectangle Fill="#211a20" Height="45" Width="90"/>
                 <StackPanel VerticalAlignment="Center" Margin="11"  HorizontalAlignment="Left">
-                    <SymbolIcon x:Name="CameraIcon" Symbol="Camera" Foreground="#00ff00" />
+                    <SymbolIcon x:Name="CameraIcon" Symbol="Camera"  IsHitTestVisible="True" Foreground="#00ff00"/>
                 </StackPanel>
-                <StackPanel VerticalAlignment="Center" Margin="0,0,11,0" HorizontalAlignment="Right">
-                    <SymbolIcon x:Name="VideoIcon" Symbol="Video" Foreground="#FF0000
-" />
+                <StackPanel VerticalAlignment="Center" Margin="0,0,11,0"  HorizontalAlignment="Right">
+                    <SymbolIcon x:Name="VideoIcon" Symbol="Video"  IsHitTestVisible="True" Foreground="#FF0000"/>
                 </StackPanel>
-
             </Grid>
         </StackPanel>
+
         <StackPanel Margin="46,123,0,0">
             <Grid>
-            <ToggleSwitch Width="90" Background="Transparent" x:Name="Switch" Style="{StaticResource Switch}" OffContent=""/>
+            <ToggleSwitch Width="90" Background="Transparent" x:Name="Switch" Style="{StaticResource Switch}" OffContent="" PointerPressed="Switch_PointerPressed"/>
             </Grid>
             </StackPanel>
     </Grid>
