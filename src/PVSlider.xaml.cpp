@@ -83,47 +83,84 @@ namespace winrt::CppWinUIGallery::implementation
 
 
 
-  void PVSlider::OnThumbDragCompleted(IInspectable const& sender, DragCompletedEventArgs const& e)
-{
-    auto thumb = sender.as<Thumb>();
-    auto transform = thumb.RenderTransform().as<TranslateTransform>();
-
-    if (transform)
+    void PVSlider::OnThumbDragCompleted(IInspectable const& sender, DragCompletedEventArgs const& e)
     {
-        // Get the container's size
-        double containerWidth = SliderPanel().ActualWidth();
+        auto thumb = sender.as<Thumb>();
+        auto transform = thumb.RenderTransform().as<TranslateTransform>();
 
-        // Define the two possible snap positions
-        double leftPosition = 0.0;
-        double rightPosition = containerWidth - thumb.ActualWidth();
-
-        // Snap to the nearest position
-        if (transform.X() < (leftPosition + rightPosition) / 2)
+        if (transform)
         {
-            transform.X(leftPosition);
+            // Get the container's size
+            double containerWidth = SliderPanel().ActualWidth();
 
-            // Update SymbolIcon colors
-            CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0xFF, 0x00)));
-            VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0x00, 0x00)));
+            // Define the two possible snap positions
+            double leftPosition = 0.0;
+            double rightPosition = containerWidth - thumb.ActualWidth();
+
+            // Snap to the nearest position
+            if (transform.X() < (leftPosition + rightPosition) / 2)
+            {
+                transform.X(leftPosition);
+
+                // Update SymbolIcon colors
+                CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0xFF, 0x00)));
+                VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0x00, 0x00)));
+            }
+            else
+            {
+                transform.X(rightPosition - 3);
+
+                // Update SymbolIcon colors
+                CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0x00, 0x00)));
+                VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0xFF, 0x00)));
+            }
+
+
+
+            OutputDebugString(L"Drag completed, snapped to position\n");
         }
-        else
-        {
-            transform.X(rightPosition-3);
 
-            // Update SymbolIcon colors
-            CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0x00, 0x00)));
-            VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0xFF, 0x00)));
-        }
-
-      
-
-        OutputDebugString(L"Drag completed, snapped to position\n");
+        dragging = false;
     }
 
-    dragging = false;
+
+
+    void PVSlider::Switch_PointerPressed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e)
+    {
+        auto thumb = this->Switch().GetTemplateChild(L"KnobThumb").as<Controls::Primitives::Thumb>();
+        auto transform = thumb.RenderTransform().as<TranslateTransform>();
+
+        if (transform) {
+            // Get the container's size
+            double containerWidth = SliderPanel().ActualWidth();
+
+            // Define the two possible snap positions
+            double leftPosition = 0.0;
+            double rightPosition = containerWidth - thumb.ActualWidth();
+
+            if (transform.X() == leftPosition)
+            {
+                transform.X(rightPosition - 3);
+
+                // Update SymbolIcon colors
+                CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0x00, 0x00)));
+                VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0xFF, 0x00)));
+            }
+            else {
+                transform.X(leftPosition);
+
+                // Update SymbolIcon colors
+                CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0xFF, 0x00)));
+                VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0x00, 0x00)));
+            }
+        }
+    }
+
 }
 
 
 
 
-}
+
+
+
