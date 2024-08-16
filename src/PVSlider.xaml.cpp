@@ -103,16 +103,16 @@ namespace winrt::CppWinUIGallery::implementation
             transform.X(leftPosition);
 
             // Update SymbolIcon colors
-            CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0xFF, 0xFF, 0xFF)));
-            VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0xFF, 0xFF)));
+            CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0xFF, 0x00)));
+            VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0x00, 0x00)));
         }
         else
         {
-            transform.X(rightPosition);
+            transform.X(rightPosition-3);
 
             // Update SymbolIcon colors
-            CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0xFF, 0xFF)));
-            VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0xFF, 0xFF, 0xFF)));
+            CameraIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0x80, 0xFF, 0x00, 0x00)));
+            VideoIcon().Foreground(SolidColorBrush(Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0xFF, 0x00)));
         }
 
       
