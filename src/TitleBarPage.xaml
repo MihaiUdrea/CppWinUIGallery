@@ -61,7 +61,7 @@
             <!-- Container for the StackPanel with XAML Code -->
             <StackPanel Margin="45,50,45,0">
                 <!-- A Button to show XAML -->
-                <Button x:Name="ShowHideButton" Content="Show XAML" Click="ShowHideButton_Click" />
+                <Button x:Name="ShowHideButton" Content="Show XAML" Click="ShowHideButton_Click" Margin="0, 0, 0, 10" />
                 <!-- A ScrollViewer to enable scrolling -->
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10" VerticalScrollMode="Enabled">
                     <!-- A TextBox to display XAML code -->
@@ -123,7 +123,7 @@
 
             <!-- Container for the StackPanel with C++ Code -->
             <StackPanel Margin="45,10,45,0">
-                <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppButton_Click" />
+                <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppButton_Click" Margin="0, 0, 0, 10" />
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
                     <!-- A TextBox to display C++ code -->
                     <TextBox x:Name="CppCodeTextBox" 
