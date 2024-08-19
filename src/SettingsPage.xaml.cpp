@@ -22,8 +22,5 @@ namespace winrt::CppWinUIGallery::implementation
         throw hresult_not_implemented();
     }
 
-    void SettingsPage::myButton_Click(IInspectable const&, RoutedEventArgs const&)
-    {
-        myButton().Content(box_value(L"Clicked"));
-    }
+    
 }
