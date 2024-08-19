@@ -11,72 +11,43 @@
         <Style x:Key="Switch" TargetType="ToggleSwitch">
     <Setter Property="Background" Value="{StaticResource ToggleSwitchKnobFillOff}" />
     <Setter Property="Foreground" Value="{StaticResource ToggleSwitchKnobFillOff}" />
-    <Setter Property="Template">
-        <Setter.Value>
-            <ControlTemplate TargetType="ToggleSwitch" x:Name="ToggleSwitchTemplate">
-                <Grid x:Name="RootGrid" CornerRadius="7" Background="{TemplateBinding Background}">
-                    <Grid x:Name="Container">
-                        <!-- This is the container for both Thumb and TextBlock -->
-                        <Grid>
-                            <Thumb x:Name="KnobThumb" Canvas.Left="70"
-                           Canvas.Top="20" Margin="0,0,0,0" Width="45" Height="38"
-                           CornerRadius="7" HorizontalAlignment="Left"
-                           DragStarted="OnThumbDragStarted"
-                           DragDelta="OnThumbDragDelta" 
-                           DragCompleted="OnThumbDragCompleted"
-                           BorderThickness="1" BorderBrush="Gray">
-                                <Thumb.Background>
-                                    <SolidColorBrush Color="#007a7679"/>
-                                    <!-- Semi-transparent Thistle color -->
-                                </Thumb.Background>
-                                
-                                <Thumb.RenderTransform>
-                                    <TranslateTransform x:Name="KnobTransform"/>
-                                </Thumb.RenderTransform>
-                            </Thumb>
-    
-                            <!-- Add a TextBlock as a child of the Grid -->
-                           
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </ControlTemplate>
-        </Setter.Value>
-    </Setter>
-</Style>
-
-
-        <Style x:Key="Status" TargetType="ToggleSwitch">
-   
-       
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="ToggleSwitch">
-                        <Grid CornerRadius="7" Background="{TemplateBinding Background}">
+                    <ControlTemplate TargetType="ToggleSwitch" x:Name="ToggleSwitchTemplate">
+                        <Grid x:Name="RootGrid" CornerRadius="7" Background="{TemplateBinding Background}">
+                            <Grid x:Name="Container">
+                                <Grid>
+                                    <Thumb x:Name="KnobThumb" Canvas.Left="70"
+                           Canvas.Top="20" Margin="0,0,0,0" Width="45" Height="38"
+                           CornerRadius="7" HorizontalAlignment="Left"
+                           DragStarted="OnThumbDragStarted" 
+                           DragDelta="OnThumbDragDelta" 
+                           DragCompleted="OnThumbDragCompleted"
+                           BorderThickness="1" BorderBrush="#808080">
+                                        <Thumb.Background>
+                                            <SolidColorBrush Color="#307a7679"/>
+                                        </Thumb.Background>
 
-                            <Thumb x:Name="StatusKnob" Canvas.Left="70"
-                                Canvas.Top="20" Margin="14,27,0,0" Width="16" Height="3"
-                                CornerRadius="7" HorizontalAlignment="Left"
-                                BorderThickness="1" BorderBrush="HotPink">
-                                <Thumb.Background>
-                                    <SolidColorBrush Color="HotPink"/>
-                                    <!-- Semi-transparent Thistle color -->
-                                </Thumb.Background>
+                                        <Thumb.RenderTransform>
+                                            <TranslateTransform x:Name="KnobTransform"/>
+                                        </Thumb.RenderTransform>
+                                    </Thumb>
 
-                                <Thumb.RenderTransform>
-                                    <TranslateTransform x:Name="KnobTransform"/>
-                                </Thumb.RenderTransform>
-                            </Thumb>
 
+                                </Grid>
+                            </Grid>
                         </Grid>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+
+        
         
     </Page.Resources>
-
-    <Grid>
+    <ScrollViewer>
+    <Grid Height="1500">
         <StackPanel Margin="0">
             <TextBlock Text="Photo/Video Slider" Margin="50,40" Style="{StaticResource TitleLargeTextBlockStyle}"/>
         </StackPanel>
@@ -87,15 +58,113 @@
                     <SymbolIcon x:Name="CameraIcon" Symbol="Camera"  IsHitTestVisible="True" Foreground="#00ff00"/>
                 </StackPanel>
                 <StackPanel VerticalAlignment="Center" Margin="0,0,11,0"  HorizontalAlignment="Right">
-                    <SymbolIcon x:Name="VideoIcon" Symbol="Video"  IsHitTestVisible="True" Foreground="#FF0000"/>
+                    <SymbolIcon x:Name="VideoIcon" Symbol="Video"  IsHitTestVisible="True" Foreground="#80FF0000" />
                 </StackPanel>
             </Grid>
         </StackPanel>
 
         <StackPanel Margin="46,123,0,0">
             <Grid>
-            <ToggleSwitch Width="90" Background="Transparent" x:Name="Switch" Style="{StaticResource Switch}" OffContent="" PointerPressed="Switch_PointerPressed"/>
+            <ToggleSwitch Width="90"  Background="Transparent" x:Name="Switch" Style="{StaticResource Switch}" OffContent="" PointerPressed="Switch_PointerPressed"/>
             </Grid>
+        </StackPanel>
+        
+           
+            <StackPanel Margin="50,185">
+                <TextBlock  Style="{StaticResource BaseTextBlockStyle}"  >
+                    <Run Foreground="LightGray" Text="Unlike the ToggleSwitch example (the one built to look like the &quot;Subscription&quot;/&quot;Perpetual&quot; switch from the Advanced Installer purchase page), the Photo/Video Slider uses the concept of "></Run>
+                    <Run Foreground="LightGreen" Text="XAML Styles"></Run>
+                    <Run Foreground="LightGray" Text="."></Run>
+                </TextBlock>
+                <TextBlock Margin="0,10" Style="{StaticResource BaseTextBlockStyle}" >
+                    <Run Foreground="LightGray" Text="In the Style definition, you will need:"></Run>
+                </TextBlock>
+                <TextBlock  Margin="50,5,0,5" Style="{StaticResource BaseTextBlockStyle}">
+                    <Run Text="- a TargetType attribute" Foreground="LightBlue"></Run>
+                    <Run Text="- a string that specifies a FrameworkElement type to apply the style to"></Run>
+                </TextBlock>
+                <TextBox  Text=" &lt;ControlTemplate TargetType=&quot;ToggleSwitch&quot; x:Name=&quot;ToggleSwitchTemplate&quot;>" IsReadOnly="True">
+                    
+                </TextBox>
+                <TextBlock  Margin="50,10" Style="{StaticResource BaseTextBlockStyle}">
+                    <Run Foreground="LightBlue" Text="- a collection of one or more Setter elements"></Run>
+                    <Run Foreground="White" Text="- each Setter element requires a "></Run>
+                    <Run Foreground="LightGreen" Text="Property "></Run>
+                    <Run Foreground="White" Text="and a "></Run>
+                    <Run Foreground="LightGreen" Text="Value." ></Run>
+                    <Run Foreground="White" Text=" These property settings indicate what control property the setting applies to, and the value to set for that property." ></Run>
+                </TextBlock>
+                <TextBox Text=" &lt;Setter Property=&quot;Foreground=&quot; Value==&quot;{StaticResource ToggleSwitchKnobFillOff}=&quot;/>" IsReadOnly="True"></TextBox>
+                <TextBlock  Style="{StaticResource BaseTextBlockStyle}" Margin="0,10">
+                    <Run Foreground="LightGray" Text="A"></Run>
+                    <Run Foreground="LightGreen" Text="ControlTemplate"></Run>
+                    <Run Foreground="LightGray" Text=" defines the visuals of a control. There are really only two properties you use when defining a ControlTemplate: the"></Run>
+                    <Run Foreground="LightGreen" Text="TargetType,"></Run>
+                    <Run Foreground="LightGray" Text="and the implicit XAML content. ControlTemplate inherits "></Run>
+                    <Run Foreground="LightGreen" Text="the implicit XAML content behavior"></Run>
+                    <Run Foreground="LightGray" Text="from its FrameworkTemplate parent."></Run>
+                </TextBlock>
+                <TextBox Text="&lt;ControlTemplate TargetType=&quot;ToggleSwitch&quot; x:Name=&quot;ToggleSwitchTemplate&quot;>" IsReadOnly="True"></TextBox>
+                <TextBlock Margin="0,10" Style="{StaticResource BaseTextBlockStyle}">
+                    <Run Text="For this implementation, adjustments to the" Foreground="LightGray"></Run>
+                    <Run Foreground="LightBlue" Text="Thumb"></Run>
+                    <Run Foreground="LightGray" Text="element of our ToggleSwitch will be needed. As for the panel behind it, a StackPanel will be used as the slider background for the camera and video icons."></Run>
+                </TextBlock>
+                <TextBlock Margin="0,0" Text="The movement and behavior of the Thumb element are both controlled from the code-behind.Drag controls are added; left and right bounds are set so the Thumb doesn't go past the StackPanel."  Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"></TextBlock>
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="0,15,0,5" Text="Methods for controlling the Thumb element:"></TextBlock>
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,0" >
+                    <Run Text="- " Foreground="LightGray"></Run>
+                    <Run Text="OnThumbDragStarted" Foreground="LightBlue"></Run>
+                    <Run Text="- Detects if dragging of the Thumb has started and creates its TranslateTransform" Foreground="LightGray"></Run>
+                </TextBlock>
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,10,0,0" >
+    <Run Text="- " Foreground="LightGray"></Run>
+    <Run Text="OnThumbDragDelta" Foreground="LightBlue"></Run>
+    <Run Text="- If the thumb is being dragged, it computes its new position, constraining the movement between the two boundaries." Foreground="LightGray"></Run>
+                </TextBlock>
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,10" >
+    <Run Text="- " Foreground="LightGray"></Run>
+    <Run Text="OnThumbDragCompleted" Foreground="LightBlue"></Run>
+    <Run Text="- After the drag has been completed, it snaps the thumb to the nearest bound. It also updates the icon's Active/Inactive states." Foreground="LightGray"></Run>
+                </TextBlock>
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,0" >
+<Run Text="- " Foreground="LightGray"></Run>
+<Run Text="Switch_PointerPressed" Foreground="LightBlue"></Run>
+<Run Text="- If the users chooses to click on the icons instead of dragging the Thumb, it snaps the Thumb to the chosen bound, while also updating the icon's Active/Inactive states." Foreground="LightGray"></Run>
+                </TextBlock>
+                <TextBlock Margin="0,15" Style="{StaticResource BaseTextBlockStyle}" Text="The XAML for this implementation is provided below:"></TextBlock>
             </StackPanel>
-    </Grid>
+            <StackPanel Margin="50,795,0,0">
+     <Button x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,-120,0,10" />
+     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,-40,0,10">
+         <TextBox x:Name="SourceCodeTextBox" 
+             IsReadOnly="True" 
+             AcceptsReturn="True"
+             TextWrapping="Wrap"
+             Margin="0"
+             VerticalAlignment="Stretch"
+             HorizontalAlignment="Stretch"
+             MinWidth="300"
+             Visibility="Collapsed" />
+            </ScrollViewer>
+            </StackPanel>
+            <StackPanel>
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,1080" Text="The C++ source code for this implementation is provided below:"></TextBlock>
+            </StackPanel>
+            <StackPanel Margin="50,0,0,0">
+                <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,1120,0,10" />
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,0,0,10">
+                    <TextBox x:Name="CppCodeTextBox" 
+IsReadOnly="True" 
+AcceptsReturn="True"
+TextWrapping="Wrap"
+Margin="0"
+VerticalAlignment="Stretch"
+HorizontalAlignment="Stretch"
+
+Visibility="Collapsed" />
+                </ScrollViewer>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </Page>
