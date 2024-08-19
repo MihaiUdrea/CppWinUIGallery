@@ -24,6 +24,8 @@ namespace winrt::CppWinUIGallery::implementation
         //Custom title bar
         void AppTitleBar_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
         void AppTitleBar_SizeChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::SizeChangedEventArgs const& e);
+        //Windows::Graphics::RectInt32 GetElementRect(Microsoft::UI::Xaml::UIElement const& element);
+        Windows::Graphics::RectInt32 GetRect(winrt::Windows::Foundation::Rect bounds, double scale);
         void SetRegionsForCustomTitleBar();
 
         //Navview frame page opening

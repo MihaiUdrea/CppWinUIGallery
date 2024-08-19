@@ -1,0 +1,9 @@
+namespace CppWinUIGallery
+{
+    [default_interface]
+    runtimeclass TitleBarPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        TitleBarPage();
+        Int32 MyProperty;
+    }
+}

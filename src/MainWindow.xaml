@@ -37,7 +37,8 @@
                     Loaded="AppTitleBar_Loaded"
                     SizeChanged="AppTitleBar_SizeChanged"
                     Height="48"
-                    Grid.Row="0">
+                    Grid.Row="0"
+                    Grid.Column="0">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition x:Name="BackButtonColumn" Width="48"/>
@@ -93,12 +94,21 @@
                 <NavigationViewItemSeparator/>
                 <NavigationViewItem Content="Basic Input" Icon="MapPin" ToolTipService.ToolTip="Design guidance">
                     <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Content="Back Button" ToolTipService.ToolTip="BackButton ToggleSwitch" Tag="CppWinUIGallery.ButtonPage"/>
                         <NavigationViewItem Content="ToggleSwitch" ToolTipService.ToolTip="ToggleSwitch" Tag="CppWinUIGallery.ToggleSwitchPage"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
                 <NavigationViewItem Content="Text" Icon="Font" ToolTipService.ToolTip="Text">
                     <NavigationViewItem.MenuItems>
                         <NavigationViewItem Tag="CppWinUIGallery.AutoSuggestPage" Content="AutoSuggestBox" ToolTipService.ToolTip="AutoSuggestBox"/>
+                    </NavigationViewItem.MenuItems>
+                </NavigationViewItem>
+                <NavigationViewItem Content="Windowing">
+                    <NavigationViewItem.Icon>
+                        <FontIcon Glyph="&#xE7C4;" />
+                    </NavigationViewItem.Icon>
+                    <NavigationViewItem.MenuItems>
+                        <NavigationViewItem Tag="CppWinUIGallery.TitleBarPage" Content="TitleBar" ToolTipService.ToolTip="TitleBar"/>
                     </NavigationViewItem.MenuItems>
                 </NavigationViewItem>
 
