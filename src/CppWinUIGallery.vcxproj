@@ -151,6 +151,10 @@
       <DependentUpon>TitleBarPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="PVSlider.xaml.h">
+      <DependentUpon>PVSlider.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="ToggleSwitchPage.xaml.h">
       <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -184,6 +188,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="TitleBarPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="PVSlider.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="ToggleSwitchPage.xaml">
@@ -237,6 +244,10 @@
     <ClCompile Include="TitleBarPage.xaml.cpp">
       <DependentUpon>TitleBarPage.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </ClCompile>      
+    <ClCompile Include="PVSlider.xaml.cpp">
+      <DependentUpon>PVSlider.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="ToggleSwitchPage.xaml.cpp">
       <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
@@ -283,6 +294,10 @@
     </Midl>
     <Midl Include="TitleBarPage.idl">
       <DependentUpon>TitleBarPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>      
+    <Midl Include="PVSlider.idl">
+      <DependentUpon>PVSlider.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="ToggleSwitchPage.idl">
