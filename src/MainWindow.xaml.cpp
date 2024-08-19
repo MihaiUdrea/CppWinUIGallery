@@ -186,6 +186,9 @@ namespace winrt::CppWinUIGallery::implementation
 
         for (auto el : navViewElementsList)
             navViewVisibleElements.insert(el);
+
+        auto mySettinhsItem = NavView().SettingsItem().as<FrameworkElement>();
+        mySettinhsItem.Tag(box_value(L"CppWinUIGallery.SettingsPage"));
     }
 
     bool MainWindow::isSubstring(const std::string& mainString, const std::string& subString) {

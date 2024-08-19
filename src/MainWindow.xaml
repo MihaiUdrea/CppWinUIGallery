@@ -133,8 +133,10 @@
 
 
                     </NavigationViewItem.MenuItems>
-                </NavigationViewItem>    
-            
+
+                </NavigationViewItem>
+
+                
                 <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance"-->
 
 

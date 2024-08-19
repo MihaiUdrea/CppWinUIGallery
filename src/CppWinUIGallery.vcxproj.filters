@@ -15,6 +15,7 @@
     <Page Include="ConnectedAnimation.xaml" />
     <Page Include="LottieIcon.xaml" />
     <Page Include="TitleBarPage.xaml" />
+    <Page Include="SettingsPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
