@@ -11,7 +11,7 @@
     <StackPanel Orientation="Vertical">
 
         <TextBlock Text="Settings" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50, 40, 0, 10" Height="Auto" VerticalAlignment="Top"/>
-        <TextBlock Text="Set the app's appearance:"
+        <TextBlock Text="Set the app's appearance"
           Style="{StaticResource BaseTextBlockStyle}" 
           Margin="50,0,300,0"
           Foreground="LightGray"
