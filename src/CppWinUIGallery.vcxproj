@@ -147,6 +147,10 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="SettingsPage.xaml.h">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="TitleBarPage.xaml.h">
       <DependentUpon>TitleBarPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -181,6 +185,9 @@
     </Page>
     <Page Include="MainWindow.xaml" />
     <Page Include="PhotoGallery.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SettingsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="TitleBarPage.xaml">
@@ -234,6 +241,10 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="SettingsPage.xaml.cpp">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="TitleBarPage.xaml.cpp">
       <DependentUpon>TitleBarPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -279,6 +290,10 @@
     </Midl>
     <Midl Include="PhotoGallery.idl">
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="SettingsPage.idl">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="TitleBarPage.idl">
