@@ -6,28 +6,29 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+  
     <StackPanel>
         <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Surface Dial" Margin="50,40,0,0" Style="{StaticResource TitleLargeTextBlockStyle}"></TextBlock>
 
         <StackPanel HorizontalAlignment="Left" Margin="50" VerticalAlignment="Center">
             <Grid>
-                <Path x:Name="menuSection1" Fill="#0078D7" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 200,10 L 150,140 Z"/>
-                <Path x:Name="menuSection2" Fill="#0078D7" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 280,75 L 150,140 Z"/>
-                <Path x:Name="menuSection3" Fill="#0078D7" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 280,75 A 150,150 0 0,1 290,200 L 150,140 Z"/>
-                <Path x:Name="menuSection4" Fill="#0078D7" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 290,200 A 150,150 0 0,1 215,285 L 150,140 Z"/>
-                <Path x:Name="menuSection5" Fill="#0078D7" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 215,285 A 150,150 0 0,1 85,285 L 150,140 Z"/>
-                <Path x:Name="menuSection6" Fill="#0078D7" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 85,285 A 150,150 0 0,1 10,205 L 150,140 Z"/>
-                <Path x:Name="menuSection7" Fill="#0078D7" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 20,75 L 150,140 Z"/>
-                <Path x:Name="menuSection8" Fill="#0078D7" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 95,10 L 150,140 Z"/>
+                <Path x:Name="menuSection1"  Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 200,10 L 150,140 Z"/>
+                <Path x:Name="menuSection2" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 280,75 L 150,140 Z"/>
+                <Path x:Name="menuSection3" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 280,75 A 150,150 0 0,1 290,200 L 150,140 Z"/>
+                <Path x:Name="menuSection4" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 290,200 A 150,150 0 0,1 215,285 L 150,140 Z"/>
+                <Path x:Name="menuSection5" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 215,285 A 150,150 0 0,1 85,285 L 150,140 Z"/>
+                <Path x:Name="menuSection6" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 85,285 A 150,150 0 0,1 10,205 L 150,140 Z"/>
+                <Path x:Name="menuSection7" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 20,75 L 150,140 Z"/>
+                <Path x:Name="menuSection8" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 95,10 L 150,140 Z"/>
 
-                <Path x:Name="hoverSection6" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 85,285 L 150,140 Z"/>
-                <Path x:Name="hoverSection5" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 85,285 A 150,150 0 0,1 215,285 L 150,140 Z"/>
-                <Path x:Name="hoverSection4" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 215,285 A 150,150 0 0,1 290,200 L 150,140 Z"/>
-                <Path x:Name="hoverSection3" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 290,200 A 150,150 0 0,1 280,75 L 150,140 Z"/>
-                <Path x:Name="hoverSection2" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 280,75 A 150,150 0 0,1 200,10 L 150,140 Z"/>
-                <Path x:Name="hoverSection1" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 95,10 L 150,140 Z"/>
-                <Path x:Name="hoverSection8" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 20,75 L 150,140 Z"/>
-                <Path x:Name="hoverSection7" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 10,205 L 150,140 Z"/>
+                <Path x:Name="hoverSection6" Tag="menuSection6" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 85,285 L 150,140 Z"/>
+                <Path x:Name="hoverSection5" Tag="menuSection5" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 85,285 A 150,150 0 0,1 215,285 L 150,140 Z"/>
+                <Path x:Name="hoverSection4" Tag="menuSection4" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 215,285 A 150,150 0 0,1 290,200 L 150,140 Z"/>
+                <Path x:Name="hoverSection3" Tag="menuSection3" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 290,200 A 150,150 0 0,1 280,75 L 150,140 Z"/>
+                <Path x:Name="hoverSection2" Tag="menuSection2" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 280,75 A 150,150 0 0,1 200,10 L 150,140 Z"/>
+                <Path x:Name="hoverSection1" Tag="menuSection1" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 95,10 L 150,140 Z"/>
+                <Path x:Name="hoverSection8" Tag="menuSection8" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 20,75 L 150,140 Z"/>
+                <Path x:Name="hoverSection7" Tag="menuSection7" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 10,205 L 150,140 Z"/>
                 
                 <Grid>
                     <TextBlock Text="8" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
@@ -41,8 +42,6 @@
 
                     <Line X1="150" Y1="140" X2="10" Y2="205" Stroke="Black" StrokeThickness="2"/>
                     <Line X1="150" Y1="140" X2="85" Y2="285" Stroke="Black" StrokeThickness="2"/>
-                    <Line X1="150" Y1="140" X2="220" Y2="285" Stroke="Black" StrokeThickness="2"/>
-                    <Line X1="150" Y1="140" X2="290" Y2="205" Stroke="Black" StrokeThickness="2"/>
                     <Line X1="150" Y1="140" X2="280" Y2="75" Stroke="Black" StrokeThickness="2"/>
                     <Line X1="150" Y1="140" X2="200" Y2="10" Stroke="Black" StrokeThickness="2"/>
                     <Line X1="150" Y1="140" X2="95" Y2="10" Stroke="Black" StrokeThickness="2"/>
