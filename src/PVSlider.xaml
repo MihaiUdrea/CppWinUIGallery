@@ -130,7 +130,7 @@
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,0" >
 <Run Text="- " Foreground="LightGray"></Run>
 <Run Text="Switch_PointerPressed" Foreground="LightBlue"></Run>
-<Run Text="- If the users chooses to click on the icons instead of dragging the Thumb, it snaps the Thumb to the chosen bound, while also updating the icon's Active/Inactive states." Foreground="LightGray"></Run>
+<Run Text="- If the user chooses to click on the icons instead of dragging the Thumb, it snaps the Thumb to the chosen bound, while also updating the icon's Active/Inactive states." Foreground="LightGray"></Run>
                 </TextBlock>
                 <TextBlock Margin="0,15" Style="{StaticResource BaseTextBlockStyle}" Text="The XAML for this implementation is provided below:"></TextBlock>
             </StackPanel>

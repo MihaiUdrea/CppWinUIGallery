@@ -147,6 +147,10 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="SurfaceDial.xaml.h">
+      <DependentUpon>SurfaceDial.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="TitleBarPage.xaml.h">
       <DependentUpon>TitleBarPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -185,6 +189,9 @@
     </Page>
     <Page Include="MainWindow.xaml" />
     <Page Include="PhotoGallery.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SurfaceDial.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="TitleBarPage.xaml">
@@ -241,10 +248,14 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="SurfaceDial.xaml.cpp">
+      <DependentUpon>SurfaceDial.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="TitleBarPage.xaml.cpp">
       <DependentUpon>TitleBarPage.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </ClCompile>      
+    </ClCompile>
     <ClCompile Include="PVSlider.xaml.cpp">
       <DependentUpon>PVSlider.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -292,10 +303,14 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
+    <Midl Include="SurfaceDial.idl">
+      <DependentUpon>SurfaceDial.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
     <Midl Include="TitleBarPage.idl">
       <DependentUpon>TitleBarPage.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Midl>      
+    </Midl>
     <Midl Include="PVSlider.idl">
       <DependentUpon>PVSlider.xaml</DependentUpon>
       <SubType>Code</SubType>
