@@ -8,7 +8,55 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel x:Name="Root" Orientation="Vertical" Margin="50, 40, 50, 40">
+
+    <Page.Resources>
+        <ControlTemplate x:Key="SettingsCard" TargetType="ContentControl">
+            <Border HorizontalAlignment="Stretch"
+             Background="{StaticResource CardBackgroundFillColorDefault}">
+
+
+
+                <Grid Height="60" Margin="10, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition x:Name="IconColumn" Width="Auto"/>
+                        <ColumnDefinition x:Name="TextColumn" Width="*"/>
+                        <ColumnDefinition x:Name="ButtonColumn" Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <FontIcon Glyph="&#xE700;" x:Name="Icon" Foreground="White" Grid.Column="0" Margin="0, 0, 0, 0"/>
+                    <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                        <TextBlock Text="Title"
+                                   x:Name="Title"
+                                   Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
+                                   FontSize="15"
+                                   Foreground="White"
+                                   VerticalAlignment="Top"
+                                   Margin="10, 0"/>
+
+                        <TextBlock Text="Description"
+                                   x:Name="Description"
+                                   Style="{StaticResource BaseTextBlockStyle}"
+                                   FontSize="10"
+                                   Foreground="LightGray"
+                                   Opacity="60"
+                                   Margin="10, 0"/>
+
+
+                    </StackPanel>
+
+                    <ComboBox x:Name="cardComboBox" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" DisplayMemberPath="Item1" SelectedValuePath="Item1">
+                        <ComboBoxItem Content="Item1"/>
+                        <ComboBoxItem Content="Item2"/>
+                        
+                    </ComboBox>
+                </Grid>
+
+
+            </Border>
+        </ControlTemplate>
+    </Page.Resources>
+
+
+    <StackPanel x:Name="Root" Orientation="Vertical" Margin="50, 40, 50, 40" Spacing="10">
 
         <TextBlock Text="Settings" Style="{StaticResource TitleLargeTextBlockStyle}" Height="Auto" VerticalAlignment="Top"/>
         <TextBlock Text="Set the app's appearance:"
@@ -20,46 +68,10 @@
           VerticalAlignment="Top"
           Padding="0, 10"/>
 
-        <Button HorizontalAlignment="Stretch"
-                        Height="60"
-                        IsEnabled="False"
-                        Margin="0, 10, 0, 0"
-                        HorizontalContentAlignment="Stretch"
-                        VerticalContentAlignment="Center">
-            <Button.Content>
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition x:Name="IconColumn" Width="Auto"/>
-                        <ColumnDefinition x:Name="TextColumn" Width="*"/>
-                        <ColumnDefinition x:Name="ButtonColumn" Width="Auto"/>
-                    </Grid.ColumnDefinitions>
-                    <FontIcon Glyph="&#xE790;" Foreground="White" Grid.Column="0" Margin="0, 0, 0, 0"/>
-                    <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Stretch">
-                        <TextBlock Text="App theme"
-                            Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
-                            FontSize="15"
-                            Foreground="White"
-                            VerticalAlignment="Top"
-                            Margin="10, 0"/>
+        <ContentControl x:Name="AppThemeCard"
+                        Template="{StaticResource SettingsCard}"
+                        Loaded="AppThemeCard_Loaded"/>
 
-                        <TextBlock Text="Select which app theme to display"
-                            Style="{StaticResource BaseTextBlockStyle}"
-                            FontSize="10"
-                            Foreground="LightGray"
-                            Opacity="60"
-                            Margin="10, 0"/>
-
-
-                    </StackPanel>
-
-                    <ComboBox x:Name="themeMode" Grid.Column="2" HorizontalAlignment="Right">
-                        <ComboBoxItem Content="Light" Tag="Light" />
-                        <ComboBoxItem Content="Dark" Tag="Dark" />
-                        <ComboBoxItem Content="Use system setting" Tag="Default" />
-                    </ComboBox>
-                </Grid>
-            </Button.Content>
-        </Button> 
 
 
     </StackPanel>
