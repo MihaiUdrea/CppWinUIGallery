@@ -39,36 +39,34 @@ namespace winrt::CppWinUIGallery::implementation
             return;
         }
 
-        // Stop any existing timer if active
         if (m_timerActive)
         {
             m_timer.Stop();
             m_timerActive = false;
 
-            // Reset the previous menuSection color if it exists
             if (m_previousMenuSection)
             {
                 m_previousMenuSection.Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
             }
         }
 
-        // Update current hoverSection and menuSection colors immediately
         hoverSection.Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x19, 0x19, 0x19)));
         menuSection.Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x19, 0x19, 0x19)));
-
-        // Set the new menuSection to be managed by the timer
         m_previousMenuSection = menuSection;
+        m_previousMenuSection.Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x19, 0x19, 0x19)));
+
 
         if (!m_timer)
         {
             m_timer = winrt::Microsoft::UI::Xaml::DispatcherTimer{};
-            m_timer.Interval(winrt::Windows::Foundation::TimeSpan{ 1000000LL }); // 1 second (10,000,000 ticks)
+            m_timer.Interval(winrt::Windows::Foundation::TimeSpan{ 4000000LL }); 
 
             m_timer.Tick([this](auto const&, auto const&)
                 {
                     if (m_timerActive && m_previousMenuSection)
                     {
-                        m_previousMenuSection.Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
+                        m_previousMenuSection.Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
+                        m_previousMenuSection.StrokeThickness(3.0);
                     }
                     m_timer.Stop();
                     m_timerActive = false;
@@ -98,24 +96,24 @@ namespace winrt::CppWinUIGallery::implementation
             m_timer.Stop();
             m_timerActive = false;
 
-            // Reset the previous menuSection color to black if it exists
             if (m_previousMenuSection)
             {
-                m_previousMenuSection.Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+                m_previousMenuSection.Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+
             }
         }
 
-        // Reset the hoverSection color to black
         hoverSection.Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
         menuSection.Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+        m_previousMenuSection.Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
 
-        // If the pointer exited and a menuSection was active, ensure it is reset to black
         if (m_previousMenuSection && m_previousMenuSection != menuSection)
         {
             m_previousMenuSection.Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+            m_previousMenuSection.Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+
         }
 
-        // Clear the previous menuSection reference as it no longer applies
         m_previousMenuSection = nullptr;
     }
 
