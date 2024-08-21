@@ -24,6 +24,16 @@ namespace winrt::CppWinUIGallery::implementation
         throw hresult_not_implemented();
     }
     bool m_timerActive{ false };
+    const std::map<winrt::hstring, winrt::hstring> sectionNameMap{
+       { L"menuSection1", L"Play" },
+       { L"menuSection2", L"Volume" },
+       { L"menuSection3", L"Pause" },
+       { L"menuSection4", L"Stop" },
+       { L"menuSection5", L"Next" },
+       { L"menuSection6", L"Previous" },
+       { L"menuSection7", L"Record" },
+       { L"menuSection8", L"Mute" }
+    };
 
     void SurfaceDial::hoverSection_PointerEntered(
         winrt::Windows::Foundation::IInspectable const& sender,
@@ -33,6 +43,8 @@ namespace winrt::CppWinUIGallery::implementation
 
         auto tag = hoverSection.Tag().as<winrt::hstring>();
         auto menuSection = FindName(tag).as<winrt::Microsoft::UI::Xaml::Shapes::Path>();
+
+     
 
         if (!menuSection)
         {
@@ -75,6 +87,12 @@ namespace winrt::CppWinUIGallery::implementation
 
         m_timerActive = true;
         m_timer.Start();
+        auto it = sectionNameMap.find(tag);
+        if (it != sectionNameMap.end())
+        {
+            UpdateApplicationName(it->second);
+        }
+
     }
 
     void SurfaceDial::hoverSection_PointerExited(
@@ -115,6 +133,10 @@ namespace winrt::CppWinUIGallery::implementation
         }
 
         m_previousMenuSection = nullptr;
+    }
+    void SurfaceDial::UpdateApplicationName(hstring const& sectionName)
+    {
+        applicationName().Text(sectionName);
     }
 
     

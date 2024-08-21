@@ -26,6 +26,7 @@ namespace winrt::CppWinUIGallery::implementation
         void hoverSection_PointerExited(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
         winrt::Microsoft::UI::Xaml::DispatcherTimer m_timer{ nullptr };
         winrt::Microsoft::UI::Xaml::Shapes::Path m_previousMenuSection{ nullptr };
+        void UpdateApplicationName(hstring const& sectionName);
 
     };
 }

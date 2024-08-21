@@ -6,12 +6,16 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-  
+    
     <StackPanel>
+    
         <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Surface Dial" Margin="50,40,0,0" Style="{StaticResource TitleLargeTextBlockStyle}"></TextBlock>
 
         <StackPanel HorizontalAlignment="Left" Margin="50" VerticalAlignment="Center">
             <Grid>
+                <TextBlock x:Name="applicationName"  Text="" TextAlignment="Center" TextWrapping="Wrap"   Height="20" Width="150"  Canvas.ZIndex="1" Margin="0,0,0,0">
+                    
+                </TextBlock>
                 <Path x:Name="menuSection1" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 200,10 L 150,140 Z"/>
                 <Path x:Name="menuSection2" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 280,75 L 150,140 Z"/>
                 <Path x:Name="menuSection3" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 280,75 A 150,150 0 0,1 290,200 L 150,140 Z"/>
@@ -29,7 +33,7 @@
                 <Path x:Name="hoverSection1" Tag="menuSection1" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 95,10 L 150,140 Z"/>
                 <Path x:Name="hoverSection8" Tag="menuSection8" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 20,75 L 150,140 Z"/>
                 <Path x:Name="hoverSection7" Tag="menuSection7" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 10,205 L 150,140 Z"/>
-                
+
                 <Grid>
                     <TextBlock Text="8" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
                     <TextBlock Text="7" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="-40,0,0,0"/>
@@ -49,13 +53,35 @@
 
                     <Ellipse Fill="Gray" Height="160" Width="160"></Ellipse>
 
-                   
+
                 </Grid>
+
+               
+                <!--<Line X1="150" Y1="140" X2="10" Y2="205" Stroke="white
+                      " StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="85" Y2="285" Stroke="white
+    " StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="280" Y2="75" Stroke="white
+    " StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="200" Y2="10" Stroke="white
+    " StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="95" Y2="10"  Stroke="white
+    " StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="20" Y2="75"  Stroke="white
+    " StrokeThickness="2"/>
+                <Line X1="150" Y1="140" X2="215" Y2="285" Stroke="White
+                      " StrokeThickness="2"/>
+                <Line X1="150" Y1="140" X2="290" Y2="200" Stroke="White
+" StrokeThickness="2"/>-->
+
+
+
+
             </Grid>
         </StackPanel>
-        <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="175,-335">
+        <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="190,-325">
         <FontIcon Glyph="&#xE768;" ></FontIcon>
-            <TextBlock Text="Volume"></TextBlock>
         </StackPanel>
+      
     </StackPanel>
 </Page>
