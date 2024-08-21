@@ -21,7 +21,7 @@
                 <Path x:Name="menuSection7" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 20,75 L 150,140 Z"/>
                 <Path x:Name="menuSection8" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 95,10 L 150,140 Z"/>
 
-                <Path x:Name="hoverSection6" Tag="menuSection6" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 85,285 L 150,140 Z"/>
+                <Path x:Name="hoverSection6" Tag="menuSection6"  PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 85,285 L 150,140 Z"/>
                 <Path x:Name="hoverSection5" Tag="menuSection5" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 85,285 A 150,150 0 0,1 215,285 L 150,140 Z"/>
                 <Path x:Name="hoverSection4" Tag="menuSection4" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 215,285 A 150,150 0 0,1 290,200 L 150,140 Z"/>
                 <Path x:Name="hoverSection3" Tag="menuSection3" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 290,200 A 150,150 0 0,1 280,75 L 150,140 Z"/>
@@ -49,9 +49,13 @@
 
                     <Ellipse Fill="Gray" Height="160" Width="160"></Ellipse>
 
-                    
+                   
                 </Grid>
             </Grid>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="175,-335">
+        <FontIcon Glyph="&#xE768;" ></FontIcon>
+            <TextBlock Text="Volume"></TextBlock>
         </StackPanel>
     </StackPanel>
 </Page>
