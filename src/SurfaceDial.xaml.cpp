@@ -26,13 +26,13 @@ namespace winrt::CppWinUIGallery::implementation
     bool m_timerActive{ false };
     const std::map<winrt::hstring, winrt::hstring> sectionNameMap{
        { L"menuSection1", L"Play" },
-       { L"menuSection2", L"Volume" },
+       { L"menuSection2", L"Next" },
        { L"menuSection3", L"Pause" },
-       { L"menuSection4", L"Stop" },
-       { L"menuSection5", L"Next" },
+       { L"menuSection4", L"" },
+       { L"menuSection5", L"" },
        { L"menuSection6", L"Previous" },
-       { L"menuSection7", L"Record" },
-       { L"menuSection8", L"Mute" }
+       { L"menuSection7", L"Volume" },
+       { L"menuSection8", L"Media" }
     };
 
     void SurfaceDial::hoverSection_PointerEntered(
@@ -133,6 +133,8 @@ namespace winrt::CppWinUIGallery::implementation
         }
 
         m_previousMenuSection = nullptr;
+        UpdateApplicationName(L"");
+
     }
     void SurfaceDial::UpdateApplicationName(hstring const& sectionName)
     {
