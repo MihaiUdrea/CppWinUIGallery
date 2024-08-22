@@ -30,7 +30,7 @@ namespace winrt::CppWinUIGallery::implementation
        { L"menuSection3", L"Pause" },
        { L"menuSection4", L"" },
        { L"menuSection5", L"" },
-       { L"menuSection6", L"Previous" },
+       { L"menuSection6", L"Media" },
        { L"menuSection7", L"Volume" },
        { L"menuSection8", L"Media" }
     };
@@ -79,6 +79,7 @@ namespace winrt::CppWinUIGallery::implementation
                     {
                         m_previousMenuSection.Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
                         m_previousMenuSection.StrokeThickness(3.0);
+                        //ScaleUpStoryboard().Begin();
                     }
                     m_timer.Stop();
                     m_timerActive = false;
@@ -140,9 +141,87 @@ namespace winrt::CppWinUIGallery::implementation
     {
         applicationName().Text(sectionName);
     }
+  
 
-    
+    void winrt::CppWinUIGallery::implementation::SurfaceDial::hoverSection_Tapped(
+        winrt::Windows::Foundation::IInspectable const& sender,
+        winrt::Microsoft::UI::Xaml::Input::TappedRoutedEventArgs const& e)
+    {
+     
+        auto splitButton = winrt::unbox_value<winrt::Microsoft::UI::Xaml::Controls::SplitButton>(FindName(L"IconSplitButton"));
+
+        if (splitButton)
+        {
+
+            auto grid = splitButton.FindName(L"SplitButtonGrid").as<winrt::Microsoft::UI::Xaml::Controls::Grid>();
+
+            if (grid)
+            {
+
+
+               
+                auto fontIcon = grid.FindName(L"Icon").as<winrt::Microsoft::UI::Xaml::Controls::FontIcon>();
+
+                if (fontIcon)
+                {
+        
+
+          
+                    auto tappedPath = sender.as<winrt::Microsoft::UI::Xaml::Shapes::Path>();
+                    if (tappedPath)
+                    {
+                        auto tag = tappedPath.Tag().as<winrt::hstring>();
+
+                        if (tag == L"menuSection1")
+                        {
+                            fontIcon.Glyph(L"\uE768");
+                       
+                        }
+                        else if (tag == L"menuSection2")
+                        {
+                            fontIcon.Glyph(L"\uE893");
+                        
+                        }
+                        else if (tag == L"menuSection3")
+                        {
+                            fontIcon.Glyph(L"\uE769"); 
+                          
+                        }
+             
+                        else if (tag == L"menuSection6")
+                        {
+                            fontIcon.Glyph(L"\uEA69");
+                         
+                        }
+                        else if (tag == L"menuSection7")
+                        {
+                            fontIcon.Glyph(L"\uE767");
+               
+                        }
+                        else if (tag == L"menuSection8")
+                        {
+                            fontIcon.Glyph(L"\uE892");
+                        }
+                        else
+                        {
+  
+                        }
+                    }
+                   
+                }
+                
+            }
+           
+        }
+        
+    }
+
+
+
 }
+
+
+
 
 
 

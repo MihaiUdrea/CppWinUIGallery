@@ -6,18 +6,39 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    
-    <StackPanel>
+    <Page.Resources>
+        <Storyboard x:Name="ScaleUpStoryboard">
+            <DoubleAnimation
+            Storyboard.TargetName="menuSection1Transform"        
+            Storyboard.TargetProperty="TranslateY"
+            From="0" To="-30" Duration="0:0:0.3"
+            EnableDependentAnimation="True"/>
+            <DoubleAnimation
+            Storyboard.TargetName="hoverSection1Transform"        
+            Storyboard.TargetProperty="TranslateY"
+            From="0" To="-30" Duration="0:0:0.3"
+            EnableDependentAnimation="True"/>
+        </Storyboard>
+    </Page.Resources>
+    <StackPanel >
     
         <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Surface Dial" Margin="50,40,0,0" Style="{StaticResource TitleLargeTextBlockStyle}"></TextBlock>
 
         <StackPanel HorizontalAlignment="Left" Margin="50" VerticalAlignment="Center">
-            <Grid>
+            <Grid x:Name="DialGrid" >
                 <TextBlock x:Name="applicationName"  Text="" TextAlignment="Center" TextWrapping="Wrap"   Height="20" Width="150"  Canvas.ZIndex="1" Margin="0,0,0,0">
-                    
+
                 </TextBlock>
-                <Path x:Name="menuSection1" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 200,10 L 150,140 Z"/>
-                <Path x:Name="menuSection2" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 280,75 L 150,140 Z"/>
+
+                <Path x:Name="menuSection1" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 200,10 L 150,140 Z">
+                    <Path.RenderTransform>
+                        <CompositeTransform x:Name="menuSection1Transform" CenterX="450" CenterY="180"/>
+                    </Path.RenderTransform>
+                </Path>
+
+                <Path x:Name="menuSection2" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 280,75 L 150,140 Z">
+
+                </Path>
                 <Path x:Name="menuSection3" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 280,75 A 150,150 0 0,1 290,200 L 150,140 Z"/>
                 <Path x:Name="menuSection4" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 290,200 A 150,150 0 0,1 215,285 L 150,140 Z"/>
                 <Path x:Name="menuSection5" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 215,285 A 150,150 0 0,1 85,285 L 150,140 Z"/>
@@ -25,14 +46,20 @@
                 <Path x:Name="menuSection7" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 20,75 L 150,140 Z"/>
                 <Path x:Name="menuSection8" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 95,10 L 150,140 Z"/>
 
-                <Path x:Name="hoverSection6" Tag="menuSection6"  PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 85,285 L 150,140 Z"/>
-                <Path x:Name="hoverSection5" Tag="menuSection5" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 85,285 A 150,150 0 0,1 215,285 L 150,140 Z"/>
-                <Path x:Name="hoverSection4" Tag="menuSection4" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 215,285 A 150,150 0 0,1 290,200 L 150,140 Z"/>
-                <Path x:Name="hoverSection3" Tag="menuSection3" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 290,200 A 150,150 0 0,1 280,75 L 150,140 Z"/>
-                <Path x:Name="hoverSection2" Tag="menuSection2" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 280,75 A 150,150 0 0,1 200,10 L 150,140 Z"/>
-                <Path x:Name="hoverSection1" Tag="menuSection1" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 95,10 L 150,140 Z"/>
-                <Path x:Name="hoverSection8" Tag="menuSection8" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 20,75 L 150,140 Z"/>
-                <Path x:Name="hoverSection7" Tag="menuSection7" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 10,205 L 150,140 Z"/>
+                <Path x:Name="hoverSection6" Tapped="hoverSection_Tapped" Tag="menuSection6"  PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 85,285 L 150,140 Z"/>
+                <Path x:Name="hoverSection5" Tapped="hoverSection_Tapped" Tag="menuSection5" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 85,285 A 150,150 0 0,1 215,285 L 150,140 Z"/>
+                <Path x:Name="hoverSection4" Tapped="hoverSection_Tapped" Tag="menuSection4" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 215,285 A 150,150 0 0,1 290,200 L 150,140 Z"/>
+                <Path x:Name="hoverSection3" Tapped="hoverSection_Tapped"  Tag="menuSection3" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 290,200 A 150,150 0 0,1 280,75 L 150,140 Z"/>
+                <Path x:Name="hoverSection2" Tapped="hoverSection_Tapped" Tag="menuSection2" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 280,75 A 150,150 0 0,1 200,10 L 150,140 Z"/>
+
+
+                <Path x:Name="hoverSection1" Tapped="hoverSection_Tapped"  Tag="menuSection1" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 95,10 L 150,140 Z">
+                    <Path.RenderTransform>
+                        <CompositeTransform x:Name="hoverSection1Transform" CenterX="450" CenterY="180"/>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="hoverSection8" Tapped="hoverSection_Tapped" Tag="menuSection8" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 20,75 L 150,140 Z"/>
+                <Path x:Name="hoverSection7" Tapped="hoverSection_Tapped" Tag="menuSection7" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 10,205 L 150,140 Z"/>
 
                 <Grid>
                     <TextBlock Text="8" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
@@ -52,7 +79,7 @@
                     <Line X1="150" Y1="140" X2="20" Y2="75"  Stroke="Black" StrokeThickness="2"/>
 
                     <Ellipse Fill="Gray" Height="160" Width="160"></Ellipse>
-
+                    
 
                 </Grid>
 
@@ -78,9 +105,10 @@
 
 
             </Grid>
+            
         </StackPanel>
         <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="190,-325">
-            <FontIcon Glyph="&#xE768;" ></FontIcon>
+            <FontIcon Glyph="&#xE768;"  ></FontIcon>
         </StackPanel>
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="265,-300">
             <FontIcon Glyph="&#xE893;" ></FontIcon>
@@ -97,5 +125,14 @@
         <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="105,-130">
             <FontIcon Glyph="&#xEA69;"></FontIcon>
         </StackPanel>
+        <Grid HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="-350">
+            <SplitButton x:Name="IconSplitButton" >
+                <Grid x:Name="SplitButtonGrid" Width="32" Height="32">
+                    <Border x:Name="CurrentColor" Background="Transparent"  CornerRadius="4,0,0,4"/>
+                    <FontIcon Glyph="&#xE790;" FontSize="20" x:Name="Icon" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </Grid>
+            </SplitButton>
+            </Grid>
+
     </StackPanel>
 </Page>
