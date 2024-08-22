@@ -147,6 +147,10 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="SettingsCardControl.h">
+      <DependentUpon>SettingsCardControl.cpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="SettingsPage.xaml.h">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -194,6 +198,7 @@
     <Page Include="SettingsPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Generic.xaml" />
     <Page Include="TitleBarPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -248,6 +253,9 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="SettingsCardControl.cpp">
+      <SubType>Code</SubType>
+    </ClCompile>
     <ClCompile Include="SettingsPage.xaml.cpp">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -255,7 +263,7 @@
     <ClCompile Include="TitleBarPage.xaml.cpp">
       <DependentUpon>TitleBarPage.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </ClCompile>      
+    </ClCompile>
     <ClCompile Include="PVSlider.xaml.cpp">
       <DependentUpon>PVSlider.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -303,6 +311,10 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
+    <Midl Include="SettingsCardControl.idl">
+      <DependentUpon>SettingsCardControl.cpp</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
     <Midl Include="SettingsPage.idl">
       <DependentUpon>SettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -310,7 +322,7 @@
     <Midl Include="TitleBarPage.idl">
       <DependentUpon>TitleBarPage.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Midl>      
+    </Midl>
     <Midl Include="PVSlider.idl">
       <DependentUpon>PVSlider.xaml</DependentUpon>
       <SubType>Code</SubType>

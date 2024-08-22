@@ -1,0 +1,10 @@
+namespace CppWinUIGallery
+{
+    [default_interface]
+    runtimeclass SettingsCardControl : Microsoft.UI.Xaml.Controls.Control
+    {
+        SettingsCardControl();
+        static Microsoft.UI.Xaml.DependencyProperty LabelProperty{ get; };
+        Microsoft.UI.Xaml.FrameworkElement Label;
+    }
+}

@@ -1,0 +1,55 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CppWinUIGallery">
+
+    
+
+    <Style TargetType="local:SettingsCardControl" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:SettingsCardControl">
+                    <Border HorizontalAlignment="Stretch"
+                            Background="{StaticResource CardBackgroundFillColorDefault}">
+                        <Grid Height="60" Margin="10, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="IconColumn" Width="Auto"/>
+                                <ColumnDefinition x:Name="TextColumn" Width="*"/>
+                                <ColumnDefinition x:Name="ButtonColumn" Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <FontIcon Glyph="&#xE700;" x:Name="Icon" Foreground="White" Grid.Column="0" Margin="0, 0, 0, 0"/>
+                            <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                <TextBlock 
+                                    x:Name="Title"
+                                    Text="Label"
+                                    Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
+                                    FontSize="15"
+                                    Foreground="White"
+                                    VerticalAlignment="Top"
+                                    Margin="10, 0"/>
+
+                                <TextBlock 
+                                    Text="Description"
+                                    x:Name="Description"
+                                    Style="{StaticResource BaseTextBlockStyle}"
+                                    FontSize="10"
+                                    Foreground="LightGray"
+                                    Opacity="60"
+                                    Margin="10, 0"/>
+
+
+                            </StackPanel>
+
+                            <ContentControl
+                                Grid.Column="2"
+                                Content="{TemplateBinding Label}"
+                                VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+</ResourceDictionary>

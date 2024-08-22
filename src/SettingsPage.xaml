@@ -13,9 +13,6 @@
         <ControlTemplate x:Key="SettingsCard" TargetType="ContentControl">
             <Border HorizontalAlignment="Stretch"
              Background="{StaticResource CardBackgroundFillColorDefault}">
-
-
-
                 <Grid Height="60" Margin="10, 0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition x:Name="IconColumn" Width="Auto"/>
@@ -46,11 +43,9 @@
                     <ComboBox x:Name="cardComboBox" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" DisplayMemberPath="Item1" SelectedValuePath="Item1">
                         <ComboBoxItem Content="Item1"/>
                         <ComboBoxItem Content="Item2"/>
-                        
+
                     </ComboBox>
                 </Grid>
-
-
             </Border>
         </ControlTemplate>
     </Page.Resources>
@@ -72,6 +67,21 @@
                         Template="{StaticResource SettingsCard}"
                         Loaded="AppThemeCard_Loaded"/>
 
+        <local:SettingsCardControl>
+            <local:SettingsCardControl.Label>
+                <ComboBox/>
+            </local:SettingsCardControl.Label>
+        </local:SettingsCardControl>
+
+        <Expander HorizontalAlignment="Stretch">
+            <Expander.Header>
+                <local:SettingsCardControl>
+                    <local:SettingsCardControl.Label>
+                        <TextBlock Text="v1.1.1"/>
+                    </local:SettingsCardControl.Label>
+                </local:SettingsCardControl>
+            </Expander.Header>
+        </Expander>
 
 
     </StackPanel>
