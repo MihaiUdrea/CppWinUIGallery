@@ -13,6 +13,18 @@ namespace winrt::CppWinUIGallery::implementation
             Microsoft::UI::Xaml::PropertyMetadata{ winrt::box_value(Microsoft::UI::Xaml::FrameworkElement{nullptr}), Microsoft::UI::Xaml::PropertyChangedCallback{&SettingsCardControl::OnLabelChanged}}
     );
 
+    Microsoft::UI::Xaml::FrameworkElement  SettingsCardControl::Label() // Getter
+    {
+        return winrt::unbox_value<Microsoft::UI::Xaml::FrameworkElement>(GetValue(m_labelProperty));
+    }
+
+    void SettingsCardControl::Label(Microsoft::UI::Xaml::FrameworkElement const& value) // Setter
+    {
+        SetValue(this->m_labelProperty, winrt::box_value(value));
+    }
+
+    Microsoft::UI::Xaml::DependencyProperty SettingsCardControl::LabelProperty() { return m_labelProperty; }
+
     void SettingsCardControl::OnLabelChanged(Microsoft::UI::Xaml::DependencyObject const& d, Microsoft::UI::Xaml::DependencyPropertyChangedEventArgs const& /* e */)
     {
         if (CppWinUIGallery::SettingsCardControl theControl{ d.try_as<CppWinUIGallery::SettingsCardControl>() })
@@ -23,4 +35,6 @@ namespace winrt::CppWinUIGallery::implementation
             // Call members of the implementation type via ptr.
         }
     }
+
+
 }
