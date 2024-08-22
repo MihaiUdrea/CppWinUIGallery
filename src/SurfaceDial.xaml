@@ -7,25 +7,13 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
     <Page.Resources>
-        <Storyboard x:Name="ScaleUpStoryboard">
-            <DoubleAnimation
-            Storyboard.TargetName="menuSection1Transform"        
-            Storyboard.TargetProperty="TranslateY"
-            From="0" To="-30" Duration="0:0:0.3"
-            EnableDependentAnimation="True"/>
-            <DoubleAnimation
-            Storyboard.TargetName="hoverSection1Transform"        
-            Storyboard.TargetProperty="TranslateY"
-            From="0" To="-30" Duration="0:0:0.3"
-            EnableDependentAnimation="True"/>
-        </Storyboard>
-    </Page.Resources>
-    <StackPanel >
-    
-        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Surface Dial" Margin="50,40,0,0" Style="{StaticResource TitleLargeTextBlockStyle}"></TextBlock>
-
-        <StackPanel HorizontalAlignment="Left" Margin="50" VerticalAlignment="Center">
+        <Style x:Key="testingStyle" TargetType="SplitButton">
+               
+        </Style>
+        <Flyout   x:Key="CustomFlyout">
+            
             <Grid x:Name="DialGrid" >
+                
                 <TextBlock x:Name="applicationName"  Text="" TextAlignment="Center" TextWrapping="Wrap"   Height="20" Width="150"  Canvas.ZIndex="1" Margin="0,0,0,0">
 
                 </TextBlock>
@@ -35,7 +23,7 @@
                         <CompositeTransform x:Name="menuSection1Transform" CenterX="450" CenterY="180"/>
                     </Path.RenderTransform>
                 </Path>
-
+            
                 <Path x:Name="menuSection2" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 280,75 L 150,140 Z">
 
                 </Path>
@@ -57,19 +45,31 @@
                     <Path.RenderTransform>
                         <CompositeTransform x:Name="hoverSection1Transform" CenterX="450" CenterY="180"/>
                     </Path.RenderTransform>
+                    
                 </Path>
                 <Path x:Name="hoverSection8" Tapped="hoverSection_Tapped" Tag="menuSection8" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 20,75 L 150,140 Z"/>
                 <Path x:Name="hoverSection7" Tapped="hoverSection_Tapped" Tag="menuSection7" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 10,205 L 150,140 Z"/>
 
                 <Grid>
-                    <TextBlock Text="8" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0"/>
-                    <TextBlock Text="7" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="-40,0,0,0"/>
-                    <TextBlock Text="6" FontSize="20" Foreground="White" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,0,0,10"/>
-                    <TextBlock Text="5" FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-40"/>
-                    <TextBlock Text="4" FontSize="20" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,10,10"/>
-                    <TextBlock Text="3" FontSize="20" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,-40,0"/>
-                    <TextBlock Text="2" FontSize="20" Foreground="White" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"/>
-                    <TextBlock Text="1" FontSize="20" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,-40,0,0"/>
+                 
+                    <!--<StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="190,-325">
+    <FontIcon Glyph="&#xE768;"  ></FontIcon>
+</StackPanel>
+<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="265,-300">
+    <FontIcon Glyph="&#xE893;" ></FontIcon>
+</StackPanel>
+<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="115,-300">
+    <FontIcon Glyph="&#xE892;"></FontIcon>
+</StackPanel>
+<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="75,-220">
+    <FontIcon Glyph="&#xE767;"></FontIcon>
+</StackPanel>
+<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="305,-220">
+    <FontIcon Glyph="&#xE769;"></FontIcon>
+</StackPanel>
+<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="105,-130">
+    <FontIcon Glyph="&#xEA69;"></FontIcon>
+</StackPanel>-->
 
                     <Line X1="150" Y1="140" X2="10" Y2="205" Stroke="Black" StrokeThickness="2"/>
                     <Line X1="150" Y1="140" X2="85" Y2="285" Stroke="Black" StrokeThickness="2"/>
@@ -78,55 +78,41 @@
                     <Line X1="150" Y1="140" X2="95" Y2="10"  Stroke="Black" StrokeThickness="2"/>
                     <Line X1="150" Y1="140" X2="20" Y2="75"  Stroke="Black" StrokeThickness="2"/>
 
-                    <Ellipse Fill="Gray" Height="160" Width="160"></Ellipse>
+                    <Ellipse Fill="Gray" Margin="0,0,0,0" Height="160" Width="160"></Ellipse>
+
                     
-
                 </Grid>
-
+                <StackPanel Canvas.ZIndex="1" >
+                    <FontIcon Glyph="&#xE768;" Margin="5,30,0,0" ></FontIcon>
+                </StackPanel>
                
-                <!--<Line X1="150" Y1="140" X2="10" Y2="205" Stroke="white
-                      " StrokeThickness="2"/>
-                    <Line X1="150" Y1="140" X2="85" Y2="285" Stroke="white
-    " StrokeThickness="2"/>
-                    <Line X1="150" Y1="140" X2="280" Y2="75" Stroke="white
-    " StrokeThickness="2"/>
-                    <Line X1="150" Y1="140" X2="200" Y2="10" Stroke="white
-    " StrokeThickness="2"/>
-                    <Line X1="150" Y1="140" X2="95" Y2="10"  Stroke="white
-    " StrokeThickness="2"/>
-                    <Line X1="150" Y1="140" X2="20" Y2="75"  Stroke="white
-    " StrokeThickness="2"/>
-                <Line X1="150" Y1="140" X2="215" Y2="285" Stroke="White
-                      " StrokeThickness="2"/>
-                <Line X1="150" Y1="140" X2="290" Y2="200" Stroke="White
-" StrokeThickness="2"/>-->
-
-
-
-
             </Grid>
             
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="190,-325">
-            <FontIcon Glyph="&#xE768;"  ></FontIcon>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="265,-300">
-            <FontIcon Glyph="&#xE893;" ></FontIcon>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="115,-300">
-            <FontIcon Glyph="&#xE892;"></FontIcon>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="75,-220">
-            <FontIcon Glyph="&#xE767;"></FontIcon>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="305,-220">
-            <FontIcon Glyph="&#xE769;"></FontIcon>
-        </StackPanel>
-        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="105,-130">
-            <FontIcon Glyph="&#xEA69;"></FontIcon>
-        </StackPanel>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Top"  Margin="-350">
-            <SplitButton x:Name="IconSplitButton" >
+        </Flyout>
+
+
+
+
+        <Storyboard x:Name="ScaleUpStoryboard">
+            <DoubleAnimation
+            Storyboard.TargetName="menuSection1Transform"        
+            Storyboard.TargetProperty="TranslateY"
+            From="0" To="-30" Duration="0:0:0.3"
+            EnableDependentAnimation="True"/>
+            <DoubleAnimation
+            Storyboard.TargetName="hoverSection1Transform"        
+            Storyboard.TargetProperty="TranslateY"
+            From="0" To="-30" Duration="0:0:0.3"
+            EnableDependentAnimation="True"/>
+        </Storyboard>
+    </Page.Resources>
+    <StackPanel Margin="0,20,0,0" HorizontalAlignment="Left" >
+    
+        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Surface Dial" Margin="50,40,0,0" Style="{StaticResource TitleLargeTextBlockStyle}"></TextBlock>
+
+        
+        <Grid HorizontalAlignment="Center"   VerticalAlignment="Center"  Margin="-80,30,0,0">
+            <SplitButton   x:Name="IconSplitButton" HorizontalAlignment="Left" Flyout="{StaticResource CustomFlyout}" >
                 <Grid x:Name="SplitButtonGrid" Width="32" Height="32">
                     <Border x:Name="CurrentColor" Background="Transparent"  CornerRadius="4,0,0,4"/>
                     <FontIcon Glyph="&#xE790;" FontSize="20" x:Name="Icon" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>

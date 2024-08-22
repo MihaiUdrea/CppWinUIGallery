@@ -175,37 +175,36 @@ namespace winrt::CppWinUIGallery::implementation
                         if (tag == L"menuSection1")
                         {
                             fontIcon.Glyph(L"\uE768");
+                            IconSplitButton().Flyout().Hide();
                        
                         }
                         else if (tag == L"menuSection2")
                         {
                             fontIcon.Glyph(L"\uE893");
-                        
+                            IconSplitButton().Flyout().Hide();
                         }
                         else if (tag == L"menuSection3")
                         {
                             fontIcon.Glyph(L"\uE769"); 
-                          
+                            IconSplitButton().Flyout().Hide();
                         }
              
                         else if (tag == L"menuSection6")
                         {
                             fontIcon.Glyph(L"\uEA69");
-                         
+                            IconSplitButton().Flyout().Hide();
                         }
                         else if (tag == L"menuSection7")
                         {
                             fontIcon.Glyph(L"\uE767");
-               
+                            IconSplitButton().Flyout().Hide();
                         }
                         else if (tag == L"menuSection8")
                         {
                             fontIcon.Glyph(L"\uE892");
+                            IconSplitButton().Flyout().Hide();
                         }
-                        else
-                        {
-  
-                        }
+                      
                     }
                    
                 }
