@@ -32,7 +32,7 @@ namespace winrt::CppWinUIGallery::implementation
        { L"menuSection5", L"" },
        { L"menuSection6", L"Media" },
        { L"menuSection7", L"Volume" },
-       { L"menuSection8", L"Media" }
+       { L"menuSection8", L"Previous" }
     };
 
     void SurfaceDial::hoverSection_PointerEntered(
@@ -214,6 +214,7 @@ namespace winrt::CppWinUIGallery::implementation
         }
         
     }
+
 
 
 
