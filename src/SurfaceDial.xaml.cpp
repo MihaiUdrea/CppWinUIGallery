@@ -71,7 +71,7 @@ namespace winrt::CppWinUIGallery::implementation
         if (!m_timer)
         {
             m_timer = winrt::Microsoft::UI::Xaml::DispatcherTimer{};
-            m_timer.Interval(winrt::Windows::Foundation::TimeSpan{ 4000000LL }); 
+            m_timer.Interval(winrt::Windows::Foundation::TimeSpan{ 0LL }); 
 
             m_timer.Tick([this](auto const&, auto const&)
                 {
