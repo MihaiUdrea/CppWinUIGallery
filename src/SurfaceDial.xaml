@@ -27,14 +27,27 @@
                     <Storyboard RepeatBehavior="1x"   x:Name="ClickAnimation">
                         <DoubleAnimation Storyboard.TargetName="DialGrid"
                                  Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
-                                 From="1" To="0.95" Duration="0:0:0.09"
+                                 From="1" To="0.95" Duration="0:0:0.1"
                                  AutoReverse="True"/>
                         <DoubleAnimation Storyboard.TargetName="DialGrid"
                                  Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
-                                 From="1" To="0.95" Duration="0:0:0.09"
+                                 From="1" To="0.95" Duration="0:0:0.1"
                                  AutoReverse="True"/>
                                
                     </Storyboard>
+                    <Storyboard   x:Name="FadeOutAnimation">
+                        <DoubleAnimation Storyboard.TargetName="DialGrid"
+                     Storyboard.TargetProperty="Opacity"
+                     From="1" To="0" Duration="0:0:0.5"
+                     />
+                    </Storyboard>
+                    <Storyboard x:Name="FadeInAnimation">
+                        <DoubleAnimation Storyboard.TargetName="DialGrid"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0" To="1" Duration="0:0:0.5"
+/>
+                    </Storyboard>
+
                 </Grid.Resources>
                 <Grid.RenderTransform>
                     <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1"/>
@@ -66,7 +79,9 @@
                     </StackPanel>
                 </Canvas>
                 <TextBlock x:Name="applicationName"  Text="" TextAlignment="Center" TextWrapping="Wrap"   Height="20" Width="150"  Canvas.ZIndex="1" Margin="0,0,0,0">
-
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform x:Name="applicationNameTransform" CenterX="450" CenterY="180"/>
+                    </TextBlock.RenderTransform>
                 </TextBlock>
 
                 <Path x:Name="menuSection1" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 200,10 L 150,140 Z">
@@ -143,18 +158,8 @@
 
 
 
-        <Storyboard x:Key="FadeInStoryboard">
-            <DoubleAnimation
-            Storyboard.TargetName="menuSection1Transform"        
-            Storyboard.TargetProperty="Opacity"
-            From="0" To="1" Duration="0:0:0.3"
-            EnableDependentAnimation="True"/>
-            <DoubleAnimation
-            Storyboard.TargetName="hoverSection1Transform"        
-            Storyboard.TargetProperty="Opacity"
-            From="0" To="1" Duration="0:0:0.3"
-            EnableDependentAnimation="True"/>
-        </Storyboard>
+      
+        
 
     </Page.Resources>
     <StackPanel Margin="0,20,0,0" HorizontalAlignment="Left" >
@@ -163,7 +168,7 @@
 
         
         <Grid HorizontalAlignment="Center"   VerticalAlignment="Center"  Margin="-80,30,0,0">
-            <SplitButton   Background="#191919" x:Name="IconSplitButton" HorizontalAlignment="Left" Flyout="{StaticResource CustomFlyout}" >
+            <SplitButton  Background="#191919" x:Name="IconSplitButton" HorizontalAlignment="Left" Flyout="{StaticResource CustomFlyout}" >
                 <Grid x:Name="SplitButtonGrid" Width="32" Height="32">
                     <Border x:Name="CurrentColor" Background="Transparent"  CornerRadius="4,0,0,4"/>
                     <FontIcon Glyph="&#xE790;" FontSize="20" x:Name="Icon" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>

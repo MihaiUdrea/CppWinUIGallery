@@ -162,6 +162,9 @@ namespace winrt::CppWinUIGallery::implementation
                     auto tappedPath = sender.as<winrt::Microsoft::UI::Xaml::Shapes::Path>();
                     if (tappedPath)
                     {
+                        auto transform = applicationName().RenderTransform().as<winrt::Microsoft::UI::Xaml::Media::CompositeTransform>();
+
+                        transform.TranslateY(-133);
                         auto tag = tappedPath.Tag().as<winrt::hstring>();
 
                         if (tag == L"menuSection1")
@@ -178,6 +181,9 @@ namespace winrt::CppWinUIGallery::implementation
                         }
                         else if (tag == L"menuSection2")
                         {
+                            hoverSection2().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+                            menuSection2().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+                            menuSection2().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0x00, 0x00, 0x00, 0x00)));
                             fontIcon.Glyph(L"\uE893");
                             section1Icon().Glyph(L"\uE893");
                             section3Icon().Glyph(L"");
@@ -190,6 +196,10 @@ namespace winrt::CppWinUIGallery::implementation
                         }
                         else if (tag == L"menuSection3")
                         {
+
+                            hoverSection3().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+                            menuSection3().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+                            menuSection3().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0x00, 0x00, 0x00, 0x00)));
                             section3Icon().Glyph(L"");
                             section1Icon().Glyph(L"\uE769");
                             section2Icon().Glyph(L"");
@@ -202,6 +212,10 @@ namespace winrt::CppWinUIGallery::implementation
                         }
                         else if (tag == L"menuSection6")
                         {
+
+                            hoverSection6().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+                            menuSection6().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+                            menuSection6().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0x00, 0x00, 0x00, 0x00)));
                             section6Icon().Glyph(L"");
                             section1Icon().Glyph(L"\uE893");
                             section3Icon().Glyph(L"");
@@ -214,6 +228,10 @@ namespace winrt::CppWinUIGallery::implementation
                         }
                         else if (tag == L"menuSection7")
                         {
+
+                            hoverSection7().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+                            menuSection7().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+                            menuSection7().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0x00, 0x00, 0x00, 0x00)));
                             section7Icon().Glyph(L"");
                             section1Icon().Glyph(L"\uE893");
                             section3Icon().Glyph(L"");
@@ -226,6 +244,10 @@ namespace winrt::CppWinUIGallery::implementation
                         }
                         else if (tag == L"menuSection8")
                         {
+
+                            hoverSection8().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+                            menuSection8().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+                            menuSection8().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0x00, 0x00, 0x00, 0x00)));
                             section8Icon().Glyph(L"");
                             section1Icon().Glyph(L"\uE893");
                             section3Icon().Glyph(L"");
@@ -257,8 +279,9 @@ namespace winrt::CppWinUIGallery::implementation
         winrt::Windows::Foundation::IInspectable const& sender,
         winrt::Windows::Foundation::IInspectable const& e)
     {
-        // Hide the Flyout after the animation completes
+
         IconSplitButton().Flyout().Hide();
+
         section1Icon().Glyph(L"\uE768");
         section2Icon().Glyph(L"\uE893");
         section3Icon().Glyph(L"\uE769");
@@ -267,8 +290,14 @@ namespace winrt::CppWinUIGallery::implementation
         section6Icon().Glyph(L"\uEA69");
         section7Icon().Glyph(L"\uE767");
         section8Icon().Glyph(L"\uE892");
-    }
 
+
+        auto transform = applicationName().RenderTransform().as<winrt::Microsoft::UI::Xaml::Media::CompositeTransform>();
+        transform.TranslateY(0);
+
+    }
+    
+ 
 
 }
 
@@ -280,6 +309,13 @@ namespace winrt::CppWinUIGallery::implementation
 //Section 6 - (L"\uEA69")
 //Section 7 - (L"\uE767")
 //Section 8 - (L"\uE892")
+
+
+
+
+
+
+
 
 
 
