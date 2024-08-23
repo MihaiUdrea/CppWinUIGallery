@@ -147,26 +147,18 @@ namespace winrt::CppWinUIGallery::implementation
         winrt::Windows::Foundation::IInspectable const& sender,
         winrt::Microsoft::UI::Xaml::Input::TappedRoutedEventArgs const& e)
     {
-     
         auto splitButton = winrt::unbox_value<winrt::Microsoft::UI::Xaml::Controls::SplitButton>(FindName(L"IconSplitButton"));
 
         if (splitButton)
         {
-
             auto grid = splitButton.FindName(L"SplitButtonGrid").as<winrt::Microsoft::UI::Xaml::Controls::Grid>();
 
             if (grid)
             {
-
-
-               
                 auto fontIcon = grid.FindName(L"Icon").as<winrt::Microsoft::UI::Xaml::Controls::FontIcon>();
 
                 if (fontIcon)
                 {
-        
-
-          
                     auto tappedPath = sender.as<winrt::Microsoft::UI::Xaml::Shapes::Path>();
                     if (tappedPath)
                     {
@@ -174,53 +166,120 @@ namespace winrt::CppWinUIGallery::implementation
 
                         if (tag == L"menuSection1")
                         {
+
                             fontIcon.Glyph(L"\uE768");
-                            IconSplitButton().Flyout().Hide();
-                       
+                            section2Icon().Glyph(L"");
+                            section3Icon().Glyph(L"");
+                            section4Icon().Glyph(L"");
+                            section5Icon().Glyph(L"");
+                            section6Icon().Glyph(L"");
+                            section7Icon().Glyph(L"");
+                            section8Icon().Glyph(L"");
                         }
                         else if (tag == L"menuSection2")
                         {
                             fontIcon.Glyph(L"\uE893");
-                            IconSplitButton().Flyout().Hide();
+                            section1Icon().Glyph(L"\uE893");
+                            section3Icon().Glyph(L"");
+                            section4Icon().Glyph(L"");
+                            section5Icon().Glyph(L"");
+                            section6Icon().Glyph(L"");
+                            section7Icon().Glyph(L"");
+                            section8Icon().Glyph(L"");
+                            section2Icon().Glyph(L"");
                         }
                         else if (tag == L"menuSection3")
                         {
-                            fontIcon.Glyph(L"\uE769"); 
-                            IconSplitButton().Flyout().Hide();
+                            section3Icon().Glyph(L"");
+                            section1Icon().Glyph(L"\uE769");
+                            section2Icon().Glyph(L"");
+                            section4Icon().Glyph(L"");
+                            section5Icon().Glyph(L"");
+                            section6Icon().Glyph(L"");
+                            section7Icon().Glyph(L"");
+                            section8Icon().Glyph(L"");
+                            fontIcon.Glyph(L"\uE769");
                         }
-             
                         else if (tag == L"menuSection6")
                         {
+                            section6Icon().Glyph(L"");
+                            section1Icon().Glyph(L"\uE893");
+                            section3Icon().Glyph(L"");
+                            section4Icon().Glyph(L"");
+                            section5Icon().Glyph(L"");
+                            section2Icon().Glyph(L"");
+                            section7Icon().Glyph(L"");
+                            section8Icon().Glyph(L"");
                             fontIcon.Glyph(L"\uEA69");
-                            IconSplitButton().Flyout().Hide();
                         }
                         else if (tag == L"menuSection7")
                         {
+                            section7Icon().Glyph(L"");
+                            section1Icon().Glyph(L"\uE893");
+                            section3Icon().Glyph(L"");
+                            section4Icon().Glyph(L"");
+                            section5Icon().Glyph(L"");
+                            section6Icon().Glyph(L"");
+                            section2Icon().Glyph(L"");
+                            section8Icon().Glyph(L"");
                             fontIcon.Glyph(L"\uE767");
-                            IconSplitButton().Flyout().Hide();
                         }
                         else if (tag == L"menuSection8")
                         {
+                            section8Icon().Glyph(L"");
+                            section1Icon().Glyph(L"\uE893");
+                            section3Icon().Glyph(L"");
+                            section4Icon().Glyph(L"");
+                            section5Icon().Glyph(L"");
+                            section6Icon().Glyph(L"");
+                            section7Icon().Glyph(L"");
+                            section2Icon().Glyph(L"");
                             fontIcon.Glyph(L"\uE892");
-                            IconSplitButton().Flyout().Hide();
                         }
-                      
+
+                        // Find the Storyboard and start it
+                        auto storyboard = splitButton.FindName(L"ClickAnimation").as<winrt::Microsoft::UI::Xaml::Media::Animation::Storyboard>();
+                        if (storyboard)
+                        {
+                            storyboard.Completed({ this, &SurfaceDial::ClickAnimation_Completed });
+                            storyboard.Begin();
+                            
+                        }
+
+                        /*IconSplitButton().Flyout().Hide();*/
                     }
-                   
                 }
-                
             }
-           
         }
-        
     }
 
-
+    void winrt::CppWinUIGallery::implementation::SurfaceDial::ClickAnimation_Completed(
+        winrt::Windows::Foundation::IInspectable const& sender,
+        winrt::Windows::Foundation::IInspectable const& e)
+    {
+        // Hide the Flyout after the animation completes
+        IconSplitButton().Flyout().Hide();
+        section1Icon().Glyph(L"\uE768");
+        section2Icon().Glyph(L"\uE893");
+        section3Icon().Glyph(L"\uE769");
+        section4Icon().Glyph(L"");
+        section5Icon().Glyph(L"");
+        section6Icon().Glyph(L"\uEA69");
+        section7Icon().Glyph(L"\uE767");
+        section8Icon().Glyph(L"\uE892");
+    }
 
 
 }
 
-
+//Section 1 - (L"\uE768")
+//Section 2 - (L"\uE893")
+//Section 3 - (L"\uE769")
+//Section 4 - (L"")
+//Section 5 - (L"")
+//Section 6 - (L"\uEA69")
+//Section 7 - (L"\uE767")
+//Section 8 - (L"\uE892")
 
 
 

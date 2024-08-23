@@ -23,30 +23,46 @@
             </Flyout.FlyoutPresenterStyle>
 
             <Grid x:Name="DialGrid" >
+                <Grid.Resources>
+                    <Storyboard RepeatBehavior="1x"   x:Name="ClickAnimation">
+                        <DoubleAnimation Storyboard.TargetName="DialGrid"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                 From="1" To="0.95" Duration="0:0:0.09"
+                                 AutoReverse="True"/>
+                        <DoubleAnimation Storyboard.TargetName="DialGrid"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                 From="1" To="0.95" Duration="0:0:0.09"
+                                 AutoReverse="True"/>
+                               
+                    </Storyboard>
+                </Grid.Resources>
+                <Grid.RenderTransform>
+                    <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1"/>
+                </Grid.RenderTransform>
                 <Canvas  Canvas.ZIndex="1" IsHitTestVisible="False">
                     <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="215,50,0,0" >
-                        <FontIcon Glyph="&#xE893;" IsTapEnabled="False"  IsHitTestVisible="False"  ></FontIcon>
+                        <FontIcon x:Name="section2Icon" Glyph="&#xE893;" IsTapEnabled="False"  IsHitTestVisible="False"  ></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="60,50" >
-                        <FontIcon Glyph="&#xE892;"  IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section8Icon" Glyph="&#xE892;"  IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,130">
-                        <FontIcon Glyph="&#xE767;"  IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section7Icon" Glyph="&#xE767;"  IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="255,130">
-                        <FontIcon Glyph="&#xE769;"  IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section3Icon" Glyph="&#xE769;"  IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="55,220">
-                        <FontIcon Glyph="&#xEA69;" IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section6Icon" Glyph="&#xEA69;" IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="140,255">
-                        <FontIcon Glyph="" IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section4Icon" Glyph="" IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="225,220">
-                        <FontIcon Glyph="" IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section5Icon" Glyph="" IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel Canvas.ZIndex="1" >
-                        <FontIcon Glyph="&#xE768;" Margin="140,30,0,0" ></FontIcon>
+                        <FontIcon x:Name="section1Icon" Glyph="&#xE768;" Margin="140,30,0,0" ></FontIcon>
                     </StackPanel>
                 </Canvas>
                 <TextBlock x:Name="applicationName"  Text="" TextAlignment="Center" TextWrapping="Wrap"   Height="20" Width="150"  Canvas.ZIndex="1" Margin="0,0,0,0">

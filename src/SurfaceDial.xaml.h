@@ -32,7 +32,7 @@ namespace winrt::CppWinUIGallery::implementation
         winrt::Microsoft::UI::Xaml::Shapes::Path m_currentHoverSection{ nullptr };
      
         void hoverSection_Tapped(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::TappedRoutedEventArgs const& e);
-
+        void winrt::CppWinUIGallery::implementation::SurfaceDial::ClickAnimation_Completed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::Foundation::IInspectable const& e);
     };
 }
 
