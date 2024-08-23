@@ -4,7 +4,21 @@ namespace CppWinUIGallery
     runtimeclass SettingsCardControl : Microsoft.UI.Xaml.Controls.Control
     {
         SettingsCardControl();
-        static Microsoft.UI.Xaml.DependencyProperty LabelProperty{ get; };
-        Microsoft.UI.Xaml.FrameworkElement Label;
+        
+        // right side ContentControl
+        static Microsoft.UI.Xaml.DependencyProperty RightSideContentProperty{ get; };
+        Microsoft.UI.Xaml.FrameworkElement RightSideContent;
+
+        // title
+        static Microsoft.UI.Xaml.DependencyProperty TitleProperty{ get; };
+        String Title;
+
+        // sub title
+        static Microsoft.UI.Xaml.DependencyProperty SubtitleProperty{ get; };
+        String Subtitle;
+
+        // Icon
+        static Microsoft.UI.Xaml.DependencyProperty IconProperty{ get; };
+        String Icon;
     }
 }
