@@ -12,6 +12,8 @@ namespace winrt::CppWinUIGallery::implementation
 
         void OnLaunched(Microsoft::UI::Xaml::LaunchActivatedEventArgs const&);
 
+        winrt::Microsoft::UI::Xaml::Window GetWindow() { return window; }
+
     private:
         winrt::Microsoft::UI::Xaml::Window window{ nullptr };
     };

@@ -48,9 +48,9 @@ namespace winrt::CppWinUIGallery::implementation
 
     void MainWindow::AppTitleBar_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {  
-        this->AppWindow().TitleBar().ButtonForegroundColor(Microsoft::UI::Colors::White());
-        this->AppWindow().TitleBar().ButtonHoverForegroundColor(Microsoft::UI::Colors::White());
-        this->AppWindow().TitleBar().ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 90, 90 , 90 });
+        AppWindow().TitleBar().ButtonForegroundColor(Microsoft::UI::Colors::White());
+        AppWindow().TitleBar().ButtonHoverForegroundColor(Microsoft::UI::Colors::White());
+        AppWindow().TitleBar().ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 90, 90 , 90 });
         
         if (ExtendsContentIntoTitleBar() == true) {
             // Set the initial interactive regions
@@ -140,7 +140,7 @@ namespace winrt::CppWinUIGallery::implementation
         if (ContentFrame().CanGoBack())
             ContentFrame().GoBack();
         if (!ContentFrame().CanGoBack()) {
-            TitleBar_BackButton().Foreground(Media::SolidColorBrush(Microsoft::UI::Colors::Gray()));
+            //TitleBar_BackButton().Foreground(Media::SolidColorBrush(Microsoft::UI::Colors::Gray()));  Not usable for light mode
             TitleBar_BackButton().IsEnabled(false);
         }
             
@@ -148,7 +148,7 @@ namespace winrt::CppWinUIGallery::implementation
 
     void MainWindow::ContentFrame_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-        ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{NavHomePage().Tag().as<hstring>()});
+        ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{NavHomePage().Tag().as<hstring>()}, this->Root());
         NavView().SelectedItem(NavHomePage());
     }
 
@@ -162,10 +162,10 @@ namespace winrt::CppWinUIGallery::implementation
 
             //winrt::CppWinUIGallery::HomePage l;
             const hstring FILEPATH = myTag.as<hstring>();
-            ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{FILEPATH});
+            ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{FILEPATH}, Root());
             if (ContentFrame().CanGoBack())
             {
-                TitleBar_BackButton().Foreground(Media::SolidColorBrush(Microsoft::UI::Colors::White()));
+                //TitleBar_BackButton().Foreground(Media::SolidColorBrush(Microsoft::UI::Colors::White())); Not usable for light mode
                 TitleBar_BackButton().IsEnabled(true);
             }
         }

@@ -26,21 +26,17 @@
 
 
 
-        <local:SettingsCardControl Title="Sound" Subtitle="my description" Icon="&#xEC4F;">
+        <local:SettingsCardControl Title="App theme" Subtitle="Select which app theme to display" Icon="&#xE790;">
             <local:SettingsCardControl.RightSideContent>
-                <ComboBox/>
+                <ComboBox x:Name="AppThemeComboBox" SelectedIndex="0" SelectionChanged="AppThemeComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Default" Tag="Default"/>
+                    <ComboBoxItem Content="Dark" Tag="Dark"/>
+                    <ComboBoxItem Content="Light" Tag="Light"/>
+                </ComboBox>
             </local:SettingsCardControl.RightSideContent>
         </local:SettingsCardControl>
 
-        <Expander HorizontalAlignment="Stretch">
-            <Expander.Header>
-                <local:SettingsCardControl Background="{StaticResource ControlAltFillColorTransparent}">
-                    <local:SettingsCardControl.RightSideContent>
-                        <TextBlock Text="v1.1.1"/>
-                    </local:SettingsCardControl.RightSideContent>
-                </local:SettingsCardControl>
-            </Expander.Header>
-        </Expander>
+        
 
 
     </StackPanel>

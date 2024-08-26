@@ -39,7 +39,7 @@ namespace winrt::CppWinUIGallery::implementation
 				if (button.Content().as<winrt::hstring>() == L"Hide details")
 				{
 					// Show the ListView
-					ThemeExampleGrid().RequestedTheme(ElementTheme::Dark);
+					//ThemeExampleGrid().RequestedTheme(ElementTheme::Dark);
 					listView.Visibility(Visibility::Collapsed);
 					button.Content(box_value(L"Show details")); // Change button text to "Hide"
 
@@ -47,7 +47,7 @@ namespace winrt::CppWinUIGallery::implementation
 				else if (button.Content().as<winrt::hstring>() == L"Show details")
 				{
 					// Hide the ListView
-					ThemeExampleGrid().RequestedTheme(ElementTheme::Light);
+					//ThemeExampleGrid().RequestedTheme(ElementTheme::Light);
 					listView.Visibility(Visibility::Visible);
 					button.Content(box_value(L"Hide details")); // Change button text to "Show"
 				}
