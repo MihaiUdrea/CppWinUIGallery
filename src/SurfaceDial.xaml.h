@@ -15,6 +15,7 @@ namespace winrt::CppWinUIGallery::implementation
     {
         SurfaceDial()
         {
+           
             // Xaml objects should not call InitializeComponent during construction.
             // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
         }
@@ -28,11 +29,17 @@ namespace winrt::CppWinUIGallery::implementation
         winrt::Microsoft::UI::Xaml::Shapes::Path m_previousMenuSection{ nullptr };
         void UpdateApplicationName(hstring const& sectionName);
         int m_currentIndex{ 0 };
+
       
         winrt::Microsoft::UI::Xaml::Shapes::Path m_currentHoverSection{ nullptr };
      
         void hoverSection_Tapped(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::TappedRoutedEventArgs const& e);
         void winrt::CppWinUIGallery::implementation::SurfaceDial::ClickAnimation_Completed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::Foundation::IInspectable const& e);
+        void WindowsPage_PointerWheelChanged(
+            winrt::Windows::Foundation::IInspectable const& sender,
+            winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
+
+\
     };
 }
 

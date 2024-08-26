@@ -3,6 +3,7 @@
 #if __has_include("SurfaceDial.g.cpp")
 #include "SurfaceDial.g.cpp"
 #endif
+#include <array> 
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
@@ -294,13 +295,119 @@ namespace winrt::CppWinUIGallery::implementation
 
         auto transform = applicationName().RenderTransform().as<winrt::Microsoft::UI::Xaml::Media::CompositeTransform>();
         transform.TranslateY(0);
+        hoverSection1().IsHoldingEnabled(false);
 
     }
     
- 
+    void SurfaceDial::WindowsPage_PointerWheelChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e)
+    {
+        auto pointer = e.GetCurrentPoint(nullptr);
+        auto delta = pointer.Properties().MouseWheelDelta();
+
+        winrt::Windows::UI::Color hoverColor = winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x19, 0x19, 0x19); // Hover color
+        winrt::Windows::UI::Color defaultColor = winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00); // Default color
+
+        // Reset all sections to the default color
+        hoverSection1().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor)); menuSection1().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor));
+        hoverSection2().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor)); menuSection2().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor));
+        hoverSection3().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor)); menuSection3().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor));
+        hoverSection4().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor)); menuSection4().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor));
+        hoverSection5().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor)); menuSection5().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor));
+        hoverSection6().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor)); menuSection6().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor));
+        hoverSection7().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor)); menuSection7().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor));
+        hoverSection8().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor)); menuSection8().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(defaultColor));
+
+        menuSection1().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+        menuSection2().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+        menuSection3().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+        menuSection4().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+        menuSection5().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+        menuSection6().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+        menuSection7().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+        menuSection8().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
+        
+        menuSection1().StrokeThickness(3.0); menuSection2().StrokeThickness(3.0); menuSection3().StrokeThickness(3.0); menuSection4().StrokeThickness(3.0);
+        menuSection5().StrokeThickness(3.0); menuSection6().StrokeThickness(3.0); menuSection7().StrokeThickness(3.0);  menuSection8().StrokeThickness(3.0);
+
+
+
+
+
+
+        
+        
+        
+        if (delta < 0)
+        {
+            
+            if (m_currentIndex == 5)
+                m_currentIndex -= 2;
+            m_currentIndex = (m_currentIndex - 1 + 8) % 8;
+            
+        }
+        else
+        {
+            if (m_currentIndex == 2)
+                m_currentIndex += 2;
+            m_currentIndex = (m_currentIndex + 1) % 8;
+        }
+
+        // Apply hover color to the selected section
+        switch (m_currentIndex)
+        {
+        case 0:
+            hoverSection1().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection1().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection1().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
+            menuSection1().StrokeThickness(3.0);
+            break;
+        case 1:
+            hoverSection2().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection2().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection2().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
+            
+            break;
+        case 2:
+            hoverSection3().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection3().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection3().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
+          
+            break;
+        
+        case 5:
+            hoverSection6().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection6().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection6().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
+
+            break;
+        case 6:
+            hoverSection7().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection7().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection7().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
+
+            break;
+        case 7:
+            hoverSection8().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection8().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+            menuSection8().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
+
+            break;
+        default:
+            break;
+        }
+
+        e.Handled(true);
+    }
+
+
+
+
 
 }
-
+//hoverSection1().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+//menuSection1().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
+//menuSection1().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
+//menuSection1().StrokeThickness(3.0);
 //Section 1 - (L"\uE768")
 //Section 2 - (L"\uE893")
 //Section 3 - (L"\uE769")
