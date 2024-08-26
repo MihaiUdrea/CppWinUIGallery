@@ -351,47 +351,99 @@ namespace winrt::CppWinUIGallery::implementation
                 m_currentIndex += 2;
             m_currentIndex = (m_currentIndex + 1) % 8;
         }
-
-        // Apply hover color to the selected section
         switch (m_currentIndex)
         {
         case 0:
+        {
+            auto tag = hoverSection1().Tag().as<winrt::hstring>();
+            auto it = sectionNameMap.find(tag);
+
             hoverSection1().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection1().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection1().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
             menuSection1().StrokeThickness(3.0);
+
+            if (it != sectionNameMap.end())
+            {
+                UpdateApplicationName(it->second);
+            }
             break;
+        }
         case 1:
+        {
+            auto tag = hoverSection2().Tag().as<winrt::hstring>();
+            auto it = sectionNameMap.find(tag);
+
             hoverSection2().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection2().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection2().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
-            
+
+            if (it != sectionNameMap.end())
+            {
+                UpdateApplicationName(it->second);
+            }
             break;
+        }
         case 2:
+        {
+            auto tag = hoverSection3().Tag().as<winrt::hstring>();
+            auto it = sectionNameMap.find(tag);
+
             hoverSection3().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection3().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection3().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
-          
+
+            if (it != sectionNameMap.end())
+            {
+                UpdateApplicationName(it->second);
+            }
             break;
-        
+        }
         case 5:
+        {
+            auto tag = hoverSection6().Tag().as<winrt::hstring>();
+            auto it = sectionNameMap.find(tag);
+
             hoverSection6().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection6().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection6().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
 
+            if (it != sectionNameMap.end())
+            {
+                UpdateApplicationName(it->second);
+            }
             break;
+        }
         case 6:
+        {
+            auto tag = hoverSection7().Tag().as<winrt::hstring>();
+            auto it = sectionNameMap.find(tag);
+
             hoverSection7().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection7().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection7().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
 
+            if (it != sectionNameMap.end())
+            {
+                UpdateApplicationName(it->second);
+            }
             break;
+        }
         case 7:
+        {
+            auto tag = hoverSection8().Tag().as<winrt::hstring>();
+            auto it = sectionNameMap.find(tag);
+
             hoverSection8().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection8().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
             menuSection8().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
 
+            if (it != sectionNameMap.end())
+            {
+                UpdateApplicationName(it->second);
+            }
             break;
+        }
         default:
             break;
         }
