@@ -17,14 +17,14 @@
                                 <ColumnDefinition x:Name="TextColumn" Width="*"/>
                                 <ColumnDefinition x:Name="ButtonColumn" Width="Auto"/>
                             </Grid.ColumnDefinitions>
-                            <FontIcon x:Name="Icon" Glyph="{TemplateBinding Icon}" Foreground="White" Grid.Column="0" Margin="0, 0, 0, 0"/>
+                            <FontIcon x:Name="Icon" Glyph="{TemplateBinding Icon}" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Grid.Column="0" Margin="0, 0, 0, 0"/>
                             <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
                                 <TextBlock 
                                     x:Name="Title"
                                     Text="{TemplateBinding Title}"
                                     Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
                                     FontSize="15"
-                                    Foreground="White"
+                                    Foreground="{ThemeResource TextFillColorPrimaryBrush}"
                                     VerticalAlignment="Top"
                                     Margin="10, 0"/>
 
@@ -33,7 +33,7 @@
                                     Text="{TemplateBinding Subtitle}"
                                     Style="{StaticResource BaseTextBlockStyle}"
                                     FontSize="10"
-                                    Foreground="LightGray"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                                     Opacity="60"
                                     Margin="10, 0"/>
 

@@ -32,9 +32,23 @@ namespace winrt::CppWinUIGallery::implementation
 
     void SettingsPage::OnNavigatedTo(winrt::Microsoft::UI::Xaml::Navigation::NavigationEventArgs const& e)
     {
+        auto v = e.Parameter();
+        auto pp = e.Parameter().as<winrt::Windows::Foundation::Collections::IVector<IInspectable>>();
+        auto grid = pp.GetAt(0).as<Controls::Grid>();
+        auto appwnd = pp.GetAt(1).as<Microsoft::UI::Windowing::AppWindowTitleBar>();
+       
 
-        this->mroot = e.Parameter();
-        
+        for (auto el : pp)
+        {
+            auto p = winrt::get_class_name(el);
+            p;
+        }
+        //.as<single_threaded_observable_vector<IInspectable>>();
+        auto p = winrt::get_class_name(v);
+        p;
+
+        mRoot = grid;
+        mTitleBar = appwnd;
     }
 
 
@@ -48,32 +62,35 @@ namespace winrt::CppWinUIGallery::implementation
                 {
                     
                     
-                    if (auto grid = mroot.try_as<Controls::Grid>())
+                    if (auto grid = mRoot.try_as<Controls::Grid>())
                     {
                         grid.RequestedTheme(ElementTheme::Dark);
                     }
 
-                    //Application::Current().RequestedTheme(ApplicationTheme::Dark);
-                    /*MainWindow().AppWindow().TitleBar().ButtonForegroundColor(Microsoft::UI::Colors::White());
-                    MainWindow().AppWindow().TitleBar().ButtonHoverForegroundColor(Microsoft::UI::Colors::Blue());
-                    MainWindow().AppWindow().TitleBar().ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 90, 90 , 90 });
-                    OutputDebugString(L"DARK MODE");*/
+                    
+                    mTitleBar.ButtonForegroundColor(Microsoft::UI::Colors::White());
+                    mTitleBar.ButtonHoverForegroundColor(Microsoft::UI::Colors::White());
+                    mTitleBar.ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 90, 90 , 90 });
+                    OutputDebugString(L"DARK MODE");
 
                 }
                 else if (tag == L"Light")  // Light mode
                 {
-                    if (auto grid = mroot.try_as<Controls::Grid>())
+                    if (auto grid = mRoot.try_as<Controls::Grid>())
                     {
                         grid.RequestedTheme(ElementTheme::Light);
                         auto titleBar = grid.FindName(L"AppTitleBar").as<Controls::Grid>();
                         auto textBlock = titleBar.FindName(L"TitleBarTextBlock").as<Controls::TextBlock>();
-                        //textBlock.Foreground(Media::SolidColorBrush(Windows::UI::Colors::Black()));
+
+                        mTitleBar.ButtonForegroundColor(Microsoft::UI::Colors::Black());
+                        mTitleBar.ButtonHoverForegroundColor(Microsoft::UI::Colors::Black());
+                        mTitleBar.ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 191, 191 , 191 });
                     }
                 }
             }
             else
             {
-                if (auto grid = mroot.try_as<Controls::Grid>())
+                if (auto grid = mRoot.try_as<Controls::Grid>())
                 {
                     grid.RequestedTheme(ElementTheme::Default);
                 }

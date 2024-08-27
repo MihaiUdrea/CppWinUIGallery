@@ -148,7 +148,7 @@ namespace winrt::CppWinUIGallery::implementation
 
     void MainWindow::ContentFrame_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-        ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{NavHomePage().Tag().as<hstring>()}, this->Root());
+        ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{NavHomePage().Tag().as<hstring>()});
         NavView().SelectedItem(NavHomePage());
     }
 
@@ -162,7 +162,12 @@ namespace winrt::CppWinUIGallery::implementation
 
             //winrt::CppWinUIGallery::HomePage l;
             const hstring FILEPATH = myTag.as<hstring>();
-            ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{FILEPATH}, Root());
+            
+
+            auto v = single_threaded_vector<IInspectable>();
+            v.Append(Root());
+            v.Append(AppWindow().TitleBar());
+            ContentFrame().Navigate(Windows::UI::Xaml::Interop::TypeName{ FILEPATH }, v);
             if (ContentFrame().CanGoBack())
             {
                 //TitleBar_BackButton().Foreground(Media::SolidColorBrush(Microsoft::UI::Colors::White())); Not usable for light mode

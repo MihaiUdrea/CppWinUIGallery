@@ -16,11 +16,11 @@ namespace winrt::CppWinUIGallery::implementation
 
         void OnNavigatedTo(winrt::Microsoft::UI::Xaml::Navigation::NavigationEventArgs const& e);
        
-        void ContentControl_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
         void AppThemeComboBox_SelectionChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Controls::SelectionChangedEventArgs const& e);
 
     private:
-        winrt::Windows::Foundation::IInspectable mroot;
+        winrt::Windows::Foundation::IInspectable mRoot;
+        winrt::Microsoft::UI::Windowing::AppWindowTitleBar mTitleBar{nullptr};
     };
 }
 
