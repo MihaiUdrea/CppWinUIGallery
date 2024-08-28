@@ -27,7 +27,7 @@ namespace winrt::CppWinUIGallery::implementation
         InitializeComponent();
         ExtendsContentIntoTitleBar(true);
         this->AppWindow().TitleBar().PreferredHeightOption(Microsoft::UI::Windowing::TitleBarHeightOption::Standard);
-        
+
         // THIS IS NOT WORKING ON CURRENT WINDOWS APP SDK VERSION 
         // WARNING GetForCurrentView automatically throws an exception as the method is no longer supported
         // Windows::UI::ViewManagement::ApplicationView::GetForCurrentView().SetPreferredMinSize(Windows::Foundation::Size(500, 300));

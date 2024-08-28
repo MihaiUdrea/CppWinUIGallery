@@ -99,7 +99,7 @@
         <ScrollViewer x:Name="mainScrollViewer" ViewChanged="ScrollViewer_ViewChanged">
             <StackPanel>
                 <StackPanel>
-                    <TextBlock Text="Animated Floating InfoBar - Scroll down!" HorizontalAlignment="Center" Style="{StaticResource TitleTextBlockStyle}" Margin="0,40"/>
+                    <TextBlock Text="Animated Floating InfoBar" HorizontalAlignment="Left" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50,40"/>
                 </StackPanel>
                 <StackPanel x:Name="targetStackPanel" Background="#80000000" Width="900" CornerRadius="60" HorizontalAlignment="Center" Margin="36" Height="360" Opacity="1">
                     <Image x:Name="targetImage" Source="ms-appx:///Assets/ai_logo_img.png" VerticalAlignment="Top" AutomationProperties.Name="AdvancedInstaller" HorizontalAlignment="Left" Width="200" Height="200" Margin="36,80">

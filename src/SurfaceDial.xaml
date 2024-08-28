@@ -1,0 +1,261 @@
+<Page
+    x:Class="CppWinUIGallery.SurfaceDial"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CppWinUIGallery"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    x:Name="surfaceDialPage"
+     >
+    
+    <Page.Resources>
+        <Style x:Key="testingStyle" TargetType="SplitButton">
+               
+        </Style>
+        <Flyout Opened="Flyout_Opened" Closed="Flyout_Closed"  Placement="Bottom" LightDismissOverlayMode="On"  x:Key="CustomFlyout" >
+            <Flyout.FlyoutPresenterStyle>
+                <Style TargetType="FlyoutPresenter">
+                    <Setter Property="Background" Value="Transparent" />
+                    <Setter Property="BorderBrush" Value="Transparent" />
+                    <Setter Property="BorderThickness" Value="0" />
+            
+                </Style>
+               
+
+            </Flyout.FlyoutPresenterStyle>
+
+            <Grid x:Name="DialGrid"   
+  >
+                <Grid.Resources>
+                    <Storyboard RepeatBehavior="1x"   x:Name="ClickAnimation">
+                        <DoubleAnimation Storyboard.TargetName="DialGrid"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                 From="1" To="0.95" Duration="0:0:0.1"
+                                 AutoReverse="True"/>
+                        <DoubleAnimation Storyboard.TargetName="DialGrid"
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                 From="1" To="0.95" Duration="0:0:0.1"
+                                 AutoReverse="True"/>
+                               
+                    </Storyboard>
+                    <Storyboard   x:Name="FadeOutAnimation">
+                        <DoubleAnimation Storyboard.TargetName="DialGrid"
+                     Storyboard.TargetProperty="Opacity"
+                     From="1" To="0" Duration="0:0:0.5"
+                     />
+                    </Storyboard>
+                    <Storyboard x:Name="FadeInAnimation">
+                        <DoubleAnimation Storyboard.TargetName="DialGrid"
+                        Storyboard.TargetProperty="Opacity"
+                        From="0" To="1" Duration="0:0:0.5"
+/>
+                    </Storyboard>
+
+                </Grid.Resources>
+                <Grid.RenderTransform>
+                    <ScaleTransform x:Name="ScaleTransform" ScaleX="1" ScaleY="1"/>
+                </Grid.RenderTransform>
+                <Canvas  Canvas.ZIndex="1" IsHitTestVisible="False">
+                    <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="215,50,0,0" >
+                        <FontIcon x:Name="section2Icon" Glyph="&#xE893;" IsTapEnabled="False"  IsHitTestVisible="False"  ></FontIcon>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="60,50" >
+                        <FontIcon x:Name="section8Icon" Glyph="&#xE892;"  IsHitTestVisible="False"></FontIcon>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,130">
+                        <FontIcon x:Name="section7Icon" Glyph="&#xE767;"  IsHitTestVisible="False"></FontIcon>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="255,130">
+                        <FontIcon x:Name="section3Icon" Glyph="&#xE769;"  IsHitTestVisible="False"></FontIcon>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="55,220">
+                        <FontIcon x:Name="section6Icon" Glyph="&#xEA69;" IsHitTestVisible="False"></FontIcon>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="140,255">
+                        <FontIcon x:Name="section4Icon" Glyph="" IsHitTestVisible="False"></FontIcon>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="225,220">
+                        <FontIcon x:Name="section5Icon" Glyph="" IsHitTestVisible="False"></FontIcon>
+                    </StackPanel>
+                    <StackPanel Canvas.ZIndex="1" >
+                        <FontIcon x:Name="section1Icon" Glyph="&#xE768;" Margin="140,30,0,0" ></FontIcon>
+                    </StackPanel>
+                </Canvas>
+                <TextBlock x:Name="applicationName"  Text="" TextAlignment="Center" TextWrapping="Wrap"   Height="20" Width="150"  Canvas.ZIndex="1" Margin="0,0,0,0">
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform x:Name="applicationNameTransform" CenterX="450" CenterY="180"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+
+                <Path x:Name="menuSection1" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 200,10 L 150,140 Z">
+                    <Path.RenderTransform>
+                        <CompositeTransform x:Name="menuSection1Transform" CenterX="450" CenterY="180"/>
+                    </Path.RenderTransform>
+                </Path>
+            
+                <Path x:Name="menuSection2" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 280,75 L 150,140 Z">
+                    <Path.RenderTransform>
+                        <CompositeTransform x:Name="menuSection2Transform" CenterX="450" CenterY="180"/>
+                    </Path.RenderTransform>
+                </Path>
+                <Path x:Name="menuSection3" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 280,75 A 150,150 0 0,1 290,200 L 150,140 Z"/>
+                <Path x:Name="menuSection4" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 290,200 A 150,150 0 0,1 215,285 L 150,140 Z"/>
+                <Path x:Name="menuSection5" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 215,285 A 150,150 0 0,1 85,285 L 150,140 Z"/>
+                <Path x:Name="menuSection6" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 85,285 A 150,150 0 0,1 10,205 L 150,140 Z"/>
+                <Path x:Name="menuSection7" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 20,75 L 150,140 Z"/>
+                <Path x:Name="menuSection8" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 95,10 L 150,140 Z"/>
+
+                <Path x:Name="hoverSection6" Tapped="hoverSection_Tapped" Tag="menuSection6"  PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 85,285 L 150,140 Z"/>
+                <Path x:Name="hoverSection5" Tapped="hoverSection_Tapped" Tag="menuSection5" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 85,285 A 150,150 0 0,1 215,285 L 150,140 Z"/>
+                <Path x:Name="hoverSection4" Tapped="hoverSection_Tapped" Tag="menuSection4" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 215,285 A 150,150 0 0,1 290,200 L 150,140 Z"/>
+                <Path x:Name="hoverSection3" Tapped="hoverSection_Tapped"  Tag="menuSection3" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 290,200 A 150,150 0 0,1 280,75 L 150,140 Z"/>
+                <Path x:Name="hoverSection2" Tapped="hoverSection_Tapped" Tag="menuSection2" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 280,75 A 150,150 0 0,1 200,10 L 150,140 Z"/>
+
+
+                <Path x:Name="hoverSection1" Tapped="hoverSection_Tapped"  Tag="menuSection1" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 95,10 L 150,140 Z">
+                    <Path.RenderTransform>
+                        <CompositeTransform x:Name="hoverSection1Transform" CenterX="450" CenterY="180"/>
+                    </Path.RenderTransform>
+                    
+                </Path>
+                <Path x:Name="hoverSection8" Tapped="hoverSection_Tapped" Tag="menuSection8" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 95,10 A 150,150 0 0,1 20,75 L 150,140 Z"/>
+                <Path x:Name="hoverSection7" Tapped="hoverSection_Tapped" Tag="menuSection7" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 10,205 L 150,140 Z"/>
+
+                <Grid>
+                 
+                    <!--<StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="190,-325">
+    <FontIcon Glyph="&#xE768;"  ></FontIcon>
+</StackPanel>
+<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="265,-300">
+    <FontIcon Glyph="&#xE893;" ></FontIcon>
+</StackPanel>
+<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="115,-300">
+    <FontIcon Glyph="&#xE892;"></FontIcon>
+</StackPanel>
+<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="75,-220">
+    <FontIcon Glyph="&#xE767;"></FontIcon>
+</StackPanel>
+<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="305,-220">
+    <FontIcon Glyph="&#xE769;"></FontIcon>
+</StackPanel>
+<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="105,-130">
+    <FontIcon Glyph="&#xEA69;"></FontIcon>
+</StackPanel>-->
+
+                    <Line X1="150" Y1="140" X2="10" Y2="205" Stroke="Black" StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="85" Y2="285" Stroke="Black" StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="280" Y2="75" Stroke="Black" StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="200" Y2="10" Stroke="Black" StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="95" Y2="10"  Stroke="Black" StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="20" Y2="75"  Stroke="Black" StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="215" Y2="285" Stroke="Black" StrokeThickness="2"/>
+                    <Line X1="150" Y1="140" X2="290" Y2="200" Stroke="Black" StrokeThickness="2"/>
+
+                    <Ellipse Fill="Gray" Margin="0,0,0,0" Height="160" Width="160"></Ellipse>
+                   
+
+
+                </Grid>
+                
+               
+            </Grid>
+            
+        </Flyout>
+
+
+
+      
+        
+
+    </Page.Resources>
+    <StackPanel  Margin="0,20,0,0" HorizontalAlignment="Left" >
+
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Surface Dial" Margin="50,40,0,0" Style="{StaticResource TitleLargeTextBlockStyle}"></TextBlock>
+
+
+            <Grid HorizontalAlignment="Left"   VerticalAlignment="Center"  Margin="50,30,0,0">
+            <SplitButton   IsTabStop="True"  Background="#191919" x:Name="IconSplitButton" HorizontalAlignment="Left" Flyout="{StaticResource CustomFlyout}" >
+                    <Grid x:Name="SplitButtonGrid" IsTabStop="True" Width="32" Height="32">
+                        <Border x:Name="CurrentColor" Background="Transparent"  CornerRadius="4,0,0,4"/>
+                        <FontIcon Glyph="&#xE790;" FontSize="20" x:Name="Icon" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </SplitButton>
+            </Grid>
+            <Grid Margin="50,30,0,0">
+            <TextBlock TextWrapping="Wrap" Style="{StaticResource BaseTextBlockStyle}" x:Name="introText1" Foreground="{ThemeResource TextFillColorSecondaryBrush}" >
+                <Run  Text="This selection menu is based on Microsoft's Surface Dial, intended as a secondary, multi-modal input device that complements input from a primary device. It can be used to navigate menus, control volume and other similar tasks. Corresponding tools can be mapped onto the selection's menu controls according to the user's needs."></Run>
+            </TextBlock>
+                
+            <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="0,40,0,0" TextWrapping="Wrap"  x:Name="introText2" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+                <Run Text="A mix of the Line &amp; Path (a way to visualize a fairly complex vector-based drawing language in a XAML UI) classes has been used in order to create the menu's UI."></Run>
+            </TextBlock>
+            <TextBlock Margin="0,70,0,0" Text="Line Class" x:Name="introText4" Style="{StaticResource BodyStrongTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" ></TextBlock>
+            <TextBox Text=" &lt;Line X1=&quot;150&quot; Y1=&quot;140&quot; X2=&quot;10&quot; Y2=&quot;205&quot; Stroke=&quot;Black&quot; StrokeThickness=&quot;2&quot;/>"
+                    
+
+                     Margin="0,100,0,0" x:Name="introText3" HorizontalAlignment="Left" Width="560" IsReadOnly="True"    AcceptsReturn="True">
+
+            </TextBox>
+
+        </Grid>
+                 <TextBlock x:Name="introText5" Margin="50,20,0,0" Text="Path Class" Style="{StaticResource BodyStrongTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
+        <TextBox x:Name="introText6" TextWrapping="Wrap" Text="&lt;Path x:Name=&quot;hoverSection1&quot; Tapped=&quot;hoverSection_Tapped&quot;  Tag=&quot;menuSection1&quot; PointerEntered=&quot;hoverSection_PointerEntered&quot; PointerExited=&quot;hoverSection_PointerExited&quot; Fill=&quot;Black&quot; Stroke=&quot;Black&quot; StrokeThickness=&quot;0&quot; Data=&quot;M 150,140 L 200,10 A 150,150 0 0,1 95,10 L 150,140 Z&quot;>"
+
+            
+         Margin="50,10,0,0" Height="55" HorizontalAlignment="Left" Width="1420" IsReadOnly="True"    AcceptsReturn="True">
+        </TextBox>
+
+        <TextBlock x:Name="introText7" Style="{StaticResource BaseTextBlockStyle}" Margin="50,20,0,0" Text="The selection menu has been created using the following:" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
+        <TextBlock  x:Name="introText8" Margin="100,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+            <Run Text="- a" ></Run>
+            <Run Text="SplitButton" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
+            <Run Text="that changes its icon according to the user's app of choice"></Run>
+        </TextBlock>
+        <TextBlock x:Name="introText9" Style="{StaticResource BaseTextBlockStyle}"  Margin="100,-10,0,0" Foreground="{ThemeResource TextFillColorSecondaryBrush}">
+            <Run  Text="&#x0A;- a"></Run>
+            <Run Text="custom Flyout" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
+            <Run Text="for the SplitButton"></Run>
+        </TextBlock>
+        <TextBlock x:Name="introText10" Margin="50,20,0,0" TextWrapping="Wrap" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource BaseTextBlockStyle}" >
+            <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="The Surface Dial menu itself is the SplitButton's"></Run>
+            <Run Foreground="{ThemeResource SystemColorHotlightColor}" Text="flyout"></Run>
+            <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text=". The drawn lines don't necessarily have to be visible, but when forming the Paths needed for the menu buttons, it is useful to have them, at least then, set on visible."></Run>
+            
+        </TextBlock>
+        <TextBlock x:Name="introText11" Margin="50,5,0,0" TextWrapping="Wrap" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="The custom menu is formed out of an Ellipse and its corresponding eight hoverSections and eight menuSections."></TextBlock>
+        <TextBlock x:Name="introText12" Margin="100,5,0,0" TextWrapping="Wrap"  Style="{StaticResource BaseTextBlockStyle}" >
+            <Run Text="- the" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+            <Run Text="Ellipse" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
+            <Run Text="Is used to display the app's name (the one that is being currently hovered on)" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+        </TextBlock>
+        <TextBlock x:Name="introText13" Margin="100,5,0,0" TextWrapping="Wrap"  Style="{StaticResource BaseTextBlockStyle}" >
+            <Run Text="- the" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+            <Run Text="hoverSection" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
+            <Run Text="represents the inner part of the button used to select an app and contains its corresponding icon. The coordinates for this kind of Path are set to never cross the bounds of the lines made in the very beginning(the ones that do not need to be visible)" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+        </TextBlock>
+        <TextBlock x:Name="introText14" Margin="100,5,0,0" TextWrapping="Wrap"  Style="{StaticResource BaseTextBlockStyle}" >
+    <Run Text="- the" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+    <Run Text="menuSection" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
+    <Run Text="represents the outer part of the button used to select an app. The coordinates for this kind of Path are set to never cross the bounds of the lines made in the very beginning, while keeping the Ellipse on the first layer and the hoverSections on the second layer. The only thing that the user is able to see changing is the menuSection's" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+        <Run Text="Stroke." Foreground="{ThemeResource SystemFillColorSuccessBrush}"></Run>
+        </TextBlock>
+        <TextBlock x:Name="introText15" Margin="50,20,0,0" TextWrapping="Wrap"  Style="{StaticResource BaseTextBlockStyle}" >
+              <Run Text="Each hoverSection &amp; menuSection has a name and a tag used to later map and update the text in the Ellipse accordingly. Once an app has been selected, a Click animation is played, and this text is translated at position 0 (each section is numbered from 0 to 7, 0 being the very top section), as well as the app's icon, while every other icon is set on" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+              <Run Text="Collapsed" Foreground="{ThemeResource SystemFillColorSuccessBrush}"></Run>
+              <Run Text="visibility." Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+        </TextBlock>
+        <TextBlock x:Name="introText16" Margin="50,20,0,0" TextWrapping="Wrap"  Style="{StaticResource BaseTextBlockStyle}" >
+      <Run Text="The hoverSections themselves" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+      <Run Text="are not" Foreground="{ThemeResource SystemFillColorSuccessBrush}"></Run>
+      <Run Text="Button class but are implemented to act similarly." Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+      <Run Text="hoverSection_PointerEntered" Foreground="{ThemeResource SystemFillColorSuccessBrush}"></Run>
+     <Run Text="and" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+      <Run Text="hoverSection_PointerExited" Foreground="{ThemeResource SystemFillColorSuccessBrush}"></Run>
+        <Run Text="methods have been added to simulate hovering in and hovering out, as well as" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+        <Run Text="hoverSection_Tapped" Foreground="{ThemeResource SystemFillColorSuccessBrush}"></Run>
+        <Run Text="to simulate Click events." Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+
+        </TextBlock>
+    </StackPanel>
+</Page>

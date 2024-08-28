@@ -128,6 +128,7 @@
     <Run Text="- After the drag has been completed, it snaps the thumb to the nearest bound. It also updates the icon's Active/Inactive states." Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
                 </TextBlock>
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,0" >
+
 <Run Text="- " Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
 <Run Text="Switch_PointerPressed" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
 <Run Text="- If the users chooses to click on the icons instead of dragging the Thumb, it snaps the Thumb to the chosen bound, while also updating the icon's Active/Inactive states." Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>

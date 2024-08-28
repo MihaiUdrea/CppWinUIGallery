@@ -147,6 +147,10 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="SurfaceDial.xaml.h">
+      <DependentUpon>SurfaceDial.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="SettingsCardControl.h">
       <DependentUpon>SettingsCardControl.cpp</DependentUpon>
       <SubType>Code</SubType>
@@ -194,6 +198,9 @@
     </Page>
     <Page Include="MainWindow.xaml" />
     <Page Include="PhotoGallery.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="SurfaceDial.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Include="SettingsPage.xaml">
@@ -254,6 +261,9 @@
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="SurfaceDial.xaml.cpp">
+      <DependentUpon>SurfaceDial.xaml</DependentUpon>
+    </ClCompile>
     <ClCompile Include="SettingsCardControl.cpp">
       <SubType>Code</SubType>
     </ClCompile>
@@ -310,6 +320,10 @@
     </Midl>
     <Midl Include="PhotoGallery.idl">
       <DependentUpon>PhotoGallery.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="SurfaceDial.idl">
+      <DependentUpon>SurfaceDial.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="SettingsCardControl.idl">
