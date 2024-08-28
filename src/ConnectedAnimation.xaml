@@ -861,15 +861,15 @@ Storyboard.TargetProperty="Visibility">
             <TextBlock Text="In this example, we'll explain the whole process of a custom App Selection Menu that transitions between three states, thus allowing the user to see a more detailed version of the chosen app:"
            Style="{StaticResource BaseTextBlockStyle}" 
            Margin="50,-30,300,0"
-           Foreground="LightGray"
+           Foreground="{ThemeResource TextFillColorSecondaryBrush}"
            Opacity="60"/>
-            <TextBlock Text="• Base State - Basic aspects of the app (logo, name, rating or price) only" Foreground="LightGray" Margin="90,-0" Style="{StaticResource BaseTextBlockStyle}"/>
+                <TextBlock Text="• Base State - Basic aspects of the app (logo, name, rating or price) only" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Margin="90,-0" Style="{StaticResource BaseTextBlockStyle}"/>
             <TextBlock Text="• Middle State - The StackPanel is raised up for a moment, action triggered by the user hovering over the app with the cursor
-" Foreground="LightGray" Margin="90,10" Style="{StaticResource BaseTextBlockStyle}"/>
+" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Margin="90,10" Style="{StaticResource BaseTextBlockStyle}"/>
             <TextBlock Text="• Final State - The StackPanel is transformed into a much larger one, creating space for app details, preview, detailed rating and download button.
-" Foreground="LightGray" Margin="90,1" Style="{StaticResource BaseTextBlockStyle}"/>
+" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Margin="90,1" Style="{StaticResource BaseTextBlockStyle}"/>
             <TextBlock Text="A similar Selection Animation can be found in the Microsoft Store App for applications displayed. in either horizontal or vertical StackPanels.
-" Foreground="LightGray" Margin="50,15" Style="{StaticResource BaseTextBlockStyle}"/>
+" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Margin="50,15" Style="{StaticResource BaseTextBlockStyle}"/>
 
         </StackPanel>
         
@@ -910,7 +910,7 @@ Storyboard.TargetProperty="Visibility">
                 <StackPanel.RenderTransform>
                     <CompositeTransform  />
                 </StackPanel.RenderTransform>
-                <TextBlock Margin="45,332,1394,0" Width="175" HorizontalAlignment="Left" Style="{StaticResource BodyStrongTextBlockStyle}" TextWrapping="Wrap" Text="Caphyon Ltd. : Independent software products"/>
+                <TextBlock Margin="45,332,1394,0" Foreground="White" Width="175" HorizontalAlignment="Left" Style="{StaticResource BodyStrongTextBlockStyle}" TextWrapping="Wrap" Text="Caphyon Ltd. : Independent software products"/>
             </StackPanel>
             <StackPanel x:Name="ratingStackPanel">
                 <StackPanel.RenderTransform>
@@ -936,7 +936,7 @@ Storyboard.TargetProperty="Visibility">
                     <StackPanel.RenderTransform>
                         <CompositeTransform  CenterX="100" CenterY="100"/>
                     </StackPanel.RenderTransform>
-                    <TextBlock Margin="163,391,1294,0" Text="Free" FontSize="14" />
+                    <TextBlock Margin="163,391,1294,0" Foreground="White" Text="Free" FontSize="14" />
                 </StackPanel>
             </Grid>
             <Grid >

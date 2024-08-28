@@ -25,7 +25,7 @@ namespace winrt::CppWinUIGallery::implementation
     
     void ButtonPage::BackButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
-        BackButton().Foreground(Media::SolidColorBrush(Microsoft::UI::Colors::White()));
+
     }
 
 

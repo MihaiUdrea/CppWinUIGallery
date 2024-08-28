@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="CppWinUIGallery.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CppWinUIGallery"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+
+   
+
+
+    <StackPanel x:Name="Root" Orientation="Vertical" Margin="50, 40, 50, 40" Spacing="10">
+
+        <TextBlock Text="Settings" Style="{StaticResource TitleLargeTextBlockStyle}" Height="Auto" VerticalAlignment="Top"/>
+        <TextBlock Text="Set the app's appearance:"
+          Style="{StaticResource NavigationViewItemHeaderTextStyle}" 
+          Margin="0,20,0,0"
+          Opacity="60"
+          Height="Auto"
+          VerticalAlignment="Top"
+          Padding="0, 10"/>
+
+
+
+        <local:SettingsCardControl Title="App theme" Subtitle="Select which app theme to display" Icon="&#xE790;">
+            <local:SettingsCardControl.RightSideContent>
+                <ComboBox x:Name="AppThemeComboBox" SelectedIndex="0" SelectionChanged="AppThemeComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Default" Tag="Default"/>
+                    <ComboBoxItem Content="Dark" Tag="Dark"/>
+                    <ComboBoxItem Content="Light" Tag="Light"/>
+                </ComboBox>
+            </local:SettingsCardControl.RightSideContent>
+        </local:SettingsCardControl>
+
+        
+
+
+    </StackPanel>
+</Page>
