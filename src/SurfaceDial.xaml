@@ -6,12 +6,14 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
+    x:Name="surfaceDialPage"
      >
+    
     <Page.Resources>
         <Style x:Key="testingStyle" TargetType="SplitButton">
                
         </Style>
-        <Flyout  Placement="Bottom" LightDismissOverlayMode="On"  x:Key="CustomFlyout">
+        <Flyout   Placement="Bottom" LightDismissOverlayMode="On"  x:Key="CustomFlyout" >
             <Flyout.FlyoutPresenterStyle>
                 <Style TargetType="FlyoutPresenter">
                     <Setter Property="Background" Value="Transparent" />
@@ -23,7 +25,8 @@
 
             </Flyout.FlyoutPresenterStyle>
 
-            <Grid x:Name="DialGrid" PointerWheelChanged="WindowsPage_PointerWheelChanged" >
+            <Grid x:Name="DialGrid"   
+  >
                 <Grid.Resources>
                     <Storyboard RepeatBehavior="1x"   x:Name="ClickAnimation">
                         <DoubleAnimation Storyboard.TargetName="DialGrid"
@@ -110,7 +113,7 @@
                 <Path x:Name="hoverSection2" Tapped="hoverSection_Tapped" Tag="menuSection2" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 280,75 A 150,150 0 0,1 200,10 L 150,140 Z"/>
 
 
-                <Path x:Name="hoverSection1"  Tapped="hoverSection_Tapped"  Tag="menuSection1" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 95,10 L 150,140 Z">
+                <Path x:Name="hoverSection1" Tapped="hoverSection_Tapped"  Tag="menuSection1" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 200,10 A 150,150 0 0,1 95,10 L 150,140 Z">
                     <Path.RenderTransform>
                         <CompositeTransform x:Name="hoverSection1Transform" CenterX="450" CenterY="180"/>
                     </Path.RenderTransform>
@@ -163,19 +166,18 @@
         
 
     </Page.Resources>
-    <StackPanel Margin="0,20,0,0" HorizontalAlignment="Left" >
-    
-        <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Surface Dial" Margin="50,40,0,0" Style="{StaticResource TitleLargeTextBlockStyle}"></TextBlock>
+    <StackPanel  Margin="0,20,0,0" HorizontalAlignment="Left" >
 
-        
-        <Grid HorizontalAlignment="Center"   VerticalAlignment="Center"  Margin="-80,30,0,0">
-            <SplitButton  Background="#191919" x:Name="IconSplitButton" HorizontalAlignment="Left" Flyout="{StaticResource CustomFlyout}" >
-                <Grid x:Name="SplitButtonGrid" Width="32" Height="32">
-                    <Border x:Name="CurrentColor" Background="Transparent"  CornerRadius="4,0,0,4"/>
-                    <FontIcon Glyph="&#xE790;" FontSize="20" x:Name="Icon" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                </Grid>
-            </SplitButton>
+            <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Surface Dial" Margin="50,40,0,0" Style="{StaticResource TitleLargeTextBlockStyle}"></TextBlock>
+
+
+            <Grid HorizontalAlignment="Center"   VerticalAlignment="Center"  Margin="-80,30,0,0">
+                <SplitButton   IsTabStop="True"  Background="#191919" x:Name="IconSplitButton" HorizontalAlignment="Left" Flyout="{StaticResource CustomFlyout}" >
+                    <Grid x:Name="SplitButtonGrid" IsTabStop="True" Width="32" Height="32">
+                        <Border x:Name="CurrentColor" Background="Transparent"  CornerRadius="4,0,0,4"/>
+                        <FontIcon Glyph="&#xE790;" FontSize="20" x:Name="Icon" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+                </SplitButton>
             </Grid>
-
     </StackPanel>
 </Page>

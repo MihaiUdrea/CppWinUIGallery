@@ -15,7 +15,7 @@ namespace winrt::CppWinUIGallery::implementation
     {
         SurfaceDial()
         {
-           
+            
             // Xaml objects should not call InitializeComponent during construction.
             // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
         }
@@ -38,8 +38,13 @@ namespace winrt::CppWinUIGallery::implementation
         void WindowsPage_PointerWheelChanged(
             winrt::Windows::Foundation::IInspectable const& sender,
             winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
+        bool m_isEnterKeyPressed = false;  
+        void winrt::CppWinUIGallery::implementation::SurfaceDial::PageKeyDown(
+            winrt::Windows::Foundation::IInspectable const& sender,
+            winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
+        void StackPanel_KeyDown(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
+        bool ignorePointerEvents = false;
 
-\
     };
 }
 

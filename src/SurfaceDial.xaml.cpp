@@ -45,7 +45,7 @@ namespace winrt::CppWinUIGallery::implementation
         auto tag = hoverSection.Tag().as<winrt::hstring>();
         auto menuSection = FindName(tag).as<winrt::Microsoft::UI::Xaml::Shapes::Path>();
 
-     
+
 
         if (!menuSection)
         {
@@ -72,7 +72,7 @@ namespace winrt::CppWinUIGallery::implementation
         if (!m_timer)
         {
             m_timer = winrt::Microsoft::UI::Xaml::DispatcherTimer{};
-            m_timer.Interval(winrt::Windows::Foundation::TimeSpan{ 0LL }); 
+            m_timer.Interval(winrt::Windows::Foundation::TimeSpan{ 0LL });
 
             m_timer.Tick([this](auto const&, auto const&)
                 {
@@ -142,7 +142,7 @@ namespace winrt::CppWinUIGallery::implementation
     {
         applicationName().Text(sectionName);
     }
-  
+
 
     void winrt::CppWinUIGallery::implementation::SurfaceDial::hoverSection_Tapped(
         winrt::Windows::Foundation::IInspectable const& sender,
@@ -266,7 +266,7 @@ namespace winrt::CppWinUIGallery::implementation
                         {
                             storyboard.Completed({ this, &SurfaceDial::ClickAnimation_Completed });
                             storyboard.Begin();
-                            
+
                         }
 
                         /*IconSplitButton().Flyout().Hide();*/
@@ -298,7 +298,7 @@ namespace winrt::CppWinUIGallery::implementation
         hoverSection1().IsHoldingEnabled(false);
 
     }
-    
+
     void SurfaceDial::WindowsPage_PointerWheelChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e)
     {
         auto pointer = e.GetCurrentPoint(nullptr);
@@ -325,7 +325,7 @@ namespace winrt::CppWinUIGallery::implementation
         menuSection6().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
         menuSection7().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
         menuSection8().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x00, 0x00)));
-        
+
         menuSection1().StrokeThickness(3.0); menuSection2().StrokeThickness(3.0); menuSection3().StrokeThickness(3.0); menuSection4().StrokeThickness(3.0);
         menuSection5().StrokeThickness(3.0); menuSection6().StrokeThickness(3.0); menuSection7().StrokeThickness(3.0);  menuSection8().StrokeThickness(3.0);
 
@@ -334,16 +334,16 @@ namespace winrt::CppWinUIGallery::implementation
 
 
 
-        
-        
-        
+
+
+
         if (delta < 0)
         {
-            
+
             if (m_currentIndex == 5)
                 m_currentIndex -= 2;
             m_currentIndex = (m_currentIndex - 1 + 8) % 8;
-            
+
         }
         else
         {
