@@ -47,10 +47,20 @@ namespace winrt::CppWinUIGallery::implementation
    
 
     void MainWindow::AppTitleBar_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {  
-        AppWindow().TitleBar().ButtonForegroundColor(Microsoft::UI::Colors::White());
-        AppWindow().TitleBar().ButtonHoverForegroundColor(Microsoft::UI::Colors::White());
-        AppWindow().TitleBar().ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 90, 90 , 90 });
+    {
+        if (Application::Current().RequestedTheme() == ApplicationTheme::Dark)
+        {
+            AppWindow().TitleBar().ButtonForegroundColor(Microsoft::UI::Colors::White());
+            AppWindow().TitleBar().ButtonHoverForegroundColor(Microsoft::UI::Colors::White());
+            AppWindow().TitleBar().ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 90, 90 , 90 });
+        }
+        else
+        {
+            AppWindow().TitleBar().ButtonForegroundColor(Microsoft::UI::Colors::Black());
+            AppWindow().TitleBar().ButtonHoverForegroundColor(Microsoft::UI::Colors::Black());
+            AppWindow().TitleBar().ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 191, 191 , 191 });
+        }
+        
         
         if (ExtendsContentIntoTitleBar() == true) {
             // Set the initial interactive regions

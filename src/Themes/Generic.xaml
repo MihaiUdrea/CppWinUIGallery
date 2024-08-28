@@ -10,8 +10,11 @@
             <Setter.Value>
                 <ControlTemplate TargetType="local:SettingsCardControl">
                     <Border HorizontalAlignment="Stretch"
-                            Background="{StaticResource CardBackgroundFillColorDefault}">
-                        <Grid Height="60" Margin="10, 0">
+                            Background="{ThemeResource CardBackgroundFillColorDefault}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            CornerRadius="6">
+                        <Grid Height="60" Margin="15, 0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition x:Name="IconColumn" Width="Auto"/>
                                 <ColumnDefinition x:Name="TextColumn" Width="*"/>

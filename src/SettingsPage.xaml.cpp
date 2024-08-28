@@ -51,6 +51,20 @@ namespace winrt::CppWinUIGallery::implementation
         mTitleBar = appwnd;
     }
 
+    void SettingsPage::AppThemeComboBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        if (auto grid = mRoot.try_as<Controls::Grid>())
+        {
+            auto currentTheme = grid.RequestedTheme();
+            if (currentTheme == ElementTheme::Default)
+                AppThemeComboBox().SelectedIndex(0);
+            else if (currentTheme == ElementTheme::Dark)
+                AppThemeComboBox().SelectedIndex(1);
+            else if (currentTheme == ElementTheme::Light)
+                AppThemeComboBox().SelectedIndex(2);
+        }
+    }
+
 
     void SettingsPage::AppThemeComboBox_SelectionChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Controls::SelectionChangedEventArgs const& e)
     {   
@@ -65,13 +79,12 @@ namespace winrt::CppWinUIGallery::implementation
                     if (auto grid = mRoot.try_as<Controls::Grid>())
                     {
                         grid.RequestedTheme(ElementTheme::Dark);
-                    }
 
-                    
-                    mTitleBar.ButtonForegroundColor(Microsoft::UI::Colors::White());
-                    mTitleBar.ButtonHoverForegroundColor(Microsoft::UI::Colors::White());
-                    mTitleBar.ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 90, 90 , 90 });
-                    OutputDebugString(L"DARK MODE");
+                        mTitleBar.ButtonForegroundColor(Microsoft::UI::Colors::White());
+                        mTitleBar.ButtonHoverForegroundColor(Microsoft::UI::Colors::White());
+                        mTitleBar.ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 90, 90 , 90 });
+
+                    }
 
                 }
                 else if (tag == L"Light")  // Light mode
@@ -79,12 +92,11 @@ namespace winrt::CppWinUIGallery::implementation
                     if (auto grid = mRoot.try_as<Controls::Grid>())
                     {
                         grid.RequestedTheme(ElementTheme::Light);
-                        auto titleBar = grid.FindName(L"AppTitleBar").as<Controls::Grid>();
-                        auto textBlock = titleBar.FindName(L"TitleBarTextBlock").as<Controls::TextBlock>();
 
                         mTitleBar.ButtonForegroundColor(Microsoft::UI::Colors::Black());
                         mTitleBar.ButtonHoverForegroundColor(Microsoft::UI::Colors::Black());
                         mTitleBar.ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 191, 191 , 191 });
+
                     }
                 }
             }
@@ -92,13 +104,32 @@ namespace winrt::CppWinUIGallery::implementation
             {
                 if (auto grid = mRoot.try_as<Controls::Grid>())
                 {
-                    grid.RequestedTheme(ElementTheme::Default);
+                    auto currentTheme = winrt::Microsoft::UI::Xaml::Application::Current().RequestedTheme();
+                    if (currentTheme == ApplicationTheme::Dark)
+                    {
+                        grid.RequestedTheme(ElementTheme::Dark);
+
+                        mTitleBar.ButtonForegroundColor(Microsoft::UI::Colors::White());
+                        mTitleBar.ButtonHoverForegroundColor(Microsoft::UI::Colors::White());
+                        mTitleBar.ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 90, 90 , 90 });
+                    }
+                    else
+                    {
+                        grid.RequestedTheme(ElementTheme::Light);
+
+                        mTitleBar.ButtonForegroundColor(Microsoft::UI::Colors::Black());
+                        mTitleBar.ButtonHoverForegroundColor(Microsoft::UI::Colors::Black());
+                        mTitleBar.ButtonHoverBackgroundColor(Windows::UI::Color{ 100, 191, 191 , 191 });
+                    }
                 }
             }
     }
 
     
 }
+
+
+
 
 
 

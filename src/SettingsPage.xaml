@@ -27,7 +27,7 @@
 
         <local:SettingsCardControl Title="App theme" Subtitle="Select which app theme to display" Icon="&#xE790;">
             <local:SettingsCardControl.RightSideContent>
-                <ComboBox x:Name="AppThemeComboBox" SelectedIndex="0" SelectionChanged="AppThemeComboBox_SelectionChanged">
+                <ComboBox x:Name="AppThemeComboBox" SelectionChanged="AppThemeComboBox_SelectionChanged" Loaded="AppThemeComboBox_Loaded">
                     <ComboBoxItem Content="Default" Tag="Default"/>
                     <ComboBoxItem Content="Dark" Tag="Dark"/>
                     <ComboBoxItem Content="Light" Tag="Light"/>
