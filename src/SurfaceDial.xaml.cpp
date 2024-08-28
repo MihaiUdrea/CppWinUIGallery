@@ -452,25 +452,53 @@ namespace winrt::CppWinUIGallery::implementation
     }
 
 
+    void winrt::CppWinUIGallery::implementation::SurfaceDial::Flyout_Opened(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::Foundation::IInspectable const& e)
+    {
+        introText1().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText2().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText4().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText3().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText5().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText6().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText7().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText8().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText9().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText10().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText11().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText12().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText13().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText14().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText15().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText16().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+
+  
+    }
+
+
+    void winrt::CppWinUIGallery::implementation::SurfaceDial::Flyout_Closed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::Foundation::IInspectable const& e)
+    {
+        introText1().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText2().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText4().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText3().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText5().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText6().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText7().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText8().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText9().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText10().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText11().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText12().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText13().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText14().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText15().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText16().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+
+    }
 
 
 
 }
-//hoverSection1().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
-//menuSection1().Fill(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(hoverColor));
-//menuSection1().Stroke(winrt::Microsoft::UI::Xaml::Media::SolidColorBrush(winrt::Windows::UI::ColorHelper::FromArgb(0xFF, 0x00, 0x78, 0xD7)));
-//menuSection1().StrokeThickness(3.0);
-//Section 1 - (L"\uE768")
-//Section 2 - (L"\uE893")
-//Section 3 - (L"\uE769")
-//Section 4 - (L"")
-//Section 5 - (L"")
-//Section 6 - (L"\uEA69")
-//Section 7 - (L"\uE767")
-//Section 8 - (L"\uE892")
-
-
-
 
 
 

@@ -45,6 +45,10 @@ namespace winrt::CppWinUIGallery::implementation
         void StackPanel_KeyDown(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
         bool ignorePointerEvents = false;
 
+        auto hoverSectionById(int id);
+        auto menuSectionById(int id);
+        void Flyout_Opened(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::Foundation::IInspectable const& e);
+        void Flyout_Closed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::Foundation::IInspectable const& e);
     };
 }
 
