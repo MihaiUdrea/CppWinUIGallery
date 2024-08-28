@@ -58,31 +58,31 @@
                 </Grid.RenderTransform>
                 <Canvas  Canvas.ZIndex="1" IsHitTestVisible="False">
                     <StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="215,50,0,0" >
-                        <FontIcon x:Name="section2Icon" Glyph="&#xE893;" IsTapEnabled="False"  IsHitTestVisible="False"  ></FontIcon>
+                        <FontIcon x:Name="section2Icon" Foreground="{ThemeResource TextOnAccentFillColorDefault}" Glyph="&#xE893;" IsTapEnabled="False"  IsHitTestVisible="False"  ></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="60,50" >
-                        <FontIcon x:Name="section8Icon" Glyph="&#xE892;"  IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section8Icon" Foreground="{ThemeResource TextOnAccentFillColorDefault}" Glyph="&#xE892;"  IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="25,130">
-                        <FontIcon x:Name="section7Icon" Glyph="&#xE767;"  IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section7Icon" Foreground="{ThemeResource TextOnAccentFillColorDefault}" Glyph="&#xE767;"  IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="255,130">
-                        <FontIcon x:Name="section3Icon" Glyph="&#xE769;"  IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section3Icon" Glyph="&#xE769;" Foreground="{ThemeResource TextOnAccentFillColorDefault}" IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="55,220">
-                        <FontIcon x:Name="section6Icon" Glyph="&#xEA69;" IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section6Icon" Glyph="&#xEA69;" Foreground="{ThemeResource TextOnAccentFillColorDefault}" IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="140,255">
-                        <FontIcon x:Name="section4Icon" Glyph="" IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section4Icon" Glyph="" Foreground="{ThemeResource TextOnAccentFillColorDefault}" IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="225,220">
-                        <FontIcon x:Name="section5Icon" Glyph="" IsHitTestVisible="False"></FontIcon>
+                        <FontIcon x:Name="section5Icon" Glyph=""  Foreground="{ThemeResource TextOnAccentFillColorDefault}" IsHitTestVisible="False"></FontIcon>
                     </StackPanel>
                     <StackPanel Canvas.ZIndex="1" >
-                        <FontIcon x:Name="section1Icon" Glyph="&#xE768;" Margin="140,30,0,0" ></FontIcon>
+                        <FontIcon x:Name="section1Icon" Glyph="&#xE768;" Foreground="{ThemeResource TextOnAccentFillColorDefault}" Margin="140,30,0,0" ></FontIcon>
                     </StackPanel>
                 </Canvas>
-                <TextBlock x:Name="applicationName"  Text="" TextAlignment="Center" TextWrapping="Wrap"   Height="20" Width="150"  Canvas.ZIndex="1" Margin="0,0,0,0">
+                <TextBlock x:Name="applicationName" Foreground="{ThemeResource TextOnAccentFillColorDefault}"  Text="" TextAlignment="Center" TextWrapping="Wrap"   Height="20" Width="150"  Canvas.ZIndex="1" Margin="0,0,0,0">
                     <TextBlock.RenderTransform>
                         <CompositeTransform x:Name="applicationNameTransform" CenterX="450" CenterY="180"/>
                     </TextBlock.RenderTransform>
@@ -106,7 +106,7 @@
                 <Path x:Name="menuSection7" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 20,75 L 150,140 Z"/>
                 <Path x:Name="menuSection8" Fill="Black" Stroke="White" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 95,10 L 150,140 Z"/>
 
-                <Path x:Name="hoverSection6" Tapped="hoverSection_Tapped" Tag="menuSection6"  PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 85,285 L 150,140 Z"/>
+                <Path x:Name="hoverSection6"  Tapped="hoverSection_Tapped" Tag="menuSection6"  PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 10,205 A 150,150 0 0,1 85,285 L 150,140 Z"/>
                 <Path x:Name="hoverSection5" Tapped="hoverSection_Tapped" Tag="menuSection5" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 85,285 A 150,150 0 0,1 215,285 L 150,140 Z"/>
                 <Path x:Name="hoverSection4" Tapped="hoverSection_Tapped" Tag="menuSection4" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 215,285 A 150,150 0 0,1 290,200 L 150,140 Z"/>
                 <Path x:Name="hoverSection3" Tapped="hoverSection_Tapped"  Tag="menuSection3" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 290,200 A 150,150 0 0,1 280,75 L 150,140 Z"/>
@@ -175,10 +175,10 @@
 
 
             <Grid HorizontalAlignment="Left"   VerticalAlignment="Center"  Margin="50,30,0,0">
-            <SplitButton   IsTabStop="True"  Background="#191919" x:Name="IconSplitButton" HorizontalAlignment="Left" Flyout="{StaticResource CustomFlyout}" >
+            <SplitButton   IsTabStop="True"  x:Name="IconSplitButton" HorizontalAlignment="Left" Flyout="{StaticResource CustomFlyout}" >
                     <Grid x:Name="SplitButtonGrid" IsTabStop="True" Width="32" Height="32">
                         <Border x:Name="CurrentColor" Background="Transparent"  CornerRadius="4,0,0,4"/>
-                        <FontIcon Glyph="&#xE790;" FontSize="20" x:Name="Icon" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <FontIcon Glyph="&#xE790;" FontSize="20" x:Name="Icon"  HorizontalAlignment="Center" VerticalAlignment="Center"/>
                     </Grid>
                 </SplitButton>
             </Grid>
