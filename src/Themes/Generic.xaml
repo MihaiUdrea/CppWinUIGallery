@@ -1,0 +1,58 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CppWinUIGallery">
+
+    
+
+    <Style TargetType="local:SettingsCardControl" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="local:SettingsCardControl">
+                    <Border HorizontalAlignment="Stretch"
+                            Background="{ThemeResource CardBackgroundFillColorDefault}"
+                            BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                            BorderThickness="1"
+                            CornerRadius="6">
+                        <Grid Height="60" Margin="15, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition x:Name="IconColumn" Width="Auto"/>
+                                <ColumnDefinition x:Name="TextColumn" Width="*"/>
+                                <ColumnDefinition x:Name="ButtonColumn" Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <FontIcon x:Name="Icon" Glyph="{TemplateBinding Icon}" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Grid.Column="0" Margin="0, 0, 0, 0"/>
+                            <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Center">
+                                <TextBlock 
+                                    x:Name="Title"
+                                    Text="{TemplateBinding Title}"
+                                    Style="{StaticResource FlyoutPickerTitleTextBlockStyle}"
+                                    FontSize="15"
+                                    Foreground="{ThemeResource TextFillColorPrimaryBrush}"
+                                    VerticalAlignment="Top"
+                                    Margin="10, 0"/>
+
+                                <TextBlock 
+                                    x:Name="Subtitle"
+                                    Text="{TemplateBinding Subtitle}"
+                                    Style="{StaticResource BaseTextBlockStyle}"
+                                    FontSize="10"
+                                    Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                                    Opacity="60"
+                                    Margin="10, 0"/>
+
+
+                            </StackPanel>
+
+                            <ContentControl
+                                Grid.Column="2"
+                                Content="{TemplateBinding RightSideContent}"
+                                VerticalAlignment="Center"/>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+</ResourceDictionary>

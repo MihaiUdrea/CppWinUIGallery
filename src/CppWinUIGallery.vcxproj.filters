@@ -15,6 +15,9 @@
     <Page Include="ConnectedAnimation.xaml" />
     <Page Include="LottieIcon.xaml" />
     <Page Include="TitleBarPage.xaml" />
+    <Page Include="SettingsPage.xaml" />
+    <Page Include="PVSlider.xaml" />
+    <Page Include="Themes\Generic.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
@@ -28,6 +31,7 @@
     <ClCompile Include="AnimatedLogo.cpp">
       <Filter>AnimatedLogoFolder</Filter>
     </ClCompile>
+    <ClCompile Include="SettingsCardControl.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />

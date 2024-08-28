@@ -151,8 +151,17 @@
       <DependentUpon>SurfaceDial.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="SettingsCardControl.h">
+      <DependentUpon>SettingsCardControl.cpp</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
+    <ClInclude Include="SettingsPage.xaml.h">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="TitleBarPage.xaml.h">
       <DependentUpon>TitleBarPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
       <SubType>Code</SubType>
     </ClInclude>
     <ClInclude Include="PVSlider.xaml.h">
@@ -194,6 +203,10 @@
     <Page Include="SurfaceDial.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="SettingsPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Themes\Generic.xaml" />
     <Page Include="TitleBarPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -250,6 +263,12 @@
     </ClCompile>
     <ClCompile Include="SurfaceDial.xaml.cpp">
       <DependentUpon>SurfaceDial.xaml</DependentUpon>
+    </ClCompile>
+    <ClCompile Include="SettingsCardControl.cpp">
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="SettingsPage.xaml.cpp">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="TitleBarPage.xaml.cpp">
@@ -305,6 +324,14 @@
     </Midl>
     <Midl Include="SurfaceDial.idl">
       <DependentUpon>SurfaceDial.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="SettingsCardControl.idl">
+      <DependentUpon>SettingsCardControl.cpp</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="SettingsPage.idl">
+      <DependentUpon>SettingsPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="TitleBarPage.idl">

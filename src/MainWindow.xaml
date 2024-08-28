@@ -49,7 +49,6 @@
             <Button x:Name="TitleBar_BackButton"
                     Click="TitleBar_BackButton_Click"
                     Style="{StaticResource NavigationBackButtonNormalStyle}"
-                    Foreground="{StaticResource BackButtonDisabledForegroundThemeBrush}"
                     HorizontalContentAlignment="Center"
                     VerticalAlignment="Center"
                     IsEnabled="False"/>
@@ -134,8 +133,10 @@
 
 
                     </NavigationViewItem.MenuItems>
-                </NavigationViewItem>    
-            
+
+                </NavigationViewItem>
+
+                
                 <!--<NavigationViewItem Content="Collections" Icon="Keyboard" ToolTipService.ToolTip="Design guidance"-->
 
 

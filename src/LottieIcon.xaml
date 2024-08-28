@@ -64,10 +64,10 @@
         
         <StackPanel Orientation="Horizontal"  VerticalAlignment="Top" HorizontalAlignment="Left" >
             <TextBlock Text="Custom Animated Icon" HorizontalAlignment="Left" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50,40"/>
-            <TextBlock HorizontalAlignment="Left" Margin="-465,105" Text="In this example, the custom Animated Icon's implementation is a bit different from the usual one provided by the WinUI 3 Gallery. The concept of Lottie Files will be explained, as well as the process of using this type of file, adjusting its time intervals, and then converting it to actual code." Foreground="LightGray" Style="{StaticResource BaseTextBlockStyle}"/>
+                <TextBlock HorizontalAlignment="Left" Margin="-465,105" Text="In this example, the custom Animated Icon's implementation is a bit different from the usual one provided by the WinUI 3 Gallery. The concept of Lottie Files will be explained, as well as the process of using this type of file, adjusting its time intervals, and then converting it to actual code." Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource BaseTextBlockStyle}"/>
         </StackPanel>
         <StackPanel Margin="50,135">
-            <TextBlock Text="How it works:" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"/>
+                <TextBlock Text="How it works:" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
 
                 <ToggleButton Loaded="LottieButton_Loaded"  Width="75" IsEnabled="True" x:Name="LottieButton" Margin="0,10,0,10"  Click="LottieButton_Click"  PointerExited="Button_PointerExited" PointerEntered="Button_PointerEntered">
                    
@@ -85,23 +85,23 @@
                 <!--<Button Click="LottieButton_Click"    x:Name="SwitchAnimation" Content="Switch"/>-->
 
                 <TextBlock Margin="110,-85" Style="{StaticResource TitleTextBlockStyle}" Text="States:"/>
-                <TextBlock Margin="120,-76" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 1: Hovering in"/>
-                <TextBlock Margin="120,-39" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 2: Clicking the button - Toggle-On"/>
-                <TextBlock Margin="120,-0" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="                       • State 3: Clicking the button - Toggle-Off / Hovering out if button wasn't clicked"/>
+                <TextBlock Margin="120,-76" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="                       • State 1: Hovering in"/>
+                <TextBlock Margin="120,-39" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="                       • State 2: Clicking the button - Toggle-On"/>
+                <TextBlock Margin="120,-0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="                       • State 3: Clicking the button - Toggle-Off / Hovering out if button wasn't clicked"/>
         <TextBlock Margin="0,15" Style="{StaticResource TitleTextBlockStyle}"  Text="Lottie Files - What are they?"/>
-        <TextBlock Margin="0,-10" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"  Text="WinUI 3 uses a certain file format for the implementation of its Animated Icon feature - Lottie files. Created for vector graphics animation, they are based on JSON files.However, since they use keys of 1-2 characters in length, they are not readable by humans. Intended as a lighter alternative to GIFs and APNG files, they allow for the inclusion of interactive elements."/>
-        <TextBlock Margin="0,20" Style="{StaticResource BaseTextBlockStyle}" Text="The content of these files, specifically, the animations can be created in Adobe After Effects, as advised on the Microsoft AnimatedIcon docmentation page. They can be also created on online platforms like LottieFiles or LottieLab." Foreground="LightGray"/>
+                <TextBlock Margin="0,-10" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"  Text="WinUI 3 uses a certain file format for the implementation of its Animated Icon feature - Lottie files. Created for vector graphics animation, they are based on JSON files.However, since they use keys of 1-2 characters in length, they are not readable by humans. Intended as a lighter alternative to GIFs and APNG files, they allow for the inclusion of interactive elements."/>
+                <TextBlock Margin="0,20" Style="{StaticResource BaseTextBlockStyle}" Text="The content of these files, specifically, the animations can be created in Adobe After Effects, as advised on the Microsoft AnimatedIcon docmentation page. They can be also created on online platforms like LottieFiles or LottieLab." Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
         <TextBlock Margin="0,30" Style="{StaticResource TitleTextBlockStyle}"  Text="Proccessing the files"/>
-        <TextBlock Margin="0,-20" Style="{StaticResource BaseTextBlockStyle}" Foreground="White"  Text="Converting the files into a C++ format calls for the use LottieGen (also referenced as CodeGen). This tool can be installed in a command-line interface, from NuGet:"/>
+        <TextBlock Margin="0,-20" Style="{StaticResource BaseTextBlockStyle}"  Text="Converting the files into a C++ format calls for the use LottieGen (also referenced as CodeGen). This tool can be installed in a command-line interface, from NuGet:"/>
         <TextBox Text="dotnet tool install -g LottieGen" IsReadOnly="True" Margin="0,10" />
-        <TextBlock Margin="0,15" Style="{StaticResource BaseTextBlockStyle}" Foreground="White"  Text="To generate classes in either C++ or C#: "/>
+        <TextBlock Margin="0,15" Style="{StaticResource BaseTextBlockStyle}"  Text="To generate classes in either C++ or C#: "/>
         <TextBox Text="LottieGen -InputFile AnimatedLogo.json -Language cppwinrt -WinUIVersion 3.0 -NameSpace CppWinUIGallery" IsReadOnly="True" Margin="0,-5" />
-        <TextBlock Margin="0,20" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"  Text="             • It is recommended to provide the Full Path to the JSON file, not just the Relative Path "/>
-                <TextBlock Margin="0,-10" Style="{StaticResource BaseTextBlockStyle}"  HorizontalAlignment="Left"  Foreground="LightGray" Text="             • The folder in which the files are created can be chosen by using -OutputFolder and specifying the path to it"/>
+                <TextBlock Margin="0,20" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"  Text="             • It is recommended to provide the Full Path to the JSON file, not just the Relative Path "/>
+                <TextBlock Margin="0,-10" Style="{StaticResource BaseTextBlockStyle}"  HorizontalAlignment="Left"  Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="             • The folder in which the files are created can be chosen by using -OutputFolder and specifying the path to it"/>
                 <TextBlock Text="The following files will be generated:"  HorizontalAlignment="Left"  Margin="0,30" Style="{StaticResource BaseTextBlockStyle}"/>
-                <TextBlock Text="• CppWinUIGallery.AnimatedLogo.cpp"  HorizontalAlignment="Left" Margin="250,-48" Width="300" Foreground="LightGray" Style="{StaticResource BaseTextBlockStyle}"/>
-                <TextBlock Text="• CppWinUIGallery.AnimatedLogo.h"  HorizontalAlignment="Left"  Margin="250,-15" Foreground="LightGray" Style="{StaticResource BaseTextBlockStyle}"/>
-                <TextBlock Text="• CppWinUIGallery.AnimatedLogo.idl"   HorizontalAlignment="Left"  Margin="250,20" Foreground="LightGray" Style="{StaticResource BaseTextBlockStyle}"/>
+                <TextBlock Text="• CppWinUIGallery.AnimatedLogo.cpp"  HorizontalAlignment="Left" Margin="250,-48" Width="300" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource BaseTextBlockStyle}"/>
+                <TextBlock Text="• CppWinUIGallery.AnimatedLogo.h"  HorizontalAlignment="Left"  Margin="250,-15" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource BaseTextBlockStyle}"/>
+                <TextBlock Text="• CppWinUIGallery.AnimatedLogo.idl"   HorizontalAlignment="Left"  Margin="250,20" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource BaseTextBlockStyle}"/>
                 <InfoBar
                 IsOpen="True"
                 IsIconVisible="True"
@@ -110,7 +110,7 @@
                 Margin="700,-110,0,0"
                 HorizontalAlignment="Left"
                 Message="Before adding these files to the project, remove the &quot;CppWinUIGallery &quot; namespace from the name of each file. (e.g. AnimatedLogo.cpp). Traces of this namespace should be also deleted in the .cpp file itself. (e.g. #include &quot;CppWinUIGallery.AnimatedLogo.h&quot;)" />
-                <TextBlock Style="{StaticResource BaseTextBlockStyle}"  HorizontalAlignment="Left"  Text="The XAML for this implementation is based on a ToggleButton mechanism:" Foreground="LightGray"></TextBlock>
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}"  HorizontalAlignment="Left"  Text="The XAML for this implementation is based on a ToggleButton mechanism:" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
                 
             </StackPanel>
             <StackPanel Margin="50,940,0,0">
@@ -132,20 +132,20 @@ Visibility="Collapsed" />
             </StackPanel>
             <StackPanel Margin="50,1190">
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Before converting the Lottie file into C++ code, we have to take note of markers - These are important in mapping the animations to their corresponding time intervals"></TextBlock>
-                <TextBlock Margin="0,10,0,5" Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray" Text="For our implementation we are going to use:"></TextBlock>
-                <TextBlock Margin="60,5" Foreground="LightGray" Text="• Normal" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
-                <TextBlock Margin="60,5" Foreground="LightGray" Text="• PointerOver" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
-                <TextBlock Margin="60,5" Foreground="LightGray" Text="• Pressed" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
-                <TextBlock Margin="0,5" Foreground="LightGray" Style="{StaticResource BaseTextBlockStyle}" Text="In the provided documentation for the AnimatedIcon more information is presented on this matter. We can insert &quot;To&quot; and in between states (e.g.NormalToPressed) and _Start/_End (e.g.NormalToPressed_Start) , however, omitting at least one of these two markers (if choosing to use them) will result in a hard cut of the animation (the transitions won't take place). "></TextBlock>
-                <TextBlock Margin="0,5" Foreground="LightGray" Style="{StaticResource BaseTextBlockStyle}" Text="After converting the file , these markers will be automatically placed in the C++ source code, thus defining the time intervals used in the mapping." ></TextBlock>
+                <TextBlock Margin="0,10,0,5" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="For our implementation we are going to use:"></TextBlock>
+                <TextBlock Margin="60,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="• Normal" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                <TextBlock Margin="60,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="• PointerOver" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                <TextBlock Margin="60,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="• Pressed" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
+                <TextBlock Margin="0,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="In the provided documentation for the AnimatedIcon more information is presented on this matter. We can insert &quot;To&quot; and in between states (e.g.NormalToPressed) and _Start/_End (e.g.NormalToPressed_Start) , however, omitting at least one of these two markers (if choosing to use them) will result in a hard cut of the animation (the transitions won't take place). "></TextBlock>
+                <TextBlock Margin="0,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="After converting the file , these markers will be automatically placed in the C++ source code, thus defining the time intervals used in the mapping." ></TextBlock>
             
             </StackPanel>
             <StackPanel Margin="50,1420">
                 <TextBlock  Style="{StaticResource BaseTextBlockStyle}" Text="Regarding the C++ source code, mapping the animation time intervals according to the user's interactions can be done using four methods: "></TextBlock>
-                <TextBlock Margin="60,10,0,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• InitializeIconState - Used to start the animation from the very first state - Normal." ></TextBlock>
-                <TextBlock Margin="60,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• Button_PointerEntered - Used to detect when the user hovers in. It also checks if the button has already been toggled, so it doesn't accidentally play the hover in animation again in case the button has been clicked." ></TextBlock>
-                <TextBlock Margin="60,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• Button_PointerExited - Used to detect when the user hovers out." ></TextBlock>
-                <TextBlock Margin="60,5" Foreground="LightGray"  Style="{StaticResource BaseTextBlockStyle}" Text="• LottieButton_Click - Used to identify whether the button has been pressed or not." ></TextBlock>
+                <TextBlock Margin="60,10,0,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}"  Style="{StaticResource BaseTextBlockStyle}" Text="• InitializeIconState - Used to start the animation from the very first state - Normal." ></TextBlock>
+                <TextBlock Margin="60,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}"  Style="{StaticResource BaseTextBlockStyle}" Text="• Button_PointerEntered - Used to detect when the user hovers in. It also checks if the button has already been toggled, so it doesn't accidentally play the hover in animation again in case the button has been clicked." ></TextBlock>
+                <TextBlock Margin="60,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}"  Style="{StaticResource BaseTextBlockStyle}" Text="• Button_PointerExited - Used to detect when the user hovers out." ></TextBlock>
+                <TextBlock Margin="60,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}"  Style="{StaticResource BaseTextBlockStyle}" Text="• LottieButton_Click - Used to identify whether the button has been pressed or not." ></TextBlock>
                 <TextBlock  Style="{StaticResource BaseTextBlockStyle}" Text="The C++ source code is provided below:"></TextBlock>
                 <StackPanel Margin="0,0,0,0">
                     <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,20,0,10" />

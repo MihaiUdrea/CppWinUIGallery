@@ -9,8 +9,8 @@
 
     <Page.Resources>
         <Style x:Key="Switch" TargetType="ToggleSwitch">
-    <Setter Property="Background" Value="{StaticResource ToggleSwitchKnobFillOff}" />
-    <Setter Property="Foreground" Value="{StaticResource ToggleSwitchKnobFillOff}" />
+    <Setter Property="Background" Value="{ThemeResource ToggleSwitchKnobFillOff}" />
+    <Setter Property="Foreground" Value="{ThemeResource ToggleSwitchKnobFillOff}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ToggleSwitch" x:Name="ToggleSwitchTemplate">
@@ -53,7 +53,7 @@
         </StackPanel>
         <StackPanel x:Name="SliderPanel" Margin="45,120" Orientation="Horizontal" CornerRadius="8" Height="45" BorderBrush="#30292f" BorderThickness="1.5" HorizontalAlignment="Left" VerticalAlignment="Top" >
             <Grid>
-                <Rectangle Fill="#211a20" Height="45" Width="90"/>
+                <Rectangle Fill="{ThemeResource AccentControlElevationBorderBrush}" Height="45" Width="90"/>
                 <StackPanel VerticalAlignment="Center" Margin="11"  HorizontalAlignment="Left">
                     <SymbolIcon x:Name="CameraIcon" Symbol="Camera"  IsHitTestVisible="True" Foreground="#00ff00"/>
                 </StackPanel>
@@ -65,72 +65,73 @@
 
         <StackPanel Margin="46,123,0,0">
             <Grid>
-            <ToggleSwitch Width="90"  Background="Transparent" x:Name="Switch" Style="{StaticResource Switch}" OffContent="" PointerPressed="Switch_PointerPressed"/>
+            <ToggleSwitch Width="90"  Background="{ThemeResource ControlAltFillColorTransparent}" x:Name="Switch" Style="{ThemeResource Switch}" OffContent="" PointerPressed="Switch_PointerPressed"/>
             </Grid>
         </StackPanel>
         
            
             <StackPanel Margin="50,185">
                 <TextBlock  Style="{StaticResource BaseTextBlockStyle}"  >
-                    <Run Foreground="LightGray" Text="Unlike the ToggleSwitch example (the one built to look like the &quot;Subscription&quot;/&quot;Perpetual&quot; switch from the Advanced Installer purchase page), the Photo/Video Slider uses the concept of "></Run>
-                    <Run Foreground="LightGreen" Text="XAML Styles"></Run>
-                    <Run Foreground="LightGray" Text="."></Run>
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Unlike the ToggleSwitch example (the one built to look like the &quot;Subscription&quot;/&quot;Perpetual&quot; switch from the Advanced Installer purchase page), the Photo/Video Slider uses the concept of "></Run>
+                    <Run Foreground="{ThemeResource SystemFillColorSuccessBrush}" Text="XAML Styles"></Run>
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="."></Run>
                 </TextBlock>
                 <TextBlock Margin="0,10" Style="{StaticResource BaseTextBlockStyle}" >
-                    <Run Foreground="LightGray" Text="In the Style definition, you will need:"></Run>
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="In the Style definition, you will need:"></Run>
                 </TextBlock>
                 <TextBlock  Margin="50,5,0,5" Style="{StaticResource BaseTextBlockStyle}">
-                    <Run Text="- a TargetType attribute" Foreground="LightBlue"></Run>
+                    <Run Text="- a TargetType attribute" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
                     <Run Text="- a string that specifies a FrameworkElement type to apply the style to"></Run>
                 </TextBlock>
                 <TextBox  Text=" &lt;ControlTemplate TargetType=&quot;ToggleSwitch&quot; x:Name=&quot;ToggleSwitchTemplate&quot;>" IsReadOnly="True">
                     
                 </TextBox>
                 <TextBlock  Margin="50,10" Style="{StaticResource BaseTextBlockStyle}">
-                    <Run Foreground="LightBlue" Text="- a collection of one or more Setter elements"></Run>
-                    <Run Foreground="White" Text="- each Setter element requires a "></Run>
-                    <Run Foreground="LightGreen" Text="Property "></Run>
-                    <Run Foreground="White" Text="and a "></Run>
-                    <Run Foreground="LightGreen" Text="Value." ></Run>
-                    <Run Foreground="White" Text=" These property settings indicate what control property the setting applies to, and the value to set for that property." ></Run>
+                    <Run Foreground="{ThemeResource SystemColorHotlightColor}" Text="- a collection of one or more Setter elements"></Run>
+                    <Run Text="- each Setter element requires a "></Run>
+                    <Run Foreground="{ThemeResource SystemFillColorSuccessBrush}" Text="Property "></Run>
+                    <Run Text="and a "></Run>
+                    <Run Foreground="{ThemeResource SystemFillColorSuccessBrush}" Text="Value." ></Run>
+                    <Run Text=" These property settings indicate what control property the setting applies to, and the value to set for that property." ></Run>
                 </TextBlock>
                 <TextBox Text=" &lt;Setter Property=&quot;Foreground=&quot; Value==&quot;{StaticResource ToggleSwitchKnobFillOff}=&quot;/>" IsReadOnly="True"></TextBox>
                 <TextBlock  Style="{StaticResource BaseTextBlockStyle}" Margin="0,10">
-                    <Run Foreground="LightGray" Text="A"></Run>
-                    <Run Foreground="LightGreen" Text="ControlTemplate"></Run>
-                    <Run Foreground="LightGray" Text=" defines the visuals of a control. There are really only two properties you use when defining a ControlTemplate: the"></Run>
-                    <Run Foreground="LightGreen" Text="TargetType,"></Run>
-                    <Run Foreground="LightGray" Text="and the implicit XAML content. ControlTemplate inherits "></Run>
-                    <Run Foreground="LightGreen" Text="the implicit XAML content behavior"></Run>
-                    <Run Foreground="LightGray" Text="from its FrameworkTemplate parent."></Run>
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="A"></Run>
+                    <Run Foreground="{ThemeResource SystemFillColorSuccessBrush}" Text="ControlTemplate"></Run>
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text=" defines the visuals of a control. There are really only two properties you use when defining a ControlTemplate: the"></Run>
+                    <Run Foreground="{ThemeResource SystemFillColorSuccessBrush}" Text="TargetType,"></Run>
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="and the implicit XAML content. ControlTemplate inherits "></Run>
+                    <Run Foreground="{ThemeResource SystemFillColorSuccessBrush}" Text="the implicit XAML content behavior"></Run>
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="from its FrameworkTemplate parent."></Run>
                 </TextBlock>
                 <TextBox Text="&lt;ControlTemplate TargetType=&quot;ToggleSwitch&quot; x:Name=&quot;ToggleSwitchTemplate&quot;>" IsReadOnly="True"></TextBox>
                 <TextBlock Margin="0,10" Style="{StaticResource BaseTextBlockStyle}">
-                    <Run Text="For this implementation, adjustments to the" Foreground="LightGray"></Run>
-                    <Run Foreground="LightBlue" Text="Thumb"></Run>
-                    <Run Foreground="LightGray" Text="element of our ToggleSwitch will be needed. As for the panel behind it, a StackPanel will be used as the slider background for the camera and video icons."></Run>
+                    <Run Text="For this implementation, adjustments to the" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+                    <Run Foreground="{ThemeResource SystemColorHotlightColor}" Text="Thumb"></Run>
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="element of our ToggleSwitch will be needed. As for the panel behind it, a StackPanel will be used as the slider background for the camera and video icons."></Run>
                 </TextBlock>
-                <TextBlock Margin="0,0" Text="The movement and behavior of the Thumb element are both controlled from the code-behind.Drag controls are added; left and right bounds are set so the Thumb doesn't go past the StackPanel."  Style="{StaticResource BaseTextBlockStyle}" Foreground="LightGray"></TextBlock>
+                <TextBlock Margin="0,0" Text="The movement and behavior of the Thumb element are both controlled from the code-behind.Drag controls are added; left and right bounds are set so the Thumb doesn't go past the StackPanel."  Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="0,15,0,5" Text="Methods for controlling the Thumb element:"></TextBlock>
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,0" >
-                    <Run Text="- " Foreground="LightGray"></Run>
-                    <Run Text="OnThumbDragStarted" Foreground="LightBlue"></Run>
-                    <Run Text="- Detects if dragging of the Thumb has started and creates its TranslateTransform" Foreground="LightGray"></Run>
+                    <Run Text="- " Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+                    <Run Text="OnThumbDragStarted" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
+                    <Run Text="- Detects if dragging of the Thumb has started and creates its TranslateTransform" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
                 </TextBlock>
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,10,0,0" >
-    <Run Text="- " Foreground="LightGray"></Run>
-    <Run Text="OnThumbDragDelta" Foreground="LightBlue"></Run>
-    <Run Text="- If the thumb is being dragged, it computes its new position, constraining the movement between the two boundaries." Foreground="LightGray"></Run>
+    <Run Text="- " Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+    <Run Text="OnThumbDragDelta" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
+    <Run Text="- If the thumb is being dragged, it computes its new position, constraining the movement between the two boundaries." Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
                 </TextBlock>
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,10" >
-    <Run Text="- " Foreground="LightGray"></Run>
-    <Run Text="OnThumbDragCompleted" Foreground="LightBlue"></Run>
-    <Run Text="- After the drag has been completed, it snaps the thumb to the nearest bound. It also updates the icon's Active/Inactive states." Foreground="LightGray"></Run>
+    <Run Text="- " Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+    <Run Text="OnThumbDragCompleted" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
+    <Run Text="- After the drag has been completed, it snaps the thumb to the nearest bound. It also updates the icon's Active/Inactive states." Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
                 </TextBlock>
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,0" >
-<Run Text="- " Foreground="LightGray"></Run>
-<Run Text="Switch_PointerPressed" Foreground="LightBlue"></Run>
-<Run Text="- If the user chooses to click on the icons instead of dragging the Thumb, it snaps the Thumb to the chosen bound, while also updating the icon's Active/Inactive states." Foreground="LightGray"></Run>
+
+<Run Text="- " Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
+<Run Text="Switch_PointerPressed" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
+<Run Text="- If the users chooses to click on the icons instead of dragging the Thumb, it snaps the Thumb to the chosen bound, while also updating the icon's Active/Inactive states." Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
                 </TextBlock>
                 <TextBlock Margin="0,15" Style="{StaticResource BaseTextBlockStyle}" Text="The XAML for this implementation is provided below:"></TextBlock>
             </StackPanel>

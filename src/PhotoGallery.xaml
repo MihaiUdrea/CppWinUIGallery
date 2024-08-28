@@ -29,24 +29,24 @@ mc:Ignorable="d">
                 <ListView.Items>
 
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
-                        <BitmapIcon UriSource="ms-appx:///Assets/awr_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
-                        <TextBlock TextWrapping="WrapWholeWords" Text="Advanced Webranking - Advanced Web Ranking gives individuals and businesses with websites the ability to discover and monitor their positioning in search engines such as Google, Yahoo and Bing for various keywords." VerticalAlignment="Center"/>
+                        <BitmapIcon  Foreground="{ThemeResource TextFillColorSecondaryBrush}" UriSource="ms-appx:///Assets/awr_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
+                        <TextBlock  Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="WrapWholeWords" Text="Advanced Webranking - Advanced Web Ranking gives individuals and businesses with websites the ability to discover and monitor their positioning in search engines such as Google, Yahoo and Bing for various keywords." VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Stretch" Margin="5">
-                        <BitmapIcon UriSource="ms-appx:///Assets/ai_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
-                        <TextBlock TextWrapping="WrapWholeWords" Text="Advanced Installer - Advanced Installer is a Windows Installer package development tool. It has the ability to create (or convert) installers, patches, and other types of Windows Installer modules for delivery online or in enterprise environments." VerticalAlignment="Center"/>
+                        <BitmapIcon  Foreground="{ThemeResource TextFillColorSecondaryBrush}" UriSource="ms-appx:///Assets/ai_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
+                        <TextBlock  Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="WrapWholeWords" Text="Advanced Installer - Advanced Installer is a Windows Installer package development tool. It has the ability to create (or convert) installers, patches, and other types of Windows Installer modules for delivery online or in enterprise environments." VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
-                        <BitmapIcon UriSource="ms-appx:///Assets/clang_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
-                        <TextBlock TextWrapping="WrapWholeWords" Text="Clang Power Tools - Clang Power Tools is an extension for Visual Studio that helps C++ programmers upgrade their code to the C++11/14/17 standard using the LLVM static analyzer and CppCoreGuidelines." VerticalAlignment="Center"/>
+                        <BitmapIcon Foreground="{ThemeResource TextFillColorSecondaryBrush}" UriSource="ms-appx:///Assets/clang_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
+                        <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" TextWrapping="WrapWholeWords" Text="Clang Power Tools - Clang Power Tools is an extension for Visual Studio that helps C++ programmers upgrade their code to the C++11/14/17 standard using the LLVM static analyzer and CppCoreGuidelines." VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
-                        <BitmapIcon UriSource="ms-appx:///Assets/wattspeed_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
-                        <TextBlock Text="wattspeed - Wattspeed helps programmers as well as marketing teams monitor and evaluate web page performance over time." VerticalAlignment="Center"/>
+                        <BitmapIcon Foreground="{ThemeResource TextFillColorSecondaryBrush}" UriSource="ms-appx:///Assets/wattspeed_logo.png" Width="150" Height="100" Margin="0,0,10,0"/>
+                        <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="wattspeed - Wattspeed helps programmers as well as marketing teams monitor and evaluate web page performance over time." VerticalAlignment="Center"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="5">
-                        <BitmapIcon UriSource="ms-appx:///Assets/bytes_logo.png" Width="150" Height="60" Margin="0,0,10,0"/>
-                        <TextBlock Text="bytesroute - BytesRoute enables users to make interactive tutorials for any web page without writing a line of code. " VerticalAlignment="Center"/>
+                        <BitmapIcon Foreground="{ThemeResource TextFillColorSecondaryBrush}" UriSource="ms-appx:///Assets/bytes_logo.png" Width="150" Height="60" Margin="0,0,10,0"/>
+                        <TextBlock Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="bytesroute - BytesRoute enables users to make interactive tutorials for any web page without writing a line of code. " VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListView.Items>
             </ListView>
