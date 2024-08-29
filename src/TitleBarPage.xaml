@@ -112,6 +112,15 @@
                 VerticalAlignment="Top"
                 Padding="0, 10"/>
 
+            <InfoBar
+                Content="Note: When changing the app theme make sure to manually set the system capture buttons foreground, hover foreground and hover background properties as they don't do it automatically"
+                IsOpen="True"
+                IsIconVisible="True"
+                Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                IsClosable="False"
+                Width="Auto"
+                Margin="50, 20"/>
+
             <TextBlock Text="-  Set the custom draggable and non-draggable regions"
                 Style="{StaticResource BaseTextBlockStyle}" 
                 Margin="50,0,300,0"
@@ -120,6 +129,8 @@
                 Height="Auto"
                 VerticalAlignment="Top"
                 Padding="0, 10"/>
+
+           
 
             <!-- Container for the StackPanel with C++ Code -->
             <StackPanel Margin="45,10,45,0">
@@ -143,7 +154,7 @@
                 <InfoBar
                     IsOpen="True"
                     IsIconVisible="True"
-                    Foreground="OrangeRed"
+                    Foreground="{ThemeResource SystemFillColorCriticalBrush}"
                     IsClosable="False"
                     Width="Auto"
                     Margin="0, 30, 0, 50"
@@ -152,7 +163,7 @@
                 <InfoBar
                     IsOpen="True"
                     IsIconVisible="True"
-                    Foreground="OrangeRed"
+                    Foreground="{ThemeResource SystemFillColorCriticalBrush}"
                     IsClosable="False"
                     Width="Auto"
                     Margin="0, 30, 0, 50"

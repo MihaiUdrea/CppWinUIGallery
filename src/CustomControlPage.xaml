@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="CppWinUIGallery.CustomControlPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CppWinUIGallery"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Disabled" 
+        VerticalScrollBarVisibility="Auto">
+
+
+        <StackPanel Orientation="Vertical">
+
+            <TextBlock Text="Build a custom control in WinUI 3 using C++" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50, 40, 0, 10" Height="Auto" VerticalAlignment="Top"/>
+            <TextBlock 
+                Text="For this example let's see how to create a custom settings card control for our settings page."
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock 
+                Text="Add a templated control to your app:"
+                Style="{StaticResource SubtitleTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock 
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10">
+                <Run   Text="To add a templated control, click the Project menu in the toolbar or right-click your project in"/>
+                <Run FontWeight="Bold" Text="Solution Explorer" />
+                <Run Text="and select"/>
+                <Run FontWeight="Bold" Text="Add New Item."/>
+                <Run Text="Under"/>
+                <Run FontWeight="Bold" Text="Visual C++->WinUI"/>
+                <Run Text="select the"/>
+                <Run FontWeight="Bold" Text="Custom Control (WinUI 3)"/>
+                <Run Text="template."/>
+            </TextBlock>
+
+            <TextBlock 
+                Text="Define the default style of our control:"
+                Style="{StaticResource SubtitleTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock
+                Text="The generic template file is generated when you add the Custom Control (WinUI) to your app. The file is named &quot;Generic.xaml&quot; and is generated in the Themes folder in solution explorer. The folder and file names are required in order for the XAML framework to find the default style for a templated control."
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock
+                Text="This is the file that contains the default styling for our settings card custom control. It contains a border with 4 different predefined UI components:  an icon, a title, a subtitle on the left side and a customizable content control placed on the right side."
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10">
+                <Run Text="We will need to set custom properties in our control in order to bind the content definitions for out UI components."/>
+                <Run FontWeight="Bold" Foreground="{ThemeResource TextFillColorPrimaryBrush}" Text="See Update the custom control c++ files"/>
+            </TextBlock>
+
+            <!-- Container for the StackPanel with XAML Code -->
+            <StackPanel Margin="45,10,45,0">
+                <!-- A Button to show XAML -->
+                <Button x:Name="ShowHideButton" Content="Show Generic.xaml" Click="ShowHideButton_Click" Margin="0,0,0,10" />
+                <!-- A ScrollViewer to enable scrolling -->
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
+                    <!-- A TextBox to display XAML code -->
+                    <TextBox x:Name="SourceCodeTextBox" 
+                     IsReadOnly="True" 
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     VerticalAlignment="Stretch"
+                     HorizontalAlignment="Stretch"
+                     MinWidth="300"
+                     Visibility="Collapsed" />
+                </ScrollViewer>
+            </StackPanel>
+
+            <TextBlock 
+                Text="Update the custom control c++ files"
+                Style="{StaticResource SubtitleTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock
+                Text="In the c++ files we will define custom properties implemented for our control"
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock
+                Text="For every property we need to define a new Dependency Property"
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <InfoBar
+                Content="Note: Use the Dependency property found in Microsoft library instead of the Windows library shown into the documentation, as the object found in the old Windows library is no longer supported for WinUI 3."
+                IsOpen="True"
+                IsIconVisible="True"
+                Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                IsClosable="False"
+                Width="Auto"
+                Margin="50, 20"/>
+
+
+            <TextBlock
+                Text="Define standard setters and with the property name"
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock
+                Text="Check DependencyProperty::Register documentation for more information about method's parameters that need to be set accordingly to the property's needs"
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <TextBlock
+                Text="Bellow is the full definition of all the settings card control's properties."
+                Style="{StaticResource BaseTextBlockStyle}" 
+                Margin="50,0,300,0"
+                Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                Opacity="60"
+                Height="Auto"
+                VerticalAlignment="Top"
+                Padding="0, 10"/>
+
+            <StackPanel x:Name="ControlCodeStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="50">
+                <!-- Container for the StackPanel with Cpp Code -->
+                <StackPanel Margin="45,10,45,0">
+                    <!-- A Button to show Cpp -->
+                    <Button x:Name="ShowCppButton" Content="Show .cpp" Click="ShowCppButton_Click" Margin="0,0,0,10" />
+                    <!-- A ScrollViewer to enable scrolling -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300" Margin="0,0,0,50" Width="400">
+                        <!-- A TextBox to display Cpp code -->
+                        <TextBox x:Name="SourceCodeTextBoxCpp" 
+                            IsReadOnly="True" 
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch"
+                            MinWidth="300"
+                            Visibility="Collapsed"
+                            />
+                    </ScrollViewer>
+                </StackPanel>
+
+                <!-- Container for the StackPanel with idl Code -->
+                <StackPanel Margin="45,10,45,0">
+                    <!-- A Button to show idl -->
+                    <Button x:Name="ShowIdlButton" Content="Show .idl" Click="ShowIdlButton_Click" Margin="0,0,0,10" />
+                    <!-- A ScrollViewer to enable scrolling -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300" Margin="0,0,0,50" Width="400">
+                        <!-- A TextBox to display idl code -->
+                        <TextBox x:Name="SourceCodeTextBoxIdl" 
+                                    IsReadOnly="True" 
+                                    AcceptsReturn="True"
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    MinWidth="300"
+                                    Visibility="Collapsed" 
+                                    />
+                    </ScrollViewer>
+                </StackPanel>
+
+                <!-- Container for the StackPanel with header Code -->
+                <StackPanel Margin="45,10,45,0">
+                    <!-- A Button to show header -->
+                    <Button x:Name="ShowHeaderButton" Content="Show .h" Click="ShowHeaderButton_Click" Margin="0,0,0,10" />
+                    <!-- A ScrollViewer to enable scrolling -->
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300" Margin="0,0,0,50" HorizontalScrollMode="Enabled" Width="400">
+                        <!-- A TextBox to display header code -->
+                        <TextBox x:Name="SourceCodeTextBoxHeader" 
+                                    IsReadOnly="True" 
+                                    AcceptsReturn="True"
+                                    TextWrapping="Wrap"
+                                    VerticalAlignment="Stretch"
+                                    HorizontalAlignment="Stretch"
+                                    MinWidth="300"
+                                    Visibility="Collapsed"
+                                    Width="Auto"
+                                    />
+                    </ScrollViewer>
+                </StackPanel>
+
+
+
+            </StackPanel>
+
+
+        </StackPanel>
+
+    </ScrollViewer>
+</Page>
