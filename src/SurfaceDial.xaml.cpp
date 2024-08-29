@@ -478,8 +478,10 @@ namespace winrt::CppWinUIGallery::implementation
         introText14().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
         introText15().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
         introText16().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText17().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText18().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
+        introText19().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Collapsed);
 
-  
     }
 
 
@@ -501,6 +503,9 @@ namespace winrt::CppWinUIGallery::implementation
         introText14().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
         introText15().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
         introText16().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText17().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText18().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
+        introText19().Visibility(winrt::Microsoft::UI::Xaml::Visibility::Visible);
 
     }
 
@@ -611,7 +616,7 @@ namespace winrt::CppWinUIGallery::implementation
             button.Content(box_value(L"Show C++"));
         }
     }
-    
+
 }
 
 
