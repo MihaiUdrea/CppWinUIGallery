@@ -263,12 +263,12 @@ namespace winrt::CppWinUIGallery::implementation
 })";
             textBox.Text(xamlSourceCode);
             textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide Generic.xaml"));
+            button.Content(box_value(L"Hide .cpp"));
         }
         else
         {
             textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show Generic.xaml"));
+            button.Content(box_value(L"Show .cpp"));
         }
     }
 
@@ -316,12 +316,12 @@ namespace winrt::CppWinUIGallery::implementation
 )";
             textBox.Text(xamlSourceCode);
             textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide Generic.xaml"));
+            button.Content(box_value(L"Hide .idl"));
         }
         else
         {
             textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show Generic.xaml"));
+            button.Content(box_value(L"Show .idl"));
         }
     }
 
@@ -401,12 +401,12 @@ namespace winrt::CppWinUIGallery::factory_implementation
 })";
             textBox.Text(xamlSourceCode);
             textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide Generic.xaml"));
+            button.Content(box_value(L"Hide .h"));
         }
         else
         {
             textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show Generic.xaml"));
+            button.Content(box_value(L"Show .h"));
         }
     }
 }

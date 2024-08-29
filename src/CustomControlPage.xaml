@@ -187,7 +187,7 @@
                     <!-- A Button to show Cpp -->
                     <Button x:Name="ShowCppButton" Content="Show .cpp" Click="ShowCppButton_Click" Margin="0,0,0,10" />
                     <!-- A ScrollViewer to enable scrolling -->
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300" Margin="0,0,0,10" Width="400">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300" Margin="0,0,0,50" Width="400">
                         <!-- A TextBox to display Cpp code -->
                         <TextBox x:Name="SourceCodeTextBoxCpp" 
                             IsReadOnly="True" 
@@ -206,7 +206,7 @@
                     <!-- A Button to show idl -->
                     <Button x:Name="ShowIdlButton" Content="Show .idl" Click="ShowIdlButton_Click" Margin="0,0,0,10" />
                     <!-- A ScrollViewer to enable scrolling -->
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300" Margin="0,0,0,10" Width="400">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300" Margin="0,0,0,50" Width="400">
                         <!-- A TextBox to display idl code -->
                         <TextBox x:Name="SourceCodeTextBoxIdl" 
                                     IsReadOnly="True" 
