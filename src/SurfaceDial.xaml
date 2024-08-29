@@ -123,25 +123,6 @@
                 <Path x:Name="hoverSection7" Tapped="hoverSection_Tapped" Tag="menuSection7" PointerEntered="hoverSection_PointerEntered" PointerExited="hoverSection_PointerExited" Fill="Black" Stroke="Black" StrokeThickness="0" Data="M 150,140 L 20,75 A 150,150 0 0,1 10,205 L 150,140 Z"/>
 
                 <Grid>
-                 
-                    <!--<StackPanel VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="190,-325">
-    <FontIcon Glyph="&#xE768;"  ></FontIcon>
-</StackPanel>
-<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="265,-300">
-    <FontIcon Glyph="&#xE893;" ></FontIcon>
-</StackPanel>
-<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="115,-300">
-    <FontIcon Glyph="&#xE892;"></FontIcon>
-</StackPanel>
-<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="75,-220">
-    <FontIcon Glyph="&#xE767;"></FontIcon>
-</StackPanel>
-<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="305,-220">
-    <FontIcon Glyph="&#xE769;"></FontIcon>
-</StackPanel>
-<StackPanel VerticalAlignment="Top" HorizontalAlignment="Left" Margin="105,-130">
-    <FontIcon Glyph="&#xEA69;"></FontIcon>
-</StackPanel>-->
 
                     <Line X1="150" Y1="140" X2="10" Y2="205" Stroke="Black" StrokeThickness="2"/>
                     <Line X1="150" Y1="140" X2="85" Y2="285" Stroke="Black" StrokeThickness="2"/>
@@ -169,6 +150,7 @@
         
 
     </Page.Resources>
+    <ScrollViewer>
     <StackPanel  Margin="0,20,0,0" HorizontalAlignment="Left" >
 
             <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Surface Dial" Margin="50,40,0,0" Style="{StaticResource TitleLargeTextBlockStyle}"></TextBlock>
@@ -257,5 +239,36 @@
         <Run Text="to simulate Click events." Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
 
         </TextBlock>
+            <TextBlock  Margin="50,20,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" x:Name="introText17" Text="The XAML and C++ source code are provided below:"></TextBlock>
+        <StackPanel Margin="45,20,0,0">
+                <Button x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,0,0,10" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,0">
+                <TextBox x:Name="SourceCodeTextBox" 
+                   IsReadOnly="True" 
+                   AcceptsReturn="True"
+                   TextWrapping="Wrap"
+                   Margin="0"
+                   VerticalAlignment="Stretch"
+                   HorizontalAlignment="Stretch"
+                   MinWidth="300"
+                   Visibility="Collapsed" />
+            </ScrollViewer>
+        </StackPanel>
+
+        <StackPanel Margin="45,0,0,0">
+                <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,20,0,10" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
+                <TextBox x:Name="CppCodeTextBox" 
+                   IsReadOnly="True" 
+                   AcceptsReturn="True"
+                   TextWrapping="Wrap"
+                   Margin="0"
+                   VerticalAlignment="Stretch"
+                   HorizontalAlignment="Stretch"
+                   MinWidth="300"
+                   Visibility="Collapsed" />
+            </ScrollViewer>
+        </StackPanel>
     </StackPanel>
+    </ScrollViewer>
 </Page>

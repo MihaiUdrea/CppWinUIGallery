@@ -3,13 +3,21 @@
 #if __has_include("SurfaceDial.g.cpp")
 #include "SurfaceDial.g.cpp"
 #endif
+#include <Shlwapi.h>
+#pragma comment(lib, "Shlwapi.lib") 
 #include <array> 
-
+#include <filesystem>
+#include <fstream>
+#include <sstream>
+#include <string>
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;
 using namespace Microsoft::UI::Xaml::Controls::Primitives;
 using namespace Microsoft::UI::Xaml::Input;
 using namespace Microsoft::UI::Xaml::Media;
+using namespace Windows::Storage;
+using namespace Windows::Storage::Pickers;
+using namespace Windows::Foundation;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -496,8 +504,114 @@ namespace winrt::CppWinUIGallery::implementation
 
     }
 
+    void SurfaceDial::ShowSourceCode_Click(
+        winrt::Windows::Foundation::IInspectable const& sender,
+        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        auto button = ShowHideButton();
+        auto textBox = SourceCodeTextBox();
+        auto cppTextBox = CppCodeTextBox();
+        auto cppButton = ShowCppButton();
 
 
+        WCHAR exePath[MAX_PATH];
+        GetModuleFileName(nullptr, exePath, MAX_PATH);
+        PathRemoveFileSpec(exePath);
+
+        std::wstring exeDirectory = exePath;
+
+        std::filesystem::path fsPath(exeDirectory);
+        fsPath = fsPath.parent_path();
+        fsPath = fsPath.parent_path();
+        fsPath = fsPath.parent_path();
+        fsPath = fsPath.parent_path();
+        std::wstring newPath = fsPath.wstring();
+
+
+
+        std::filesystem::path relativePath = L"\src\\SurfaceDial.xaml";
+        std::filesystem::path fullPath = fsPath;
+        fullPath /= relativePath;
+
+        if (textBox.Visibility() == Visibility::Collapsed)
+        {
+            std::ifstream fileStream(fullPath.c_str());
+
+            if (fileStream.is_open())
+            {
+                std::stringstream buffer;
+                buffer << fileStream.rdbuf();
+                std::string fileContent = buffer.str();
+                textBox.Text(winrt::to_hstring(fileContent));
+            }
+            else
+            {
+                textBox.Text(L"Error loading file");
+            }
+
+            textBox.Visibility(Visibility::Visible);
+            button.Content(box_value(L"Hide XAML"));
+        }
+        else
+        {
+            textBox.Visibility(Visibility::Collapsed);
+            button.Content(box_value(L"Show XAML"));
+        }
+    }
+
+    void SurfaceDial::ShowCppCode_Click(
+        winrt::Windows::Foundation::IInspectable const& sender,
+        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    {
+        auto button = ShowCppButton();
+        auto textBox = CppCodeTextBox();
+        auto xamlTextBox = SourceCodeTextBox();
+        auto xamlButton = ShowHideButton();
+
+        WCHAR exePath[MAX_PATH];
+        GetModuleFileName(nullptr, exePath, MAX_PATH);
+        PathRemoveFileSpec(exePath);
+
+        std::wstring exeDirectory = exePath;
+
+        std::filesystem::path fsPath(exeDirectory);
+        fsPath = fsPath.parent_path();
+        fsPath = fsPath.parent_path();
+        fsPath = fsPath.parent_path();
+        fsPath = fsPath.parent_path();
+        std::wstring newPath = fsPath.wstring();
+
+        std::filesystem::path relativePath = L"\src\\SurfaceDial.xaml.cpp";
+        std::filesystem::path fullPath = fsPath;
+        fullPath /= relativePath;
+
+
+        if (textBox.Visibility() == Visibility::Collapsed)
+        {
+
+            std::ifstream fileStream(fullPath.c_str());
+
+            if (fileStream.is_open())
+            {
+                std::stringstream buffer;
+                buffer << fileStream.rdbuf();
+                std::string fileContent = buffer.str();
+                textBox.Text(winrt::to_hstring(fileContent));
+            }
+            else
+            {
+                textBox.Text(L"Error loading file");
+            }
+            textBox.Visibility(Visibility::Visible);
+            button.Content(box_value(L"Hide C++"));
+        }
+        else
+        {
+            textBox.Visibility(Visibility::Collapsed);
+            button.Content(box_value(L"Show C++"));
+        }
+    }
+    
 }
 
 
