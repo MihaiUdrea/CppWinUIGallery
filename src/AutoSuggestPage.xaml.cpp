@@ -42,6 +42,7 @@ namespace winrt::CppWinUIGallery::implementation
         //Controls::ControlTemplate myTemplate;
         //myTemplate.TargetType(Windows::UI::Xaml::Interop::TypeName{ L"AutoSuggestBox" });
 
+        auto overlayIcon = searchIconOverlay();
 
 
         if (args.Reason() == winrt::Microsoft::UI::Xaml::Controls::AutoSuggestionBoxTextChangeReason::UserInput) {
@@ -49,7 +50,6 @@ namespace winrt::CppWinUIGallery::implementation
 
             std::vector<std::string> splitText;
             auto senderText = to_string(sender.Text());
-            auto overlayIcon = searchIconOverlay();
 
             if (senderText == "") {
                 overlayIcon.Visibility(Visibility::Visible);
@@ -111,6 +111,10 @@ namespace winrt::CppWinUIGallery::implementation
 
             SearchBox().Text(sender.Text());
         }
+        else
+        {
+            overlayIcon.Visibility(Visibility::Collapsed);
+        }
     }
 
 
@@ -119,8 +123,10 @@ namespace winrt::CppWinUIGallery::implementation
         auto mySearchBox = SearchBox();
         auto overlayIcon = searchIconOverlay();
 
-        overlayIcon.Visibility(Visibility::Collapsed);  // Responsive
+          overlayIcon.Visibility(Visibility::Collapsed);  // Responsive
 
+          if (mySearchBox.Text() == L"" && e.Key() == Windows::System::VirtualKey::Back)
+              overlayIcon.Visibility(Visibility::Visible);
        
     }
  

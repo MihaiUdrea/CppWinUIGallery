@@ -23,7 +23,7 @@
 
             <!--search box-->
             
-            <RelativePanel x:Name="Root" HorizontalAlignment="Center">
+            <RelativePanel x:Name="Root" HorizontalAlignment="Center" Width="520">
 
 
                 <AutoSuggestBox x:Name="SearchBox"
