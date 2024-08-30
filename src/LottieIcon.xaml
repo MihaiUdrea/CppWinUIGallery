@@ -72,12 +72,12 @@
                 <ToggleButton Loaded="LottieButton_Loaded"  Width="75" IsEnabled="True" x:Name="LottieButton" Margin="0,10,0,10"  Click="LottieButton_Click"  PointerExited="Button_PointerExited" PointerEntered="Button_PointerEntered">
                    
 
-                    <AnimatedIcon x:Name="SearchAnimatedIcon">
+                    <AnimatedIcon  x:Name="SearchAnimatedIcon">
                         <AnimatedIcon.Source>
                             <local:AnimatedLogo/>
                         </AnimatedIcon.Source>
                         <AnimatedIcon.FallbackIconSource>
-                            <SymbolIconSource Symbol="GlobalNavigationButton"/>
+                            <SymbolIconSource Symbol="GlobalNavigationButton" />
                         </AnimatedIcon.FallbackIconSource>
                     </AnimatedIcon>
                 </ToggleButton>
@@ -180,18 +180,24 @@ Visibility="Collapsed" />
                 <TextBlock Margin="110,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="- Default value"></TextBlock>
                 <TextBlock Margin="50,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="More specifically, the Accessor is later added to the .idl file for getting &amp; setting the color property. In this example, the icon's original colour is Yellow:"></TextBlock>
                 <TextBox IsReadOnly="True" Text="Windows.UI.Color Color_FFD640{ get; set; };" Margin="50,10,50,0"></TextBox>
-                <TextBlock Margin="50,20,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="This Accessor can be implemented in the .cpp file, letting the user choose another foreground during an event."></TextBlock>
+                <TextBlock Margin="50,20,0,0" Style="{StaticResource BaseTextBlockStyle}" >
+                    <Run  Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="This Accessor can be implemented either:"></Run>
+                </TextBlock>
+                <TextBlock Margin="50,5,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="               - in the .cpp file, letting the user choose another foreground during an event."></TextBlock>
                 <TextBox IsReadOnly="True" Text=" IconSource().Color_FFD640(Windows::UI::Colors::Blue());" Margin="50,10,50,0"></TextBox>
+                <TextBlock Margin="50,5,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="               - in the XAML file, letting the user choose another foreground when picking the AnimatedIcon source"></TextBlock>
+                <TextBox IsReadOnly="True" Text="&lt;local:TransparentLottie x:Name=&quot;IconSource&quot; Color_FFD640=&quot;Pink&quot;/>" Margin="50,10,50,0"></TextBox>
+
             </StackPanel>
             <ToggleButton Click="LottieButtonTransparent_Click"   Width="75" IsEnabled="True" x:Name="LottieButtonTransparent" Margin="50,700,0,10"  >
 
 
                 <AnimatedIcon x:Name="SearchAnimatedLottie" >
                     <AnimatedIcon.Source>
-                        <local:TransparentLottie x:Name="IconSource"/>
+                        <local:TransparentLottie x:Name="IconSource" />
                     </AnimatedIcon.Source>
                     <AnimatedIcon.FallbackIconSource>
-                        <SymbolIconSource Symbol="GlobalNavigationButton"/>
+                        <SymbolIconSource  Symbol="GlobalNavigationButton"/>
                     </AnimatedIcon.FallbackIconSource>
                 </AnimatedIcon>
             </ToggleButton>

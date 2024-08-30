@@ -204,8 +204,7 @@ namespace winrt::CppWinUIGallery::implementation
 
 void winrt::CppWinUIGallery::implementation::LottieIcon::LottieButtonTransparent_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
 {
-    if (LottieButtonTransparent().IsChecked().GetBoolean() == false
-        )
+    if (LottieButtonTransparent().IsChecked().GetBoolean() == false)
     {
         IconSource().Color_FFD640(Windows::UI::Colors::Yellow());
 
