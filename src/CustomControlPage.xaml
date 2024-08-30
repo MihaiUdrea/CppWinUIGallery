@@ -95,7 +95,7 @@
             </TextBlock>
 
             <!-- Container for the StackPanel with XAML Code -->
-            <StackPanel Margin="45,10,45,0">
+            <StackPanel Margin="45,10,45,-300" x:Name="ShowHiseStackPanel_Generic">
                 <!-- A Button to show XAML -->
                 <Button x:Name="ShowHideButton" Content="Show Generic.xaml" Click="ShowHideButton_Click" Margin="0,0,0,10" />
                 <!-- A ScrollViewer to enable scrolling -->
@@ -108,7 +108,7 @@
                      VerticalAlignment="Stretch"
                      HorizontalAlignment="Stretch"
                      MinWidth="300"
-                     Visibility="Collapsed" />
+                     Visibility="Collapsed"/>
                 </ScrollViewer>
             </StackPanel>
 

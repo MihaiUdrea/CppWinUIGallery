@@ -28,6 +28,7 @@ namespace winrt::CppWinUIGallery::implementation
     {
         auto button = ShowHideButton();
         auto textBox = SourceCodeTextBox();
+        auto stackPanel = ShowHiseStackPanel_Generic();
        
 
         if (textBox.Visibility() == Visibility::Collapsed)
@@ -94,11 +95,18 @@ namespace winrt::CppWinUIGallery::implementation
             textBox.Text(xamlSourceCode);
             textBox.Visibility(Visibility::Visible);
             button.Content(box_value(L"Hide Generic.xaml"));
+            auto myMargin = stackPanel.Margin();
+            myMargin.Bottom = 0;
+            stackPanel.Margin(myMargin);
         }
         else
         {
             textBox.Visibility(Visibility::Collapsed);
             button.Content(box_value(L"Show Generic.xaml"));
+            auto myMargin = stackPanel.Margin();
+            auto h = textBox.Height();
+            myMargin.Bottom = -300;     
+            stackPanel.Margin(myMargin);
         }
     }
 
