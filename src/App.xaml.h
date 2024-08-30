@@ -2,6 +2,8 @@
 
 #include "App.xaml.g.h"
 #include "AnimatedLogo.h"
+#include "TransparentLottie.h"
+
 #include "SettingsCardControl.h"
 
 namespace winrt::CppWinUIGallery::implementation

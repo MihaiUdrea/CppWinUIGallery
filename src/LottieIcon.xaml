@@ -59,8 +59,8 @@
         </ControlTemplate>
     </Page.Resources>
 
-    <ScrollViewer>
-    <Grid>
+    <ScrollViewer  >
+    <Grid >
         
         <StackPanel Orientation="Horizontal"  VerticalAlignment="Top" HorizontalAlignment="Left" >
             <TextBlock Text="Custom Animated Icon" HorizontalAlignment="Left" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50,40"/>
@@ -163,9 +163,44 @@ Visibility="Collapsed" />
                     </ScrollViewer>
                 </StackPanel>
             </StackPanel>
+
+
+            <StackPanel>
+                <TextBlock Margin="50,1950,0,0" Style="{StaticResource TitleTextBlockStyle}" Text="Changing a Lottie Icon's Foreground"></TextBlock>
+                <TextBlock Margin="50,90,0,0"    Style="{StaticResource BaseTextBlockStyle}">
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="When generating the class files from a console interface, it is important to add &quot;" ></Run>
+                    <Run Text="-GenerateColorBindings"></Run>
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="&quot; as an argument:"></Run>
+                </TextBlock>
+                <TextBox IsReadOnly="True" Text="LottieGen -InputFile AnimatedLogo.json -Language cppwinrt -WinUIVersion 3.0 -NameSpace CppWinUIGallery -GenerateColorBindings" Width="Auto" Margin="50,15,50,0"></TextBox>
+                <TextBlock Margin="50,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="This adds to the generated header file of the class a table with the following attributes:"></TextBlock>
+                <TextBlock Margin="110,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="- Theme property"></TextBlock>
+                <TextBlock Margin="110,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="- Accessor"></TextBlock>
+                <TextBlock Margin="110,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="- Type"></TextBlock>
+                <TextBlock Margin="110,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="- Default value"></TextBlock>
+                <TextBlock Margin="50,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="More specifically, the Accessor is later added to the .idl file for getting &amp; setting the color property. In this example, the icon's original colour is Yellow:"></TextBlock>
+                <TextBox IsReadOnly="True" Text="Windows.UI.Color Color_FFD640{ get; set; };" Margin="50,10,50,0"></TextBox>
+                <TextBlock Margin="50,20,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="This Accessor can be implemented in the .cpp file, letting the user choose another foreground during an event."></TextBlock>
+                <TextBox IsReadOnly="True" Text=" IconSource().Color_FFD640(Windows::UI::Colors::Blue());" Margin="50,10,50,0"></TextBox>
+            </StackPanel>
+            <ToggleButton Click="LottieButtonTransparent_Click"   Width="75" IsEnabled="True" x:Name="LottieButtonTransparent" Margin="50,700,0,10"  >
+
+
+                <AnimatedIcon x:Name="SearchAnimatedLottie" >
+                    <AnimatedIcon.Source>
+                        <local:TransparentLottie x:Name="IconSource"/>
+                    </AnimatedIcon.Source>
+                    <AnimatedIcon.FallbackIconSource>
+                        <SymbolIconSource Symbol="GlobalNavigationButton"/>
+                    </AnimatedIcon.FallbackIconSource>
+                </AnimatedIcon>
+            </ToggleButton>
             
+          
         </Grid>
-         
+        
+
+
     </ScrollViewer>    
     
 </Page>

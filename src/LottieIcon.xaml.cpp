@@ -73,13 +73,17 @@ namespace winrt::CppWinUIGallery::implementation
     }
     void LottieIcon::InitializeIconState()
     {
-       
+        IconSource().Color_000000(Windows::UI::Colors::Transparent());
+        IconSource().Color_FFFFFF(Windows::UI::Colors::Transparent());
+
             AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
     }
     void LottieIcon::LottieButton_Loaded(IInspectable const& sender, RoutedEventArgs const& e)
     {
         InitializeIconState();
     }
+
+ 
     void LottieIcon::ShowSourceCode_Click(
         winrt::Windows::Foundation::IInspectable const& sender,
         winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
@@ -196,3 +200,20 @@ namespace winrt::CppWinUIGallery::implementation
 
 
 
+
+
+void winrt::CppWinUIGallery::implementation::LottieIcon::LottieButtonTransparent_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    if (LottieButtonTransparent().IsChecked().GetBoolean() == false
+        )
+    {
+        IconSource().Color_FFD640(Windows::UI::Colors::Yellow());
+
+    }
+    else
+    {
+        IconSource().Color_FFD640(Windows::UI::Colors::Blue());
+
+        return;
+    }
+}
