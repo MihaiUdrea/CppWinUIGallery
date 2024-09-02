@@ -95,7 +95,7 @@
             </TextBlock>
 
             <!-- Container for the StackPanel with XAML Code -->
-            <StackPanel Margin="45,10,45,0">
+            <StackPanel Margin="45,10,45,-300" x:Name="ShowHideStackPanel_Generic">
                 <!-- A Button to show XAML -->
                 <Button x:Name="ShowHideButton" Content="Show Generic.xaml" Click="ShowHideButton_Click" Margin="0,0,0,10" />
                 <!-- A ScrollViewer to enable scrolling -->
@@ -108,7 +108,7 @@
                      VerticalAlignment="Stretch"
                      HorizontalAlignment="Stretch"
                      MinWidth="300"
-                     Visibility="Collapsed" />
+                     Visibility="Collapsed"/>
                 </ScrollViewer>
             </StackPanel>
 
@@ -183,13 +183,13 @@
 
             <StackPanel x:Name="ControlCodeStackPanel" Orientation="Horizontal" HorizontalAlignment="Center" Spacing="50">
                 <!-- Container for the StackPanel with Cpp Code -->
-                <StackPanel Margin="45,10,45,0">
+                <StackPanel Margin="45,10,45,0" x:Name="ShowHideStackPanel_cpp" Padding="0,0,0,-300">
                     <!-- A Button to show Cpp -->
                     <Button x:Name="ShowCppButton" Content="Show .cpp" Click="ShowCppButton_Click" Margin="0,0,0,10" />
                     <!-- A ScrollViewer to enable scrolling -->
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300" Margin="0,0,0,50" Width="400">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300"  Width="400">
                         <!-- A TextBox to display Cpp code -->
-                        <TextBox x:Name="SourceCodeTextBoxCpp" 
+                        <TextBox x:Name="SourceCodeTextBoxCpp"  
                             IsReadOnly="True" 
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
@@ -202,11 +202,11 @@
                 </StackPanel>
 
                 <!-- Container for the StackPanel with idl Code -->
-                <StackPanel Margin="45,10,45,0">
+                <StackPanel Margin="45,10,45,0" x:Name="ShowHideStackPanel_idl" Padding="0,0,0,-300"> 
                     <!-- A Button to show idl -->
                     <Button x:Name="ShowIdlButton" Content="Show .idl" Click="ShowIdlButton_Click" Margin="0,0,0,10" />
                     <!-- A ScrollViewer to enable scrolling -->
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300" Margin="0,0,0,50" Width="400">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300"  Width="400">
                         <!-- A TextBox to display idl code -->
                         <TextBox x:Name="SourceCodeTextBoxIdl" 
                                     IsReadOnly="True" 
@@ -221,11 +221,11 @@
                 </StackPanel>
 
                 <!-- Container for the StackPanel with header Code -->
-                <StackPanel Margin="45,10,45,0">
+                <StackPanel Margin="45,10,45,0" x:Name="ShowHideStackPanel_header" Padding="0,0,0,-300">
                     <!-- A Button to show header -->
                     <Button x:Name="ShowHeaderButton" Content="Show .h" Click="ShowHeaderButton_Click" Margin="0,0,0,10" />
                     <!-- A ScrollViewer to enable scrolling -->
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300" Margin="0,0,0,50" HorizontalScrollMode="Enabled" Width="400">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300"  HorizontalScrollMode="Enabled" Width="400">
                         <!-- A TextBox to display header code -->
                         <TextBox x:Name="SourceCodeTextBoxHeader" 
                                     IsReadOnly="True" 

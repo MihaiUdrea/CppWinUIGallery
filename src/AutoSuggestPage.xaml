@@ -11,19 +11,19 @@
     <ScrollViewer 
           HorizontalScrollBarVisibility="Disabled" 
           VerticalScrollBarVisibility="Auto">
-        <Grid>
+        <StackPanel Orientation="Vertical" Spacing="10">
 
-            <TextBlock Text="AutoSuggestBox" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50,40"/>
+            <TextBlock Text="AutoSuggestBox" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50,40,50,10"/>
             <TextBlock Text="In this example we'll show a custom made AutoSuggestBox style with a non-interactive search icon that dissapears when interacting with the text content. You can find a similar search box example in Windows -> Settings -> Default Apps -> Search Apps AutoSuggestBox"
                        Style="{StaticResource BaseTextBlockStyle}" 
-                       Margin="50,100,300,0"
+                       Margin="50,0,300,0"
                        Foreground="{ThemeResource TextFillColorSecondaryBrush}"
                        Opacity="60"/>
 
 
             <!--search box-->
             
-            <RelativePanel x:Name="Root" HorizontalAlignment="Center">
+            <RelativePanel x:Name="Root" HorizontalAlignment="Center" Width="520">
 
 
                 <AutoSuggestBox x:Name="SearchBox"
@@ -38,7 +38,7 @@
                                 VerticalAlignment="Top"
                                 HorizontalContentAlignment="Left"
                                 VerticalContentAlignment="Center"
-                                Margin="0, 200"
+                                Margin="0, 70"
                                 PlaceholderText="Search">
                     <!--Style="{StaticResource CustomAutoSuggestBoxStyle}">-->
    
@@ -50,7 +50,7 @@
                     Text="&#xE721;"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Right"
-                    Margin="0, 200"
+                    Margin="0, 70"
                     Foreground="Gray"
                     Visibility="Visible"
                     RelativePanel.RightOf="SearchBox" RenderTransformOrigin="0.5,0.5"
@@ -64,7 +64,7 @@
             </RelativePanel>
         
             <!-- Container for the StackPanel with XAML Code -->
-            <StackPanel Margin="45,300,45,0">
+            <StackPanel x:Name="ShowHideStackPanel_xaml" Margin="45,0,45,-300" >
                 <!-- A Button to show XAML -->
                 <Button x:Name="ShowHideButton" Content="Show XAML" Click="ShowHideButton_Click" Margin="0,0,0,10" />
                 <!-- A ScrollViewer to enable scrolling -->
@@ -82,7 +82,7 @@
             </StackPanel>
 
             <!-- Container for the StackPanel with C++ Code -->
-            <StackPanel Margin="45,610,45,0">
+            <StackPanel x:Name="ShowHideStackPanel_cpp" Margin="45,0,45,-300">
                 <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppButton_Click" Margin="0,60,0,10" />
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
                     <!-- A TextBox to display C++ code -->
@@ -97,7 +97,7 @@
                              />
                 </ScrollViewer>
             </StackPanel>
-        </Grid>
+        </StackPanel>
     </ScrollViewer>
 
 
