@@ -19,6 +19,7 @@
     <Page Include="PVSlider.xaml" />
     <Page Include="Themes\Generic.xaml" />
     <Page Include="SurfaceDial.xaml" />
+    <Page Include="CustomControlPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />

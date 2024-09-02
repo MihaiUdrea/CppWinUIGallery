@@ -120,6 +120,10 @@
       <DependentUpon>ConnectedAnimation.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="CustomControlPage.xaml.h">
+      <DependentUpon>CustomControlPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="FloatingElementPage.xaml.h">
       <DependentUpon>FloatingElementPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -185,6 +189,9 @@
     <Page Include="ConnectedAnimation.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="CustomControlPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="FloatingElementPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -230,6 +237,10 @@
     </ClCompile>
     <ClCompile Include="ConnectedAnimation.xaml.cpp">
       <DependentUpon>ConnectedAnimation.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="CustomControlPage.xaml.cpp">
+      <DependentUpon>CustomControlPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="FloatingElementPage.xaml.cpp">
@@ -298,6 +309,10 @@
     </Midl>
     <Midl Include="ConnectedAnimation.idl">
       <DependentUpon>ConnectedAnimation.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="CustomControlPage.idl">
+      <DependentUpon>CustomControlPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="FloatingElementPage.idl">

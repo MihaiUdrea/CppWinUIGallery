@@ -1,0 +1,9 @@
+namespace CppWinUIGallery
+{
+    [default_interface]
+    runtimeclass CustomControlPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        CustomControlPage();
+        Int32 MyProperty;
+    }
+}
