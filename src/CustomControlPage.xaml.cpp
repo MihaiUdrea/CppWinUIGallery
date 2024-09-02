@@ -28,7 +28,14 @@ namespace winrt::CppWinUIGallery::implementation
     {
         auto button = ShowHideButton();
         auto textBox = SourceCodeTextBox();
-        auto stackPanel = ShowHiseStackPanel_Generic();
+        auto stackPanel = ShowHideStackPanel_Generic();
+        Controls::ScrollViewer scrollviewer;
+
+        for (auto el : stackPanel.Children())
+        {
+            if (auto s = el.try_as<Controls::ScrollViewer>())
+                scrollviewer = s;   // capture stackpanel's scrollviewer for actual height of the visible text box
+        }
        
 
         if (textBox.Visibility() == Visibility::Collapsed)
@@ -96,7 +103,7 @@ namespace winrt::CppWinUIGallery::implementation
             textBox.Visibility(Visibility::Visible);
             button.Content(box_value(L"Hide Generic.xaml"));
             auto myMargin = stackPanel.Margin();
-            myMargin.Bottom = 0;
+            myMargin.Bottom = 0;                        // Get the margin value and update the buttom parameter
             stackPanel.Margin(myMargin);
         }
         else
@@ -105,7 +112,7 @@ namespace winrt::CppWinUIGallery::implementation
             button.Content(box_value(L"Show Generic.xaml"));
             auto myMargin = stackPanel.Margin();
             auto h = textBox.Height();
-            myMargin.Bottom = -300;     
+            myMargin.Bottom = -1 * scrollviewer.ActualHeight();     
             stackPanel.Margin(myMargin);
         }
     }
@@ -114,6 +121,14 @@ namespace winrt::CppWinUIGallery::implementation
     {
         auto button = ShowCppButton();
         auto textBox = SourceCodeTextBoxCpp();
+        auto stackPanel = ShowHideStackPanel_cpp();
+        Controls::ScrollViewer scrollviewer;
+
+        for (auto el : stackPanel.Children())
+        {
+            if (auto s = el.try_as<Controls::ScrollViewer>())
+                scrollviewer = s;   // capture stackpanel's scrollviewer for actual height of the visible text box
+        }
 
 
         if (textBox.Visibility() == Visibility::Collapsed)
@@ -272,11 +287,18 @@ namespace winrt::CppWinUIGallery::implementation
             textBox.Text(xamlSourceCode);
             textBox.Visibility(Visibility::Visible);
             button.Content(box_value(L"Hide .cpp"));
+            auto myMargin = stackPanel.Padding();
+            myMargin.Bottom = 50;                        
+            stackPanel.Padding(myMargin);
         }
         else
         {
             textBox.Visibility(Visibility::Collapsed);
             button.Content(box_value(L"Show .cpp"));
+            auto myMargin = stackPanel.Padding();
+            auto h = textBox.Height();
+            myMargin.Bottom = -1 * scrollviewer.ActualHeight();
+            stackPanel.Padding(myMargin);
         }
     }
 
@@ -285,6 +307,14 @@ namespace winrt::CppWinUIGallery::implementation
     {
         auto button = ShowIdlButton();
         auto textBox = SourceCodeTextBoxIdl();
+        auto stackPanel = ShowHideStackPanel_idl();
+        Controls::ScrollViewer scrollviewer;
+
+        for (auto el : stackPanel.Children())
+        {
+            if (auto s = el.try_as<Controls::ScrollViewer>())
+                scrollviewer = s;   // capture stackpanel's scrollviewer for actual height of the visible text box
+        }
 
 
         if (textBox.Visibility() == Visibility::Collapsed)
@@ -325,11 +355,18 @@ namespace winrt::CppWinUIGallery::implementation
             textBox.Text(xamlSourceCode);
             textBox.Visibility(Visibility::Visible);
             button.Content(box_value(L"Hide .idl"));
+            auto myMargin = stackPanel.Padding();
+            myMargin.Bottom = 50;
+            stackPanel.Padding(myMargin);
         }
         else
         {
             textBox.Visibility(Visibility::Collapsed);
             button.Content(box_value(L"Show .idl"));
+            auto myMargin = stackPanel.Padding();
+            auto h = textBox.Height();
+            myMargin.Bottom = -1 * scrollviewer.ActualHeight();
+            stackPanel.Padding(myMargin);
         }
     }
 
@@ -338,6 +375,14 @@ namespace winrt::CppWinUIGallery::implementation
     {
         auto button = ShowHeaderButton();
         auto textBox = SourceCodeTextBoxHeader();
+        auto stackPanel = ShowHideStackPanel_header();
+        Controls::ScrollViewer scrollviewer;
+
+        for (auto el : stackPanel.Children())
+        {
+            if (auto s = el.try_as<Controls::ScrollViewer>())
+                scrollviewer = s;   // capture stackpanel's scrollviewer for actual height of the visible text box
+        }
 
 
         if (textBox.Visibility() == Visibility::Collapsed)
@@ -410,11 +455,22 @@ namespace winrt::CppWinUIGallery::factory_implementation
             textBox.Text(xamlSourceCode);
             textBox.Visibility(Visibility::Visible);
             button.Content(box_value(L"Hide .h"));
+            auto myMargin = stackPanel.Padding();
+            myMargin.Bottom = 50;
+            stackPanel.Padding(myMargin);
         }
         else
         {
             textBox.Visibility(Visibility::Collapsed);
             button.Content(box_value(L"Show .h"));
+            auto myMargin = stackPanel.Padding();
+            auto h = textBox.Height();
+            myMargin.Bottom = -1 * scrollviewer.ActualHeight();
+            stackPanel.Padding(myMargin);
+
+            auto mcpp = ShowHideStackPanel_cpp().Padding();
+            auto mdil = ShowHideStackPanel_idl().Padding();
+            int foo = 1;
         }
     }
 }
