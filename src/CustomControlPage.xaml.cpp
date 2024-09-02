@@ -111,7 +111,6 @@ namespace winrt::CppWinUIGallery::implementation
             textBox.Visibility(Visibility::Collapsed);
             button.Content(box_value(L"Show Generic.xaml"));
             auto myMargin = stackPanel.Margin();
-            auto h = textBox.Height();
             myMargin.Bottom = -1 * scrollviewer.ActualHeight();     
             stackPanel.Margin(myMargin);
         }
@@ -296,7 +295,6 @@ namespace winrt::CppWinUIGallery::implementation
             textBox.Visibility(Visibility::Collapsed);
             button.Content(box_value(L"Show .cpp"));
             auto myMargin = stackPanel.Padding();
-            auto h = textBox.Height();
             myMargin.Bottom = -1 * scrollviewer.ActualHeight();
             stackPanel.Padding(myMargin);
         }
@@ -364,7 +362,6 @@ namespace winrt::CppWinUIGallery::implementation
             textBox.Visibility(Visibility::Collapsed);
             button.Content(box_value(L"Show .idl"));
             auto myMargin = stackPanel.Padding();
-            auto h = textBox.Height();
             myMargin.Bottom = -1 * scrollviewer.ActualHeight();
             stackPanel.Padding(myMargin);
         }
@@ -464,7 +461,6 @@ namespace winrt::CppWinUIGallery::factory_implementation
             textBox.Visibility(Visibility::Collapsed);
             button.Content(box_value(L"Show .h"));
             auto myMargin = stackPanel.Padding();
-            auto h = textBox.Height();
             myMargin.Bottom = -1 * scrollviewer.ActualHeight();
             stackPanel.Padding(myMargin);
 

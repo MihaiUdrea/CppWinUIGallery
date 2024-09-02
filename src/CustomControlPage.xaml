@@ -189,7 +189,7 @@
                     <!-- A ScrollViewer to enable scrolling -->
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Visible" Height="300"  Width="400">
                         <!-- A TextBox to display Cpp code -->
-                        <TextBox x:Name="SourceCodeTextBoxCpp" 
+                        <TextBox x:Name="SourceCodeTextBoxCpp"  
                             IsReadOnly="True" 
                             AcceptsReturn="True"
                             TextWrapping="Wrap"
