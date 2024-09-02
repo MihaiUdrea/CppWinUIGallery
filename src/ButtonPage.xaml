@@ -43,7 +43,7 @@ mc:Ignorable="d">
 
             <!-- Container for the StackPanel with XAML Code -->
             <StackPanel x:Name="ShowHideStackPanel_xaml" Margin="45,0,45,0">
-                <Button Content="XAML code" Margin="0, 0, 0, 10" IsHitTestVisible="False" "/>
+                <Button Content="XAML code" Margin="0, 0, 0, 10" IsHitTestVisible="False"/>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="170" Margin="0,0,0,10" VerticalScrollMode="Enabled">
                     <!-- A TextBox to display XAML code -->
                     <TextBox x:Name="SourceCodeTextBox" 
