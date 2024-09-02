@@ -150,7 +150,7 @@
 
 
     </Page.Resources>
-    <ScrollViewer>
+    <ScrollViewer >
         <StackPanel  Margin="0,20,0,0" HorizontalAlignment="Left" >
 
             <TextBlock VerticalAlignment="Top" HorizontalAlignment="Left" Text="Surface Dial" Margin="50,40,0,0" Style="{StaticResource TitleLargeTextBlockStyle}"></TextBlock>
@@ -242,7 +242,7 @@
             <TextBlock  Margin="50,20,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" x:Name="introText17" Text="The XAML and C++ source code are provided below:"></TextBlock>
             <Grid>
             
-                <StackPanel x:Name="introText18" Margin="45,20,0,0">
+                <StackPanel  x:Name="introText18" Margin="45,20,0,10">
                     <Button IsEnabled="True" Canvas.ZIndex="1" x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,0,0,10" />
                     <ScrollViewer  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,0">
                         <TextBox x:Name="SourceCodeTextBox" 
@@ -253,11 +253,12 @@
                        VerticalAlignment="Stretch"
                        HorizontalAlignment="Stretch"
                        MinWidth="300"
+                       Height="300"                                 
                        Visibility="Collapsed" />
                     </ScrollViewer>
                 </StackPanel>
 
-                <StackPanel x:Name="introText19" Margin="45,0,0,0">
+                <StackPanel x:Name="introText19" Margin="45,0,0,10">
                     <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="110,20,0,10" />
                     <ScrollViewer  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
                         <TextBox x:Name="CppCodeTextBox" 
@@ -265,9 +266,10 @@
                        AcceptsReturn="True"
                        TextWrapping="Wrap"
                        Margin="0"
+                        Height="300"                                 
                        VerticalAlignment="Stretch"
                        HorizontalAlignment="Stretch"
-                       MinWidth="300"
+                       Width="auto"
                        Visibility="Collapsed" />
                     </ScrollViewer>
                 </StackPanel>
