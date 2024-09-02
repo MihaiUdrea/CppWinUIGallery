@@ -138,19 +138,11 @@ namespace winrt::CppWinUIGallery::implementation
             }
         }
     }
-
-    void PVSlider::ShowSourceCode_Click(
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        auto button = ShowHideButton();
-        auto textBox = SourceCodeTextBox();
-
-
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
-            
-            hstring xamlSourceCode = LR"(
+}
+void winrt::CppWinUIGallery::implementation::PVSlider::SourceCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    auto textBox = SourceCodeTextBox();
+    hstring xamlSourceCode = LR"(
 Page.Resources>
         <Style x:Key="Switch" TargetType="ToggleSwitch">
     <Setter Property="Background" Value="{StaticResource ToggleSwitchKnobFillOff}" />
@@ -214,29 +206,14 @@ Page.Resources>
     </Grid>
 
 )";
-            textBox.Text(xamlSourceCode);
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide XAML"));
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show XAML"));
-        }
-    }
-    void PVSlider::ShowCppCode_Click(
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        auto button = ShowCppButton(); 
-        auto textBox = CppCodeTextBox();
-        auto xamlTextBox = SourceCodeTextBox();
-        auto xamlButton = ShowHideButton(); 
+    textBox.Text(xamlSourceCode);
+}
 
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
 
-            hstring cppSourceCode = LR"(
+void winrt::CppWinUIGallery::implementation::PVSlider::CppCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    auto textBox = CppCodeTextBox();
+    hstring cppSourceCode = LR"(
  void PVSlider::OnThumbDragStarted(IInspectable const& sender, DragStartedEventArgs const& e)
     {
         auto thumb = sender.as<Thumb>();
@@ -347,21 +324,7 @@ Page.Resources>
     }
 
 )";
-            textBox.Text(cppSourceCode);
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide C++"));
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show C++"));
-        }
-    }
+    textBox.Text(cppSourceCode);
+
 }
-
-
-
-
-
-
 

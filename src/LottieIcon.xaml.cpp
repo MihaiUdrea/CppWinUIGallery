@@ -73,25 +73,49 @@ namespace winrt::CppWinUIGallery::implementation
     }
     void LottieIcon::InitializeIconState()
     {
-       
+        IconSource().Color_000000(Windows::UI::Colors::Transparent());
+        IconSource().Color_FFFFFF(Windows::UI::Colors::Transparent());
+
             AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
     }
     void LottieIcon::LottieButton_Loaded(IInspectable const& sender, RoutedEventArgs const& e)
     {
         InitializeIconState();
     }
-    void LottieIcon::ShowSourceCode_Click(
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        auto button = ShowHideButton();
-        auto textBox = SourceCodeTextBox();
 
+ 
 
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
     
-            hstring xamlSourceCode = LR"(
+   
+}
+
+
+
+
+
+
+void winrt::CppWinUIGallery::implementation::LottieIcon::LottieButtonTransparent_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    if (LottieButtonTransparent().IsChecked().GetBoolean() == false)
+    {
+        IconSource().Color_FFD640(Windows::UI::Colors::Yellow());
+
+    }
+    else
+    {
+        IconSource().Color_FFD640(Windows::UI::Colors::Blue());
+
+        return;
+    }
+}
+
+
+void winrt::CppWinUIGallery::implementation::LottieIcon::SourceCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+ 
+    auto textBox = SourceCodeTextBox();
+
+        hstring xamlSourceCode = LR"(
 <ToggleButton Loaded="LottieButton_Loaded"  Width="75" IsEnabled="True" x:Name="LottieButton" Margin="0,10,0,10"  Click="LottieButton_Click" PointerExited="Button_PointerExited" PointerEntered="Button_PointerEntered">
                    
 
@@ -105,30 +129,15 @@ namespace winrt::CppWinUIGallery::implementation
                     </AnimatedIcon>
                 </ToggleButton>
 )";
-            textBox.Text(xamlSourceCode);
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide XAML"));
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show XAML"));
-        }
-    }
-    
-    void LottieIcon::ShowCppCode_Click(
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        auto button = ShowCppButton(); 
-        auto textBox = CppCodeTextBox();
-        auto xamlTextBox = SourceCodeTextBox();
-        auto xamlButton = ShowHideButton(); 
+        textBox.Text(xamlSourceCode);
+       
+}
 
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
-    
-            hstring cppSourceCode = LR"(
+
+void winrt::CppWinUIGallery::implementation::LottieIcon::CppCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    auto textBox = CppCodeTextBox();
+        hstring cppSourceCode = LR"(
  void LottieIcon::LottieButton_Click(IInspectable const& sender, RoutedEventArgs const& e)
     {
 
@@ -181,18 +190,6 @@ namespace winrt::CppWinUIGallery::implementation
     }
 
 )";
-            textBox.Text(cppSourceCode);
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide C++"));
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show C++"));
-        }
-    }
+        textBox.Text(cppSourceCode);
+  
 }
-
-
-
-

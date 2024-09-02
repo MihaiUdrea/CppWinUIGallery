@@ -94,8 +94,11 @@
         </Storyboard>
     </Page.Resources>
 
-    <Grid x:Name="PageRoot">
-        <ScrollViewer x:Name="mainScrollViewer" VerticalScrollBarVisibility="Auto" ViewChanged="OnScrollViewerViewChanged">
+    <Grid  x:Name="PageRoot">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1950" />
+        </Grid.RowDefinitions>
+        <ScrollViewer Grid.Row="1"   x:Name="mainScrollViewer" VerticalScrollBarVisibility="Auto" ViewChanged="OnScrollViewerViewChanged">
             <StackPanel>
                 <StackPanel>
                     <TextBlock Text="Animated Floating StackPanel - Scroll down!" HorizontalAlignment="Left" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50,40"/>
@@ -129,38 +132,38 @@
                     </TextBlock>
 
                 </StackPanel>
-                <StackPanel Margin="75,200,0,0">
-                    <!-- A Button to show XAML -->
-                    <Button x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,-120,0,10" />
+                <StackPanel Margin="75,30,0,0">
+                    <TextBlock Text="The XAML for this implementation is provided below:" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
                     <!-- A ScrollViewer to enable scrolling -->
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,-40,0,10">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,10,20,10">
                         <!-- A TextBox to display XAML code -->
                         <TextBox x:Name="SourceCodeTextBox" 
-            IsReadOnly="True" 
-            AcceptsReturn="True"
-            TextWrapping="Wrap"
-            Margin="0"
-            VerticalAlignment="Stretch"
-            HorizontalAlignment="Stretch"
-            MinWidth="300"
-            Visibility="Collapsed" />
+                            IsReadOnly="True" 
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            Margin="0"
+                            Loaded="SourceCodeTextBox_Loaded"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Stretch"
+                            MinWidth="300"
+                            Visibility="Visible" />
                     </ScrollViewer>
                 </StackPanel>
 
                 <!-- Container for the StackPanel with C++ Code -->
                 <StackPanel Margin="75,0,0,0">
-                    <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,20,0,10" />
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,0,0,10">
-                        <!-- A TextBox to display C++ code -->
+                    <TextBlock Text="The C++ source code for this implementation is provided below:" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,10,20,10">
                         <TextBox x:Name="CppCodeTextBox" 
             IsReadOnly="True" 
+            Loaded="CppCodeTextBox_Loaded"                     
             AcceptsReturn="True"
             TextWrapping="Wrap"
             Margin="0"
             VerticalAlignment="Stretch"
             HorizontalAlignment="Stretch"
             MinWidth="300"
-            Visibility="Collapsed" />
+            Visibility="Visible" />
                     </ScrollViewer>
                 </StackPanel>
                 <StackPanel>

@@ -9,8 +9,8 @@
 
     <Page.Resources>
         <Style x:Key="Switch" TargetType="ToggleSwitch">
-    <Setter Property="Background" Value="{ThemeResource ToggleSwitchKnobFillOff}" />
-    <Setter Property="Foreground" Value="{ThemeResource ToggleSwitchKnobFillOff}" />
+            <Setter Property="Background" Value="{ThemeResource ToggleSwitchKnobFillOff}" />
+            <Setter Property="Foreground" Value="{ThemeResource ToggleSwitchKnobFillOff}" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ToggleSwitch" x:Name="ToggleSwitchTemplate">
@@ -43,33 +43,33 @@
         </Style>
 
 
-        
-        
-    </Page.Resources>
-    <ScrollViewer>
-    <Grid Height="1500">
-        <StackPanel Margin="0">
-            <TextBlock Text="Photo/Video Slider" Margin="50,40" Style="{StaticResource TitleLargeTextBlockStyle}"/>
-        </StackPanel>
-        <StackPanel x:Name="SliderPanel" Margin="45,120" Orientation="Horizontal" CornerRadius="8" Height="45" BorderBrush="#30292f" BorderThickness="1.5" HorizontalAlignment="Left" VerticalAlignment="Top" >
-            <Grid>
-                <Rectangle Fill="{ThemeResource AccentControlElevationBorderBrush}" Height="45" Width="90"/>
-                <StackPanel VerticalAlignment="Center" Margin="11"  HorizontalAlignment="Left">
-                    <SymbolIcon x:Name="CameraIcon" Symbol="Camera"  IsHitTestVisible="True" Foreground="#00ff00"/>
-                </StackPanel>
-                <StackPanel VerticalAlignment="Center" Margin="0,0,11,0"  HorizontalAlignment="Right">
-                    <SymbolIcon x:Name="VideoIcon" Symbol="Video"  IsHitTestVisible="True" Foreground="#80FF0000" />
-                </StackPanel>
-            </Grid>
-        </StackPanel>
 
-        <StackPanel Margin="46,123,0,0">
-            <Grid>
-            <ToggleSwitch Width="90"  Background="{ThemeResource ControlAltFillColorTransparent}" x:Name="Switch" Style="{ThemeResource Switch}" OffContent="" PointerPressed="Switch_PointerPressed"/>
-            </Grid>
-        </StackPanel>
-        
-           
+
+    </Page.Resources>
+    <ScrollViewer >
+        <Grid  >
+            <StackPanel Margin="0">
+                <TextBlock Text="Photo/Video Slider" Margin="50,40" Style="{StaticResource TitleLargeTextBlockStyle}"/>
+            </StackPanel>
+            <StackPanel x:Name="SliderPanel" Margin="45,120" Orientation="Horizontal" CornerRadius="8" Height="45" BorderBrush="#30292f" BorderThickness="1.5" HorizontalAlignment="Left" VerticalAlignment="Top" >
+                <Grid>
+                    <Rectangle Fill="{ThemeResource AccentControlElevationBorderBrush}" Height="45" Width="90"/>
+                    <StackPanel VerticalAlignment="Center" Margin="11"  HorizontalAlignment="Left">
+                        <SymbolIcon x:Name="CameraIcon" Symbol="Camera"  IsHitTestVisible="True" Foreground="#00ff00"/>
+                    </StackPanel>
+                    <StackPanel VerticalAlignment="Center" Margin="0,0,11,0"  HorizontalAlignment="Right">
+                        <SymbolIcon x:Name="VideoIcon" Symbol="Video"  IsHitTestVisible="True" Foreground="#80FF0000" />
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+
+            <StackPanel Margin="46,123,0,0">
+                <Grid>
+                    <ToggleSwitch Width="90"  Background="{ThemeResource ControlAltFillColorTransparent}" x:Name="Switch" Style="{ThemeResource Switch}" OffContent="" PointerPressed="Switch_PointerPressed"/>
+                </Grid>
+            </StackPanel>
+
+
             <StackPanel Margin="50,185">
                 <TextBlock  Style="{StaticResource BaseTextBlockStyle}"  >
                     <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="Unlike the ToggleSwitch example (the one built to look like the &quot;Subscription&quot;/&quot;Perpetual&quot; switch from the Advanced Installer purchase page), the Photo/Video Slider uses the concept of "></Run>
@@ -84,7 +84,7 @@
                     <Run Text="- a string that specifies a FrameworkElement type to apply the style to"></Run>
                 </TextBlock>
                 <TextBox  Text=" &lt;ControlTemplate TargetType=&quot;ToggleSwitch&quot; x:Name=&quot;ToggleSwitchTemplate&quot;>" IsReadOnly="True">
-                    
+
                 </TextBox>
                 <TextBlock  Margin="50,10" Style="{StaticResource BaseTextBlockStyle}">
                     <Run Foreground="{ThemeResource SystemColorHotlightColor}" Text="- a collection of one or more Setter elements"></Run>
@@ -111,6 +111,7 @@
                     <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="element of our ToggleSwitch will be needed. As for the panel behind it, a StackPanel will be used as the slider background for the camera and video icons."></Run>
                 </TextBlock>
                 <TextBlock Margin="0,0" Text="The movement and behavior of the Thumb element are both controlled from the code-behind.Drag controls are added; left and right bounds are set so the Thumb doesn't go past the StackPanel."  Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
+                <StackPanel>
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="0,15,0,5" Text="Methods for controlling the Thumb element:"></TextBlock>
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,0" >
                     <Run Text="- " Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
@@ -135,36 +136,35 @@
                 </TextBlock>
                 <TextBlock Margin="0,15" Style="{StaticResource BaseTextBlockStyle}" Text="The XAML for this implementation is provided below:"></TextBlock>
             </StackPanel>
-            <StackPanel Margin="50,795,0,0">
-     <Button x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,-120,0,10" />
-     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,-40,0,10">
-         <TextBox x:Name="SourceCodeTextBox" 
-             IsReadOnly="True" 
-             AcceptsReturn="True"
-             TextWrapping="Wrap"
-             Margin="0"
-             VerticalAlignment="Stretch"
-             HorizontalAlignment="Stretch"
-             MinWidth="300"
-             Visibility="Collapsed" />
-            </ScrollViewer>
+            <StackPanel  Margin="0,0,0,0">
+                    <ScrollViewer   CornerRadius="8" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,0,0,10">
+                    <TextBox Loaded="SourceCodeTextBox_Loaded" x:Name="SourceCodeTextBox" 
+                         IsReadOnly="True" 
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         Margin="0"
+                         VerticalAlignment="Stretch"
+                         HorizontalAlignment="Stretch"
+                         MinWidth="300"
+                         Visibility="Visible"/>
+                </ScrollViewer>
             </StackPanel>
             <StackPanel>
-                <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="50,1080" Text="The C++ source code for this implementation is provided below:"></TextBlock>
+                <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,0" Text="The C++ source code for this implementation is provided below:"></TextBlock>
             </StackPanel>
-            <StackPanel Margin="50,0,0,0">
-                <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,1120,0,10" />
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,0,0,10">
-                    <TextBox x:Name="CppCodeTextBox" 
-IsReadOnly="True" 
-AcceptsReturn="True"
-TextWrapping="Wrap"
-Margin="0"
-VerticalAlignment="Stretch"
-HorizontalAlignment="Stretch"
-
-Visibility="Collapsed" />
+            <StackPanel  Margin="0,0,0,0">
+                    <ScrollViewer  CornerRadius="8" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,10,0,10">
+                    <TextBox  Loaded="CppCodeTextBox_Loaded" x:Name="CppCodeTextBox" 
+                        IsReadOnly="True" 
+                        AcceptsReturn="True"
+                        TextWrapping="Wrap"
+                        Margin="0"
+                             
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+                        Visibility="Visible" />
                 </ScrollViewer>
+            </StackPanel>
             </StackPanel>
         </Grid>
     </ScrollViewer>

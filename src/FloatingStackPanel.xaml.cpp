@@ -43,7 +43,7 @@ namespace winrt::CppWinUIGallery::implementation
         if (offsetY > startScalingOffset)
         {
             scale = infobarScale;
-            translationY = offsetY - startScalingOffset + infobarTopOffset-120;
+            translationY = offsetY - startScalingOffset + infobarTopOffset - 120;
         }
         else
         {
@@ -83,26 +83,12 @@ namespace winrt::CppWinUIGallery::implementation
             ScaleUpStoryboard().Begin();
         }
     }
-    void FloatingStackPanel::ShowSourceCode_Click(
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        auto button = ShowHideButton();
-        auto textBox = SourceCodeTextBox();
-        auto cppTextBox = CppCodeTextBox();
-        auto cppButton = ShowCppButton(); // Ensure ShowCppButton is correctly named and initialized
-
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
-            // Hide C++ code if visible
-           /* if (cppTextBox.Visibility() == Visibility::Visible)
-            {
-                cppTextBox.Visibility(Visibility::Collapsed);
-                cppButton.Content(box_value(L"Show C++"));
-            }*/
-
-            // Show XAML source code
-            hstring xamlSourceCode = LR"(
+}
+void winrt::CppWinUIGallery::implementation::FloatingStackPanel::SourceCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    auto textBox = SourceCodeTextBox();
+   
+        hstring xamlSourceCode = LR"(
 <Page.Resources>
     <Storyboard x:Name="ScaleUpStoryboard">
         <DoubleAnimation
@@ -221,37 +207,16 @@ namespace winrt::CppWinUIGallery::implementation
     </ScrollViewer>
 </Grid>
 )";
-            textBox.Text(xamlSourceCode);
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide XAML"));
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show XAML"));
-        }
-    }
+        textBox.Text(xamlSourceCode);
+      
+}
 
-    void FloatingStackPanel::ShowCppCode_Click(
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        auto button = ShowCppButton(); // Make sure the button is named correctly
-        auto textBox = CppCodeTextBox();
-        auto xamlTextBox = SourceCodeTextBox();
-        auto xamlButton = ShowHideButton(); // Ensure ShowHideButton is correctly named and initialized
 
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
-            // Hide XAML code if visible
-           /* if (xamlTextBox.Visibility() == Visibility::Visible)
-            {
-                xamlTextBox.Visibility(Visibility::Collapsed);
-                xamlButton.Content(box_value(L"Show XAML"));
-            }*/
-
-            // Show C++ source code
-            hstring cppSourceCode = LR"(
+void winrt::CppWinUIGallery::implementation::FloatingStackPanel::CppCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    auto textBox = CppCodeTextBox();
+   
+        hstring cppSourceCode = LR"(
 void FloatingStackPanel::OnScrollViewerViewChanged(IInspectable const& sender, ScrollViewerViewChangedEventArgs const& args)
     {
         auto scrollViewer = sender.as<ScrollViewer>();
@@ -312,15 +277,6 @@ void FloatingStackPanel::OnScrollViewerViewChanged(IInspectable const& sender, S
         }
     }
 )";
-            textBox.Text(cppSourceCode);
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide C++"));
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show C++"));
-        }
-    }
+        textBox.Text(cppSourceCode);
+       
 }
-

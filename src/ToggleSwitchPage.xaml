@@ -42,41 +42,41 @@
                 </Style>
             </ToggleSwitch.Resources>
         </ToggleSwitch>
-                <TextBlock Text="A similar approach to this can be found on the Advanced Installer Purchase page. The XAML and C++ files used for this implementation are provided below:" Margin="50,170" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
-
+                <TextBlock Text="A similar approach to this can be found on the Advanced Installer Purchase page." Margin="50,170" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
             <!-- Container for the StackPanel with XAML Code -->
-        <StackPanel Margin="45,210,0,0">
-            <!-- A Button to show XAML -->
-            <Button x:Name="ShowHideButton" Content="Show XAML" Click="ShowSourceCode_Click" Margin="0,0,0,10" />
+        <StackPanel x:Name="sourceStackPanel"  Margin="50,0,0,0">
+                    <TextBlock  Margin="0,200,0,10" Text="The XAML for this implementation can be found below:" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
             <!-- A ScrollViewer to enable scrolling -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
-                <!-- A TextBox to display XAML code -->
+                    <ScrollViewer x:Name="sourceViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
                 <TextBox x:Name="SourceCodeTextBox" 
                          IsReadOnly="True" 
                          AcceptsReturn="True"
                          TextWrapping="Wrap"
                          Margin="0"
+                         Loaded="SourceCodeTextBox_Loaded"
                          VerticalAlignment="Stretch"
                          HorizontalAlignment="Stretch"
                          MinWidth="300"
-                         Visibility="Collapsed" />
+                         Visibility="Visible" />
             </ScrollViewer>
         </StackPanel>
 
         <!-- Container for the StackPanel with C++ Code -->
-        <StackPanel Margin="45,520,0,0">
-            <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,60,0,10" />
-            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
+        <StackPanel x:Name="cppStackPanel" Margin="45,540,0,0">
+                    <TextBlock  Margin="0,20,0,10" Text="The C++ source code for this implementation can be found below:" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
+
+                    <ScrollViewer x:Name="cppViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
                 <!-- A TextBox to display C++ code -->
                 <TextBox x:Name="CppCodeTextBox" 
                          IsReadOnly="True" 
                          AcceptsReturn="True"
+                         Loaded="CppCodeTextBox_Loaded"
                          TextWrapping="Wrap"
                          Margin="0"
                          VerticalAlignment="Stretch"
                          HorizontalAlignment="Stretch"
                          MinWidth="300"
-                         Visibility="Collapsed" />
+                         Visibility="Visible" />
             </ScrollViewer>
         </StackPanel>
     </Grid>

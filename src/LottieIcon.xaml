@@ -59,8 +59,8 @@
         </ControlTemplate>
     </Page.Resources>
 
-    <ScrollViewer>
-    <Grid>
+    <ScrollViewer Height="1300"  >
+    <Grid >
         
         <StackPanel Orientation="Horizontal"  VerticalAlignment="Top" HorizontalAlignment="Left" >
             <TextBlock Text="Custom Animated Icon" HorizontalAlignment="Left" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50,40"/>
@@ -72,12 +72,12 @@
                 <ToggleButton Loaded="LottieButton_Loaded"  Width="75" IsEnabled="True" x:Name="LottieButton" Margin="0,10,0,10"  Click="LottieButton_Click"  PointerExited="Button_PointerExited" PointerEntered="Button_PointerEntered">
                    
 
-                    <AnimatedIcon x:Name="SearchAnimatedIcon">
+                    <AnimatedIcon  x:Name="SearchAnimatedIcon">
                         <AnimatedIcon.Source>
                             <local:AnimatedLogo/>
                         </AnimatedIcon.Source>
                         <AnimatedIcon.FallbackIconSource>
-                            <SymbolIconSource Symbol="GlobalNavigationButton"/>
+                            <SymbolIconSource Symbol="GlobalNavigationButton" />
                         </AnimatedIcon.FallbackIconSource>
                     </AnimatedIcon>
                 </ToggleButton>
@@ -113,13 +113,11 @@
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}"  HorizontalAlignment="Left"  Text="The XAML for this implementation is based on a ToggleButton mechanism:" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
                 
             </StackPanel>
-            <StackPanel Margin="50,940,0,0">
-                <!-- A Button to show XAML -->
-                <Button x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,-120,0,10" />
-                <!-- A ScrollViewer to enable scrolling -->
+            <StackPanel Margin="50,890,0,0">
+          
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="260" Margin="0,-40,0,10">
-                    <!-- A TextBox to display XAML code -->
-                    <TextBox x:Name="SourceCodeTextBox" 
+           
+                    <TextBox Loaded="SourceCodeTextBox_Loaded" x:Name="SourceCodeTextBox" 
 IsReadOnly="True" 
 AcceptsReturn="True"
 TextWrapping="Wrap"
@@ -127,10 +125,10 @@ Margin="0"
 VerticalAlignment="Stretch"
 HorizontalAlignment="Stretch"
 MinWidth="300"
-Visibility="Collapsed" />
+Visibility="Visible" />
                 </ScrollViewer>
             </StackPanel>
-            <StackPanel Margin="50,1190">
+            <StackPanel Margin="50,1120">
                 <TextBlock Style="{StaticResource BaseTextBlockStyle}" Text="Before converting the Lottie file into C++ code, we have to take note of markers - These are important in mapping the animations to their corresponding time intervals"></TextBlock>
                 <TextBlock Margin="0,10,0,5" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="For our implementation we are going to use:"></TextBlock>
                 <TextBlock Margin="60,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="• Normal" Style="{StaticResource BaseTextBlockStyle}"></TextBlock>
@@ -140,7 +138,7 @@ Visibility="Collapsed" />
                 <TextBlock Margin="0,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Style="{StaticResource BaseTextBlockStyle}" Text="After converting the file , these markers will be automatically placed in the C++ source code, thus defining the time intervals used in the mapping." ></TextBlock>
             
             </StackPanel>
-            <StackPanel Margin="50,1420">
+            <StackPanel Margin="50,1340">
                 <TextBlock  Style="{StaticResource BaseTextBlockStyle}" Text="Regarding the C++ source code, mapping the animation time intervals according to the user's interactions can be done using four methods: "></TextBlock>
                 <TextBlock Margin="60,10,0,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}"  Style="{StaticResource BaseTextBlockStyle}" Text="• InitializeIconState - Used to start the animation from the very first state - Normal." ></TextBlock>
                 <TextBlock Margin="60,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}"  Style="{StaticResource BaseTextBlockStyle}" Text="• Button_PointerEntered - Used to detect when the user hovers in. It also checks if the button has already been toggled, so it doesn't accidentally play the hover in animation again in case the button has been clicked." ></TextBlock>
@@ -148,10 +146,9 @@ Visibility="Collapsed" />
                 <TextBlock Margin="60,5" Foreground="{ThemeResource TextFillColorSecondaryBrush}"  Style="{StaticResource BaseTextBlockStyle}" Text="• LottieButton_Click - Used to identify whether the button has been pressed or not." ></TextBlock>
                 <TextBlock  Style="{StaticResource BaseTextBlockStyle}" Text="The C++ source code is provided below:"></TextBlock>
                 <StackPanel Margin="0,0,0,0">
-                    <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,20,0,10" />
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,0,0,10">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,10,0,10">
                         <!-- A TextBox to display C++ code -->
-                        <TextBox x:Name="CppCodeTextBox" 
+                        <TextBox  Loaded="CppCodeTextBox_Loaded" x:Name="CppCodeTextBox" 
 IsReadOnly="True" 
 AcceptsReturn="True"
 TextWrapping="Wrap"
@@ -159,13 +156,54 @@ Margin="0"
 VerticalAlignment="Stretch"
 HorizontalAlignment="Stretch"
 MinWidth="300"
-Visibility="Collapsed" />
+Visibility="Visible" />
                     </ScrollViewer>
                 </StackPanel>
             </StackPanel>
+
+
+            <StackPanel>
+                <TextBlock Margin="50,1820,0,0" Style="{StaticResource TitleTextBlockStyle}" Text="Changing a Lottie Icon's Foreground"></TextBlock>
+                <TextBlock Margin="50,90,0,0"    Style="{StaticResource BaseTextBlockStyle}">
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="When generating the class files from a console interface, it is important to add &quot;" ></Run>
+                    <Run Text="-GenerateColorBindings"></Run>
+                    <Run Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="&quot; as an argument:"></Run>
+                </TextBlock>
+                <TextBox IsReadOnly="True" Text="LottieGen -InputFile AnimatedLogo.json -Language cppwinrt -WinUIVersion 3.0 -NameSpace CppWinUIGallery -GenerateColorBindings" Width="Auto" Margin="50,15,50,0"></TextBox>
+                <TextBlock Margin="50,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="This adds to the generated header file of the class a table with the following attributes:"></TextBlock>
+                <TextBlock Margin="110,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="- Theme property"></TextBlock>
+                <TextBlock Margin="110,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="- Accessor"></TextBlock>
+                <TextBlock Margin="110,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="- Type"></TextBlock>
+                <TextBlock Margin="110,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="- Default value"></TextBlock>
+                <TextBlock Margin="50,10,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="More specifically, the Accessor is later added to the .idl file for getting &amp; setting the color property. In this example, the icon's original colour is Yellow:"></TextBlock>
+                <TextBox IsReadOnly="True" Text="Windows.UI.Color Color_FFD640{ get; set; };" Margin="50,10,50,0"></TextBox>
+                <TextBlock Margin="50,20,0,0" Style="{StaticResource BaseTextBlockStyle}" >
+                    <Run  Foreground="{ThemeResource TextFillColorSecondaryBrush}" Text="This Accessor can be implemented either:"></Run>
+                </TextBlock>
+                <TextBlock Margin="50,5,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="               - in the .cpp file, letting the user choose another foreground during an event."></TextBlock>
+                <TextBox IsReadOnly="True" Text=" IconSource().Color_FFD640(Windows::UI::Colors::Blue());" Margin="50,10,50,0"></TextBox>
+                <TextBlock Margin="50,5,0,0" Style="{StaticResource BaseTextBlockStyle}" Text="               - in the XAML file, letting the user choose another foreground when picking the AnimatedIcon source"></TextBlock>
+                <TextBox IsReadOnly="True" Text="&lt;local:TransparentLottie x:Name=&quot;IconSource&quot; Color_FFD640=&quot;Pink&quot;/>" Margin="50,10,50,0"></TextBox>
+
+            </StackPanel>
+            <ToggleButton Click="LottieButtonTransparent_Click"   Width="75" IsEnabled="True" x:Name="LottieButtonTransparent" Margin="50,650,0,10"  >
+
+
+                <AnimatedIcon x:Name="SearchAnimatedLottie" >
+                    <AnimatedIcon.Source>
+                        <local:TransparentLottie x:Name="IconSource" />
+                    </AnimatedIcon.Source>
+                    <AnimatedIcon.FallbackIconSource>
+                        <SymbolIconSource  Symbol="GlobalNavigationButton"/>
+                    </AnimatedIcon.FallbackIconSource>
+                </AnimatedIcon>
+            </ToggleButton>
             
+          
         </Grid>
-         
+        
+
+
     </ScrollViewer>    
     
 </Page>

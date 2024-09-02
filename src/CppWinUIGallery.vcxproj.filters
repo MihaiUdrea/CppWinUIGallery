@@ -18,12 +18,16 @@
     <Page Include="SettingsPage.xaml" />
     <Page Include="PVSlider.xaml" />
     <Page Include="Themes\Generic.xaml" />
+    <Page Include="SurfaceDial.xaml" />
     <Page Include="CustomControlPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
     <Midl Include="AnimatedLogo.idl">
       <Filter>AnimatedLogoFolder</Filter>
+    </Midl>
+    <Midl Include="TransparentLottie.idl">
+      <Filter>TransparentLottieFolder</Filter>
     </Midl>
   </ItemGroup>
   <ItemGroup>
@@ -33,11 +37,17 @@
       <Filter>AnimatedLogoFolder</Filter>
     </ClCompile>
     <ClCompile Include="SettingsCardControl.cpp" />
+    <ClCompile Include="TransparentLottie.cpp">
+      <Filter>TransparentLottieFolder</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="pch.h" />
     <ClInclude Include="AnimatedLogo.h">
       <Filter>AnimatedLogoFolder</Filter>
+    </ClInclude>
+    <ClInclude Include="TransparentLottie.h">
+      <Filter>TransparentLottieFolder</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -120,6 +130,9 @@
     </Filter>
     <Filter Include="AnimatedLogoFolder">
       <UniqueIdentifier>{93459d71-5f3b-4396-97d0-5afc9485cfbd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TransparentLottieFolder">
+      <UniqueIdentifier>{013b18c5-f9d3-43c2-a9e5-d942d38ec086}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

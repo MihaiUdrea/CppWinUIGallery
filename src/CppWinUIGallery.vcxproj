@@ -176,6 +176,7 @@
       <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="TransparentLottie.h" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml" />
@@ -294,6 +295,7 @@
       <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
+    <ClCompile Include="TransparentLottie.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="AnimatedLogo.idl" />
@@ -361,6 +363,7 @@
       <DependentUpon>ToggleSwitchPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
+    <Midl Include="TransparentLottie.idl" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt">
