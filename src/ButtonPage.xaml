@@ -32,7 +32,6 @@ mc:Ignorable="d">
                 VerticalAlignment="Top"/>
 
             <Button x:Name="BackButton"
-                Click="BackButton_Click"
                 Style="{StaticResource NavigationBackButtonNormalStyle}"
                 Foreground="{ThemeResource BackButtonDisabledForegroundThemeBrush}"
                 HorizontalAlignment="Center"
@@ -43,11 +42,9 @@ mc:Ignorable="d">
 
 
             <!-- Container for the StackPanel with XAML Code -->
-            <StackPanel x:Name="ShowHideStackPanel_xaml" Margin="45,0,45,-300">
-                <!-- A Button to show XAML -->
-                <Button x:Name="ShowHideButton" Content="Show XAML" Click="ShowHideButton_Click" Margin="0,0,0,10" />
-                <!-- A ScrollViewer to enable scrolling -->
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10" VerticalScrollMode="Enabled">
+            <StackPanel x:Name="ShowHideStackPanel_xaml" Margin="45,0,45,0">
+                <Button Content="XAML code" Margin="0, 0, 0, 10" IsHitTestVisible="False" "/>
+                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="170" Margin="0,0,0,10" VerticalScrollMode="Enabled">
                     <!-- A TextBox to display XAML code -->
                     <TextBox x:Name="SourceCodeTextBox" 
                         IsReadOnly="True" 
@@ -56,13 +53,14 @@ mc:Ignorable="d">
                         VerticalAlignment="Stretch"
                         HorizontalAlignment="Stretch"
                         MinWidth="300"
-                        Visibility="Collapsed" />
+                        Visibility="Visible"
+                        Loaded="SourceCodeTextBox_Loaded"/>
                 </ScrollViewer>
             </StackPanel>
 
             <!-- Container for the StackPanel with C++ Code -->
-            <StackPanel x:Name="ShowHideStackPanel_cpp" Margin="45,0,45,-300">
-                <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppButton_Click" Margin="0,60,0,10" />
+            <StackPanel x:Name="ShowHideStackPanel_cpp" Margin="45,30,45,0">
+                <Button Content="C++ code" Margin="0, 0, 0, 10" IsHitTestVisible="False"/>
                 <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
                     <!-- A TextBox to display C++ code -->
                     <TextBox x:Name="CppCodeTextBox" 
@@ -72,7 +70,8 @@ mc:Ignorable="d">
                         VerticalAlignment="Stretch"
                         HorizontalAlignment="Stretch"
                         MinWidth="300"
-                        Visibility="Collapsed"
+                        Visibility="Visible"
+                        Loaded="CppCodeTextBox_Loaded"
                  />
                 </ScrollViewer>
             </StackPanel>
