@@ -240,35 +240,38 @@
 
             </TextBlock>
             <TextBlock  Margin="50,20,0,0" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}" x:Name="introText17" Text="The XAML and C++ source code are provided below:"></TextBlock>
-            <StackPanel x:Name="introText18" Margin="45,20,0,0">
-                <Button x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,0,0,10" />
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,0">
-                    <TextBox x:Name="SourceCodeTextBox" 
-                   IsReadOnly="True" 
-                   AcceptsReturn="True"
-                   TextWrapping="Wrap"
-                   Margin="0"
-                   VerticalAlignment="Stretch"
-                   HorizontalAlignment="Stretch"
-                   MinWidth="300"
-                   Visibility="Collapsed" />
-                </ScrollViewer>
-            </StackPanel>
+            <Grid>
+            
+                <StackPanel x:Name="introText18" Margin="45,20,0,0">
+                    <Button IsEnabled="True" Canvas.ZIndex="1" x:Name="ShowHideButton" Content="Show XAML"  Click="ShowSourceCode_Click" Margin="0,0,0,10" />
+                    <ScrollViewer  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,0">
+                        <TextBox x:Name="SourceCodeTextBox" 
+                       IsReadOnly="True" 
+                       AcceptsReturn="True"
+                       TextWrapping="Wrap"
+                       Margin="0"
+                       VerticalAlignment="Stretch"
+                       HorizontalAlignment="Stretch"
+                       MinWidth="300"
+                       Visibility="Collapsed" />
+                    </ScrollViewer>
+                </StackPanel>
 
-            <StackPanel x:Name="introText19" Margin="45,0,0,0">
-                <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="0,20,0,10" />
-                <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
-                    <TextBox x:Name="CppCodeTextBox" 
-                   IsReadOnly="True" 
-                   AcceptsReturn="True"
-                   TextWrapping="Wrap"
-                   Margin="0"
-                   VerticalAlignment="Stretch"
-                   HorizontalAlignment="Stretch"
-                   MinWidth="300"
-                   Visibility="Collapsed" />
-                </ScrollViewer>
-            </StackPanel>
+                <StackPanel x:Name="introText19" Margin="45,0,0,0">
+                    <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="110,20,0,10" />
+                    <ScrollViewer  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
+                        <TextBox x:Name="CppCodeTextBox" 
+                       IsReadOnly="True" 
+                       AcceptsReturn="True"
+                       TextWrapping="Wrap"
+                       Margin="0"
+                       VerticalAlignment="Stretch"
+                       HorizontalAlignment="Stretch"
+                       MinWidth="300"
+                       Visibility="Collapsed" />
+                    </ScrollViewer>
+                </StackPanel>
+            </Grid>    
         </StackPanel>
     </ScrollViewer>
 </Page>

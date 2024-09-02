@@ -517,7 +517,8 @@ namespace winrt::CppWinUIGallery::implementation
         auto textBox = SourceCodeTextBox();
         auto cppTextBox = CppCodeTextBox();
         auto cppButton = ShowCppButton();
-
+        auto xamlTextBox = SourceCodeTextBox();
+        auto xamlButton = ShowHideButton();
 
         WCHAR exePath[MAX_PATH];
         GetModuleFileName(nullptr, exePath, MAX_PATH);
@@ -556,11 +557,16 @@ namespace winrt::CppWinUIGallery::implementation
 
             textBox.Visibility(Visibility::Visible);
             button.Content(box_value(L"Hide XAML"));
+            introText19().Children().Clear();
+
         }
         else
         {
             textBox.Visibility(Visibility::Collapsed);
             button.Content(box_value(L"Show XAML"));
+            introText19().Children().Append(cppButton);
+            introText19().Children().Append(cppTextBox);
+
         }
     }
 
@@ -572,6 +578,7 @@ namespace winrt::CppWinUIGallery::implementation
         auto textBox = CppCodeTextBox();
         auto xamlTextBox = SourceCodeTextBox();
         auto xamlButton = ShowHideButton();
+      
 
         WCHAR exePath[MAX_PATH];
         GetModuleFileName(nullptr, exePath, MAX_PATH);
@@ -609,11 +616,15 @@ namespace winrt::CppWinUIGallery::implementation
             }
             textBox.Visibility(Visibility::Visible);
             button.Content(box_value(L"Hide C++"));
+            introText18().Children().Clear();
+
         }
         else
         {
             textBox.Visibility(Visibility::Collapsed);
             button.Content(box_value(L"Show C++"));
+            introText18().Children().Append(xamlButton);
+            introText18().Children().Append(xamlTextBox);
         }
     }
 
