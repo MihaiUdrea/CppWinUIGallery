@@ -853,7 +853,7 @@ Storyboard.TargetProperty="Visibility">
 
         </Storyboard>
     </Page.Resources>
-    <ScrollViewer>
+    <ScrollViewer Height="1500">
     <Grid>
         
         <StackPanel>
@@ -1020,31 +1020,30 @@ Storyboard.TargetProperty="Visibility">
         
         </Grid>
             <Grid>
-                <TextBlock Text="The XAML and C++ code used for this implementation can be found below:" Margin="50,900"></TextBlock>
+                <TextBlock Text="The XAML and C++ code used for this implementation can be found below:" Margin="50,860"></TextBlock>
                 <StackPanel>
                     <!-- A Button to show XAML -->
-                    <Button x:Name="ShowHideButton" Content="Show XAML" Click="ShowSourceCode_Click" Margin="50,940,0,10" />
                     <!-- A ScrollViewer to enable scrolling -->
-                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="50,10,0,10">
+                    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="50,890,0,10">
                         <!-- A TextBox to display XAML code -->
                         <TextBox x:Name="SourceCodeTextBox" 
                   IsReadOnly="True" 
                   AcceptsReturn="True"
                   TextWrapping="Wrap"
                   Margin="0"
+                  Loaded="SourceCodeTextBox_Loaded"                                   
                   VerticalAlignment="Stretch"
                   HorizontalAlignment="Stretch"
                   MinWidth="300"
-                  Visibility="Collapsed" />
+                  Visibility="Visible" />
                     </ScrollViewer>
                
 
                 <!-- Container for the StackPanel with C++ Code -->
                 
-                    <Button x:Name="ShowCppButton" Content="Show C++" Click="ShowCppCode_Click" Margin="50,30,0,10" />
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="50,10,0,10">
                         <!-- A TextBox to display C++ code -->
-                        <TextBox x:Name="CppCodeTextBox" 
+                        <TextBox Loaded="CppCodeTextBox_Loaded" x:Name="CppCodeTextBox" 
                   IsReadOnly="True" 
                   AcceptsReturn="True"
                   TextWrapping="Wrap"
@@ -1052,11 +1051,14 @@ Storyboard.TargetProperty="Visibility">
                   VerticalAlignment="Stretch"
                   HorizontalAlignment="Stretch"
                   MinWidth="300"
-                  Visibility="Collapsed" />
+                  Visibility="Visible" />
                     </ScrollViewer>
                 </StackPanel>
             </Grid>
-        </Grid>
+        
+    
+    
+    </Grid>
         
     </ScrollViewer>
 </Page>

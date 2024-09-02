@@ -250,114 +250,78 @@ namespace winrt::CppWinUIGallery::implementation
             OutputDebugStringA(ex.what());
         }
     }
+}
+void winrt::CppWinUIGallery::implementation::ConnectedAnimation::SourceCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    auto textBox = SourceCodeTextBox();
 
-    void ConnectedAnimation::ShowSourceCode_Click(
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        auto button = ShowHideButton();
-        auto textBox = SourceCodeTextBox();
-        auto cppTextBox = CppCodeTextBox();
-        auto cppButton = ShowCppButton();
+    WCHAR exePath[MAX_PATH];
+    GetModuleFileName(nullptr, exePath, MAX_PATH);
+    PathRemoveFileSpec(exePath);
 
-       
-        WCHAR exePath[MAX_PATH];
-        GetModuleFileName(nullptr, exePath, MAX_PATH);
-        PathRemoveFileSpec(exePath); 
+    std::wstring exeDirectory = exePath;
 
-        std::wstring exeDirectory = exePath;
-        
-        std::filesystem::path fsPath(exeDirectory);
-        fsPath = fsPath.parent_path(); 
-        fsPath = fsPath.parent_path();
-        fsPath = fsPath.parent_path();
-        fsPath = fsPath.parent_path();
-        std::wstring newPath = fsPath.wstring();
-   
+    std::filesystem::path fsPath(exeDirectory);
+    fsPath = fsPath.parent_path();
+    fsPath = fsPath.parent_path();
+    fsPath = fsPath.parent_path();
+    fsPath = fsPath.parent_path();
+    std::wstring newPath = fsPath.wstring();
 
+
+
+    std::filesystem::path relativePath = L"\src\\ConnectedAnimation.xaml";
+    std::filesystem::path fullPath = fsPath;
+    fullPath /= relativePath;
+
+    
+        std::ifstream fileStream(fullPath.c_str());
+
+        if (fileStream.is_open())
+        {
+            std::stringstream buffer;
+            buffer << fileStream.rdbuf();
+            std::string fileContent = buffer.str();
+            textBox.Text(winrt::to_hstring(fileContent));
+        }
       
-        std::filesystem::path relativePath = L"\src\\ConnectedAnimation.xaml"; 
-        std::filesystem::path fullPath = fsPath;
-        fullPath /= relativePath;
+}
 
-        if (textBox.Visibility() == Visibility::Collapsed)
+
+void winrt::CppWinUIGallery::implementation::ConnectedAnimation::CppCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+{
+    auto textBox = CppCodeTextBox();
+    WCHAR exePath[MAX_PATH];
+    GetModuleFileName(nullptr, exePath, MAX_PATH);
+    PathRemoveFileSpec(exePath);
+
+    std::wstring exeDirectory = exePath;
+
+    std::filesystem::path fsPath(exeDirectory);
+    fsPath = fsPath.parent_path();
+    fsPath = fsPath.parent_path();
+    fsPath = fsPath.parent_path();
+    fsPath = fsPath.parent_path();
+    std::wstring newPath = fsPath.wstring();
+
+    std::filesystem::path relativePath = L"\src\\ConnectedAnimation.xaml.cpp";
+    std::filesystem::path fullPath = fsPath;
+    fullPath /= relativePath;
+
+
+
+
+        std::ifstream fileStream(fullPath.c_str());
+
+        if (fileStream.is_open())
         {
-            std::ifstream fileStream(fullPath.c_str());
-         
-            if (fileStream.is_open())
-            {
-                std::stringstream buffer;
-                buffer << fileStream.rdbuf();
-                std::string fileContent = buffer.str();
-                textBox.Text(winrt::to_hstring(fileContent));
-            }
-            else
-            {
-                textBox.Text(L"Error loading file");
-            }
-
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide XAML"));
+            std::stringstream buffer;
+            buffer << fileStream.rdbuf();
+            std::string fileContent = buffer.str();
+            textBox.Text(winrt::to_hstring(fileContent));
         }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show XAML"));
-        }
-    }
+        
 
-    void ConnectedAnimation::ShowCppCode_Click(
-
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        auto button = ShowCppButton();
-        auto textBox = CppCodeTextBox();
-        auto xamlTextBox = SourceCodeTextBox();
-        auto xamlButton = ShowHideButton();
-
-        WCHAR exePath[MAX_PATH];
-        GetModuleFileName(nullptr, exePath, MAX_PATH);
-        PathRemoveFileSpec(exePath);
-
-        std::wstring exeDirectory = exePath;
-
-        std::filesystem::path fsPath(exeDirectory);
-        fsPath = fsPath.parent_path();
-        fsPath = fsPath.parent_path();
-        fsPath = fsPath.parent_path();
-        fsPath = fsPath.parent_path();
-        std::wstring newPath = fsPath.wstring();
-
-        std::filesystem::path relativePath = L"\src\\ConnectedAnimation.xaml.cpp";
-        std::filesystem::path fullPath = fsPath;
-        fullPath /= relativePath;
-
-
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
-
-            std::ifstream fileStream(fullPath.c_str());
-
-            if (fileStream.is_open())
-            {
-                std::stringstream buffer;
-                buffer << fileStream.rdbuf();
-                std::string fileContent = buffer.str();
-                textBox.Text(winrt::to_hstring(fileContent));
-            }
-            else
-            {
-                textBox.Text(L"Error loading file");
-            }
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide C++"));
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show C++"));
-        }
-    }
+ 
 
 }
