@@ -134,8 +134,8 @@
 <Run Text="Switch_PointerPressed" Foreground="{ThemeResource SystemColorHotlightColor}"></Run>
 <Run Text="- If the users chooses to click on the icons instead of dragging the Thumb, it snaps the Thumb to the chosen bound, while also updating the icon's Active/Inactive states." Foreground="{ThemeResource TextFillColorSecondaryBrush}"></Run>
                 </TextBlock>
-                <TextBlock Margin="0,15" Style="{StaticResource BaseTextBlockStyle}" Text="The XAML for this implementation is provided below:"></TextBlock>
-            </StackPanel>
+                    <Button Content="XAML Code" Margin="0, 20, 0, 10" IsHitTestVisible="False"/>
+                </StackPanel>
             <StackPanel  Margin="0,0,0,0">
                     <ScrollViewer   CornerRadius="8" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,0,0,10">
                     <TextBox Loaded="SourceCodeTextBox_Loaded" x:Name="SourceCodeTextBox" 
@@ -150,7 +150,7 @@
                 </ScrollViewer>
             </StackPanel>
             <StackPanel>
-                <TextBlock Style="{StaticResource BaseTextBlockStyle}" Margin="0,0,0,0" Text="The C++ source code for this implementation is provided below:"></TextBlock>
+                    <Button Content="C++ Code" Margin="0, 20, 0, 0" IsHitTestVisible="False"/>
             </StackPanel>
             <StackPanel  Margin="0,0,0,0">
                     <ScrollViewer  CornerRadius="8" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,10,0,10">

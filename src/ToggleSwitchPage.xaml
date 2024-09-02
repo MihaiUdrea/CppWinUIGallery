@@ -45,8 +45,9 @@
                 <TextBlock Text="A similar approach to this can be found on the Advanced Installer Purchase page." Margin="50,170" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/>
             <!-- Container for the StackPanel with XAML Code -->
         <StackPanel x:Name="sourceStackPanel"  Margin="50,0,0,0">
-                    <TextBlock  Margin="0,200,0,10" Text="The XAML for this implementation can be found below:" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
-            <!-- A ScrollViewer to enable scrolling -->
+                    <Button Content="XAML code" Margin="0,200,0,10" IsHitTestVisible="False"/>
+
+                    <!-- A ScrollViewer to enable scrolling -->
                     <ScrollViewer x:Name="sourceViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
                 <TextBox x:Name="SourceCodeTextBox" 
                          IsReadOnly="True" 
@@ -62,9 +63,8 @@
         </StackPanel>
 
         <!-- Container for the StackPanel with C++ Code -->
-        <StackPanel x:Name="cppStackPanel" Margin="45,540,0,0">
-                    <TextBlock  Margin="0,20,0,10" Text="The C++ source code for this implementation can be found below:" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
-
+        <StackPanel x:Name="cppStackPanel" Margin="45,560,0,0">
+                    <Button Content="C++ code" Margin="0,20,0,10" IsHitTestVisible="False"/>
                     <ScrollViewer x:Name="cppViewer" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="0,0,0,10">
                 <!-- A TextBox to display C++ code -->
                 <TextBox x:Name="CppCodeTextBox" 

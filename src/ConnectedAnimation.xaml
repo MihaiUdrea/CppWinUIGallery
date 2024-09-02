@@ -1017,13 +1017,14 @@ Storyboard.TargetProperty="Visibility">
                 <!--margin from left - 146-->
             </StackPanel>
 
-        
+                <Button Content="XAML Code" VerticalAlignment="Top" Margin="50,715,0,0" IsHitTestVisible="False"></Button>
         </Grid>
             <Grid>
-                <TextBlock Text="The XAML and C++ code used for this implementation can be found below:" Margin="50,860"></TextBlock>
+                
                 <StackPanel>
                     <!-- A Button to show XAML -->
                     <!-- A ScrollViewer to enable scrolling -->
+
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="50,890,0,10">
                         <!-- A TextBox to display XAML code -->
                         <TextBox x:Name="SourceCodeTextBox" 
@@ -1040,7 +1041,7 @@ Storyboard.TargetProperty="Visibility">
                
 
                 <!-- Container for the StackPanel with C++ Code -->
-                
+                    <Button Content="C++ Code" Margin="50, 20, 0, 10" IsHitTestVisible="False"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Height="300" Margin="50,10,0,10">
                         <!-- A TextBox to display C++ code -->
                         <TextBox Loaded="CppCodeTextBox_Loaded" x:Name="CppCodeTextBox" 

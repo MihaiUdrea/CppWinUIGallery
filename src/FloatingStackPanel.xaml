@@ -133,7 +133,7 @@
 
                 </StackPanel>
                 <StackPanel Margin="75,30,0,0">
-                    <TextBlock Text="The XAML for this implementation is provided below:" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
+                    <Button Content="XAML code" IsHitTestVisible="False"/>
                     <!-- A ScrollViewer to enable scrolling -->
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,10,20,10">
                         <!-- A TextBox to display XAML code -->
@@ -151,8 +151,8 @@
                 </StackPanel>
 
                 <!-- Container for the StackPanel with C++ Code -->
-                <StackPanel Margin="75,0,0,0">
-                    <TextBlock Text="The C++ source code for this implementation is provided below:" Style="{StaticResource BaseTextBlockStyle}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"></TextBlock>
+                <StackPanel Margin="75,20,0,0">
+                    <Button Content="C++ code" IsHitTestVisible="False"/>
                     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Height="300" Margin="0,10,20,10">
                         <TextBox x:Name="CppCodeTextBox" 
             IsReadOnly="True" 
