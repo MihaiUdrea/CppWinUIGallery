@@ -13,12 +13,13 @@
         <Style x:Key="testingStyle" TargetType="SplitButton">
 
         </Style>
-        <Flyout Opened="Flyout_Opened" Closed="Flyout_Closed"  Placement="Bottom" LightDismissOverlayMode="On"  x:Key="CustomFlyout" >
+        <Flyout Opened="Flyout_Opened"  Closed="Flyout_Closed"  Placement="Bottom" LightDismissOverlayMode="On"  x:Key="CustomFlyout" >
             <Flyout.FlyoutPresenterStyle>
                 <Style TargetType="FlyoutPresenter">
                     <Setter Property="Background" Value="Transparent" />
                     <Setter Property="BorderBrush" Value="Transparent" />
                     <Setter Property="BorderThickness" Value="0" />
+                    <Setter Property="IsDefaultShadowEnabled" Value="False"></Setter>
 
                 </Style>
 
