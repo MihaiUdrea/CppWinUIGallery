@@ -1,5 +1,5 @@
-#include "pch.h"
 #include "FloatingStackPanel.xaml.h"
+#include "pch.h"
 #if __has_include("FloatingStackPanel.g.cpp")
 #include "FloatingStackPanel.g.cpp"
 #endif
@@ -12,83 +12,85 @@ using namespace Microsoft::UI::Xaml::Media::Animation;
 
 namespace winrt::CppWinUIGallery::implementation
 {
-    int32_t FloatingStackPanel::MyProperty()
+int32_t FloatingStackPanel::MyProperty()
+{
+    throw hresult_not_implemented();
+}
+
+void FloatingStackPanel::MyProperty(int32_t /* value */)
+{
+    throw hresult_not_implemented();
+}
+
+bool isScaledDown = false; // Flag to track whether scaling has been applied
+
+void FloatingStackPanel::OnScrollViewerViewChanged(IInspectable const &sender,
+                                                   ScrollViewerViewChangedEventArgs const &args)
+{
+    auto scrollViewer = sender.as<ScrollViewer>();
+    double offsetY = scrollViewer.VerticalOffset();
+
+    // Define thresholds and scale factors
+    const double startScalingOffset = 350; // The point where scaling starts
+    const double stopScalingOffset = 900;  // The point where scaling stops and the panel sticks to the top
+    const double infobarScale = 0.55;      // Scale factor for the infobar size
+    const double infobarTopOffset = 30;    // Offset from the top of the screen when in infobar mode
+    const double infobarWidth = 900;       // Width of the infobar when scaled (unchanged)
+
+    // Calculate scale and translation based on scroll offset
+    double scale = 1.0;
+    double translationY = 0;
+
+    if (offsetY > startScalingOffset)
     {
-        throw hresult_not_implemented();
+        scale = infobarScale;
+        translationY = offsetY - startScalingOffset + infobarTopOffset - 120;
+    }
+    else
+    {
+        scale = 1.0;
+        translationY = 0;
     }
 
-    void FloatingStackPanel::MyProperty(int32_t /* value */)
+    // Apply transformations directly
+    auto transform = targetStackPanel().RenderTransform().as<CompositeTransform>();
+    transform.TranslateY(translationY);
+
+    // Maintain the fixed width of the StackPanel
+    targetStackPanel().Width(infobarWidth);
+
+    // Change background color based on scale
+    auto stackPanelBackground = targetStackPanel().Background().as<SolidColorBrush>();
+    Windows::UI::Color newColor =
+        (scale < 1.0) ? Windows::UI::Colors::Black() : Windows::UI::ColorHelper::FromArgb(0x80, 0x00, 0x00, 0x00);
+
+    if (!stackPanelBackground || stackPanelBackground.Color() != newColor)
     {
-        throw hresult_not_implemented();
+        targetStackPanel().Background(SolidColorBrush(newColor));
     }
 
-    bool isScaledDown = false; // Flag to track whether scaling has been applied
+    // Update text wrapping based on scale
+    auto targetTextBlock = targetStackPanel().FindName(L"targetTextBlock").as<TextBlock>();
 
-    void FloatingStackPanel::OnScrollViewerViewChanged(IInspectable const& sender, ScrollViewerViewChangedEventArgs const& args)
+    // Trigger animations when transitioning
+    if (scale < 1.0 && !isScaledDown)
     {
-        auto scrollViewer = sender.as<ScrollViewer>();
-        double offsetY = scrollViewer.VerticalOffset();
-
-        // Define thresholds and scale factors
-        const double startScalingOffset = 350; // The point where scaling starts
-        const double stopScalingOffset = 900;  // The point where scaling stops and the panel sticks to the top
-        const double infobarScale = 0.55; // Scale factor for the infobar size
-        const double infobarTopOffset = 30; // Offset from the top of the screen when in infobar mode
-        const double infobarWidth = 900; // Width of the infobar when scaled (unchanged)
-
-        // Calculate scale and translation based on scroll offset
-        double scale = 1.0;
-        double translationY = 0;
-
-        if (offsetY > startScalingOffset)
-        {
-            scale = infobarScale;
-            translationY = offsetY - startScalingOffset + infobarTopOffset - 120;
-        }
-        else
-        {
-            scale = 1.0;
-            translationY = 0;
-        }
-
-        // Apply transformations directly
-        auto transform = targetStackPanel().RenderTransform().as<CompositeTransform>();
-        transform.TranslateY(translationY);
-
-        // Maintain the fixed width of the StackPanel
-        targetStackPanel().Width(infobarWidth);
-
-        // Change background color based on scale
-        auto stackPanelBackground = targetStackPanel().Background().as<SolidColorBrush>();
-        Windows::UI::Color newColor = (scale < 1.0) ? Windows::UI::Colors::Black() : Windows::UI::ColorHelper::FromArgb(0x80, 0x00, 0x00, 0x00);
-
-        if (!stackPanelBackground || stackPanelBackground.Color() != newColor)
-        {
-            targetStackPanel().Background(SolidColorBrush(newColor));
-        }
-
-        // Update text wrapping based on scale
-        auto targetTextBlock = targetStackPanel().FindName(L"targetTextBlock").as<TextBlock>();
-
-
-        // Trigger animations when transitioning
-        if (scale < 1.0 && !isScaledDown)
-        {
-            isScaledDown = true;
-            ScaleDownStoryboard().Begin();
-        }
-        else if (scale == 1.0 && isScaledDown)
-        {
-            isScaledDown = false;
-            ScaleUpStoryboard().Begin();
-        }
+        isScaledDown = true;
+        ScaleDownStoryboard().Begin();
+    }
+    else if (scale == 1.0 && isScaledDown)
+    {
+        isScaledDown = false;
+        ScaleUpStoryboard().Begin();
     }
 }
-void winrt::CppWinUIGallery::implementation::FloatingStackPanel::SourceCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+} // namespace winrt::CppWinUIGallery::implementation
+void winrt::CppWinUIGallery::implementation::FloatingStackPanel::SourceCodeTextBox_Loaded(
+    winrt::Windows::Foundation::IInspectable const &sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
 {
     auto textBox = SourceCodeTextBox();
-   
-        hstring xamlSourceCode = LR"(
+
+    hstring xamlSourceCode = LR"(
 <Page.Resources>
     <Storyboard x:Name="ScaleUpStoryboard">
         <DoubleAnimation
@@ -207,16 +209,15 @@ void winrt::CppWinUIGallery::implementation::FloatingStackPanel::SourceCodeTextB
     </ScrollViewer>
 </Grid>
 )";
-        textBox.Text(xamlSourceCode);
-      
+    textBox.Text(xamlSourceCode);
 }
 
-
-void winrt::CppWinUIGallery::implementation::FloatingStackPanel::CppCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+void winrt::CppWinUIGallery::implementation::FloatingStackPanel::CppCodeTextBox_Loaded(
+    winrt::Windows::Foundation::IInspectable const &sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
 {
     auto textBox = CppCodeTextBox();
-   
-        hstring cppSourceCode = LR"(
+
+    hstring cppSourceCode = LR"(
 void FloatingStackPanel::OnScrollViewerViewChanged(IInspectable const& sender, ScrollViewerViewChangedEventArgs const& args)
     {
         auto scrollViewer = sender.as<ScrollViewer>();
@@ -277,6 +278,5 @@ void FloatingStackPanel::OnScrollViewerViewChanged(IInspectable const& sender, S
         }
     }
 )";
-        textBox.Text(cppSourceCode);
-       
+    textBox.Text(cppSourceCode);
 }

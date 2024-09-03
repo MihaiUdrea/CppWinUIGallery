@@ -1,5 +1,5 @@
-#include "pch.h"
 #include "ButtonPage.xaml.h"
+#include "pch.h"
 #if __has_include("ButtonPage.g.cpp")
 #include "ButtonPage.g.cpp"
 #endif
@@ -12,20 +12,20 @@ using namespace Microsoft::UI::Xaml;
 
 namespace winrt::CppWinUIGallery::implementation
 {
-    int32_t ButtonPage::MyProperty()
-    {
-        throw hresult_not_implemented();
-    }
+int32_t ButtonPage::MyProperty()
+{
+    throw hresult_not_implemented();
+}
 
-    void ButtonPage::MyProperty(int32_t /* value */)
-    {
-        throw hresult_not_implemented();
-    }
+void ButtonPage::MyProperty(int32_t /* value */)
+{
+    throw hresult_not_implemented();
+}
 
-    
-    void ButtonPage::SourceCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        SourceCodeTextBox().Text(LR"(<Button x:Name="BackButton"
+void ButtonPage::SourceCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const &sender,
+                                          winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
+{
+    SourceCodeTextBox().Text(LR"(<Button x:Name="BackButton"
         Click = "BackButton_Click"
         Style = "{StaticResource NavigationBackButtonNormalStyle}"
         Foreground = "{StaticResource BackButtonDisabledForegroundThemeBrush}"
@@ -33,12 +33,13 @@ namespace winrt::CppWinUIGallery::implementation
         VerticalAlignment = "Top"
         Margin = "0, 250, 0, 50"
         IsEnabled = "True" / >})");
-    }
+}
 
-
-    void ButtonPage::CppCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        CppCodeTextBox().Text(LR"(void MainWindow::TitleBar_BackButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+void ButtonPage::CppCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const &sender,
+                                       winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
+{
+    CppCodeTextBox().Text(
+        LR"(void MainWindow::TitleBar_BackButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
     {
         if (ContentFrame().CanGoBack())
             ContentFrame().GoBack();
@@ -66,12 +67,6 @@ namespace winrt::CppWinUIGallery::implementation
             }
         }
     })");
-    }
-
 }
 
-
-
-
-
-
+} // namespace winrt::CppWinUIGallery::implementation

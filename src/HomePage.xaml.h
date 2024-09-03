@@ -5,22 +5,23 @@
 
 namespace winrt::CppWinUIGallery::implementation
 {
-    struct HomePage : HomePageT<HomePage>
-    {
-        HomePage() = default;
+struct HomePage : HomePageT<HomePage>
+{
+    HomePage() = default;
 
-        int32_t MyProperty();
-        void MyProperty(int32_t value);
+    int32_t MyProperty();
+    void MyProperty(int32_t value);
 
-        void myButton_Click(IInspectable const& sender, Microsoft::UI::Xaml::RoutedEventArgs const& args);
-        void Button_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-    };
+    void myButton_Click(IInspectable const &sender, Microsoft::UI::Xaml::RoutedEventArgs const &args);
+    void Button_Click(winrt::Windows::Foundation::IInspectable const &sender,
+                      winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e);
+};
 
-}
+} // namespace winrt::CppWinUIGallery::implementation
 
 namespace winrt::CppWinUIGallery::factory_implementation
 {
-    struct HomePage : HomePageT<HomePage, implementation::HomePage>
-    {
-    };
-}
+struct HomePage : HomePageT<HomePage, implementation::HomePage>
+{
+};
+} // namespace winrt::CppWinUIGallery::factory_implementation

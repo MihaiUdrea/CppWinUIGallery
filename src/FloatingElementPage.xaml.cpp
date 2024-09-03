@@ -1,5 +1,5 @@
-#include "pch.h"
 #include "FloatingElementPage.xaml.h"
+#include "pch.h"
 #if __has_include("FloatingElementPage.g.cpp")
 #include "FloatingElementPage.g.cpp"
 #endif
@@ -13,198 +13,181 @@ using namespace Windows::Foundation;
 
 namespace winrt::CppWinUIGallery::implementation
 {
-    FloatingElementPage::FloatingElementPage()
-    {
-        InitializeComponent();
+FloatingElementPage::FloatingElementPage()
+{
+    InitializeComponent();
 
-        // Attach event handlers
-        auto scrollViewer = FindName(L"mainScrollViewer").try_as<ScrollViewer>();
-        if (scrollViewer)
-        {
-            scrollViewer.ViewChanged({ this, &FloatingElementPage::ScrollViewer_ViewChanged });
-        }
-        this->Loaded({ this, &FloatingElementPage::Page_Loaded });
+    // Attach event handlers
+    auto scrollViewer = FindName(L"mainScrollViewer").try_as<ScrollViewer>();
+    if (scrollViewer)
+    {
+        scrollViewer.ViewChanged({this, &FloatingElementPage::ScrollViewer_ViewChanged});
     }
+    this->Loaded({this, &FloatingElementPage::Page_Loaded});
+}
 
-    int32_t FloatingElementPage::MyProperty()
+int32_t FloatingElementPage::MyProperty()
+{
+    throw hresult_not_implemented();
+}
+
+void FloatingElementPage::MyProperty(int32_t /* value */)
+{
+    throw hresult_not_implemented();
+}
+
+void FloatingElementPage::Page_Loaded(IInspectable const &, RoutedEventArgs const &)
+{
+    try
     {
-        throw hresult_not_implemented();
+        // Initial check for visibility
+        CheckTargetElementVisibility();
     }
-
-    void FloatingElementPage::MyProperty(int32_t /* value */)
+    catch (const hresult_error &ex)
     {
-        throw hresult_not_implemented();
+        /* OutputDebugStringW(L"Exception in Page_Loaded: ");
+         OutputDebugStringW(ex.message().c_str());*/
     }
+}
 
-    void FloatingElementPage::Page_Loaded(IInspectable const&, RoutedEventArgs const&)
+void FloatingElementPage::ScrollViewer_ViewChanged(IInspectable const &, ScrollViewerViewChangedEventArgs const &)
+{
+    try
     {
-        try
-        {
-            // Initial check for visibility
-            CheckTargetElementVisibility();
-        }
-        catch (const hresult_error& ex)
-        {
-            /* OutputDebugStringW(L"Exception in Page_Loaded: ");
-             OutputDebugStringW(ex.message().c_str());*/
-        }
+        CheckTargetElementVisibility();
     }
-
-    void FloatingElementPage::ScrollViewer_ViewChanged(IInspectable const&, ScrollViewerViewChangedEventArgs const&)
+    catch (const hresult_error &ex)
     {
-        try
-        {
-            CheckTargetElementVisibility();
-        }
-        catch (const hresult_error& ex)
-        {
-            /*  OutputDebugStringW(L"Exception in ScrollViewer_ViewChanged: ");
-              OutputDebugStringW(ex.message().c_str());*/
-        }
+        /*  OutputDebugStringW(L"Exception in ScrollViewer_ViewChanged: ");
+          OutputDebugStringW(ex.message().c_str());*/
     }
+}
 
-    void FloatingElementPage::CheckTargetElementVisibility()
+void FloatingElementPage::CheckTargetElementVisibility()
+{
+    try
     {
-        try
-        {
-            auto scrollViewer = FindName(L"mainScrollViewer").as<ScrollViewer>();
-            auto targetButton = FindName(L"targetButton").try_as<Button>();
-            auto infoBarBorder = FindName(L"infoBarBorder").try_as<Border>();
-            auto infoBarButton = FindName(L"infoBarButton").try_as<Button>();
+        auto scrollViewer = FindName(L"mainScrollViewer").as<ScrollViewer>();
+        auto targetButton = FindName(L"targetButton").try_as<Button>();
+        auto infoBarBorder = FindName(L"infoBarBorder").try_as<Border>();
+        auto infoBarButton = FindName(L"infoBarButton").try_as<Button>();
 
-            if (!scrollViewer || !targetButton || !infoBarBorder || !infoBarButton)
+        if (!scrollViewer || !targetButton || !infoBarBorder || !infoBarButton)
+        {
+            return;
+        }
+
+        // Helper function to check if a FrameworkElement is nearly out of view
+        auto isElementNearlyOutOfView = [&](FrameworkElement const &element) {
+            auto transform = element.TransformToVisual(scrollViewer);
+            auto position = transform.TransformPoint(Point(0, 0));
+            float elementY = static_cast<float>(position.Y);
+            float elementHeight = static_cast<float>(element.ActualHeight());
+
+            return (elementY + elementHeight) < 150; // Adjust this threshold as needed
+        };
+
+        // Check if the targetButton is nearly out of view
+        bool isButtonNearlyOutOfView = isElementNearlyOutOfView(targetButton);
+
+        // Determine the storyboard to use based on visibility
+        auto infoBarStoryboardName = isButtonNearlyOutOfView ? L"SlideInAnimation" : L"SlideOutAnimation";
+        auto infoBarStoryboard = this->Resources().Lookup(box_value(infoBarStoryboardName)).try_as<Storyboard>();
+
+        if (infoBarStoryboard)
+        {
+            if (infoBarBorder)
             {
-                return;
-            }
-
-            // Helper function to check if a FrameworkElement is nearly out of view
-            auto isElementNearlyOutOfView = [&](FrameworkElement const& element) {
-                auto transform = element.TransformToVisual(scrollViewer);
-                auto position = transform.TransformPoint(Point(0, 0));
-                float elementY = static_cast<float>(position.Y);
-                float elementHeight = static_cast<float>(element.ActualHeight());
-
-                return (elementY + elementHeight) < 150; // Adjust this threshold as needed
-                };
-
-            // Check if the targetButton is nearly out of view
-            bool isButtonNearlyOutOfView = isElementNearlyOutOfView(targetButton);
-
-            // Determine the storyboard to use based on visibility
-            auto infoBarStoryboardName = isButtonNearlyOutOfView ? L"SlideInAnimation" : L"SlideOutAnimation";
-            auto infoBarStoryboard = this->Resources().Lookup(box_value(infoBarStoryboardName)).try_as<Storyboard>();
-
-            if (infoBarStoryboard)
-            {
-                if (infoBarBorder)
+                if (isButtonNearlyOutOfView)
                 {
-                    if (isButtonNearlyOutOfView)
+                    if (infoBarBorder.Visibility() == Visibility::Collapsed &&
+                        infoBarStoryboard.GetCurrentState() != ClockState::Active)
                     {
-                        if (infoBarBorder.Visibility() == Visibility::Collapsed && infoBarStoryboard.GetCurrentState() != ClockState::Active)
+                        // Show the InfoBar
+                        infoBarBorder.Visibility(Visibility::Visible);
+
+                        // Prepare and start the connected animation for the targetButton
+                        auto connectedAnimationService = ConnectedAnimationService::GetForCurrentView();
+                        infoBarStoryboard.Completed([this, connectedAnimationService, targetButton,
+                                                     infoBarButton](IInspectable const &, IInspectable const &) {
+                            // Prepare the connected animation to transition from infoBarButton to targetButton
+                            connectedAnimationService.PrepareToAnimate(L"targetButtonAnimation", targetButton);
+
+                            auto animation = connectedAnimationService.GetAnimation(L"targetButtonAnimation");
+                            // if (animation)
+                            //{
+                            //     animation.Configuration(DirectConnectedAnimationConfiguration());
+                            //     animation.TryStart(infoBarButton);
+
+                            //    // Hide the targetButton after the animation starts
+                            //    targetButton.Visibility(Visibility::Collapsed);
+                            //}
+                        });
+
+                        infoBarStoryboard.Begin();
+                    }
+                }
+                else
+                {
+                    if (infoBarBorder.Visibility() == Visibility::Visible &&
+                        infoBarStoryboard.GetCurrentState() != ClockState::Active)
+                    {
+                        // Hide the InfoBar first
+
+                        // Prepare and start the reverse connected animation
+                        auto connectedAnimationService = ConnectedAnimationService::GetForCurrentView();
+                        connectedAnimationService.PrepareToAnimate(L"infoBarButtonAnimation", infoBarButton);
+
+                        auto reverseAnimation = connectedAnimationService.GetAnimation(L"infoBarButtonAnimation");
+                        if (reverseAnimation)
                         {
-                            // Show the InfoBar
-                            infoBarBorder.Visibility(Visibility::Visible);
+                            reverseAnimation.Configuration(DirectConnectedAnimationConfiguration());
 
-                            // Prepare and start the connected animation for the targetButton
-                            auto connectedAnimationService = ConnectedAnimationService::GetForCurrentView();
-                            infoBarStoryboard.Completed([this, connectedAnimationService, targetButton, infoBarButton](IInspectable const&, IInspectable const&)
-                                {
-                                    // Prepare the connected animation to transition from infoBarButton to targetButton
-                                    connectedAnimationService.PrepareToAnimate(L"targetButtonAnimation", targetButton);
-
-                                    auto animation = connectedAnimationService.GetAnimation(L"targetButtonAnimation");
-                                    //if (animation)
-                                    //{
-                                    //    animation.Configuration(DirectConnectedAnimationConfiguration());
-                                    //    animation.TryStart(infoBarButton);
-
-                                    //    // Hide the targetButton after the animation starts
-                                    //    targetButton.Visibility(Visibility::Collapsed);
-                                    //}
+                            reverseAnimation.Completed(
+                                [this, targetButton](IInspectable const &, IInspectable const &) {
+                                    // Make sure to show the targetButton after the reverse animation completes
+                                    targetButton.Visibility(Visibility::Visible);
                                 });
 
-                            infoBarStoryboard.Begin();
+                            reverseAnimation.TryStart(targetButton);
                         }
-                    }
-                    else
-                    {
-                        if (infoBarBorder.Visibility() == Visibility::Visible && infoBarStoryboard.GetCurrentState() != ClockState::Active)
-                        {
-                            // Hide the InfoBar first
 
-                            // Prepare and start the reverse connected animation
-                            auto connectedAnimationService = ConnectedAnimationService::GetForCurrentView();
-                            connectedAnimationService.PrepareToAnimate(L"infoBarButtonAnimation", infoBarButton);
-
-                            auto reverseAnimation = connectedAnimationService.GetAnimation(L"infoBarButtonAnimation");
-                            if (reverseAnimation)
-                            {
-                                reverseAnimation.Configuration(DirectConnectedAnimationConfiguration());
-
-                                reverseAnimation.Completed([this, targetButton](IInspectable const&, IInspectable const&)
-                                    {
-                                        // Make sure to show the targetButton after the reverse animation completes
-                                        targetButton.Visibility(Visibility::Visible);
-                                    });
-
-                                reverseAnimation.TryStart(targetButton);
-                            }
-
-                            // Start the storyboard after hiding the InfoBar
-                            infoBarStoryboard.Begin();
-                        }
+                        // Start the storyboard after hiding the InfoBar
+                        infoBarStoryboard.Begin();
                     }
                 }
             }
+        }
 
-            // Force a UI update
-            this->UpdateLayout();
-        }
-        catch (const hresult_error& ex)
-        {
-            // Handle exception
-            UNREFERENCED_PARAMETER(ex); // Remove unused variable warning
-        }
+        // Force a UI update
+        this->UpdateLayout();
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    void FloatingElementPage::ShowSourceCode_Click(
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    catch (const hresult_error &ex)
     {
-        auto button = ShowHideButton();
-        auto textBox = SourceCodeTextBox();
-        auto cppTextBox = CppCodeTextBox();
-        auto cppButton = ShowCppButton(); // Ensure ShowCppButton is correctly named and initialized
+        // Handle exception
+        UNREFERENCED_PARAMETER(ex); // Remove unused variable warning
+    }
+}
 
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
-            // Hide C++ code if visible
-           /* if (cppTextBox.Visibility() == Visibility::Visible)
-            {
-                cppTextBox.Visibility(Visibility::Collapsed);
-                cppButton.Content(box_value(L"Show C++"));
-            }*/
+void FloatingElementPage::ShowSourceCode_Click(winrt::Windows::Foundation::IInspectable const &sender,
+                                               winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
+{
+    auto button = ShowHideButton();
+    auto textBox = SourceCodeTextBox();
+    auto cppTextBox = CppCodeTextBox();
+    auto cppButton = ShowCppButton(); // Ensure ShowCppButton is correctly named and initialized
 
-            // Show XAML source code
-            hstring xamlSourceCode = LR"(
+    if (textBox.Visibility() == Visibility::Collapsed)
+    {
+        // Hide C++ code if visible
+        /* if (cppTextBox.Visibility() == Visibility::Visible)
+         {
+             cppTextBox.Visibility(Visibility::Collapsed);
+             cppButton.Content(box_value(L"Show C++"));
+         }*/
+
+        // Show XAML source code
+        hstring xamlSourceCode = LR"(
 <Page.Resources>
     <!-- Slide in animation -->
     <Storyboard x:Key="SlideInAnimation">
@@ -338,37 +321,36 @@ namespace winrt::CppWinUIGallery::implementation
                 < / ScrolLViewer>
                 < / Grid>
 )";
-            textBox.Text(xamlSourceCode);
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide XAML"));
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show XAML"));
-        }
+        textBox.Text(xamlSourceCode);
+        textBox.Visibility(Visibility::Visible);
+        button.Content(box_value(L"Hide XAML"));
     }
-
-    void FloatingElementPage::ShowCppCode_Click(
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    else
     {
-        auto button = ShowCppButton(); // Make sure the button is named correctly
-        auto textBox = CppCodeTextBox();
-        auto xamlTextBox = SourceCodeTextBox();
-        auto xamlButton = ShowHideButton(); // Ensure ShowHideButton is correctly named and initialized
+        textBox.Visibility(Visibility::Collapsed);
+        button.Content(box_value(L"Show XAML"));
+    }
+}
 
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
-            // Hide XAML code if visible
-           /* if (xamlTextBox.Visibility() == Visibility::Visible)
-            {
-                xamlTextBox.Visibility(Visibility::Collapsed);
-                xamlButton.Content(box_value(L"Show XAML"));
-            }*/
+void FloatingElementPage::ShowCppCode_Click(winrt::Windows::Foundation::IInspectable const &sender,
+                                            winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
+{
+    auto button = ShowCppButton(); // Make sure the button is named correctly
+    auto textBox = CppCodeTextBox();
+    auto xamlTextBox = SourceCodeTextBox();
+    auto xamlButton = ShowHideButton(); // Ensure ShowHideButton is correctly named and initialized
 
-            // Show C++ source code
-            hstring cppSourceCode = LR"(
+    if (textBox.Visibility() == Visibility::Collapsed)
+    {
+        // Hide XAML code if visible
+        /* if (xamlTextBox.Visibility() == Visibility::Visible)
+         {
+             xamlTextBox.Visibility(Visibility::Collapsed);
+             xamlButton.Content(box_value(L"Show XAML"));
+         }*/
+
+        // Show C++ source code
+        hstring cppSourceCode = LR"(
 void FloatingElementPage::ScrollViewer_ViewChanged(IInspectable const&, ScrollViewerViewChangedEventArgs const&)
     {
         try
@@ -473,32 +455,23 @@ void FloatingElementPage::ScrollViewer_ViewChanged(IInspectable const&, ScrollVi
         }
     }
 )";
-            textBox.Text(cppSourceCode);
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide C++"));
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show C++"));
-        }
+        textBox.Text(cppSourceCode);
+        textBox.Visibility(Visibility::Visible);
+        button.Content(box_value(L"Hide C++"));
     }
-
-
-
-    void FloatingElementPage::DoubleAnimation_Completed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::Foundation::IInspectable const& e)
+    else
     {
-        auto infoBarBorder = FindName(L"infoBarBorder").try_as<Border>();
-
-        infoBarBorder.Visibility(Visibility::Collapsed);
-
+        textBox.Visibility(Visibility::Collapsed);
+        button.Content(box_value(L"Show C++"));
     }
-
-
-
-
-
-
 }
 
+void FloatingElementPage::DoubleAnimation_Completed(winrt::Windows::Foundation::IInspectable const &sender,
+                                                    winrt::Windows::Foundation::IInspectable const &e)
+{
+    auto infoBarBorder = FindName(L"infoBarBorder").try_as<Border>();
 
+    infoBarBorder.Visibility(Visibility::Collapsed);
+}
+
+} // namespace winrt::CppWinUIGallery::implementation

@@ -4,13 +4,14 @@
 //
 //       LottieGen version:
 //           8.0.280225.1+7cd366a738
-//       
+//
 //       Command:
-//           LottieGen -GenerateColorBindings -Language Cppwinrt -Namespace CppWinUIGallery -WinUIVersion 3.0 -InputFile TransparentLottie.json
-//       
+//           LottieGen -GenerateColorBindings -Language Cppwinrt -Namespace CppWinUIGallery -WinUIVersion 3.0 -InputFile
+//           TransparentLottie.json
+//
 //       Input file:
 //           TransparentLottie.json (149474 bytes created 10:11+03:00 Aug 30 2024)
-//       
+//
 //       LottieGen source:
 //           http://aka.ms/Lottie
 //
@@ -43,18 +44,18 @@
 // | Gradient stops           |     - |
 // | CompositionVisualSurface |     - |
 // ------------------------------------
-#include "pch.h"
 #include "TransparentLottie.h"
-#if __has_include ("TransparentLottie.g.cpp")
+#include "pch.h"
+#if __has_include("TransparentLottie.g.cpp")
 #include "TransparentLottie.g.cpp"
 #endif
-#include <winrt/Windows.Foundation.Metadata.h>
-#include <winrt/Windows.Foundation.Collections.h>
-#include <winrt/Microsoft.UI.Composition.h>
 #include "d2d1.h"
+#include <Windows.Graphics.Interop.h>
 #include <d2d1_1.h>
 #include <d2d1helper.h>
-#include <Windows.Graphics.Interop.h>
+#include <winrt/Microsoft.UI.Composition.h>
+#include <winrt/Windows.Foundation.Collections.h>
+#include <winrt/Windows.Foundation.Metadata.h>
 #ifdef BUILD_WINDOWS
 namespace ABI
 {
@@ -77,1649 +78,1734 @@ using TimeSpan = winrt::Windows::Foundation::TimeSpan;
 
 namespace winrt::CppWinUIGallery::implementation
 {
-    class CanvasGeometry : public winrt::implements<CanvasGeometry,
-        IGeometrySource2D,
-        ::ABI::Windows::Graphics::IGeometrySource2DInterop>
+class CanvasGeometry
+    : public winrt::implements<CanvasGeometry, IGeometrySource2D, ::ABI::Windows::Graphics::IGeometrySource2DInterop>
+{
+    winrt::com_ptr<ID2D1Geometry> _geometry{nullptr};
+
+  public:
+    CanvasGeometry(winrt::com_ptr<ID2D1Geometry> geometry) : _geometry{geometry}
     {
-        winrt::com_ptr<ID2D1Geometry> _geometry{ nullptr };
-
-    public:
-        CanvasGeometry(winrt::com_ptr<ID2D1Geometry> geometry)
-            : _geometry{ geometry }
-        { }
-
-        // IGeometrySource2D.
-        winrt::com_ptr<ID2D1Geometry> Geometry() { return _geometry; }
-
-        // IGeometrySource2DInterop.
-        IFACEMETHODIMP GetGeometry(ID2D1Geometry** value) noexcept(true) override
-        {
-            _geometry.copy_to(value);
-            return S_OK;
-        }
-
-        // IGeometrySource2DInterop.
-        IFACEMETHODIMP TryGetGeometryUsingFactory(ID2D1Factory*, ID2D1Geometry**) noexcept(true) override
-        {
-            return E_NOTIMPL;
-        }
-    };
-    class TransparentLottie_AnimatedVisual : public winrt::implements<TransparentLottie_AnimatedVisual,
-            winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual2,
-            winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual,
-            IClosable>
-    {
-        winrt::com_ptr<ID2D1Factory> _d2dFactory{ nullptr };
-        static constexpr int64_t c_durationTicks{ 30000000L };
-        Compositor const _c{ nullptr };
-        ExpressionAnimation const _reusableExpressionAnimation{ nullptr };
-        CompositionPropertySet const _themeProperties{ nullptr };
-        AnimationController _animationController_0{ nullptr };
-        CompositionColorBrush _themeColor_Color_000000{ nullptr };
-        CompositionColorBrush _themeColor_Color_FFD640{ nullptr };
-        CompositionColorBrush _themeColor_Color_FFFFFF{ nullptr };
-        CompositionEllipseGeometry _ellipse_3p718x3p56{ nullptr };
-        CompositionSpriteShape _spriteShape_24{ nullptr };
-        CompositionSpriteShape _spriteShape_25{ nullptr };
-        CompositionSpriteShape _spriteShape_26{ nullptr };
-        CompositionSpriteShape _spriteShape_27{ nullptr };
-        ContainerVisual _root{ nullptr };
-        CubicBezierEasingFunction _cubicBezierEasingFunction_0{ nullptr };
-        StepEasingFunction _holdThenStepEasingFunction{ nullptr };
-
-        void BindProperty(
-            CompositionObject target,
-            winrt::hstring animatedPropertyName,
-            winrt::hstring expression,
-            winrt::hstring referenceParameterName,
-            CompositionObject referencedObject)
-        {
-            _reusableExpressionAnimation.ClearAllParameters();
-            _reusableExpressionAnimation.Expression(expression);
-            _reusableExpressionAnimation.SetReferenceParameter(referenceParameterName, referencedObject);
-            target.StartAnimation(animatedPropertyName, _reusableExpressionAnimation);
-        }
-
-        Vector2KeyFrameAnimation CreateVector2KeyFrameAnimation(float initialProgress, float2 initialValue, CompositionEasingFunction initialEasingFunction)
-        {
-            const auto result = _c.CreateVector2KeyFrameAnimation();
-            result.Duration(TimeSpan{ c_durationTicks });
-            result.InsertKeyFrame(initialProgress, initialValue, initialEasingFunction);
-            return result;
-        }
-
-        CompositionSpriteShape CreateSpriteShape(CompositionGeometry geometry, float3x2 transformMatrix, CompositionBrush fillBrush)
-        {
-            const auto result = _c.CreateSpriteShape(geometry);
-            result.TransformMatrix(transformMatrix);
-            result.FillBrush(fillBrush);
-            return result;
-        }
-
-        AnimationController AnimationController_0()
-        {
-            if (_animationController_0 != nullptr) { return _animationController_0; }
-            const auto result = _animationController_0 = _c.CreateAnimationController();
-            result.Pause();
-            BindProperty(_animationController_0, L"Progress", L"_.Progress", L"_", _root);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_00()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 0.0F, 42.3919983F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddLine({ 0.0F, 0.671999991F });
-            sink->AddLine({ 6.15999985F, 0.671999991F });
-            sink->AddBezier({ { 11.3866663F, 7.91466665F }, { 16.6133327F, 15.1573334F }, { 21.8400002F, 22.3999996F } });
-            sink->AddLine({ 18.7600002F, 22.3999996F });
-            sink->AddBezier({ { 23.8933334F, 15.1573334F }, { 29.0266666F, 7.91466665F }, { 34.1599998F, 0.671999991F } });
-            sink->AddLine({ 40.3199997F, 0.671999991F });
-            sink->AddLine({ 40.3199997F, 42.3919983F });
-            sink->AddLine({ 33.7680016F, 42.3919983F });
-            sink->AddLine({ 33.7680016F, 8.45600033F });
-            sink->AddLine({ 36.2319984F, 9.12800026F });
-            sink->AddLine({ 20.4960003F, 30.632F });
-            sink->AddLine({ 19.8239994F, 30.632F });
-            sink->AddLine({ 4.42399979F, 9.12800026F });
-            sink->AddLine({ 6.6079998F, 8.45600033F });
-            sink->AddLine({ 6.6079998F, 42.3919983F });
-            sink->AddLine({ 0.0F, 42.3919983F });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_01()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 57.401001F, 43.0639992F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 55.3479996F, 43.0639992F }, { 53.5369987F, 42.709301F }, { 51.9690018F, 42.0F } });
-            sink->AddBezier({ { 50.4379997F, 41.2532997F }, { 49.2439995F, 40.2453003F }, { 48.3849983F, 38.9760017F } });
-            sink->AddBezier({ { 47.526001F, 37.6693001F }, { 47.0970001F, 36.1386986F }, { 47.0970001F, 34.3839989F } });
-            sink->AddBezier({ { 47.0970001F, 32.7412987F }, { 47.4519997F, 31.2667007F }, { 48.1609993F, 29.9599991F } });
-            sink->AddBezier({ { 48.9080009F, 28.6532993F }, { 50.0460014F, 27.552F }, { 51.5769997F, 26.6560001F } });
-            sink->AddBezier({ { 53.1080017F, 25.7600002F }, { 55.0299988F, 25.1252995F }, { 57.3450012F, 24.7520008F } });
-            sink->AddLine({ 67.8730011F, 23.0160007F });
-            sink->AddLine({ 67.8730011F, 28.0F });
-            sink->AddBezier({ { 64.7743301F, 28.5413342F }, { 61.6756668F, 29.0826664F }, { 58.5769997F, 29.6240005F } });
-            sink->AddBezier({ { 56.8969994F, 29.9227009F }, { 55.6650009F, 30.4640007F }, { 54.8810005F, 31.2479992F } });
-            sink->AddBezier({ { 54.0970001F, 31.9946995F }, { 53.7050018F, 32.9653015F }, { 53.7050018F, 34.1599998F } });
-            sink->AddBezier({ { 53.7050018F, 35.3172989F }, { 54.1339989F, 36.2692986F }, { 54.993F, 37.0159988F } });
-            sink->AddBezier({ { 55.8889999F, 37.7252998F }, { 57.0279999F, 38.0800018F }, { 58.4090004F, 38.0800018F } });
-            sink->AddBezier({ { 60.1259995F, 38.0800018F }, { 61.6199989F, 37.7066994F }, { 62.8889999F, 36.9599991F } });
-            sink->AddBezier({ { 64.1959991F, 36.2132988F }, { 65.2040024F, 35.223999F }, { 65.913002F, 33.9920006F } });
-            sink->AddBezier({ { 66.6220016F, 32.7226982F }, { 66.9769974F, 31.3227005F }, { 66.9769974F, 29.7919998F } });
-            sink->AddLine({ 66.9769974F, 22.0079994F });
-            sink->AddBezier({ { 66.9769974F, 20.5146999F }, { 66.4169998F, 19.3013F }, { 65.2969971F, 18.368F } });
-            sink->AddBezier({ { 64.2139969F, 17.3973007F }, { 62.7579994F, 16.9120007F }, { 60.9290009F, 16.9120007F } });
-            sink->AddBezier({ { 59.2490005F, 16.9120007F }, { 57.7739983F, 17.3600006F }, { 56.5050011F, 18.2560005F } });
-            sink->AddBezier({ { 55.2729988F, 19.1147003F }, { 54.3580017F, 20.2346992F }, { 53.7610016F, 21.6159992F } });
-            sink->AddLine({ 48.4970016F, 18.9839993F });
-            sink->AddBezier({ { 49.0569992F, 17.4906998F }, { 49.9720001F, 16.184F }, { 51.2410011F, 15.0640001F } });
-            sink->AddBezier({ { 52.5099983F, 13.9067001F }, { 53.9850006F, 13.0107002F }, { 55.6650009F, 12.3760004F } });
-            sink->AddBezier({ { 57.382F, 11.7412996F }, { 59.1930008F, 11.4239998F }, { 61.0970001F, 11.4239998F } });
-            sink->AddBezier({ { 63.4860001F, 11.4239998F }, { 65.5960007F, 11.8719997F }, { 67.4250031F, 12.7679996F } });
-            sink->AddBezier({ { 69.2919998F, 13.6639996F }, { 70.7289963F, 14.9146996F }, { 71.7369995F, 16.5200005F } });
-            sink->AddBezier({ { 72.7819977F, 18.0879993F }, { 73.3050003F, 19.9172993F }, { 73.3050003F, 22.0079994F } });
-            sink->AddLine({ 73.3050003F, 42.3919983F });
-            sink->AddLine({ 67.2570038F, 42.3919983F });
-            sink->AddLine({ 67.2570038F, 36.9039993F });
-            sink->AddLine({ 68.5449982F, 37.0719986F });
-            sink->AddBezier({ { 67.8359985F, 38.3040009F }, { 66.9209976F, 39.368F }, { 65.8010025F, 40.2639999F } });
-            sink->AddBezier({ { 64.7180023F, 41.1599998F }, { 63.4679985F, 41.8507004F }, { 62.0489998F, 42.3359985F } });
-            sink->AddBezier({ { 60.6679993F, 42.8213005F }, { 59.118F, 43.0639992F }, { 57.401001F, 43.0639992F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_02()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 94.7040024F, 43.0639992F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 91.7919998F, 43.0639992F }, { 89.1790009F, 42.3732986F }, { 86.8639984F, 40.9920006F } });
-            sink->AddBezier({ { 84.586998F, 39.5732994F }, { 82.776001F, 37.6693001F }, { 81.4319992F, 35.2799988F } });
-            sink->AddBezier({ { 80.125F, 32.8907013F }, { 79.4720001F, 30.2026997F }, { 79.4720001F, 27.2159996F } });
-            sink->AddBezier({ { 79.4720001F, 24.2292995F }, { 80.1439972F, 21.5412998F }, { 81.487999F, 19.1520004F } });
-            sink->AddBezier({ { 82.8320007F, 16.7626991F }, { 84.6429977F, 14.8773003F }, { 86.9199982F, 13.4960003F } });
-            sink->AddBezier({ { 89.1969986F, 12.1147003F }, { 91.7730026F, 11.4239998F }, { 94.6480026F, 11.4239998F } });
-            sink->AddBezier({ { 97.0749969F, 11.4239998F }, { 99.2210007F, 11.9092999F }, { 101.087997F, 12.8800001F } });
-            sink->AddBezier({ { 102.955002F, 13.8507004F }, { 104.429001F, 15.1947002F }, { 105.512001F, 16.9120007F } });
-            sink->AddLine({ 104.559998F, 18.368F });
-            sink->AddLine({ 104.559998F, 0.0F });
-            sink->AddLine({ 110.832001F, 0.0F });
-            sink->AddLine({ 110.832001F, 42.3919983F });
-            sink->AddLine({ 104.839996F, 42.3919983F });
-            sink->AddLine({ 104.839996F, 36.2319984F });
-            sink->AddLine({ 105.568001F, 37.4080009F });
-            sink->AddBezier({ { 104.523003F, 39.2373009F }, { 103.028999F, 40.6372986F }, { 101.087997F, 41.6080017F } });
-            sink->AddBezier({ { 99.1470032F, 42.578701F }, { 97.0189972F, 43.0639992F }, { 94.7040024F, 43.0639992F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_03()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 95.3199997F, 37.1839981F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 97.0749969F, 37.1839981F }, { 98.6429977F, 36.7546997F }, { 100.024002F, 35.8959999F } });
-            sink->AddBezier({ { 101.443001F, 35.0373001F }, { 102.543999F, 33.8613014F }, { 103.328003F, 32.368F } });
-            sink->AddBezier({ { 104.149002F, 30.8372993F }, { 104.559998F, 29.1200008F }, { 104.559998F, 27.2159996F } });
-            sink->AddBezier({ { 104.559998F, 25.3120003F }, { 104.149002F, 23.6133003F }, { 103.328003F, 22.1200008F } });
-            sink->AddBezier({ { 102.543999F, 20.6266994F }, { 101.443001F, 19.4507008F }, { 100.024002F, 18.5919991F } });
-            sink->AddBezier({ { 98.6429977F, 17.7332993F }, { 97.0749969F, 17.3040009F }, { 95.3199997F, 17.3040009F } });
-            sink->AddBezier({ { 93.5650024F, 17.3040009F }, { 91.9789963F, 17.7332993F }, { 90.5599976F, 18.5919991F } });
-            sink->AddBezier({ { 89.1409988F, 19.4507008F }, { 88.0400009F, 20.6266994F }, { 87.2559967F, 22.1200008F } });
-            sink->AddBezier({ { 86.4720001F, 23.6133003F }, { 86.0800018F, 25.3120003F }, { 86.0800018F, 27.2159996F } });
-            sink->AddBezier({ { 86.0800018F, 29.1200008F }, { 86.4720001F, 30.8372993F }, { 87.2559967F, 32.368F } });
-            sink->AddBezier({ { 88.0400009F, 33.8613014F }, { 89.1230011F, 35.0373001F }, { 90.5039978F, 35.8959999F } });
-            sink->AddBezier({ { 91.9229965F, 36.7546997F }, { 93.5279999F, 37.1839981F }, { 95.3199997F, 37.1839981F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_04()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 132.444F, 43.0639992F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 129.419998F, 43.0639992F }, { 126.732002F, 42.3732986F }, { 124.379997F, 40.9920006F } });
-            sink->AddBezier({ { 122.065002F, 39.5732994F }, { 120.253998F, 37.6693001F }, { 118.947998F, 35.2799988F } });
-            sink->AddBezier({ { 117.640999F, 32.8532982F }, { 116.987999F, 30.1466999F }, { 116.987999F, 27.1599998F } });
-            sink->AddBezier({ { 116.987999F, 24.0986996F }, { 117.640999F, 21.3920002F }, { 118.947998F, 19.0400009F } });
-            sink->AddBezier({ { 120.292F, 16.6879997F }, { 122.084F, 14.8400002F }, { 124.323997F, 13.4960003F } });
-            sink->AddBezier({ { 126.564003F, 12.1147003F }, { 129.102005F, 11.4239998F }, { 131.940002F, 11.4239998F } });
-            sink->AddBezier({ { 134.216995F, 11.4239998F }, { 136.251999F, 11.816F }, { 138.044006F, 12.6000004F } });
-            sink->AddBezier({ { 139.835999F, 13.3839998F }, { 141.348007F, 14.4666996F }, { 142.580002F, 15.8479996F } });
-            sink->AddBezier({ { 143.811996F, 17.1919994F }, { 144.744995F, 18.7413006F }, { 145.380005F, 20.4960003F } });
-            sink->AddBezier({ { 146.052002F, 22.2507F }, { 146.388F, 24.1173F }, { 146.388F, 26.0960007F } });
-            sink->AddBezier({ { 146.388F, 26.5813007F }, { 146.369003F, 27.0853004F }, { 146.332001F, 27.6079998F } });
-            sink->AddBezier({ { 146.294006F, 28.1306992F }, { 146.220001F, 28.6159992F }, { 146.108002F, 29.0639992F } });
-            sink->AddLine({ 121.972F, 29.0639992F });
-            sink->AddLine({ 121.972F, 24.0240002F });
-            sink->AddLine({ 142.524002F, 24.0240002F });
-            sink->AddLine({ 139.5F, 26.3199997F });
-            sink->AddBezier({ { 139.873001F, 24.4906998F }, { 139.742004F, 22.8666992F }, { 139.108002F, 21.448F } });
-            sink->AddBezier({ { 138.509995F, 19.9920006F }, { 137.576996F, 18.8533001F }, { 136.307999F, 18.0319996F } });
-            sink->AddBezier({ { 135.076004F, 17.1732998F }, { 133.619995F, 16.7439995F }, { 131.940002F, 16.7439995F } });
-            sink->AddBezier({ { 130.259995F, 16.7439995F }, { 128.766006F, 17.1732998F }, { 127.459999F, 18.0319996F } });
-            sink->AddBezier({ { 126.153F, 18.8533001F }, { 125.144997F, 20.0480003F }, { 124.435997F, 21.6159992F } });
-            sink->AddBezier({ { 123.725998F, 23.1466999F }, { 123.445999F, 25.0132999F }, { 123.596001F, 27.2159996F } });
-            sink->AddBezier({ { 123.408997F, 29.2693005F }, { 123.689003F, 31.0613003F }, { 124.435997F, 32.5919991F } });
-            sink->AddBezier({ { 125.220001F, 34.1226997F }, { 126.302002F, 35.3172989F }, { 127.683998F, 36.1759987F } });
-            sink->AddBezier({ { 129.102005F, 37.0346985F }, { 130.707993F, 37.4640007F }, { 132.5F, 37.4640007F } });
-            sink->AddBezier({ { 134.328995F, 37.4640007F }, { 135.878006F, 37.053299F }, { 137.147995F, 36.2319984F } });
-            sink->AddBezier({ { 138.453995F, 35.4107018F }, { 139.481003F, 34.3466988F }, { 140.227997F, 33.0400009F } });
-            sink->AddLine({ 145.380005F, 35.5600014F });
-            sink->AddBezier({ { 144.781998F, 36.9786987F }, { 143.848999F, 38.2667007F }, { 142.580002F, 39.4239998F } });
-            sink->AddBezier({ { 141.348007F, 40.5439987F }, { 139.854004F, 41.4399986F }, { 138.100006F, 42.1119995F } });
-            sink->AddBezier({ { 136.382004F, 42.7467003F }, { 134.496994F, 43.0639992F }, { 132.444F, 43.0639992F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_05()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 169.688004F, 42.3919983F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 166.216003F, 32.293335F }, { 162.744003F, 22.1946659F }, { 159.272003F, 12.0959997F } });
-            sink->AddLine({ 165.992004F, 12.0959997F });
-            sink->AddLine({ 173.944F, 36.2319984F });
-            sink->AddLine({ 171.591995F, 36.2319984F });
-            sink->AddLine({ 179.712006F, 12.0959997F });
-            sink->AddLine({ 185.479996F, 12.0959997F });
-            sink->AddLine({ 193.544006F, 36.2319984F });
-            sink->AddLine({ 191.192001F, 36.2319984F });
-            sink->AddBezier({ { 193.861328F, 28.1866665F }, { 196.53067F, 20.1413326F }, { 199.199997F, 12.0959997F } });
-            sink->AddLine({ 205.919998F, 12.0959997F });
-            sink->AddLine({ 195.447998F, 42.3919983F });
-            sink->AddLine({ 189.735992F, 42.3919983F });
-            sink->AddLine({ 181.559998F, 17.6959991F });
-            sink->AddLine({ 183.632004F, 17.6959991F });
-            sink->AddLine({ 175.455994F, 42.3919983F });
-            sink->AddLine({ 169.688004F, 42.3919983F });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_06()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 210.259003F, 42.3919983F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddLine({ 210.259003F, 12.0959997F });
-            sink->AddLine({ 216.587006F, 12.0959997F });
-            sink->AddLine({ 216.587006F, 42.3919983F });
-            sink->AddLine({ 210.259003F, 42.3919983F });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_07()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 210.259003F, 7.95200014F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddLine({ 210.259003F, 0.671999991F });
-            sink->AddLine({ 216.587006F, 0.671999991F });
-            sink->AddLine({ 216.587006F, 7.95200014F });
-            sink->AddLine({ 210.259003F, 7.95200014F });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_08()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 237.089005F, 42.7280006F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 233.916F, 42.7280006F }, { 231.451996F, 41.8320007F }, { 229.697006F, 40.0400009F } });
-            sink->AddBezier({ { 227.942993F, 38.2480011F }, { 227.065002F, 35.7280006F }, { 227.065002F, 32.4799995F } });
-            sink->AddLine({ 227.065002F, 17.8080006F });
-            sink->AddLine({ 221.744995F, 17.8080006F });
-            sink->AddLine({ 221.744995F, 12.0959997F });
-            sink->AddLine({ 222.585007F, 12.0959997F });
-            sink->AddBezier({ { 224.003998F, 12.0959997F }, { 225.104996F, 11.6852999F }, { 225.889008F, 10.8640003F } });
-            sink->AddBezier({ { 226.673004F, 10.0426998F }, { 227.065002F, 8.92269993F }, { 227.065002F, 7.50400019F } });
-            sink->AddLine({ 227.065002F, 5.15199995F });
-            sink->AddLine({ 233.393005F, 5.15199995F });
-            sink->AddLine({ 233.393005F, 12.0959997F });
-            sink->AddLine({ 240.281006F, 12.0959997F });
-            sink->AddLine({ 240.281006F, 17.8080006F });
-            sink->AddLine({ 233.393005F, 17.8080006F });
-            sink->AddLine({ 233.393005F, 32.2000008F });
-            sink->AddBezier({ { 233.393005F, 33.2453003F }, { 233.561005F, 34.1413002F }, { 233.897003F, 34.8880005F } });
-            sink->AddBezier({ { 234.233002F, 35.5973015F }, { 234.774994F, 36.157299F }, { 235.520996F, 36.5680008F } });
-            sink->AddBezier({ { 236.268005F, 36.9412994F }, { 237.238998F, 37.1279984F }, { 238.432999F, 37.1279984F } });
-            sink->AddBezier({ { 238.731995F, 37.1279984F }, { 239.067993F, 37.1092987F }, { 239.440994F, 37.0719986F } });
-            sink->AddBezier({ { 239.815002F, 37.0346985F }, { 240.169006F, 36.9972992F }, { 240.505005F, 36.9599991F } });
-            sink->AddLine({ 240.505005F, 42.3919983F });
-            sink->AddBezier({ { 239.983002F, 42.4667015F }, { 239.404007F, 42.5413017F }, { 238.768997F, 42.6160011F } });
-            sink->AddBezier({ { 238.134995F, 42.6907005F }, { 237.574997F, 42.7280006F }, { 237.089005F, 42.7280006F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_09()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 246.681F, 42.3919983F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddLine({ 246.681F, 0.0F });
-            sink->AddLine({ 253.009003F, 0.0F });
-            sink->AddLine({ 253.009003F, 18.0319996F });
-            sink->AddLine({ 252.001007F, 17.2479992F });
-            sink->AddBezier({ { 252.746994F, 15.3439999F }, { 253.942001F, 13.9067001F }, { 255.585007F, 12.9359999F } });
-            sink->AddBezier({ { 257.22699F, 11.9280005F }, { 259.131012F, 11.4239998F }, { 261.296997F, 11.4239998F } });
-            sink->AddBezier({ { 263.536987F, 11.4239998F }, { 265.515015F, 11.9092999F }, { 267.233002F, 12.8800001F } });
-            sink->AddBezier({ { 268.950012F, 13.8507004F }, { 270.294006F, 15.1947002F }, { 271.265015F, 16.9120007F } });
-            sink->AddBezier({ { 272.234985F, 18.6292992F }, { 272.721008F, 20.5893002F }, { 272.721008F, 22.7919998F } });
-            sink->AddLine({ 272.721008F, 42.3919983F });
-            sink->AddLine({ 266.449005F, 42.3919983F });
-            sink->AddLine({ 266.449005F, 24.5279999F });
-            sink->AddBezier({ { 266.449005F, 22.9972992F }, { 266.149994F, 21.7092991F }, { 265.553009F, 20.6639996F } });
-            sink->AddBezier({ { 264.993011F, 19.5813007F }, { 264.209015F, 18.7600002F }, { 263.200989F, 18.2000008F } });
-            sink->AddBezier({ { 262.192993F, 17.6026993F }, { 261.035004F, 17.3040009F }, { 259.729004F, 17.3040009F } });
-            sink->AddBezier({ { 258.459015F, 17.3040009F }, { 257.302002F, 17.6026993F }, { 256.256989F, 18.2000008F } });
-            sink->AddBezier({ { 255.248993F, 18.7600002F }, { 254.445999F, 19.5813007F }, { 253.848999F, 20.6639996F } });
-            sink->AddBezier({ { 253.289001F, 21.7467003F }, { 253.009003F, 23.0347004F }, { 253.009003F, 24.5279999F } });
-            sink->AddLine({ 253.009003F, 42.3919983F });
-            sink->AddLine({ 246.681F, 42.3919983F });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_10()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 0.0F, 42.3919983F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddLine({ 0.0F, 0.671999991F });
-            sink->AddLine({ 6.6079998F, 0.671999991F });
-            sink->AddLine({ 6.6079998F, 36.512001F });
-            sink->AddLine({ 24.6399994F, 36.512001F });
-            sink->AddLine({ 24.6399994F, 42.3919983F });
-            sink->AddLine({ 0.0F, 42.3919983F });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_11()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 44.1879997F, 43.0639992F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 41.276001F, 43.0639992F }, { 38.605999F, 42.3732986F }, { 36.1800003F, 40.9920006F } });
-            sink->AddBezier({ { 33.7900009F, 39.6106987F }, { 31.8859997F, 37.7252998F }, { 30.4680004F, 35.3359985F } });
-            sink->AddBezier({ { 29.0489998F, 32.946701F }, { 28.3400002F, 30.2399998F }, { 28.3400002F, 27.2159996F } });
-            sink->AddBezier({ { 28.3400002F, 24.1546993F }, { 29.0489998F, 21.448F }, { 30.4680004F, 19.0960007F } });
-            sink->AddBezier({ { 31.8859997F, 16.7066994F }, { 33.7900009F, 14.8400002F }, { 36.1800003F, 13.4960003F } });
-            sink->AddBezier({ { 38.5690002F, 12.1147003F }, { 41.237999F, 11.4239998F }, { 44.1879997F, 11.4239998F } });
-            sink->AddBezier({ { 47.1739998F, 11.4239998F }, { 49.8440018F, 12.1147003F }, { 52.1959991F, 13.4960003F } });
-            sink->AddBezier({ { 54.5849991F, 14.8400002F }, { 56.4700012F, 16.7066994F }, { 57.8520012F, 19.0960007F } });
-            sink->AddBezier({ { 59.2700005F, 21.448F }, { 59.9799995F, 24.1546993F }, { 59.9799995F, 27.2159996F } });
-            sink->AddBezier({ { 59.9799995F, 30.2772999F }, { 59.2700005F, 33.0027008F }, { 57.8520012F, 35.3919983F } });
-            sink->AddBezier({ { 56.4329987F, 37.7812996F }, { 54.5289993F, 39.6666985F }, { 52.1399994F, 41.0480003F } });
-            sink->AddBezier({ { 49.75F, 42.3919983F }, { 47.0999985F, 43.0639992F }, { 44.1879997F, 43.0639992F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_12()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 44.1879997F, 37.1839981F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 45.9799995F, 37.1839981F }, { 47.5660019F, 36.7546997F }, { 48.9480019F, 35.8959999F } });
-            sink->AddBezier({ { 50.3289986F, 35.0373001F }, { 51.4119987F, 33.8613014F }, { 52.1959991F, 32.368F } });
-            sink->AddBezier({ { 53.0169983F, 30.8372993F }, { 53.4280014F, 29.1200008F }, { 53.4280014F, 27.2159996F } });
-            sink->AddBezier({ { 53.4280014F, 25.3120003F }, { 53.0169983F, 23.6133003F }, { 52.1959991F, 22.1200008F } });
-            sink->AddBezier({ { 51.4119987F, 20.6266994F }, { 50.3289986F, 19.4507008F }, { 48.9480019F, 18.5919991F } });
-            sink->AddBezier({ { 47.5660019F, 17.7332993F }, { 45.9799995F, 17.3040009F }, { 44.1879997F, 17.3040009F } });
-            sink->AddBezier({ { 42.4329987F, 17.3040009F }, { 40.8460007F, 17.7332993F }, { 39.4280014F, 18.5919991F } });
-            sink->AddBezier({ { 38.0460014F, 19.4507008F }, { 36.9449997F, 20.6266994F }, { 36.1240005F, 22.1200008F } });
-            sink->AddBezier({ { 35.3400002F, 23.6133003F }, { 34.9480019F, 25.3120003F }, { 34.9480019F, 27.2159996F } });
-            sink->AddBezier({ { 34.9480019F, 29.1200008F }, { 35.3400002F, 30.8372993F }, { 36.1240005F, 32.368F } });
-            sink->AddBezier({ { 36.9449997F, 33.8613014F }, { 38.0460014F, 35.0373001F }, { 39.4280014F, 35.8959999F } });
-            sink->AddBezier({ { 40.8460007F, 36.7546997F }, { 42.4329987F, 37.1839981F }, { 44.1879997F, 37.1839981F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_13()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 78.7149963F, 42.7280006F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 75.5410004F, 42.7280006F }, { 73.0770035F, 41.8320007F }, { 71.322998F, 40.0400009F } });
-            sink->AddBezier({ { 69.5680008F, 38.2480011F }, { 68.6910019F, 35.7280006F }, { 68.6910019F, 32.4799995F } });
-            sink->AddLine({ 68.6910019F, 17.8080006F });
-            sink->AddLine({ 63.3709984F, 17.8080006F });
-            sink->AddLine({ 63.3709984F, 12.0959997F });
-            sink->AddLine({ 64.2109985F, 12.0959997F });
-            sink->AddBezier({ { 65.6289978F, 12.0959997F }, { 66.7310028F, 11.6852999F }, { 67.5149994F, 10.8640003F } });
-            sink->AddBezier({ { 68.2990036F, 10.0426998F }, { 68.6910019F, 8.92269993F }, { 68.6910019F, 7.50400019F } });
-            sink->AddLine({ 68.6910019F, 5.15199995F });
-            sink->AddLine({ 75.0189972F, 5.15199995F });
-            sink->AddLine({ 75.0189972F, 12.0959997F });
-            sink->AddLine({ 81.9069977F, 12.0959997F });
-            sink->AddLine({ 81.9069977F, 17.8080006F });
-            sink->AddLine({ 75.0189972F, 17.8080006F });
-            sink->AddLine({ 75.0189972F, 32.2000008F });
-            sink->AddBezier({ { 75.0189972F, 33.2453003F }, { 75.1869965F, 34.1413002F }, { 75.5230026F, 34.8880005F } });
-            sink->AddBezier({ { 75.8590012F, 35.5973015F }, { 76.4000015F, 36.157299F }, { 77.1470032F, 36.5680008F } });
-            sink->AddBezier({ { 77.8929977F, 36.9412994F }, { 78.8639984F, 37.1279984F }, { 80.0589981F, 37.1279984F } });
-            sink->AddBezier({ { 80.3570023F, 37.1279984F }, { 80.6930008F, 37.1092987F }, { 81.0670013F, 37.0719986F } });
-            sink->AddBezier({ { 81.4400024F, 37.0346985F }, { 81.7949982F, 36.9972992F }, { 82.1309967F, 36.9599991F } });
-            sink->AddLine({ 82.1309967F, 42.3919983F });
-            sink->AddBezier({ { 81.6080017F, 42.4667015F }, { 81.0289993F, 42.5413017F }, { 80.3949966F, 42.6160011F } });
-            sink->AddBezier({ { 79.7600021F, 42.6907005F }, { 79.1999969F, 42.7280006F }, { 78.7149963F, 42.7280006F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_14()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 101.410004F, 42.7280006F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 98.2369995F, 42.7280006F }, { 95.7730026F, 41.8320007F }, { 94.0179977F, 40.0400009F } });
-            sink->AddBezier({ { 92.2630005F, 38.2480011F }, { 91.3860016F, 35.7280006F }, { 91.3860016F, 32.4799995F } });
-            sink->AddLine({ 91.3860016F, 17.8080006F });
-            sink->AddLine({ 86.0660019F, 17.8080006F });
-            sink->AddLine({ 86.0660019F, 12.0959997F });
-            sink->AddLine({ 86.9059982F, 12.0959997F });
-            sink->AddBezier({ { 88.3249969F, 12.0959997F }, { 89.4260025F, 11.6852999F }, { 90.2099991F, 10.8640003F } });
-            sink->AddBezier({ { 90.9940033F, 10.0426998F }, { 91.3860016F, 8.92269993F }, { 91.3860016F, 7.50400019F } });
-            sink->AddLine({ 91.3860016F, 5.15199995F });
-            sink->AddLine({ 97.7139969F, 5.15199995F });
-            sink->AddLine({ 97.7139969F, 12.0959997F });
-            sink->AddLine({ 104.601997F, 12.0959997F });
-            sink->AddLine({ 104.601997F, 17.8080006F });
-            sink->AddLine({ 97.7139969F, 17.8080006F });
-            sink->AddLine({ 97.7139969F, 32.2000008F });
-            sink->AddBezier({ { 97.7139969F, 33.2453003F }, { 97.8820038F, 34.1413002F }, { 98.2180023F, 34.8880005F } });
-            sink->AddBezier({ { 98.5540009F, 35.5973015F }, { 99.0950012F, 36.157299F }, { 99.8420029F, 36.5680008F } });
-            sink->AddBezier({ { 100.588997F, 36.9412994F }, { 101.558998F, 37.1279984F }, { 102.753998F, 37.1279984F } });
-            sink->AddBezier({ { 103.053001F, 37.1279984F }, { 103.389F, 37.1092987F }, { 103.762001F, 37.0719986F } });
-            sink->AddBezier({ { 104.135002F, 37.0346985F }, { 104.489998F, 36.9972992F }, { 104.825996F, 36.9599991F } });
-            sink->AddLine({ 104.825996F, 42.3919983F });
-            sink->AddBezier({ { 104.303001F, 42.4667015F }, { 103.724998F, 42.5413017F }, { 103.089996F, 42.6160011F } });
-            sink->AddBezier({ { 102.455002F, 42.6907005F }, { 101.894997F, 42.7280006F }, { 101.410004F, 42.7280006F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_15()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 111.000999F, 42.3919983F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddLine({ 111.000999F, 12.0959997F });
-            sink->AddLine({ 117.329002F, 12.0959997F });
-            sink->AddLine({ 117.329002F, 42.3919983F });
-            sink->AddLine({ 111.000999F, 42.3919983F });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_16()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 111.000999F, 7.95200014F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddLine({ 111.000999F, 0.671999991F });
-            sink->AddLine({ 117.329002F, 0.671999991F });
-            sink->AddLine({ 117.329002F, 7.95200014F });
-            sink->AddLine({ 111.000999F, 7.95200014F });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_17()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 138.951996F, 43.0639992F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 135.927994F, 43.0639992F }, { 133.240005F, 42.3732986F }, { 130.888F, 40.9920006F } });
-            sink->AddBezier({ { 128.572998F, 39.5732994F }, { 126.763F, 37.6693001F }, { 125.456001F, 35.2799988F } });
-            sink->AddBezier({ { 124.149002F, 32.8532982F }, { 123.496002F, 30.1466999F }, { 123.496002F, 27.1599998F } });
-            sink->AddBezier({ { 123.496002F, 24.0986996F }, { 124.149002F, 21.3920002F }, { 125.456001F, 19.0400009F } });
-            sink->AddBezier({ { 126.800003F, 16.6879997F }, { 128.591995F, 14.8400002F }, { 130.832001F, 13.4960003F } });
-            sink->AddBezier({ { 133.072006F, 12.1147003F }, { 135.610992F, 11.4239998F }, { 138.447998F, 11.4239998F } });
-            sink->AddBezier({ { 140.725006F, 11.4239998F }, { 142.759995F, 11.816F }, { 144.552002F, 12.6000004F } });
-            sink->AddBezier({ { 146.343994F, 13.3839998F }, { 147.856003F, 14.4666996F }, { 149.087997F, 15.8479996F } });
-            sink->AddBezier({ { 150.320007F, 17.1919994F }, { 151.253006F, 18.7413006F }, { 151.888F, 20.4960003F } });
-            sink->AddBezier({ { 152.559998F, 22.2507F }, { 152.895996F, 24.1173F }, { 152.895996F, 26.0960007F } });
-            sink->AddBezier({ { 152.895996F, 26.5813007F }, { 152.876999F, 27.0853004F }, { 152.839996F, 27.6079998F } });
-            sink->AddBezier({ { 152.802994F, 28.1306992F }, { 152.727997F, 28.6159992F }, { 152.615997F, 29.0639992F } });
-            sink->AddLine({ 128.479996F, 29.0639992F });
-            sink->AddLine({ 128.479996F, 24.0240002F });
-            sink->AddLine({ 149.031998F, 24.0240002F });
-            sink->AddLine({ 146.007996F, 26.3199997F });
-            sink->AddBezier({ { 146.380997F, 24.4906998F }, { 146.251007F, 22.8666992F }, { 145.615997F, 21.448F } });
-            sink->AddBezier({ { 145.018997F, 19.9920006F }, { 144.085007F, 18.8533001F }, { 142.815994F, 18.0319996F } });
-            sink->AddBezier({ { 141.584F, 17.1732998F }, { 140.128006F, 16.7439995F }, { 138.447998F, 16.7439995F } });
-            sink->AddBezier({ { 136.768005F, 16.7439995F }, { 135.274994F, 17.1732998F }, { 133.968002F, 18.0319996F } });
-            sink->AddBezier({ { 132.660995F, 18.8533001F }, { 131.653F, 20.0480003F }, { 130.944F, 21.6159992F } });
-            sink->AddBezier({ { 130.235001F, 23.1466999F }, { 129.955002F, 25.0132999F }, { 130.104004F, 27.2159996F } });
-            sink->AddBezier({ { 129.917007F, 29.2693005F }, { 130.197006F, 31.0613003F }, { 130.944F, 32.5919991F } });
-            sink->AddBezier({ { 131.727997F, 34.1226997F }, { 132.811005F, 35.3172989F }, { 134.192001F, 36.1759987F } });
-            sink->AddBezier({ { 135.610992F, 37.0346985F }, { 137.216003F, 37.4640007F }, { 139.007996F, 37.4640007F } });
-            sink->AddBezier({ { 140.837006F, 37.4640007F }, { 142.386993F, 37.053299F }, { 143.656006F, 36.2319984F } });
-            sink->AddBezier({ { 144.962997F, 35.4107018F }, { 145.988998F, 34.3466988F }, { 146.735992F, 33.0400009F } });
-            sink->AddLine({ 151.888F, 35.5600014F });
-            sink->AddBezier({ { 151.291F, 36.9786987F }, { 150.356995F, 38.2667007F }, { 149.087997F, 39.4239998F } });
-            sink->AddBezier({ { 147.856003F, 40.5439987F }, { 146.363007F, 41.4399986F }, { 144.608002F, 42.1119995F } });
-            sink->AddBezier({ { 142.891006F, 42.7467003F }, { 141.005005F, 43.0639992F }, { 138.951996F, 43.0639992F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_18()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 159.072006F, 42.3919983F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddLine({ 159.072006F, 0.0F });
-            sink->AddLine({ 165.399994F, 0.0F });
-            sink->AddLine({ 165.399994F, 42.3919983F });
-            sink->AddLine({ 159.072006F, 42.3919983F });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_19()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 181.869995F, 43.0639992F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 179.817001F, 43.0639992F }, { 178.005997F, 42.709301F }, { 176.438004F, 42.0F } });
-            sink->AddBezier({ { 174.908005F, 41.2532997F }, { 173.712997F, 40.2453003F }, { 172.854004F, 38.9760017F } });
-            sink->AddBezier({ { 171.996002F, 37.6693001F }, { 171.565994F, 36.1386986F }, { 171.565994F, 34.3839989F } });
-            sink->AddBezier({ { 171.565994F, 32.7412987F }, { 171.921005F, 31.2667007F }, { 172.630005F, 29.9599991F } });
-            sink->AddBezier({ { 173.376999F, 28.6532993F }, { 174.516006F, 27.552F }, { 176.046005F, 26.6560001F } });
-            sink->AddBezier({ { 177.576996F, 25.7600002F }, { 179.5F, 25.1252995F }, { 181.813995F, 24.7520008F } });
-            sink->AddLine({ 192.341995F, 23.0160007F });
-            sink->AddLine({ 192.341995F, 28.0F });
-            sink->AddLine({ 183.046005F, 29.6240005F });
-            sink->AddBezier({ { 181.365997F, 29.9227009F }, { 180.134003F, 30.4640007F }, { 179.350006F, 31.2479992F } });
-            sink->AddBezier({ { 178.565994F, 31.9946995F }, { 178.173996F, 32.9653015F }, { 178.173996F, 34.1599998F } });
-            sink->AddBezier({ { 178.173996F, 35.3172989F }, { 178.604004F, 36.2692986F }, { 179.462006F, 37.0159988F } });
-            sink->AddBezier({ { 180.358002F, 37.7252998F }, { 181.496994F, 38.0800018F }, { 182.878006F, 38.0800018F } });
-            sink->AddBezier({ { 184.595993F, 38.0800018F }, { 186.089005F, 37.7066994F }, { 187.358002F, 36.9599991F } });
-            sink->AddBezier({ { 188.664993F, 36.2132988F }, { 189.673004F, 35.223999F }, { 190.382004F, 33.9920006F } });
-            sink->AddBezier({ { 191.091995F, 32.7226982F }, { 191.445999F, 31.3227005F }, { 191.445999F, 29.7919998F } });
-            sink->AddLine({ 191.445999F, 22.0079994F });
-            sink->AddBezier({ { 191.445999F, 20.5146999F }, { 190.886002F, 19.3013F }, { 189.766006F, 18.368F } });
-            sink->AddBezier({ { 188.684006F, 17.3973007F }, { 187.227997F, 16.9120007F }, { 185.397995F, 16.9120007F } });
-            sink->AddBezier({ { 183.718002F, 16.9120007F }, { 182.244003F, 17.3600006F }, { 180.973999F, 18.2560005F } });
-            sink->AddBezier({ { 179.742004F, 19.1147003F }, { 178.828003F, 20.2346992F }, { 178.229996F, 21.6159992F } });
-            sink->AddBezier({ { 176.475327F, 20.7386665F }, { 174.720673F, 19.8613338F }, { 172.966003F, 18.9839993F } });
-            sink->AddBezier({ { 173.526001F, 17.4906998F }, { 174.440994F, 16.184F }, { 175.710007F, 15.0640001F } });
-            sink->AddBezier({ { 176.979996F, 13.9067001F }, { 178.453995F, 13.0107002F }, { 180.134003F, 12.3760004F } });
-            sink->AddBezier({ { 181.852005F, 11.7412996F }, { 183.662003F, 11.4239998F }, { 185.565994F, 11.4239998F } });
-            sink->AddBezier({ { 187.955994F, 11.4239998F }, { 190.065002F, 11.8719997F }, { 191.893997F, 12.7679996F } });
-            sink->AddBezier({ { 193.761002F, 13.6639996F }, { 195.197998F, 14.9146996F }, { 196.205994F, 16.5200005F } });
-            sink->AddBezier({ { 197.251999F, 18.0879993F }, { 197.774002F, 19.9172993F }, { 197.774002F, 22.0079994F } });
-            sink->AddLine({ 197.774002F, 42.3919983F });
-            sink->AddLine({ 191.725998F, 42.3919983F });
-            sink->AddLine({ 191.725998F, 36.9039993F });
-            sink->AddLine({ 193.014008F, 37.0719986F });
-            sink->AddBezier({ { 192.304993F, 38.3040009F }, { 191.389999F, 39.368F }, { 190.270004F, 40.2639999F } });
-            sink->AddBezier({ { 189.188004F, 41.1599998F }, { 187.936996F, 41.8507004F }, { 186.518005F, 42.3359985F } });
-            sink->AddBezier({ { 185.136993F, 42.8213005F }, { 183.587997F, 43.0639992F }, { 181.869995F, 43.0639992F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_20()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 221.356995F, 43.0639992F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 219.005005F, 43.0639992F }, { 216.858994F, 42.578701F }, { 214.917007F, 41.6080017F } });
-            sink->AddBezier({ { 213.013F, 40.6372986F }, { 211.539001F, 39.2373009F }, { 210.492996F, 37.4080009F } });
-            sink->AddBezier({ { 210.735672F, 37.0159988F }, { 210.978333F, 36.6240005F }, { 211.220993F, 36.2319984F } });
-            sink->AddLine({ 211.220993F, 42.3919983F });
-            sink->AddLine({ 205.173004F, 42.3919983F });
-            sink->AddLine({ 205.173004F, 0.0F });
-            sink->AddLine({ 211.501007F, 0.0F });
-            sink->AddLine({ 211.501007F, 18.368F });
-            sink->AddLine({ 210.492996F, 16.9120007F });
-            sink->AddBezier({ { 211.613007F, 15.1947002F }, { 213.106995F, 13.8507004F }, { 214.973007F, 12.8800001F } });
-            sink->AddBezier({ { 216.839996F, 11.9092999F }, { 218.968002F, 11.4239998F }, { 221.356995F, 11.4239998F } });
-            sink->AddBezier({ { 224.231995F, 11.4239998F }, { 226.807999F, 12.1147003F }, { 229.085007F, 13.4960003F } });
-            sink->AddBezier({ { 231.399994F, 14.8773003F }, { 233.210999F, 16.7626991F }, { 234.516998F, 19.1520004F } });
-            sink->AddBezier({ { 235.860992F, 21.5412998F }, { 236.533005F, 24.2292995F }, { 236.533005F, 27.2159996F } });
-            sink->AddBezier({ { 236.533005F, 30.2026997F }, { 235.860992F, 32.8907013F }, { 234.516998F, 35.2799988F } });
-            sink->AddBezier({ { 233.210999F, 37.6693001F }, { 231.419006F, 39.5732994F }, { 229.141006F, 40.9920006F } });
-            sink->AddBezier({ { 226.863998F, 42.3732986F }, { 224.268997F, 43.0639992F }, { 221.356995F, 43.0639992F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        winrt::com_ptr<CanvasGeometry> Geometry_21()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 220.740997F, 37.1839981F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddBezier({ { 222.533005F, 37.1839981F }, { 224.119995F, 36.7546997F }, { 225.501007F, 35.8959999F } });
-            sink->AddBezier({ { 226.882996F, 35.0373001F }, { 227.964996F, 33.8613014F }, { 228.748993F, 32.368F } });
-            sink->AddBezier({ { 229.570999F, 30.8372993F }, { 229.981003F, 29.1200008F }, { 229.981003F, 27.2159996F } });
-            sink->AddBezier({ { 229.981003F, 25.3120003F }, { 229.570999F, 23.6133003F }, { 228.748993F, 22.1200008F } });
-            sink->AddBezier({ { 227.964996F, 20.6266994F }, { 226.882996F, 19.4507008F }, { 225.501007F, 18.5919991F } });
-            sink->AddBezier({ { 224.119995F, 17.7332993F }, { 222.533005F, 17.3040009F }, { 220.740997F, 17.3040009F } });
-            sink->AddBezier({ { 218.987F, 17.3040009F }, { 217.399994F, 17.7332993F }, { 215.981003F, 18.5919991F } });
-            sink->AddBezier({ { 214.600006F, 19.4507008F }, { 213.498993F, 20.6266994F }, { 212.677002F, 22.1200008F } });
-            sink->AddBezier({ { 211.893005F, 23.6133003F }, { 211.501007F, 25.3120003F }, { 211.501007F, 27.2159996F } });
-            sink->AddBezier({ { 211.501007F, 29.1200008F }, { 211.893005F, 30.8372993F }, { 212.677002F, 32.368F } });
-            sink->AddBezier({ { 213.498993F, 33.8613014F }, { 214.600006F, 35.0373001F }, { 215.981003F, 35.8959999F } });
-            sink->AddBezier({ { 217.399994F, 36.7546997F }, { 218.987F, 37.1839981F }, { 220.740997F, 37.1839981F } });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - - - Layer aggregator
-        // - -  Offset:<50.357506, 44.522312>
-        winrt::com_ptr<CanvasGeometry> Geometry_22()
-        {
-            winrt::com_ptr<ID2D1PathGeometry> path{ nullptr };
-            winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
-            winrt::com_ptr<ID2D1GeometrySink> sink{ nullptr };
-            winrt::check_hresult(path->Open(sink.put()));
-            sink->SetFillMode(D2D1_FILL_MODE_WINDING);
-            sink->BeginFigure({ 19.1851044F, -5.81804371F }, D2D1_FIGURE_BEGIN_FILLED);
-            sink->AddLine({ 7.32805777F, 2.22229505F });
-            sink->AddLine({ 11.8570461F, 15.2318363F });
-            sink->AddLine({ 4.71805928E-16F, 7.19149733F });
-            sink->AddLine({ -11.8570461F, 15.2318363F });
-            sink->AddLine({ -7.32805777F, 2.22229505F });
-            sink->AddLine({ -19.1851044F, -5.81804371F });
-            sink->AddLine({ -4.52898884F, -5.81804371F });
-            sink->AddLine({ -3.70561202E-15F, -18.8275852F });
-            sink->AddLine({ 4.52898884F, -5.81804371F });
-            sink->AddLine({ 19.1851044F, -5.81804371F });
-            sink->EndFigure(D2D1_FIGURE_END_CLOSED);
-            winrt::check_hresult(sink->Close());
-            auto result = winrt::make_self<CanvasGeometry>(path);
-            return result;
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        // Color bound to theme property value: Color_000000
-        CompositionColorBrush ThemeColor_Color_000000()
-        {
-            if (_themeColor_Color_000000 != nullptr) { return _themeColor_Color_000000; }
-            const auto result = _themeColor_Color_000000 = _c.CreateColorBrush();
-            BindProperty(_themeColor_Color_000000, L"Color", L"ColorRGB(_theme.Color_000000.W*0.8,_theme.Color_000000.X,_theme.Color_000000.Y,_theme.Color_000000.Z)", L"_theme", _themeProperties);
-            return result;
-        }
-
-        // Color bound to theme property value: Color_FFD640
-        CompositionColorBrush ThemeColor_Color_FFD640()
-        {
-            if (_themeColor_Color_FFD640 != nullptr) { return _themeColor_Color_FFD640; }
-            const auto result = _themeColor_Color_FFD640 = _c.CreateColorBrush();
-            BindProperty(_themeColor_Color_FFD640, L"Color", L"ColorRGB(_theme.Color_FFD640.W,_theme.Color_FFD640.X,_theme.Color_FFD640.Y,_theme.Color_FFD640.Z)", L"_theme", _themeProperties);
-            return result;
-        }
-
-        // Color bound to theme property value: Color_FFFFFF
-        CompositionColorBrush ThemeColor_Color_FFFFFF()
-        {
-            if (_themeColor_Color_FFFFFF != nullptr) { return _themeColor_Color_FFFFFF; }
-            const auto result = _themeColor_Color_FFFFFF = _c.CreateColorBrush();
-            BindProperty(_themeColor_Color_FFFFFF, L"Color", L"ColorRGB(_theme.Color_FFFFFF.W,_theme.Color_FFFFFF.X,_theme.Color_FFFFFF.Y,_theme.Color_FFFFFF.Z)", L"_theme", _themeProperties);
-            return result;
-        }
-
-        // .EllipseGeometry
-        CompositionEllipseGeometry Ellipse_3p718x3p56()
-        {
-            if (_ellipse_3p718x3p56 != nullptr) { return _ellipse_3p718x3p56; }
-            const auto result = _ellipse_3p718x3p56 = _c.CreateEllipseGeometry();
-            result.Radius({ 3.71805263F, 3.55983758F });
-            return result;
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_00()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_00())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_01()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_01())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_02()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_02())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_03()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_03())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_04()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_04())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_05()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_05())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_06()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_06())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_07()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_07())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_08()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_08())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_09()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_09())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_10()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_10())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_11()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_11())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_12()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_12())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_13()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_13())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_14()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_14())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_15()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_15())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_16()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_16())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_17()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_17())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_18()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_18())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_19()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_19())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_20()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_20())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        CompositionPathGeometry PathGeometry_21()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_21())));
-        }
-
-        // - Layer aggregator
-        // Offset:<50.357506, 44.522312>
-        CompositionPathGeometry PathGeometry_22()
-        {
-            return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_22())));
-        }
-
-        // - Layer aggregator
-        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-        // .RectangleGeometry
-        CompositionRoundedRectangleGeometry RoundedRectangle_702p686x144()
-        {
-            const auto result = _c.CreateRoundedRectangleGeometry();
-            result.CornerRadius({ 72.0F, 72.0F });
-            result.Offset({ -351.343201F, -72.0F });
-            result.Size({ 702.686401F, 144.0F });
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:  Scale:0.99999994,0.99999994, Offset:<56.54167, -2.2762339E-05>
-        CompositionSpriteShape SpriteShape_00()
-        {
-            // Offset:<89, 95.33607>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = RoundedRectangle_702p686x144();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 89.0F, 95.3360672F }, ThemeColor_Color_000000());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:  Offset:<-211.73004, -77.6732>
-        CompositionSpriteShape SpriteShape_01()
-        {
-            // Offset:<79.27206, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_00();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.2720566F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:  Offset:<-211.73004, -77.6732>
-        CompositionSpriteShape SpriteShape_02()
-        {
-            // Offset:<79.27206, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_01();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.2720566F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:  Offset:<-211.73004, -77.6732>
-        CompositionSpriteShape SpriteShape_03()
-        {
-            // Offset:<79.27206, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_02();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.2720566F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:  Offset:<-211.73004, -77.6732>
-        CompositionSpriteShape SpriteShape_04()
-        {
-            // Offset:<79.27206, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_03();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.2720566F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:  Offset:<-211.73004, -77.6732>
-        CompositionSpriteShape SpriteShape_05()
-        {
-            // Offset:<79.27206, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_04();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.2720566F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:  Offset:<-354.53253, -77.5052>
-        CompositionSpriteShape SpriteShape_06()
-        {
-            // Offset:<79.64402, 94.54773>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_05();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.6440201F, 94.5477295F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:  Offset:<-354.53253, -77.5052>
-        CompositionSpriteShape SpriteShape_07()
-        {
-            // Offset:<79.64402, 94.54773>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_06();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.6440201F, 94.5477295F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:  Offset:<-354.53253, -77.5052>
-        CompositionSpriteShape SpriteShape_08()
-        {
-            // Offset:<79.64402, 94.54773>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_07();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.6440201F, 94.5477295F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:  Offset:<-354.53253, -77.5052>
-        CompositionSpriteShape SpriteShape_09()
-        {
-            // Offset:<79.64402, 94.54773>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_08();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.6440201F, 94.5477295F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:  Offset:<-354.53253, -77.5052>
-        CompositionSpriteShape SpriteShape_10()
-        {
-            // Offset:<79.64402, 94.54773>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_09();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.6440201F, 94.5477295F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_11()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_10();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_12()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_11();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_13()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_12();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_14()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_13();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_15()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_14();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_16()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_15();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_17()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_16();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_18()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_17();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_19()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_18();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_20()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_19();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_21()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_20();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // ShapeGroup:
-        CompositionSpriteShape SpriteShape_22()
-        {
-            // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
-            const auto geometry = PathGeometry_21();
-            const auto result = CreateSpriteShape(geometry, { 0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F }, ThemeColor_Color_FFFFFF());;
-            return result;
-        }
-
-        // Layer aggregator
-        // Offset:<50.357506, 44.522312>
-        CompositionSpriteShape SpriteShape_23()
-        {
-            // Offset:<50.357506, 44.522312>
-            const auto geometry = PathGeometry_22();
-            const auto result = CreateSpriteShape(geometry, { 1.0F, 0.0F, 0.0F, 1.0F, 50.3575058F, 44.5223122F }, ThemeColor_Color_FFD640());;
-            return result;
-        }
-
-        // Layer aggregator
-        CompositionSpriteShape SpriteShape_24()
-        {
-            if (_spriteShape_24 != nullptr) { return _spriteShape_24; }
-            const auto result = _spriteShape_24 = _c.CreateSpriteShape(Ellipse_3p718x3p56());
-            result.FillBrush(ThemeColor_Color_FFD640());
-            return result;
-        }
-
-        // Layer aggregator
-        CompositionSpriteShape SpriteShape_25()
-        {
-            if (_spriteShape_25 != nullptr) { return _spriteShape_25; }
-            const auto result = _spriteShape_25 = _c.CreateSpriteShape(Ellipse_3p718x3p56());
-            result.FillBrush(ThemeColor_Color_FFD640());
-            return result;
-        }
-
-        // Layer aggregator
-        CompositionSpriteShape SpriteShape_26()
-        {
-            if (_spriteShape_26 != nullptr) { return _spriteShape_26; }
-            const auto result = _spriteShape_26 = _c.CreateSpriteShape(Ellipse_3p718x3p56());
-            result.FillBrush(ThemeColor_Color_FFD640());
-            return result;
-        }
-
-        // Layer aggregator
-        CompositionSpriteShape SpriteShape_27()
-        {
-            if (_spriteShape_27 != nullptr) { return _spriteShape_27; }
-            const auto result = _spriteShape_27 = _c.CreateSpriteShape(Ellipse_3p718x3p56());
-            result.FillBrush(ThemeColor_Color_FFD640());
-            return result;
-        }
-
-        // The root of the composition.
-        ContainerVisual Root()
-        {
-            if (_root != nullptr) { return _root; }
-            const auto result = _root = _c.CreateContainerVisual();
-            const auto propertySet = result.Properties();
-            propertySet.InsertScalar(L"Progress", 0.0F);
-            // Layer aggregator
-            result.Children().InsertAtTop(ShapeVisual_0());
-            return result;
-        }
-
-        CubicBezierEasingFunction CubicBezierEasingFunction_0()
-        {
-            return (_cubicBezierEasingFunction_0 == nullptr)
-                ? _cubicBezierEasingFunction_0 = _c.CreateCubicBezierEasingFunction({ 0.25F, 0.25F }, { 0.75F, 0.75F })
-                : _cubicBezierEasingFunction_0;
-        }
-
-        // Layer aggregator
-        ShapeVisual ShapeVisual_0()
-        {
-            const auto result = _c.CreateShapeVisual();
-            result.Size({ 104.0F, 100.0F });
-            const auto shapes = result.Shapes();
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_00());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_01());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_02());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_03());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_04());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_05());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_06());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_07());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_08());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_09());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_10());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_11());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_12());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_13());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_14());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_15());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_16());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_17());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_18());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_19());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_20());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_21());
-            // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
-            shapes.Append(SpriteShape_22());
-            // Offset:<50.357506, 44.522312>
-            shapes.Append(SpriteShape_23());
-            shapes.Append(SpriteShape_24());
-            shapes.Append(SpriteShape_25());
-            shapes.Append(SpriteShape_26());
-            shapes.Append(SpriteShape_27());
-            return result;
-        }
-
-        StepEasingFunction HoldThenStepEasingFunction()
-        {
-            if (_holdThenStepEasingFunction != nullptr) { return _holdThenStepEasingFunction; }
-            const auto result = _holdThenStepEasingFunction = _c.CreateStepEasingFunction();
-            result.IsFinalStepSingleFrame(true);
-            return result;
-        }
-
-        // - Layer aggregator
-        // Offset
-        Vector2KeyFrameAnimation OffsetVector2Animation_0()
-        {
-            // Frame 0.
-            const auto result = CreateVector2KeyFrameAnimation(0.0F, { 50.3575058F, 60.679512F }, HoldThenStepEasingFunction());
-            // Frame 60.
-            result.InsertKeyFrame(0.200000003F, { 50.3575058F, 66.9097366F }, CubicBezierEasingFunction_0());
-            return result;
-        }
-
-        // - Layer aggregator
-        // Offset
-        Vector2KeyFrameAnimation OffsetVector2Animation_1()
-        {
-            // Frame 0.
-            const auto result = CreateVector2KeyFrameAnimation(0.0F, { 50.3575058F, 21.1977692F }, HoldThenStepEasingFunction());
-            // Frame 60.
-            result.InsertKeyFrame(0.200000003F, { 50.3575058F, 18.4477692F }, CubicBezierEasingFunction_0());
-            return result;
-        }
-
-        // - Layer aggregator
-        // Offset
-        Vector2KeyFrameAnimation OffsetVector2Animation_2()
-        {
-            // Frame 0.
-            const auto result = CreateVector2KeyFrameAnimation(0.0F, { 26.467041F, 37.8174438F }, HoldThenStepEasingFunction());
-            // Frame 60.
-            result.InsertKeyFrame(0.200000003F, { 21.217041F, 37.8174438F }, CubicBezierEasingFunction_0());
-            return result;
-        }
-
-        // - Layer aggregator
-        // Offset
-        Vector2KeyFrameAnimation OffsetVector2Animation_3()
-        {
-            // Frame 0.
-            const auto result = CreateVector2KeyFrameAnimation(0.0F, { 74.2479782F, 37.8174438F }, HoldThenStepEasingFunction());
-            // Frame 60.
-            result.InsertKeyFrame(0.200000003F, { 77.7479782F, 37.8174438F }, CubicBezierEasingFunction_0());
-            return result;
-        }
-
-        static IGeometrySource2D CanvasGeometryToIGeometrySource2D(winrt::com_ptr<CanvasGeometry> geo)
-        {
-            return geo.as<IGeometrySource2D>();
-        }
-
-    public:
-        TransparentLottie_AnimatedVisual(
-            Compositor compositor,
-            CompositionPropertySet themeProperties)
-            : _c{compositor}
-            , _themeProperties{themeProperties}
-            , _reusableExpressionAnimation(compositor.CreateExpressionAnimation())
-        {
-            winrt::check_hresult(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, _d2dFactory.put()));
-            const auto _ = Root();
-        }
-
-        void Close()
-        {
-            if (_root)
-            {
-                _root.Close();
-            }
-        }
-
-        TimeSpan Duration() const
-        {
-            return TimeSpan{ c_durationTicks };
-        }
-
-        Visual RootVisual() const
-        {
-            return _root;
-        }
-
-        float2 Size() const
-        {
-            return { 104.0F, 100.0F };
-        }
-
-        void CreateAnimations()
-        {
-            _spriteShape_24.StartAnimation(L"Offset", OffsetVector2Animation_0(), AnimationController_0());
-            _spriteShape_25.StartAnimation(L"Offset", OffsetVector2Animation_1(), AnimationController_0());
-            _spriteShape_26.StartAnimation(L"Offset", OffsetVector2Animation_2(), AnimationController_0());
-            _spriteShape_27.StartAnimation(L"Offset", OffsetVector2Animation_3(), AnimationController_0());
-        }
-
-        void DestroyAnimations()
-        {
-            _spriteShape_24.StopAnimation(L"Offset");
-            _spriteShape_25.StopAnimation(L"Offset");
-            _spriteShape_26.StopAnimation(L"Offset");
-            _spriteShape_27.StopAnimation(L"Offset");
-        }
-
-    };
-
-    float4 TransparentLottie::ColorAsVector4(Color color)
-    {
-        return { static_cast<float>(color.R), static_cast<float>(color.G), static_cast<float>(color.B), static_cast<float>(color.A) };
     }
 
-    CompositionPropertySet TransparentLottie::EnsureThemeProperties(Compositor compositor)
+    // IGeometrySource2D.
+    winrt::com_ptr<ID2D1Geometry> Geometry()
     {
-        if (_themeProperties == nullptr)
-        {
-            _themeProperties = compositor.CreatePropertySet();
-            _themeProperties.InsertVector4(L"Color_000000", ColorAsVector4((Color)_themeColor_000000));
-            _themeProperties.InsertVector4(L"Color_FFD640", ColorAsVector4((Color)_themeColor_FFD640));
-            _themeProperties.InsertVector4(L"Color_FFFFFF", ColorAsVector4((Color)_themeColor_FFFFFF));
-        }
-
-        return _themeProperties;
+        return _geometry;
     }
 
-    Color TransparentLottie::Color_000000()
+    // IGeometrySource2DInterop.
+    IFACEMETHODIMP GetGeometry(ID2D1Geometry **value) noexcept(true) override
     {
-        return _themeColor_000000;
+        _geometry.copy_to(value);
+        return S_OK;
     }
 
-    void TransparentLottie::Color_000000(Color value)
+    // IGeometrySource2DInterop.
+    IFACEMETHODIMP TryGetGeometryUsingFactory(ID2D1Factory *, ID2D1Geometry **) noexcept(true) override
     {
-        _themeColor_000000 = value;
-        if (_themeProperties != nullptr)
-        {
-            _themeProperties.InsertVector4(L"Color_000000", ColorAsVector4((Color)_themeColor_000000));
-        }
+        return E_NOTIMPL;
+    }
+};
+class TransparentLottie_AnimatedVisual
+    : public winrt::implements<TransparentLottie_AnimatedVisual, winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual2,
+                               winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual, IClosable>
+{
+    winrt::com_ptr<ID2D1Factory> _d2dFactory{nullptr};
+    static constexpr int64_t c_durationTicks{30000000L};
+    Compositor const _c{nullptr};
+    ExpressionAnimation const _reusableExpressionAnimation{nullptr};
+    CompositionPropertySet const _themeProperties{nullptr};
+    AnimationController _animationController_0{nullptr};
+    CompositionColorBrush _themeColor_Color_000000{nullptr};
+    CompositionColorBrush _themeColor_Color_FFD640{nullptr};
+    CompositionColorBrush _themeColor_Color_FFFFFF{nullptr};
+    CompositionEllipseGeometry _ellipse_3p718x3p56{nullptr};
+    CompositionSpriteShape _spriteShape_24{nullptr};
+    CompositionSpriteShape _spriteShape_25{nullptr};
+    CompositionSpriteShape _spriteShape_26{nullptr};
+    CompositionSpriteShape _spriteShape_27{nullptr};
+    ContainerVisual _root{nullptr};
+    CubicBezierEasingFunction _cubicBezierEasingFunction_0{nullptr};
+    StepEasingFunction _holdThenStepEasingFunction{nullptr};
+
+    void BindProperty(CompositionObject target, winrt::hstring animatedPropertyName, winrt::hstring expression,
+                      winrt::hstring referenceParameterName, CompositionObject referencedObject)
+    {
+        _reusableExpressionAnimation.ClearAllParameters();
+        _reusableExpressionAnimation.Expression(expression);
+        _reusableExpressionAnimation.SetReferenceParameter(referenceParameterName, referencedObject);
+        target.StartAnimation(animatedPropertyName, _reusableExpressionAnimation);
     }
 
-    Color TransparentLottie::Color_FFD640()
+    Vector2KeyFrameAnimation CreateVector2KeyFrameAnimation(float initialProgress, float2 initialValue,
+                                                            CompositionEasingFunction initialEasingFunction)
     {
-        return _themeColor_FFD640;
-    }
-
-    void TransparentLottie::Color_FFD640(Color value)
-    {
-        _themeColor_FFD640 = value;
-        if (_themeProperties != nullptr)
-        {
-            _themeProperties.InsertVector4(L"Color_FFD640", ColorAsVector4((Color)_themeColor_FFD640));
-        }
-    }
-
-    Color TransparentLottie::Color_FFFFFF()
-    {
-        return _themeColor_FFFFFF;
-    }
-
-    void TransparentLottie::Color_FFFFFF(Color value)
-    {
-        _themeColor_FFFFFF = value;
-        if (_themeProperties != nullptr)
-        {
-            _themeProperties.InsertVector4(L"Color_FFFFFF", ColorAsVector4((Color)_themeColor_FFFFFF));
-        }
-    }
-
-    winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual TransparentLottie::TryCreateAnimatedVisual(
-        Compositor const& compositor)
-    {
-        IInspectable diagnostics = nullptr;
-        return TryCreateAnimatedVisual(compositor, diagnostics);
-    }
-
-    winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual TransparentLottie::TryCreateAnimatedVisual(
-        Compositor const& compositor,
-        IInspectable& diagnostics)
-    {
-        const auto _ = EnsureThemeProperties(compositor);
-        diagnostics = nullptr;
-        auto result = winrt::make<TransparentLottie_AnimatedVisual>(
-            compositor,
-            _themeProperties);
-        result.CreateAnimations();
+        const auto result = _c.CreateVector2KeyFrameAnimation();
+        result.Duration(TimeSpan{c_durationTicks});
+        result.InsertKeyFrame(initialProgress, initialValue, initialEasingFunction);
         return result;
     }
 
-    double TransparentLottie::FrameCount()
+    CompositionSpriteShape CreateSpriteShape(CompositionGeometry geometry, float3x2 transformMatrix,
+                                             CompositionBrush fillBrush)
     {
-        return 300.0;
+        const auto result = _c.CreateSpriteShape(geometry);
+        result.TransformMatrix(transformMatrix);
+        result.FillBrush(fillBrush);
+        return result;
     }
 
-    double TransparentLottie::Framerate()
+    AnimationController AnimationController_0()
     {
-        return 100.0;
-    }
-
-    TimeSpan TransparentLottie::Duration()
-    {
-        return TimeSpan{ 30000000L };
-    }
-
-    double TransparentLottie::FrameToProgress(double frameNumber)
-    {
-        return frameNumber / 300.0;
-    }
-
-    winrt::Windows::Foundation::Collections::IMapView<hstring, double> TransparentLottie::Markers()
-    {
-        return winrt::single_threaded_map<winrt::hstring, double>(
-            std::map<winrt::hstring, double>
-            {
-                { L"NormalToPressed_Start", 0.0 },
-                { L"PressedToNormal_End", 0.0 },
-                { L"NormalToPressed_End", 0.00183333333333333 },
-                { L"PressedToNormal_Start", 0.00183333333333333 },
-            }
-        ).GetView();
-    }
-
-    void TransparentLottie::SetColorProperty(hstring const& propertyName, Color value)
-    {
-        if (propertyName == L"Color_000000")
+        if (_animationController_0 != nullptr)
         {
-            _themeColor_000000 = value;
+            return _animationController_0;
         }
-        else if (propertyName == L"Color_FFD640")
-        {
-            _themeColor_FFD640 = value;
-        }
-        else if (propertyName == L"Color_FFFFFF")
-        {
-            _themeColor_FFFFFF = value;
-        }
-        else
-        {
-            return;
-        }
-
-        if (_themeProperties != nullptr)
-        {
-            _themeProperties.InsertVector4(propertyName, ColorAsVector4(value));
-        }
+        const auto result = _animationController_0 = _c.CreateAnimationController();
+        result.Pause();
+        BindProperty(_animationController_0, L"Progress", L"_.Progress", L"_", _root);
+        return result;
     }
 
-    void TransparentLottie::SetScalarProperty(hstring const&, double)
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_00()
     {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({0.0F, 42.3919983F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddLine({0.0F, 0.671999991F});
+        sink->AddLine({6.15999985F, 0.671999991F});
+        sink->AddBezier({{11.3866663F, 7.91466665F}, {16.6133327F, 15.1573334F}, {21.8400002F, 22.3999996F}});
+        sink->AddLine({18.7600002F, 22.3999996F});
+        sink->AddBezier({{23.8933334F, 15.1573334F}, {29.0266666F, 7.91466665F}, {34.1599998F, 0.671999991F}});
+        sink->AddLine({40.3199997F, 0.671999991F});
+        sink->AddLine({40.3199997F, 42.3919983F});
+        sink->AddLine({33.7680016F, 42.3919983F});
+        sink->AddLine({33.7680016F, 8.45600033F});
+        sink->AddLine({36.2319984F, 9.12800026F});
+        sink->AddLine({20.4960003F, 30.632F});
+        sink->AddLine({19.8239994F, 30.632F});
+        sink->AddLine({4.42399979F, 9.12800026F});
+        sink->AddLine({6.6079998F, 8.45600033F});
+        sink->AddLine({6.6079998F, 42.3919983F});
+        sink->AddLine({0.0F, 42.3919983F});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
     }
-} // end namespace
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_01()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({57.401001F, 43.0639992F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{55.3479996F, 43.0639992F}, {53.5369987F, 42.709301F}, {51.9690018F, 42.0F}});
+        sink->AddBezier({{50.4379997F, 41.2532997F}, {49.2439995F, 40.2453003F}, {48.3849983F, 38.9760017F}});
+        sink->AddBezier({{47.526001F, 37.6693001F}, {47.0970001F, 36.1386986F}, {47.0970001F, 34.3839989F}});
+        sink->AddBezier({{47.0970001F, 32.7412987F}, {47.4519997F, 31.2667007F}, {48.1609993F, 29.9599991F}});
+        sink->AddBezier({{48.9080009F, 28.6532993F}, {50.0460014F, 27.552F}, {51.5769997F, 26.6560001F}});
+        sink->AddBezier({{53.1080017F, 25.7600002F}, {55.0299988F, 25.1252995F}, {57.3450012F, 24.7520008F}});
+        sink->AddLine({67.8730011F, 23.0160007F});
+        sink->AddLine({67.8730011F, 28.0F});
+        sink->AddBezier({{64.7743301F, 28.5413342F}, {61.6756668F, 29.0826664F}, {58.5769997F, 29.6240005F}});
+        sink->AddBezier({{56.8969994F, 29.9227009F}, {55.6650009F, 30.4640007F}, {54.8810005F, 31.2479992F}});
+        sink->AddBezier({{54.0970001F, 31.9946995F}, {53.7050018F, 32.9653015F}, {53.7050018F, 34.1599998F}});
+        sink->AddBezier({{53.7050018F, 35.3172989F}, {54.1339989F, 36.2692986F}, {54.993F, 37.0159988F}});
+        sink->AddBezier({{55.8889999F, 37.7252998F}, {57.0279999F, 38.0800018F}, {58.4090004F, 38.0800018F}});
+        sink->AddBezier({{60.1259995F, 38.0800018F}, {61.6199989F, 37.7066994F}, {62.8889999F, 36.9599991F}});
+        sink->AddBezier({{64.1959991F, 36.2132988F}, {65.2040024F, 35.223999F}, {65.913002F, 33.9920006F}});
+        sink->AddBezier({{66.6220016F, 32.7226982F}, {66.9769974F, 31.3227005F}, {66.9769974F, 29.7919998F}});
+        sink->AddLine({66.9769974F, 22.0079994F});
+        sink->AddBezier({{66.9769974F, 20.5146999F}, {66.4169998F, 19.3013F}, {65.2969971F, 18.368F}});
+        sink->AddBezier({{64.2139969F, 17.3973007F}, {62.7579994F, 16.9120007F}, {60.9290009F, 16.9120007F}});
+        sink->AddBezier({{59.2490005F, 16.9120007F}, {57.7739983F, 17.3600006F}, {56.5050011F, 18.2560005F}});
+        sink->AddBezier({{55.2729988F, 19.1147003F}, {54.3580017F, 20.2346992F}, {53.7610016F, 21.6159992F}});
+        sink->AddLine({48.4970016F, 18.9839993F});
+        sink->AddBezier({{49.0569992F, 17.4906998F}, {49.9720001F, 16.184F}, {51.2410011F, 15.0640001F}});
+        sink->AddBezier({{52.5099983F, 13.9067001F}, {53.9850006F, 13.0107002F}, {55.6650009F, 12.3760004F}});
+        sink->AddBezier({{57.382F, 11.7412996F}, {59.1930008F, 11.4239998F}, {61.0970001F, 11.4239998F}});
+        sink->AddBezier({{63.4860001F, 11.4239998F}, {65.5960007F, 11.8719997F}, {67.4250031F, 12.7679996F}});
+        sink->AddBezier({{69.2919998F, 13.6639996F}, {70.7289963F, 14.9146996F}, {71.7369995F, 16.5200005F}});
+        sink->AddBezier({{72.7819977F, 18.0879993F}, {73.3050003F, 19.9172993F}, {73.3050003F, 22.0079994F}});
+        sink->AddLine({73.3050003F, 42.3919983F});
+        sink->AddLine({67.2570038F, 42.3919983F});
+        sink->AddLine({67.2570038F, 36.9039993F});
+        sink->AddLine({68.5449982F, 37.0719986F});
+        sink->AddBezier({{67.8359985F, 38.3040009F}, {66.9209976F, 39.368F}, {65.8010025F, 40.2639999F}});
+        sink->AddBezier({{64.7180023F, 41.1599998F}, {63.4679985F, 41.8507004F}, {62.0489998F, 42.3359985F}});
+        sink->AddBezier({{60.6679993F, 42.8213005F}, {59.118F, 43.0639992F}, {57.401001F, 43.0639992F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_02()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({94.7040024F, 43.0639992F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{91.7919998F, 43.0639992F}, {89.1790009F, 42.3732986F}, {86.8639984F, 40.9920006F}});
+        sink->AddBezier({{84.586998F, 39.5732994F}, {82.776001F, 37.6693001F}, {81.4319992F, 35.2799988F}});
+        sink->AddBezier({{80.125F, 32.8907013F}, {79.4720001F, 30.2026997F}, {79.4720001F, 27.2159996F}});
+        sink->AddBezier({{79.4720001F, 24.2292995F}, {80.1439972F, 21.5412998F}, {81.487999F, 19.1520004F}});
+        sink->AddBezier({{82.8320007F, 16.7626991F}, {84.6429977F, 14.8773003F}, {86.9199982F, 13.4960003F}});
+        sink->AddBezier({{89.1969986F, 12.1147003F}, {91.7730026F, 11.4239998F}, {94.6480026F, 11.4239998F}});
+        sink->AddBezier({{97.0749969F, 11.4239998F}, {99.2210007F, 11.9092999F}, {101.087997F, 12.8800001F}});
+        sink->AddBezier({{102.955002F, 13.8507004F}, {104.429001F, 15.1947002F}, {105.512001F, 16.9120007F}});
+        sink->AddLine({104.559998F, 18.368F});
+        sink->AddLine({104.559998F, 0.0F});
+        sink->AddLine({110.832001F, 0.0F});
+        sink->AddLine({110.832001F, 42.3919983F});
+        sink->AddLine({104.839996F, 42.3919983F});
+        sink->AddLine({104.839996F, 36.2319984F});
+        sink->AddLine({105.568001F, 37.4080009F});
+        sink->AddBezier({{104.523003F, 39.2373009F}, {103.028999F, 40.6372986F}, {101.087997F, 41.6080017F}});
+        sink->AddBezier({{99.1470032F, 42.578701F}, {97.0189972F, 43.0639992F}, {94.7040024F, 43.0639992F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_03()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({95.3199997F, 37.1839981F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{97.0749969F, 37.1839981F}, {98.6429977F, 36.7546997F}, {100.024002F, 35.8959999F}});
+        sink->AddBezier({{101.443001F, 35.0373001F}, {102.543999F, 33.8613014F}, {103.328003F, 32.368F}});
+        sink->AddBezier({{104.149002F, 30.8372993F}, {104.559998F, 29.1200008F}, {104.559998F, 27.2159996F}});
+        sink->AddBezier({{104.559998F, 25.3120003F}, {104.149002F, 23.6133003F}, {103.328003F, 22.1200008F}});
+        sink->AddBezier({{102.543999F, 20.6266994F}, {101.443001F, 19.4507008F}, {100.024002F, 18.5919991F}});
+        sink->AddBezier({{98.6429977F, 17.7332993F}, {97.0749969F, 17.3040009F}, {95.3199997F, 17.3040009F}});
+        sink->AddBezier({{93.5650024F, 17.3040009F}, {91.9789963F, 17.7332993F}, {90.5599976F, 18.5919991F}});
+        sink->AddBezier({{89.1409988F, 19.4507008F}, {88.0400009F, 20.6266994F}, {87.2559967F, 22.1200008F}});
+        sink->AddBezier({{86.4720001F, 23.6133003F}, {86.0800018F, 25.3120003F}, {86.0800018F, 27.2159996F}});
+        sink->AddBezier({{86.0800018F, 29.1200008F}, {86.4720001F, 30.8372993F}, {87.2559967F, 32.368F}});
+        sink->AddBezier({{88.0400009F, 33.8613014F}, {89.1230011F, 35.0373001F}, {90.5039978F, 35.8959999F}});
+        sink->AddBezier({{91.9229965F, 36.7546997F}, {93.5279999F, 37.1839981F}, {95.3199997F, 37.1839981F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_04()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({132.444F, 43.0639992F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{129.419998F, 43.0639992F}, {126.732002F, 42.3732986F}, {124.379997F, 40.9920006F}});
+        sink->AddBezier({{122.065002F, 39.5732994F}, {120.253998F, 37.6693001F}, {118.947998F, 35.2799988F}});
+        sink->AddBezier({{117.640999F, 32.8532982F}, {116.987999F, 30.1466999F}, {116.987999F, 27.1599998F}});
+        sink->AddBezier({{116.987999F, 24.0986996F}, {117.640999F, 21.3920002F}, {118.947998F, 19.0400009F}});
+        sink->AddBezier({{120.292F, 16.6879997F}, {122.084F, 14.8400002F}, {124.323997F, 13.4960003F}});
+        sink->AddBezier({{126.564003F, 12.1147003F}, {129.102005F, 11.4239998F}, {131.940002F, 11.4239998F}});
+        sink->AddBezier({{134.216995F, 11.4239998F}, {136.251999F, 11.816F}, {138.044006F, 12.6000004F}});
+        sink->AddBezier({{139.835999F, 13.3839998F}, {141.348007F, 14.4666996F}, {142.580002F, 15.8479996F}});
+        sink->AddBezier({{143.811996F, 17.1919994F}, {144.744995F, 18.7413006F}, {145.380005F, 20.4960003F}});
+        sink->AddBezier({{146.052002F, 22.2507F}, {146.388F, 24.1173F}, {146.388F, 26.0960007F}});
+        sink->AddBezier({{146.388F, 26.5813007F}, {146.369003F, 27.0853004F}, {146.332001F, 27.6079998F}});
+        sink->AddBezier({{146.294006F, 28.1306992F}, {146.220001F, 28.6159992F}, {146.108002F, 29.0639992F}});
+        sink->AddLine({121.972F, 29.0639992F});
+        sink->AddLine({121.972F, 24.0240002F});
+        sink->AddLine({142.524002F, 24.0240002F});
+        sink->AddLine({139.5F, 26.3199997F});
+        sink->AddBezier({{139.873001F, 24.4906998F}, {139.742004F, 22.8666992F}, {139.108002F, 21.448F}});
+        sink->AddBezier({{138.509995F, 19.9920006F}, {137.576996F, 18.8533001F}, {136.307999F, 18.0319996F}});
+        sink->AddBezier({{135.076004F, 17.1732998F}, {133.619995F, 16.7439995F}, {131.940002F, 16.7439995F}});
+        sink->AddBezier({{130.259995F, 16.7439995F}, {128.766006F, 17.1732998F}, {127.459999F, 18.0319996F}});
+        sink->AddBezier({{126.153F, 18.8533001F}, {125.144997F, 20.0480003F}, {124.435997F, 21.6159992F}});
+        sink->AddBezier({{123.725998F, 23.1466999F}, {123.445999F, 25.0132999F}, {123.596001F, 27.2159996F}});
+        sink->AddBezier({{123.408997F, 29.2693005F}, {123.689003F, 31.0613003F}, {124.435997F, 32.5919991F}});
+        sink->AddBezier({{125.220001F, 34.1226997F}, {126.302002F, 35.3172989F}, {127.683998F, 36.1759987F}});
+        sink->AddBezier({{129.102005F, 37.0346985F}, {130.707993F, 37.4640007F}, {132.5F, 37.4640007F}});
+        sink->AddBezier({{134.328995F, 37.4640007F}, {135.878006F, 37.053299F}, {137.147995F, 36.2319984F}});
+        sink->AddBezier({{138.453995F, 35.4107018F}, {139.481003F, 34.3466988F}, {140.227997F, 33.0400009F}});
+        sink->AddLine({145.380005F, 35.5600014F});
+        sink->AddBezier({{144.781998F, 36.9786987F}, {143.848999F, 38.2667007F}, {142.580002F, 39.4239998F}});
+        sink->AddBezier({{141.348007F, 40.5439987F}, {139.854004F, 41.4399986F}, {138.100006F, 42.1119995F}});
+        sink->AddBezier({{136.382004F, 42.7467003F}, {134.496994F, 43.0639992F}, {132.444F, 43.0639992F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_05()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({169.688004F, 42.3919983F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{166.216003F, 32.293335F}, {162.744003F, 22.1946659F}, {159.272003F, 12.0959997F}});
+        sink->AddLine({165.992004F, 12.0959997F});
+        sink->AddLine({173.944F, 36.2319984F});
+        sink->AddLine({171.591995F, 36.2319984F});
+        sink->AddLine({179.712006F, 12.0959997F});
+        sink->AddLine({185.479996F, 12.0959997F});
+        sink->AddLine({193.544006F, 36.2319984F});
+        sink->AddLine({191.192001F, 36.2319984F});
+        sink->AddBezier({{193.861328F, 28.1866665F}, {196.53067F, 20.1413326F}, {199.199997F, 12.0959997F}});
+        sink->AddLine({205.919998F, 12.0959997F});
+        sink->AddLine({195.447998F, 42.3919983F});
+        sink->AddLine({189.735992F, 42.3919983F});
+        sink->AddLine({181.559998F, 17.6959991F});
+        sink->AddLine({183.632004F, 17.6959991F});
+        sink->AddLine({175.455994F, 42.3919983F});
+        sink->AddLine({169.688004F, 42.3919983F});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_06()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({210.259003F, 42.3919983F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddLine({210.259003F, 12.0959997F});
+        sink->AddLine({216.587006F, 12.0959997F});
+        sink->AddLine({216.587006F, 42.3919983F});
+        sink->AddLine({210.259003F, 42.3919983F});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_07()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({210.259003F, 7.95200014F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddLine({210.259003F, 0.671999991F});
+        sink->AddLine({216.587006F, 0.671999991F});
+        sink->AddLine({216.587006F, 7.95200014F});
+        sink->AddLine({210.259003F, 7.95200014F});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_08()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({237.089005F, 42.7280006F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{233.916F, 42.7280006F}, {231.451996F, 41.8320007F}, {229.697006F, 40.0400009F}});
+        sink->AddBezier({{227.942993F, 38.2480011F}, {227.065002F, 35.7280006F}, {227.065002F, 32.4799995F}});
+        sink->AddLine({227.065002F, 17.8080006F});
+        sink->AddLine({221.744995F, 17.8080006F});
+        sink->AddLine({221.744995F, 12.0959997F});
+        sink->AddLine({222.585007F, 12.0959997F});
+        sink->AddBezier({{224.003998F, 12.0959997F}, {225.104996F, 11.6852999F}, {225.889008F, 10.8640003F}});
+        sink->AddBezier({{226.673004F, 10.0426998F}, {227.065002F, 8.92269993F}, {227.065002F, 7.50400019F}});
+        sink->AddLine({227.065002F, 5.15199995F});
+        sink->AddLine({233.393005F, 5.15199995F});
+        sink->AddLine({233.393005F, 12.0959997F});
+        sink->AddLine({240.281006F, 12.0959997F});
+        sink->AddLine({240.281006F, 17.8080006F});
+        sink->AddLine({233.393005F, 17.8080006F});
+        sink->AddLine({233.393005F, 32.2000008F});
+        sink->AddBezier({{233.393005F, 33.2453003F}, {233.561005F, 34.1413002F}, {233.897003F, 34.8880005F}});
+        sink->AddBezier({{234.233002F, 35.5973015F}, {234.774994F, 36.157299F}, {235.520996F, 36.5680008F}});
+        sink->AddBezier({{236.268005F, 36.9412994F}, {237.238998F, 37.1279984F}, {238.432999F, 37.1279984F}});
+        sink->AddBezier({{238.731995F, 37.1279984F}, {239.067993F, 37.1092987F}, {239.440994F, 37.0719986F}});
+        sink->AddBezier({{239.815002F, 37.0346985F}, {240.169006F, 36.9972992F}, {240.505005F, 36.9599991F}});
+        sink->AddLine({240.505005F, 42.3919983F});
+        sink->AddBezier({{239.983002F, 42.4667015F}, {239.404007F, 42.5413017F}, {238.768997F, 42.6160011F}});
+        sink->AddBezier({{238.134995F, 42.6907005F}, {237.574997F, 42.7280006F}, {237.089005F, 42.7280006F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_09()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({246.681F, 42.3919983F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddLine({246.681F, 0.0F});
+        sink->AddLine({253.009003F, 0.0F});
+        sink->AddLine({253.009003F, 18.0319996F});
+        sink->AddLine({252.001007F, 17.2479992F});
+        sink->AddBezier({{252.746994F, 15.3439999F}, {253.942001F, 13.9067001F}, {255.585007F, 12.9359999F}});
+        sink->AddBezier({{257.22699F, 11.9280005F}, {259.131012F, 11.4239998F}, {261.296997F, 11.4239998F}});
+        sink->AddBezier({{263.536987F, 11.4239998F}, {265.515015F, 11.9092999F}, {267.233002F, 12.8800001F}});
+        sink->AddBezier({{268.950012F, 13.8507004F}, {270.294006F, 15.1947002F}, {271.265015F, 16.9120007F}});
+        sink->AddBezier({{272.234985F, 18.6292992F}, {272.721008F, 20.5893002F}, {272.721008F, 22.7919998F}});
+        sink->AddLine({272.721008F, 42.3919983F});
+        sink->AddLine({266.449005F, 42.3919983F});
+        sink->AddLine({266.449005F, 24.5279999F});
+        sink->AddBezier({{266.449005F, 22.9972992F}, {266.149994F, 21.7092991F}, {265.553009F, 20.6639996F}});
+        sink->AddBezier({{264.993011F, 19.5813007F}, {264.209015F, 18.7600002F}, {263.200989F, 18.2000008F}});
+        sink->AddBezier({{262.192993F, 17.6026993F}, {261.035004F, 17.3040009F}, {259.729004F, 17.3040009F}});
+        sink->AddBezier({{258.459015F, 17.3040009F}, {257.302002F, 17.6026993F}, {256.256989F, 18.2000008F}});
+        sink->AddBezier({{255.248993F, 18.7600002F}, {254.445999F, 19.5813007F}, {253.848999F, 20.6639996F}});
+        sink->AddBezier({{253.289001F, 21.7467003F}, {253.009003F, 23.0347004F}, {253.009003F, 24.5279999F}});
+        sink->AddLine({253.009003F, 42.3919983F});
+        sink->AddLine({246.681F, 42.3919983F});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_10()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({0.0F, 42.3919983F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddLine({0.0F, 0.671999991F});
+        sink->AddLine({6.6079998F, 0.671999991F});
+        sink->AddLine({6.6079998F, 36.512001F});
+        sink->AddLine({24.6399994F, 36.512001F});
+        sink->AddLine({24.6399994F, 42.3919983F});
+        sink->AddLine({0.0F, 42.3919983F});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_11()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({44.1879997F, 43.0639992F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{41.276001F, 43.0639992F}, {38.605999F, 42.3732986F}, {36.1800003F, 40.9920006F}});
+        sink->AddBezier({{33.7900009F, 39.6106987F}, {31.8859997F, 37.7252998F}, {30.4680004F, 35.3359985F}});
+        sink->AddBezier({{29.0489998F, 32.946701F}, {28.3400002F, 30.2399998F}, {28.3400002F, 27.2159996F}});
+        sink->AddBezier({{28.3400002F, 24.1546993F}, {29.0489998F, 21.448F}, {30.4680004F, 19.0960007F}});
+        sink->AddBezier({{31.8859997F, 16.7066994F}, {33.7900009F, 14.8400002F}, {36.1800003F, 13.4960003F}});
+        sink->AddBezier({{38.5690002F, 12.1147003F}, {41.237999F, 11.4239998F}, {44.1879997F, 11.4239998F}});
+        sink->AddBezier({{47.1739998F, 11.4239998F}, {49.8440018F, 12.1147003F}, {52.1959991F, 13.4960003F}});
+        sink->AddBezier({{54.5849991F, 14.8400002F}, {56.4700012F, 16.7066994F}, {57.8520012F, 19.0960007F}});
+        sink->AddBezier({{59.2700005F, 21.448F}, {59.9799995F, 24.1546993F}, {59.9799995F, 27.2159996F}});
+        sink->AddBezier({{59.9799995F, 30.2772999F}, {59.2700005F, 33.0027008F}, {57.8520012F, 35.3919983F}});
+        sink->AddBezier({{56.4329987F, 37.7812996F}, {54.5289993F, 39.6666985F}, {52.1399994F, 41.0480003F}});
+        sink->AddBezier({{49.75F, 42.3919983F}, {47.0999985F, 43.0639992F}, {44.1879997F, 43.0639992F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_12()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({44.1879997F, 37.1839981F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{45.9799995F, 37.1839981F}, {47.5660019F, 36.7546997F}, {48.9480019F, 35.8959999F}});
+        sink->AddBezier({{50.3289986F, 35.0373001F}, {51.4119987F, 33.8613014F}, {52.1959991F, 32.368F}});
+        sink->AddBezier({{53.0169983F, 30.8372993F}, {53.4280014F, 29.1200008F}, {53.4280014F, 27.2159996F}});
+        sink->AddBezier({{53.4280014F, 25.3120003F}, {53.0169983F, 23.6133003F}, {52.1959991F, 22.1200008F}});
+        sink->AddBezier({{51.4119987F, 20.6266994F}, {50.3289986F, 19.4507008F}, {48.9480019F, 18.5919991F}});
+        sink->AddBezier({{47.5660019F, 17.7332993F}, {45.9799995F, 17.3040009F}, {44.1879997F, 17.3040009F}});
+        sink->AddBezier({{42.4329987F, 17.3040009F}, {40.8460007F, 17.7332993F}, {39.4280014F, 18.5919991F}});
+        sink->AddBezier({{38.0460014F, 19.4507008F}, {36.9449997F, 20.6266994F}, {36.1240005F, 22.1200008F}});
+        sink->AddBezier({{35.3400002F, 23.6133003F}, {34.9480019F, 25.3120003F}, {34.9480019F, 27.2159996F}});
+        sink->AddBezier({{34.9480019F, 29.1200008F}, {35.3400002F, 30.8372993F}, {36.1240005F, 32.368F}});
+        sink->AddBezier({{36.9449997F, 33.8613014F}, {38.0460014F, 35.0373001F}, {39.4280014F, 35.8959999F}});
+        sink->AddBezier({{40.8460007F, 36.7546997F}, {42.4329987F, 37.1839981F}, {44.1879997F, 37.1839981F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_13()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({78.7149963F, 42.7280006F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{75.5410004F, 42.7280006F}, {73.0770035F, 41.8320007F}, {71.322998F, 40.0400009F}});
+        sink->AddBezier({{69.5680008F, 38.2480011F}, {68.6910019F, 35.7280006F}, {68.6910019F, 32.4799995F}});
+        sink->AddLine({68.6910019F, 17.8080006F});
+        sink->AddLine({63.3709984F, 17.8080006F});
+        sink->AddLine({63.3709984F, 12.0959997F});
+        sink->AddLine({64.2109985F, 12.0959997F});
+        sink->AddBezier({{65.6289978F, 12.0959997F}, {66.7310028F, 11.6852999F}, {67.5149994F, 10.8640003F}});
+        sink->AddBezier({{68.2990036F, 10.0426998F}, {68.6910019F, 8.92269993F}, {68.6910019F, 7.50400019F}});
+        sink->AddLine({68.6910019F, 5.15199995F});
+        sink->AddLine({75.0189972F, 5.15199995F});
+        sink->AddLine({75.0189972F, 12.0959997F});
+        sink->AddLine({81.9069977F, 12.0959997F});
+        sink->AddLine({81.9069977F, 17.8080006F});
+        sink->AddLine({75.0189972F, 17.8080006F});
+        sink->AddLine({75.0189972F, 32.2000008F});
+        sink->AddBezier({{75.0189972F, 33.2453003F}, {75.1869965F, 34.1413002F}, {75.5230026F, 34.8880005F}});
+        sink->AddBezier({{75.8590012F, 35.5973015F}, {76.4000015F, 36.157299F}, {77.1470032F, 36.5680008F}});
+        sink->AddBezier({{77.8929977F, 36.9412994F}, {78.8639984F, 37.1279984F}, {80.0589981F, 37.1279984F}});
+        sink->AddBezier({{80.3570023F, 37.1279984F}, {80.6930008F, 37.1092987F}, {81.0670013F, 37.0719986F}});
+        sink->AddBezier({{81.4400024F, 37.0346985F}, {81.7949982F, 36.9972992F}, {82.1309967F, 36.9599991F}});
+        sink->AddLine({82.1309967F, 42.3919983F});
+        sink->AddBezier({{81.6080017F, 42.4667015F}, {81.0289993F, 42.5413017F}, {80.3949966F, 42.6160011F}});
+        sink->AddBezier({{79.7600021F, 42.6907005F}, {79.1999969F, 42.7280006F}, {78.7149963F, 42.7280006F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_14()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({101.410004F, 42.7280006F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{98.2369995F, 42.7280006F}, {95.7730026F, 41.8320007F}, {94.0179977F, 40.0400009F}});
+        sink->AddBezier({{92.2630005F, 38.2480011F}, {91.3860016F, 35.7280006F}, {91.3860016F, 32.4799995F}});
+        sink->AddLine({91.3860016F, 17.8080006F});
+        sink->AddLine({86.0660019F, 17.8080006F});
+        sink->AddLine({86.0660019F, 12.0959997F});
+        sink->AddLine({86.9059982F, 12.0959997F});
+        sink->AddBezier({{88.3249969F, 12.0959997F}, {89.4260025F, 11.6852999F}, {90.2099991F, 10.8640003F}});
+        sink->AddBezier({{90.9940033F, 10.0426998F}, {91.3860016F, 8.92269993F}, {91.3860016F, 7.50400019F}});
+        sink->AddLine({91.3860016F, 5.15199995F});
+        sink->AddLine({97.7139969F, 5.15199995F});
+        sink->AddLine({97.7139969F, 12.0959997F});
+        sink->AddLine({104.601997F, 12.0959997F});
+        sink->AddLine({104.601997F, 17.8080006F});
+        sink->AddLine({97.7139969F, 17.8080006F});
+        sink->AddLine({97.7139969F, 32.2000008F});
+        sink->AddBezier({{97.7139969F, 33.2453003F}, {97.8820038F, 34.1413002F}, {98.2180023F, 34.8880005F}});
+        sink->AddBezier({{98.5540009F, 35.5973015F}, {99.0950012F, 36.157299F}, {99.8420029F, 36.5680008F}});
+        sink->AddBezier({{100.588997F, 36.9412994F}, {101.558998F, 37.1279984F}, {102.753998F, 37.1279984F}});
+        sink->AddBezier({{103.053001F, 37.1279984F}, {103.389F, 37.1092987F}, {103.762001F, 37.0719986F}});
+        sink->AddBezier({{104.135002F, 37.0346985F}, {104.489998F, 36.9972992F}, {104.825996F, 36.9599991F}});
+        sink->AddLine({104.825996F, 42.3919983F});
+        sink->AddBezier({{104.303001F, 42.4667015F}, {103.724998F, 42.5413017F}, {103.089996F, 42.6160011F}});
+        sink->AddBezier({{102.455002F, 42.6907005F}, {101.894997F, 42.7280006F}, {101.410004F, 42.7280006F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_15()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({111.000999F, 42.3919983F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddLine({111.000999F, 12.0959997F});
+        sink->AddLine({117.329002F, 12.0959997F});
+        sink->AddLine({117.329002F, 42.3919983F});
+        sink->AddLine({111.000999F, 42.3919983F});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_16()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({111.000999F, 7.95200014F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddLine({111.000999F, 0.671999991F});
+        sink->AddLine({117.329002F, 0.671999991F});
+        sink->AddLine({117.329002F, 7.95200014F});
+        sink->AddLine({111.000999F, 7.95200014F});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_17()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({138.951996F, 43.0639992F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{135.927994F, 43.0639992F}, {133.240005F, 42.3732986F}, {130.888F, 40.9920006F}});
+        sink->AddBezier({{128.572998F, 39.5732994F}, {126.763F, 37.6693001F}, {125.456001F, 35.2799988F}});
+        sink->AddBezier({{124.149002F, 32.8532982F}, {123.496002F, 30.1466999F}, {123.496002F, 27.1599998F}});
+        sink->AddBezier({{123.496002F, 24.0986996F}, {124.149002F, 21.3920002F}, {125.456001F, 19.0400009F}});
+        sink->AddBezier({{126.800003F, 16.6879997F}, {128.591995F, 14.8400002F}, {130.832001F, 13.4960003F}});
+        sink->AddBezier({{133.072006F, 12.1147003F}, {135.610992F, 11.4239998F}, {138.447998F, 11.4239998F}});
+        sink->AddBezier({{140.725006F, 11.4239998F}, {142.759995F, 11.816F}, {144.552002F, 12.6000004F}});
+        sink->AddBezier({{146.343994F, 13.3839998F}, {147.856003F, 14.4666996F}, {149.087997F, 15.8479996F}});
+        sink->AddBezier({{150.320007F, 17.1919994F}, {151.253006F, 18.7413006F}, {151.888F, 20.4960003F}});
+        sink->AddBezier({{152.559998F, 22.2507F}, {152.895996F, 24.1173F}, {152.895996F, 26.0960007F}});
+        sink->AddBezier({{152.895996F, 26.5813007F}, {152.876999F, 27.0853004F}, {152.839996F, 27.6079998F}});
+        sink->AddBezier({{152.802994F, 28.1306992F}, {152.727997F, 28.6159992F}, {152.615997F, 29.0639992F}});
+        sink->AddLine({128.479996F, 29.0639992F});
+        sink->AddLine({128.479996F, 24.0240002F});
+        sink->AddLine({149.031998F, 24.0240002F});
+        sink->AddLine({146.007996F, 26.3199997F});
+        sink->AddBezier({{146.380997F, 24.4906998F}, {146.251007F, 22.8666992F}, {145.615997F, 21.448F}});
+        sink->AddBezier({{145.018997F, 19.9920006F}, {144.085007F, 18.8533001F}, {142.815994F, 18.0319996F}});
+        sink->AddBezier({{141.584F, 17.1732998F}, {140.128006F, 16.7439995F}, {138.447998F, 16.7439995F}});
+        sink->AddBezier({{136.768005F, 16.7439995F}, {135.274994F, 17.1732998F}, {133.968002F, 18.0319996F}});
+        sink->AddBezier({{132.660995F, 18.8533001F}, {131.653F, 20.0480003F}, {130.944F, 21.6159992F}});
+        sink->AddBezier({{130.235001F, 23.1466999F}, {129.955002F, 25.0132999F}, {130.104004F, 27.2159996F}});
+        sink->AddBezier({{129.917007F, 29.2693005F}, {130.197006F, 31.0613003F}, {130.944F, 32.5919991F}});
+        sink->AddBezier({{131.727997F, 34.1226997F}, {132.811005F, 35.3172989F}, {134.192001F, 36.1759987F}});
+        sink->AddBezier({{135.610992F, 37.0346985F}, {137.216003F, 37.4640007F}, {139.007996F, 37.4640007F}});
+        sink->AddBezier({{140.837006F, 37.4640007F}, {142.386993F, 37.053299F}, {143.656006F, 36.2319984F}});
+        sink->AddBezier({{144.962997F, 35.4107018F}, {145.988998F, 34.3466988F}, {146.735992F, 33.0400009F}});
+        sink->AddLine({151.888F, 35.5600014F});
+        sink->AddBezier({{151.291F, 36.9786987F}, {150.356995F, 38.2667007F}, {149.087997F, 39.4239998F}});
+        sink->AddBezier({{147.856003F, 40.5439987F}, {146.363007F, 41.4399986F}, {144.608002F, 42.1119995F}});
+        sink->AddBezier({{142.891006F, 42.7467003F}, {141.005005F, 43.0639992F}, {138.951996F, 43.0639992F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_18()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({159.072006F, 42.3919983F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddLine({159.072006F, 0.0F});
+        sink->AddLine({165.399994F, 0.0F});
+        sink->AddLine({165.399994F, 42.3919983F});
+        sink->AddLine({159.072006F, 42.3919983F});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_19()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({181.869995F, 43.0639992F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{179.817001F, 43.0639992F}, {178.005997F, 42.709301F}, {176.438004F, 42.0F}});
+        sink->AddBezier({{174.908005F, 41.2532997F}, {173.712997F, 40.2453003F}, {172.854004F, 38.9760017F}});
+        sink->AddBezier({{171.996002F, 37.6693001F}, {171.565994F, 36.1386986F}, {171.565994F, 34.3839989F}});
+        sink->AddBezier({{171.565994F, 32.7412987F}, {171.921005F, 31.2667007F}, {172.630005F, 29.9599991F}});
+        sink->AddBezier({{173.376999F, 28.6532993F}, {174.516006F, 27.552F}, {176.046005F, 26.6560001F}});
+        sink->AddBezier({{177.576996F, 25.7600002F}, {179.5F, 25.1252995F}, {181.813995F, 24.7520008F}});
+        sink->AddLine({192.341995F, 23.0160007F});
+        sink->AddLine({192.341995F, 28.0F});
+        sink->AddLine({183.046005F, 29.6240005F});
+        sink->AddBezier({{181.365997F, 29.9227009F}, {180.134003F, 30.4640007F}, {179.350006F, 31.2479992F}});
+        sink->AddBezier({{178.565994F, 31.9946995F}, {178.173996F, 32.9653015F}, {178.173996F, 34.1599998F}});
+        sink->AddBezier({{178.173996F, 35.3172989F}, {178.604004F, 36.2692986F}, {179.462006F, 37.0159988F}});
+        sink->AddBezier({{180.358002F, 37.7252998F}, {181.496994F, 38.0800018F}, {182.878006F, 38.0800018F}});
+        sink->AddBezier({{184.595993F, 38.0800018F}, {186.089005F, 37.7066994F}, {187.358002F, 36.9599991F}});
+        sink->AddBezier({{188.664993F, 36.2132988F}, {189.673004F, 35.223999F}, {190.382004F, 33.9920006F}});
+        sink->AddBezier({{191.091995F, 32.7226982F}, {191.445999F, 31.3227005F}, {191.445999F, 29.7919998F}});
+        sink->AddLine({191.445999F, 22.0079994F});
+        sink->AddBezier({{191.445999F, 20.5146999F}, {190.886002F, 19.3013F}, {189.766006F, 18.368F}});
+        sink->AddBezier({{188.684006F, 17.3973007F}, {187.227997F, 16.9120007F}, {185.397995F, 16.9120007F}});
+        sink->AddBezier({{183.718002F, 16.9120007F}, {182.244003F, 17.3600006F}, {180.973999F, 18.2560005F}});
+        sink->AddBezier({{179.742004F, 19.1147003F}, {178.828003F, 20.2346992F}, {178.229996F, 21.6159992F}});
+        sink->AddBezier({{176.475327F, 20.7386665F}, {174.720673F, 19.8613338F}, {172.966003F, 18.9839993F}});
+        sink->AddBezier({{173.526001F, 17.4906998F}, {174.440994F, 16.184F}, {175.710007F, 15.0640001F}});
+        sink->AddBezier({{176.979996F, 13.9067001F}, {178.453995F, 13.0107002F}, {180.134003F, 12.3760004F}});
+        sink->AddBezier({{181.852005F, 11.7412996F}, {183.662003F, 11.4239998F}, {185.565994F, 11.4239998F}});
+        sink->AddBezier({{187.955994F, 11.4239998F}, {190.065002F, 11.8719997F}, {191.893997F, 12.7679996F}});
+        sink->AddBezier({{193.761002F, 13.6639996F}, {195.197998F, 14.9146996F}, {196.205994F, 16.5200005F}});
+        sink->AddBezier({{197.251999F, 18.0879993F}, {197.774002F, 19.9172993F}, {197.774002F, 22.0079994F}});
+        sink->AddLine({197.774002F, 42.3919983F});
+        sink->AddLine({191.725998F, 42.3919983F});
+        sink->AddLine({191.725998F, 36.9039993F});
+        sink->AddLine({193.014008F, 37.0719986F});
+        sink->AddBezier({{192.304993F, 38.3040009F}, {191.389999F, 39.368F}, {190.270004F, 40.2639999F}});
+        sink->AddBezier({{189.188004F, 41.1599998F}, {187.936996F, 41.8507004F}, {186.518005F, 42.3359985F}});
+        sink->AddBezier({{185.136993F, 42.8213005F}, {183.587997F, 43.0639992F}, {181.869995F, 43.0639992F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_20()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({221.356995F, 43.0639992F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{219.005005F, 43.0639992F}, {216.858994F, 42.578701F}, {214.917007F, 41.6080017F}});
+        sink->AddBezier({{213.013F, 40.6372986F}, {211.539001F, 39.2373009F}, {210.492996F, 37.4080009F}});
+        sink->AddBezier({{210.735672F, 37.0159988F}, {210.978333F, 36.6240005F}, {211.220993F, 36.2319984F}});
+        sink->AddLine({211.220993F, 42.3919983F});
+        sink->AddLine({205.173004F, 42.3919983F});
+        sink->AddLine({205.173004F, 0.0F});
+        sink->AddLine({211.501007F, 0.0F});
+        sink->AddLine({211.501007F, 18.368F});
+        sink->AddLine({210.492996F, 16.9120007F});
+        sink->AddBezier({{211.613007F, 15.1947002F}, {213.106995F, 13.8507004F}, {214.973007F, 12.8800001F}});
+        sink->AddBezier({{216.839996F, 11.9092999F}, {218.968002F, 11.4239998F}, {221.356995F, 11.4239998F}});
+        sink->AddBezier({{224.231995F, 11.4239998F}, {226.807999F, 12.1147003F}, {229.085007F, 13.4960003F}});
+        sink->AddBezier({{231.399994F, 14.8773003F}, {233.210999F, 16.7626991F}, {234.516998F, 19.1520004F}});
+        sink->AddBezier({{235.860992F, 21.5412998F}, {236.533005F, 24.2292995F}, {236.533005F, 27.2159996F}});
+        sink->AddBezier({{236.533005F, 30.2026997F}, {235.860992F, 32.8907013F}, {234.516998F, 35.2799988F}});
+        sink->AddBezier({{233.210999F, 37.6693001F}, {231.419006F, 39.5732994F}, {229.141006F, 40.9920006F}});
+        sink->AddBezier({{226.863998F, 42.3732986F}, {224.268997F, 43.0639992F}, {221.356995F, 43.0639992F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    winrt::com_ptr<CanvasGeometry> Geometry_21()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({220.740997F, 37.1839981F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddBezier({{222.533005F, 37.1839981F}, {224.119995F, 36.7546997F}, {225.501007F, 35.8959999F}});
+        sink->AddBezier({{226.882996F, 35.0373001F}, {227.964996F, 33.8613014F}, {228.748993F, 32.368F}});
+        sink->AddBezier({{229.570999F, 30.8372993F}, {229.981003F, 29.1200008F}, {229.981003F, 27.2159996F}});
+        sink->AddBezier({{229.981003F, 25.3120003F}, {229.570999F, 23.6133003F}, {228.748993F, 22.1200008F}});
+        sink->AddBezier({{227.964996F, 20.6266994F}, {226.882996F, 19.4507008F}, {225.501007F, 18.5919991F}});
+        sink->AddBezier({{224.119995F, 17.7332993F}, {222.533005F, 17.3040009F}, {220.740997F, 17.3040009F}});
+        sink->AddBezier({{218.987F, 17.3040009F}, {217.399994F, 17.7332993F}, {215.981003F, 18.5919991F}});
+        sink->AddBezier({{214.600006F, 19.4507008F}, {213.498993F, 20.6266994F}, {212.677002F, 22.1200008F}});
+        sink->AddBezier({{211.893005F, 23.6133003F}, {211.501007F, 25.3120003F}, {211.501007F, 27.2159996F}});
+        sink->AddBezier({{211.501007F, 29.1200008F}, {211.893005F, 30.8372993F}, {212.677002F, 32.368F}});
+        sink->AddBezier({{213.498993F, 33.8613014F}, {214.600006F, 35.0373001F}, {215.981003F, 35.8959999F}});
+        sink->AddBezier({{217.399994F, 36.7546997F}, {218.987F, 37.1839981F}, {220.740997F, 37.1839981F}});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - - - Layer aggregator
+    // - -  Offset:<50.357506, 44.522312>
+    winrt::com_ptr<CanvasGeometry> Geometry_22()
+    {
+        winrt::com_ptr<ID2D1PathGeometry> path{nullptr};
+        winrt::check_hresult(_d2dFactory->CreatePathGeometry(path.put()));
+        winrt::com_ptr<ID2D1GeometrySink> sink{nullptr};
+        winrt::check_hresult(path->Open(sink.put()));
+        sink->SetFillMode(D2D1_FILL_MODE_WINDING);
+        sink->BeginFigure({19.1851044F, -5.81804371F}, D2D1_FIGURE_BEGIN_FILLED);
+        sink->AddLine({7.32805777F, 2.22229505F});
+        sink->AddLine({11.8570461F, 15.2318363F});
+        sink->AddLine({4.71805928E-16F, 7.19149733F});
+        sink->AddLine({-11.8570461F, 15.2318363F});
+        sink->AddLine({-7.32805777F, 2.22229505F});
+        sink->AddLine({-19.1851044F, -5.81804371F});
+        sink->AddLine({-4.52898884F, -5.81804371F});
+        sink->AddLine({-3.70561202E-15F, -18.8275852F});
+        sink->AddLine({4.52898884F, -5.81804371F});
+        sink->AddLine({19.1851044F, -5.81804371F});
+        sink->EndFigure(D2D1_FIGURE_END_CLOSED);
+        winrt::check_hresult(sink->Close());
+        auto result = winrt::make_self<CanvasGeometry>(path);
+        return result;
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    // Color bound to theme property value: Color_000000
+    CompositionColorBrush ThemeColor_Color_000000()
+    {
+        if (_themeColor_Color_000000 != nullptr)
+        {
+            return _themeColor_Color_000000;
+        }
+        const auto result = _themeColor_Color_000000 = _c.CreateColorBrush();
+        BindProperty(
+            _themeColor_Color_000000, L"Color",
+            L"ColorRGB(_theme.Color_000000.W*0.8,_theme.Color_000000.X,_theme.Color_000000.Y,_theme.Color_000000.Z)",
+            L"_theme", _themeProperties);
+        return result;
+    }
+
+    // Color bound to theme property value: Color_FFD640
+    CompositionColorBrush ThemeColor_Color_FFD640()
+    {
+        if (_themeColor_Color_FFD640 != nullptr)
+        {
+            return _themeColor_Color_FFD640;
+        }
+        const auto result = _themeColor_Color_FFD640 = _c.CreateColorBrush();
+        BindProperty(
+            _themeColor_Color_FFD640, L"Color",
+            L"ColorRGB(_theme.Color_FFD640.W,_theme.Color_FFD640.X,_theme.Color_FFD640.Y,_theme.Color_FFD640.Z)",
+            L"_theme", _themeProperties);
+        return result;
+    }
+
+    // Color bound to theme property value: Color_FFFFFF
+    CompositionColorBrush ThemeColor_Color_FFFFFF()
+    {
+        if (_themeColor_Color_FFFFFF != nullptr)
+        {
+            return _themeColor_Color_FFFFFF;
+        }
+        const auto result = _themeColor_Color_FFFFFF = _c.CreateColorBrush();
+        BindProperty(
+            _themeColor_Color_FFFFFF, L"Color",
+            L"ColorRGB(_theme.Color_FFFFFF.W,_theme.Color_FFFFFF.X,_theme.Color_FFFFFF.Y,_theme.Color_FFFFFF.Z)",
+            L"_theme", _themeProperties);
+        return result;
+    }
+
+    // .EllipseGeometry
+    CompositionEllipseGeometry Ellipse_3p718x3p56()
+    {
+        if (_ellipse_3p718x3p56 != nullptr)
+        {
+            return _ellipse_3p718x3p56;
+        }
+        const auto result = _ellipse_3p718x3p56 = _c.CreateEllipseGeometry();
+        result.Radius({3.71805263F, 3.55983758F});
+        return result;
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_00()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_00())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_01()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_01())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_02()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_02())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_03()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_03())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_04()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_04())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_05()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_05())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_06()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_06())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_07()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_07())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_08()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_08())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_09()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_09())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_10()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_10())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_11()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_11())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_12()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_12())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_13()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_13())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_14()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_14())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_15()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_15())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_16()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_16())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_17()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_17())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_18()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_18())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_19()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_19())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_20()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_20())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    CompositionPathGeometry PathGeometry_21()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_21())));
+    }
+
+    // - Layer aggregator
+    // Offset:<50.357506, 44.522312>
+    CompositionPathGeometry PathGeometry_22()
+    {
+        return _c.CreatePathGeometry(CompositionPath(CanvasGeometryToIGeometrySource2D(Geometry_22())));
+    }
+
+    // - Layer aggregator
+    // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+    // .RectangleGeometry
+    CompositionRoundedRectangleGeometry RoundedRectangle_702p686x144()
+    {
+        const auto result = _c.CreateRoundedRectangleGeometry();
+        result.CornerRadius({72.0F, 72.0F});
+        result.Offset({-351.343201F, -72.0F});
+        result.Size({702.686401F, 144.0F});
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:  Scale:0.99999994,0.99999994, Offset:<56.54167, -2.2762339E-05>
+    CompositionSpriteShape SpriteShape_00()
+    {
+        // Offset:<89, 95.33607>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = RoundedRectangle_702p686x144();
+        const auto result = CreateSpriteShape(geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 89.0F, 95.3360672F},
+                                              ThemeColor_Color_000000());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:  Offset:<-211.73004, -77.6732>
+    CompositionSpriteShape SpriteShape_01()
+    {
+        // Offset:<79.27206, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_00();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.2720566F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:  Offset:<-211.73004, -77.6732>
+    CompositionSpriteShape SpriteShape_02()
+    {
+        // Offset:<79.27206, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_01();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.2720566F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:  Offset:<-211.73004, -77.6732>
+    CompositionSpriteShape SpriteShape_03()
+    {
+        // Offset:<79.27206, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_02();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.2720566F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:  Offset:<-211.73004, -77.6732>
+    CompositionSpriteShape SpriteShape_04()
+    {
+        // Offset:<79.27206, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_03();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.2720566F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:  Offset:<-211.73004, -77.6732>
+    CompositionSpriteShape SpriteShape_05()
+    {
+        // Offset:<79.27206, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_04();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.2720566F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:  Offset:<-354.53253, -77.5052>
+    CompositionSpriteShape SpriteShape_06()
+    {
+        // Offset:<79.64402, 94.54773>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_05();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.6440201F, 94.5477295F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:  Offset:<-354.53253, -77.5052>
+    CompositionSpriteShape SpriteShape_07()
+    {
+        // Offset:<79.64402, 94.54773>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_06();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.6440201F, 94.5477295F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:  Offset:<-354.53253, -77.5052>
+    CompositionSpriteShape SpriteShape_08()
+    {
+        // Offset:<79.64402, 94.54773>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_07();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.6440201F, 94.5477295F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:  Offset:<-354.53253, -77.5052>
+    CompositionSpriteShape SpriteShape_09()
+    {
+        // Offset:<79.64402, 94.54773>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_08();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.6440201F, 94.5477295F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:  Offset:<-354.53253, -77.5052>
+    CompositionSpriteShape SpriteShape_10()
+    {
+        // Offset:<79.64402, 94.54773>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_09();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 79.6440201F, 94.5477295F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_11()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_10();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_12()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_11();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_13()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_12();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_14()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_13();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_15()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_14();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_16()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_15();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_17()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_16();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_18()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_17();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_19()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_18();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_20()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_19();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_21()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_20();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // ShapeGroup:
+    CompositionSpriteShape SpriteShape_22()
+    {
+        // Offset:<90.5228, 94.54157>, Scale:<0.03665954, 0.03665954>
+        const auto geometry = PathGeometry_21();
+        const auto result = CreateSpriteShape(
+            geometry, {0.0366595387F, 0.0F, 0.0F, 0.0366595387F, 90.5227966F, 94.5415726F}, ThemeColor_Color_FFFFFF());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    // Offset:<50.357506, 44.522312>
+    CompositionSpriteShape SpriteShape_23()
+    {
+        // Offset:<50.357506, 44.522312>
+        const auto geometry = PathGeometry_22();
+        const auto result =
+            CreateSpriteShape(geometry, {1.0F, 0.0F, 0.0F, 1.0F, 50.3575058F, 44.5223122F}, ThemeColor_Color_FFD640());
+        ;
+        return result;
+    }
+
+    // Layer aggregator
+    CompositionSpriteShape SpriteShape_24()
+    {
+        if (_spriteShape_24 != nullptr)
+        {
+            return _spriteShape_24;
+        }
+        const auto result = _spriteShape_24 = _c.CreateSpriteShape(Ellipse_3p718x3p56());
+        result.FillBrush(ThemeColor_Color_FFD640());
+        return result;
+    }
+
+    // Layer aggregator
+    CompositionSpriteShape SpriteShape_25()
+    {
+        if (_spriteShape_25 != nullptr)
+        {
+            return _spriteShape_25;
+        }
+        const auto result = _spriteShape_25 = _c.CreateSpriteShape(Ellipse_3p718x3p56());
+        result.FillBrush(ThemeColor_Color_FFD640());
+        return result;
+    }
+
+    // Layer aggregator
+    CompositionSpriteShape SpriteShape_26()
+    {
+        if (_spriteShape_26 != nullptr)
+        {
+            return _spriteShape_26;
+        }
+        const auto result = _spriteShape_26 = _c.CreateSpriteShape(Ellipse_3p718x3p56());
+        result.FillBrush(ThemeColor_Color_FFD640());
+        return result;
+    }
+
+    // Layer aggregator
+    CompositionSpriteShape SpriteShape_27()
+    {
+        if (_spriteShape_27 != nullptr)
+        {
+            return _spriteShape_27;
+        }
+        const auto result = _spriteShape_27 = _c.CreateSpriteShape(Ellipse_3p718x3p56());
+        result.FillBrush(ThemeColor_Color_FFD640());
+        return result;
+    }
+
+    // The root of the composition.
+    ContainerVisual Root()
+    {
+        if (_root != nullptr)
+        {
+            return _root;
+        }
+        const auto result = _root = _c.CreateContainerVisual();
+        const auto propertySet = result.Properties();
+        propertySet.InsertScalar(L"Progress", 0.0F);
+        // Layer aggregator
+        result.Children().InsertAtTop(ShapeVisual_0());
+        return result;
+    }
+
+    CubicBezierEasingFunction CubicBezierEasingFunction_0()
+    {
+        return (_cubicBezierEasingFunction_0 == nullptr)
+                   ? _cubicBezierEasingFunction_0 = _c.CreateCubicBezierEasingFunction({0.25F, 0.25F}, {0.75F, 0.75F})
+                   : _cubicBezierEasingFunction_0;
+    }
+
+    // Layer aggregator
+    ShapeVisual ShapeVisual_0()
+    {
+        const auto result = _c.CreateShapeVisual();
+        result.Size({104.0F, 100.0F});
+        const auto shapes = result.Shapes();
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_00());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_01());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_02());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_03());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_04());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_05());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_06());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_07());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_08());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_09());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_10());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_11());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_12());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_13());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_14());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_15());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_16());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_17());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_18());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_19());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_20());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_21());
+        // Scale:0.10655738,0.10655738, Offset:<76, 92.672134>
+        shapes.Append(SpriteShape_22());
+        // Offset:<50.357506, 44.522312>
+        shapes.Append(SpriteShape_23());
+        shapes.Append(SpriteShape_24());
+        shapes.Append(SpriteShape_25());
+        shapes.Append(SpriteShape_26());
+        shapes.Append(SpriteShape_27());
+        return result;
+    }
+
+    StepEasingFunction HoldThenStepEasingFunction()
+    {
+        if (_holdThenStepEasingFunction != nullptr)
+        {
+            return _holdThenStepEasingFunction;
+        }
+        const auto result = _holdThenStepEasingFunction = _c.CreateStepEasingFunction();
+        result.IsFinalStepSingleFrame(true);
+        return result;
+    }
+
+    // - Layer aggregator
+    // Offset
+    Vector2KeyFrameAnimation OffsetVector2Animation_0()
+    {
+        // Frame 0.
+        const auto result =
+            CreateVector2KeyFrameAnimation(0.0F, {50.3575058F, 60.679512F}, HoldThenStepEasingFunction());
+        // Frame 60.
+        result.InsertKeyFrame(0.200000003F, {50.3575058F, 66.9097366F}, CubicBezierEasingFunction_0());
+        return result;
+    }
+
+    // - Layer aggregator
+    // Offset
+    Vector2KeyFrameAnimation OffsetVector2Animation_1()
+    {
+        // Frame 0.
+        const auto result =
+            CreateVector2KeyFrameAnimation(0.0F, {50.3575058F, 21.1977692F}, HoldThenStepEasingFunction());
+        // Frame 60.
+        result.InsertKeyFrame(0.200000003F, {50.3575058F, 18.4477692F}, CubicBezierEasingFunction_0());
+        return result;
+    }
+
+    // - Layer aggregator
+    // Offset
+    Vector2KeyFrameAnimation OffsetVector2Animation_2()
+    {
+        // Frame 0.
+        const auto result =
+            CreateVector2KeyFrameAnimation(0.0F, {26.467041F, 37.8174438F}, HoldThenStepEasingFunction());
+        // Frame 60.
+        result.InsertKeyFrame(0.200000003F, {21.217041F, 37.8174438F}, CubicBezierEasingFunction_0());
+        return result;
+    }
+
+    // - Layer aggregator
+    // Offset
+    Vector2KeyFrameAnimation OffsetVector2Animation_3()
+    {
+        // Frame 0.
+        const auto result =
+            CreateVector2KeyFrameAnimation(0.0F, {74.2479782F, 37.8174438F}, HoldThenStepEasingFunction());
+        // Frame 60.
+        result.InsertKeyFrame(0.200000003F, {77.7479782F, 37.8174438F}, CubicBezierEasingFunction_0());
+        return result;
+    }
+
+    static IGeometrySource2D CanvasGeometryToIGeometrySource2D(winrt::com_ptr<CanvasGeometry> geo)
+    {
+        return geo.as<IGeometrySource2D>();
+    }
+
+  public:
+    TransparentLottie_AnimatedVisual(Compositor compositor, CompositionPropertySet themeProperties)
+        : _c{compositor}, _themeProperties{themeProperties},
+          _reusableExpressionAnimation(compositor.CreateExpressionAnimation())
+    {
+        winrt::check_hresult(D2D1CreateFactory(D2D1_FACTORY_TYPE_SINGLE_THREADED, _d2dFactory.put()));
+        const auto _ = Root();
+    }
+
+    void Close()
+    {
+        if (_root)
+        {
+            _root.Close();
+        }
+    }
+
+    TimeSpan Duration() const
+    {
+        return TimeSpan{c_durationTicks};
+    }
+
+    Visual RootVisual() const
+    {
+        return _root;
+    }
+
+    float2 Size() const
+    {
+        return {104.0F, 100.0F};
+    }
+
+    void CreateAnimations()
+    {
+        _spriteShape_24.StartAnimation(L"Offset", OffsetVector2Animation_0(), AnimationController_0());
+        _spriteShape_25.StartAnimation(L"Offset", OffsetVector2Animation_1(), AnimationController_0());
+        _spriteShape_26.StartAnimation(L"Offset", OffsetVector2Animation_2(), AnimationController_0());
+        _spriteShape_27.StartAnimation(L"Offset", OffsetVector2Animation_3(), AnimationController_0());
+    }
+
+    void DestroyAnimations()
+    {
+        _spriteShape_24.StopAnimation(L"Offset");
+        _spriteShape_25.StopAnimation(L"Offset");
+        _spriteShape_26.StopAnimation(L"Offset");
+        _spriteShape_27.StopAnimation(L"Offset");
+    }
+};
+
+float4 TransparentLottie::ColorAsVector4(Color color)
+{
+    return {static_cast<float>(color.R), static_cast<float>(color.G), static_cast<float>(color.B),
+            static_cast<float>(color.A)};
+}
+
+CompositionPropertySet TransparentLottie::EnsureThemeProperties(Compositor compositor)
+{
+    if (_themeProperties == nullptr)
+    {
+        _themeProperties = compositor.CreatePropertySet();
+        _themeProperties.InsertVector4(L"Color_000000", ColorAsVector4((Color)_themeColor_000000));
+        _themeProperties.InsertVector4(L"Color_FFD640", ColorAsVector4((Color)_themeColor_FFD640));
+        _themeProperties.InsertVector4(L"Color_FFFFFF", ColorAsVector4((Color)_themeColor_FFFFFF));
+    }
+
+    return _themeProperties;
+}
+
+Color TransparentLottie::Color_000000()
+{
+    return _themeColor_000000;
+}
+
+void TransparentLottie::Color_000000(Color value)
+{
+    _themeColor_000000 = value;
+    if (_themeProperties != nullptr)
+    {
+        _themeProperties.InsertVector4(L"Color_000000", ColorAsVector4((Color)_themeColor_000000));
+    }
+}
+
+Color TransparentLottie::Color_FFD640()
+{
+    return _themeColor_FFD640;
+}
+
+void TransparentLottie::Color_FFD640(Color value)
+{
+    _themeColor_FFD640 = value;
+    if (_themeProperties != nullptr)
+    {
+        _themeProperties.InsertVector4(L"Color_FFD640", ColorAsVector4((Color)_themeColor_FFD640));
+    }
+}
+
+Color TransparentLottie::Color_FFFFFF()
+{
+    return _themeColor_FFFFFF;
+}
+
+void TransparentLottie::Color_FFFFFF(Color value)
+{
+    _themeColor_FFFFFF = value;
+    if (_themeProperties != nullptr)
+    {
+        _themeProperties.InsertVector4(L"Color_FFFFFF", ColorAsVector4((Color)_themeColor_FFFFFF));
+    }
+}
+
+winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual TransparentLottie::TryCreateAnimatedVisual(
+    Compositor const &compositor)
+{
+    IInspectable diagnostics = nullptr;
+    return TryCreateAnimatedVisual(compositor, diagnostics);
+}
+
+winrt::Microsoft::UI::Xaml::Controls::IAnimatedVisual TransparentLottie::TryCreateAnimatedVisual(
+    Compositor const &compositor, IInspectable &diagnostics)
+{
+    const auto _ = EnsureThemeProperties(compositor);
+    diagnostics = nullptr;
+    auto result = winrt::make<TransparentLottie_AnimatedVisual>(compositor, _themeProperties);
+    result.CreateAnimations();
+    return result;
+}
+
+double TransparentLottie::FrameCount()
+{
+    return 300.0;
+}
+
+double TransparentLottie::Framerate()
+{
+    return 100.0;
+}
+
+TimeSpan TransparentLottie::Duration()
+{
+    return TimeSpan{30000000L};
+}
+
+double TransparentLottie::FrameToProgress(double frameNumber)
+{
+    return frameNumber / 300.0;
+}
+
+winrt::Windows::Foundation::Collections::IMapView<hstring, double> TransparentLottie::Markers()
+{
+    return winrt::single_threaded_map<winrt::hstring, double>(std::map<winrt::hstring, double>{
+                                                                  {L"NormalToPressed_Start", 0.0},
+                                                                  {L"PressedToNormal_End", 0.0},
+                                                                  {L"NormalToPressed_End", 0.00183333333333333},
+                                                                  {L"PressedToNormal_Start", 0.00183333333333333},
+                                                              })
+        .GetView();
+}
+
+void TransparentLottie::SetColorProperty(hstring const &propertyName, Color value)
+{
+    if (propertyName == L"Color_000000")
+    {
+        _themeColor_000000 = value;
+    }
+    else if (propertyName == L"Color_FFD640")
+    {
+        _themeColor_FFD640 = value;
+    }
+    else if (propertyName == L"Color_FFFFFF")
+    {
+        _themeColor_FFFFFF = value;
+    }
+    else
+    {
+        return;
+    }
+
+    if (_themeProperties != nullptr)
+    {
+        _themeProperties.InsertVector4(propertyName, ColorAsVector4(value));
+    }
+}
+
+void TransparentLottie::SetScalarProperty(hstring const &, double)
+{
+}
+} // namespace winrt::CppWinUIGallery::implementation

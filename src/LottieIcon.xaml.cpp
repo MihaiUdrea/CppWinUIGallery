@@ -1,5 +1,5 @@
-#include "pch.h"
 #include "LottieIcon.xaml.h"
+#include "pch.h"
 #if __has_include("LottieIcon.g.cpp")
 #include "LottieIcon.g.cpp"
 #endif
@@ -16,90 +16,76 @@ using namespace Microsoft::UI::Xaml::Controls;
 
 namespace winrt::CppWinUIGallery::implementation
 {
-    bool isPressedState = false;
+bool isPressedState = false;
 
-    int32_t LottieIcon::MyProperty()
-    {
-        throw hresult_not_implemented();
-    }
-
-    void LottieIcon::MyProperty(int32_t /* value */)
-    {
-        throw hresult_not_implemented();
-    }
-    
-   
-
-    void LottieIcon::LottieButton_Click(IInspectable const& sender, RoutedEventArgs const& e)
-    {
-
-
-        if (LottieButton().IsChecked().GetBoolean() == true)
-        {
-            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Pressed");
-            return;
-        }
-        else
-            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
-        return;
-
-    }
-    void LottieIcon::Button_PointerEntered(IInspectable const& sender, PointerRoutedEventArgs const& e)
-    {
-    //    if (!isPressedState)
-        if (LottieButton().IsChecked().GetBoolean() == true)
-            return;
-        else
-        {
-
-            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"PointerOver");
-            return;
-        }
-    }
-
-    // Handle pointer exiting the button area
-    void LottieIcon::Button_PointerExited(IInspectable const& sender, PointerRoutedEventArgs const& e)
-    {
-        if (LottieButton().IsChecked().GetBoolean() == false
-            )
-        {
-            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
-        }
-        else
-        {
-            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Pressed");
-            return;
-        }
-    }
-    void LottieIcon::InitializeIconState()
-    {
-        IconSource().Color_000000(Windows::UI::Colors::Transparent());
-        IconSource().Color_FFFFFF(Windows::UI::Colors::Transparent());
-
-            AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
-    }
-    void LottieIcon::LottieButton_Loaded(IInspectable const& sender, RoutedEventArgs const& e)
-    {
-        InitializeIconState();
-    }
-
- 
-
-    
-   
+int32_t LottieIcon::MyProperty()
+{
+    throw hresult_not_implemented();
 }
 
+void LottieIcon::MyProperty(int32_t /* value */)
+{
+    throw hresult_not_implemented();
+}
 
+void LottieIcon::LottieButton_Click(IInspectable const &sender, RoutedEventArgs const &e)
+{
 
+    if (LottieButton().IsChecked().GetBoolean() == true)
+    {
+        AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Pressed");
+        return;
+    }
+    else
+        AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
+    return;
+}
+void LottieIcon::Button_PointerEntered(IInspectable const &sender, PointerRoutedEventArgs const &e)
+{
+    //    if (!isPressedState)
+    if (LottieButton().IsChecked().GetBoolean() == true)
+        return;
+    else
+    {
 
+        AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"PointerOver");
+        return;
+    }
+}
 
+// Handle pointer exiting the button area
+void LottieIcon::Button_PointerExited(IInspectable const &sender, PointerRoutedEventArgs const &e)
+{
+    if (LottieButton().IsChecked().GetBoolean() == false)
+    {
+        AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
+    }
+    else
+    {
+        AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Pressed");
+        return;
+    }
+}
+void LottieIcon::InitializeIconState()
+{
+    IconSource().Color_000000(Windows::UI::Colors::Transparent());
+    IconSource().Color_FFFFFF(Windows::UI::Colors::Transparent());
 
-void winrt::CppWinUIGallery::implementation::LottieIcon::LottieButtonTransparent_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    AnimatedIcon::SetState(this->SearchAnimatedIcon(), L"Normal");
+}
+void LottieIcon::LottieButton_Loaded(IInspectable const &sender, RoutedEventArgs const &e)
+{
+    InitializeIconState();
+}
+
+} // namespace winrt::CppWinUIGallery::implementation
+
+void winrt::CppWinUIGallery::implementation::LottieIcon::LottieButtonTransparent_Click(
+    winrt::Windows::Foundation::IInspectable const &sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
 {
     if (LottieButtonTransparent().IsChecked().GetBoolean() == false)
     {
         IconSource().Color_FFD640(Windows::UI::Colors::Yellow());
-
     }
     else
     {
@@ -109,13 +95,13 @@ void winrt::CppWinUIGallery::implementation::LottieIcon::LottieButtonTransparent
     }
 }
 
-
-void winrt::CppWinUIGallery::implementation::LottieIcon::SourceCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+void winrt::CppWinUIGallery::implementation::LottieIcon::SourceCodeTextBox_Loaded(
+    winrt::Windows::Foundation::IInspectable const &sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
 {
- 
+
     auto textBox = SourceCodeTextBox();
 
-        hstring xamlSourceCode = LR"(
+    hstring xamlSourceCode = LR"(
 <ToggleButton Loaded="LottieButton_Loaded"  Width="75" IsEnabled="True" x:Name="LottieButton" Margin="0,10,0,10"  Click="LottieButton_Click" PointerExited="Button_PointerExited" PointerEntered="Button_PointerEntered">
                    
 
@@ -129,15 +115,14 @@ void winrt::CppWinUIGallery::implementation::LottieIcon::SourceCodeTextBox_Loade
                     </AnimatedIcon>
                 </ToggleButton>
 )";
-        textBox.Text(xamlSourceCode);
-       
+    textBox.Text(xamlSourceCode);
 }
 
-
-void winrt::CppWinUIGallery::implementation::LottieIcon::CppCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+void winrt::CppWinUIGallery::implementation::LottieIcon::CppCodeTextBox_Loaded(
+    winrt::Windows::Foundation::IInspectable const &sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
 {
     auto textBox = CppCodeTextBox();
-        hstring cppSourceCode = LR"(
+    hstring cppSourceCode = LR"(
  void LottieIcon::LottieButton_Click(IInspectable const& sender, RoutedEventArgs const& e)
     {
 
@@ -190,6 +175,5 @@ void winrt::CppWinUIGallery::implementation::LottieIcon::CppCodeTextBox_Loaded(w
     }
 
 )";
-        textBox.Text(cppSourceCode);
-  
+    textBox.Text(cppSourceCode);
 }
