@@ -1,4 +1,5 @@
 #include "pch.h"
+
 #include "HomePage.xaml.h"
 #if __has_include("HomePage.g.cpp")
 #include "HomePage.g.cpp"
@@ -12,26 +13,21 @@ using namespace Microsoft::UI::Xaml;
 
 namespace winrt::CppWinUIGallery::implementation
 {
-    
 
-    
-    int32_t HomePage::MyProperty()
-    {
-        throw hresult_not_implemented();
-    }
-
-    void HomePage::MyProperty(int32_t /* value */)
-    {
-        throw hresult_not_implemented();
-    }
-
-   
+int32_t HomePage::MyProperty()
+{
+    throw hresult_not_implemented();
 }
 
+void HomePage::MyProperty(int32_t /* value */)
+{
+    throw hresult_not_implemented();
+}
 
-void winrt::CppWinUIGallery::implementation::HomePage::Button_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+} // namespace winrt::CppWinUIGallery::implementation
+
+void winrt::CppWinUIGallery::implementation::HomePage::Button_Click(
+    winrt::Windows::Foundation::IInspectable const &sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
 {
     MyInfoBar().IsOpen(false);
-
-
 }

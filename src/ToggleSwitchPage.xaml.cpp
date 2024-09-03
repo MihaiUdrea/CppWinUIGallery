@@ -1,4 +1,5 @@
 #include "pch.h"
+
 #include "ToggleSwitchPage.xaml.h"
 #if __has_include("ToggleSwitchPage.g.cpp")
 #include "ToggleSwitchPage.g.cpp"
@@ -12,55 +13,52 @@ using namespace Windows::UI;
 
 namespace winrt::CppWinUIGallery::implementation
 {
-    int32_t ToggleSwitchPage::MyProperty()
-    {
-        throw hresult_not_implemented();
-    }
-
-    void ToggleSwitchPage::MyProperty(int32_t /* value */)
-    {
-        throw hresult_not_implemented();
-    }
-
-    void ToggleSwitchPage::SubscriptionToggleSwitch_Toggled(
-        winrt::Windows::Foundation::IInspectable const& sender,
-        winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        auto toggleSwitch = SubscriptionToggleSwitch();
-        auto subscriptionBorder = SubscriptionText().Parent().as<Border>();
-        auto perpetualBorder = PerpetualText().Parent().as<Border>();
-
-        SolidColorBrush greenBrush{ Colors::Green() };
-        SolidColorBrush blueBrush{ Colors::Blue() };
-        SolidColorBrush whiteBrush{ Colors::White() };
-        auto customColor = Windows::UI::ColorHelper::FromArgb(58, 56, 245, 212);
-        SolidColorBrush customBrush{ customColor };
-
-        if (toggleSwitch.IsOn())
-        {
-            subscriptionBorder.Background(customBrush);
-            perpetualBorder.Background(blueBrush);
-            perpetualBorder.Child().as<TextBlock>().Foreground(whiteBrush);
-        }
-        else
-        {
-            subscriptionBorder.Background(greenBrush);
-            subscriptionBorder.Child().as<TextBlock>().Foreground(whiteBrush);
-            perpetualBorder.Background(customBrush);
-        }
-    }
-
-  
-
+int32_t ToggleSwitchPage::MyProperty()
+{
+    throw hresult_not_implemented();
 }
 
-
-void winrt::CppWinUIGallery::implementation::ToggleSwitchPage::SourceCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+void ToggleSwitchPage::MyProperty(int32_t /* value */)
 {
-    
+    throw hresult_not_implemented();
+}
+
+void ToggleSwitchPage::SubscriptionToggleSwitch_Toggled(winrt::Windows::Foundation::IInspectable const &sender,
+                                                        winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
+{
+    auto toggleSwitch = SubscriptionToggleSwitch();
+    auto subscriptionBorder = SubscriptionText().Parent().as<Border>();
+    auto perpetualBorder = PerpetualText().Parent().as<Border>();
+
+    SolidColorBrush greenBrush{Colors::Green()};
+    SolidColorBrush blueBrush{Colors::Blue()};
+    SolidColorBrush whiteBrush{Colors::White()};
+    auto customColor = Windows::UI::ColorHelper::FromArgb(58, 56, 245, 212);
+    SolidColorBrush customBrush{customColor};
+
+    if (toggleSwitch.IsOn())
+    {
+        subscriptionBorder.Background(customBrush);
+        perpetualBorder.Background(blueBrush);
+        perpetualBorder.Child().as<TextBlock>().Foreground(whiteBrush);
+    }
+    else
+    {
+        subscriptionBorder.Background(greenBrush);
+        subscriptionBorder.Child().as<TextBlock>().Foreground(whiteBrush);
+        perpetualBorder.Background(customBrush);
+    }
+}
+
+} // namespace winrt::CppWinUIGallery::implementation
+
+void winrt::CppWinUIGallery::implementation::ToggleSwitchPage::SourceCodeTextBox_Loaded(
+    winrt::Windows::Foundation::IInspectable const &sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
+{
+
     auto textBox = SourceCodeTextBox();
-   
-        hstring xamlSourceCode = LR"(
+
+    hstring xamlSourceCode = LR"(
 <TextBlock Text="ToggleSwitch" Style="{StaticResource TitleLargeTextBlockStyle}" Margin="50,40"/>
 
 <!-- SUBSCRIPTION BLOCK -->
@@ -90,17 +88,15 @@ void winrt::CppWinUIGallery::implementation::ToggleSwitchPage::SourceCodeTextBox
     </ToggleSwitch.Resources>
 </ToggleSwitch>
 )";
-        textBox.Text(xamlSourceCode);
-     
-
+    textBox.Text(xamlSourceCode);
 }
 
-
-void winrt::CppWinUIGallery::implementation::ToggleSwitchPage::CppCodeTextBox_Loaded(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+void winrt::CppWinUIGallery::implementation::ToggleSwitchPage::CppCodeTextBox_Loaded(
+    winrt::Windows::Foundation::IInspectable const &sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
 {
     auto textBox = CppCodeTextBox();
-  
-        hstring cppSourceCode = LR"(
+
+    hstring cppSourceCode = LR"(
 void ToggleSwitchPage::SubscriptionToggleSwitch_Toggled(
         winrt::Windows::Foundation::IInspectable const& sender,
         winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
@@ -129,7 +125,5 @@ void ToggleSwitchPage::SubscriptionToggleSwitch_Toggled(
         }
     }
 )";
-        textBox.Text(cppSourceCode);
-       
-
+    textBox.Text(cppSourceCode);
 }

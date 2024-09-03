@@ -1,4 +1,5 @@
 #include "pch.h"
+
 #include "TitleBarPage.xaml.h"
 #if __has_include("TitleBarPage.g.cpp")
 #include "TitleBarPage.g.cpp"
@@ -12,40 +13,41 @@ using namespace Microsoft::UI::Xaml;
 
 namespace winrt::CppWinUIGallery::implementation
 {
-    int32_t TitleBarPage::MyProperty()
+int32_t TitleBarPage::MyProperty()
+{
+    throw hresult_not_implemented();
+}
+
+void TitleBarPage::MyProperty(int32_t /* value */)
+{
+    throw hresult_not_implemented();
+}
+
+void TitleBarPage::ShowHideButton_Click(winrt::Windows::Foundation::IInspectable const &sender,
+                                        winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
+{
+    auto button = ShowHideButton();
+    auto textBox = SourceCodeTextBox();
+    auto stackPanel = ShowHideStackPanel_xaml();
+    Controls::ScrollViewer scrollviewer;
+
+    for (auto el : stackPanel.Children())
     {
-        throw hresult_not_implemented();
+        if (auto s = el.try_as<Controls::ScrollViewer>())
+            scrollviewer = s; // capture stackpanel's scrollviewer for actual height of the visible text box
     }
 
-    void TitleBarPage::MyProperty(int32_t /* value */)
+    if (textBox.Visibility() == Visibility::Collapsed)
     {
-        throw hresult_not_implemented();
-    }
+        // Hide C++ code if visible
+        /* if (cppTextBox.Visibility() == Visibility::Visible)
+         {
+             cppTextBox.Visibility(Visibility::Collapsed);
+             cppButton.Content(box_value(L"Show C++"));
+         }*/
 
-    void TitleBarPage::ShowHideButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
-    {
-        auto button = ShowHideButton();
-        auto textBox = SourceCodeTextBox();
-        auto stackPanel = ShowHideStackPanel_xaml();
-        Controls::ScrollViewer scrollviewer;
-
-        for (auto el : stackPanel.Children())
-        {
-            if (auto s = el.try_as<Controls::ScrollViewer>())
-                scrollviewer = s;   // capture stackpanel's scrollviewer for actual height of the visible text box
-        }
-    
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
-            // Hide C++ code if visible
-           /* if (cppTextBox.Visibility() == Visibility::Visible)
-            {
-                cppTextBox.Visibility(Visibility::Collapsed);
-                cppButton.Content(box_value(L"Show C++"));
-            }*/
-    
-            // Show XAML source code
-            hstring xamlSourceCode = LR"( <Grid x:Name="AppTitleBar"
+        // Show XAML source code
+        hstring xamlSourceCode = LR"( <Grid x:Name="AppTitleBar"
                     Loaded="AppTitleBar_Loaded"
                     SizeChanged="AppTitleBar_SizeChanged"
                     Height="48"
@@ -79,47 +81,48 @@ namespace winrt::CppWinUIGallery::implementation
                VerticalAlignment="Center"
                Margin="15,0,0,0"/>
         </Grid>})";
-            textBox.Text(xamlSourceCode);
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide XAML"));
-            auto myMargin = stackPanel.Margin();
-            myMargin.Bottom = 0;                        // Get the margin value and update the buttom parameter
-            stackPanel.Margin(myMargin);
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show XAML"));
-            auto myMargin = stackPanel.Margin();
-            myMargin.Bottom = -1 * scrollviewer.ActualHeight();
-            stackPanel.Margin(myMargin);
-        }
+        textBox.Text(xamlSourceCode);
+        textBox.Visibility(Visibility::Visible);
+        button.Content(box_value(L"Hide XAML"));
+        auto myMargin = stackPanel.Margin();
+        myMargin.Bottom = 0; // Get the margin value and update the buttom parameter
+        stackPanel.Margin(myMargin);
+    }
+    else
+    {
+        textBox.Visibility(Visibility::Collapsed);
+        button.Content(box_value(L"Show XAML"));
+        auto myMargin = stackPanel.Margin();
+        myMargin.Bottom = -1 * scrollviewer.ActualHeight();
+        stackPanel.Margin(myMargin);
+    }
+}
+
+void TitleBarPage::ShowCppButton_Click(winrt::Windows::Foundation::IInspectable const &sender,
+                                       winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
+{
+    auto button = ShowCppButton(); // Make sure the button is named correctly
+    auto textBox = CppCodeTextBox();
+    auto stackPanel = ShowHideStackPanel_cpp();
+    Controls::ScrollViewer scrollviewer;
+
+    for (auto el : stackPanel.Children())
+    {
+        if (auto s = el.try_as<Controls::ScrollViewer>())
+            scrollviewer = s; // capture stackpanel's scrollviewer for actual height of the visible text box
     }
 
-    void TitleBarPage::ShowCppButton_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e)
+    if (textBox.Visibility() == Visibility::Collapsed)
     {
-        auto button = ShowCppButton(); // Make sure the button is named correctly
-        auto textBox = CppCodeTextBox();
-        auto stackPanel = ShowHideStackPanel_cpp();
-        Controls::ScrollViewer scrollviewer;
+        // Hide XAML code if visible
+        /* if (xamlTextBox.Visibility() == Visibility::Visible)
+         {
+             xamlTextBox.Visibility(Visibility::Collapsed);
+             xamlButton.Content(box_value(L"Show XAML"));
+         }*/
 
-        for (auto el : stackPanel.Children())
-        {
-            if (auto s = el.try_as<Controls::ScrollViewer>())
-                scrollviewer = s;   // capture stackpanel's scrollviewer for actual height of the visible text box
-        }
-
-        if (textBox.Visibility() == Visibility::Collapsed)
-        {
-            // Hide XAML code if visible
-           /* if (xamlTextBox.Visibility() == Visibility::Visible)
-            {
-                xamlTextBox.Visibility(Visibility::Collapsed);
-                xamlButton.Content(box_value(L"Show XAML"));
-            }*/
-
-            // Show C++ source code
-            hstring cppSourceCode = LR"(MainWindow::MainWindow()
+        // Show C++ source code
+        hstring cppSourceCode = LR"(MainWindow::MainWindow()
     {
         InitializeComponent();
         ExtendsContentIntoTitleBar(true);
@@ -183,27 +186,20 @@ namespace winrt::CppWinUIGallery::implementation
 
         
     })";
-            textBox.Text(cppSourceCode);
-            textBox.Visibility(Visibility::Visible);
-            button.Content(box_value(L"Hide C++"));
-            auto myMargin = stackPanel.Margin();
-            myMargin.Bottom = 0;                        // Get the margin value and update the buttom parameter
-            stackPanel.Margin(myMargin);
-        }
-        else
-        {
-            textBox.Visibility(Visibility::Collapsed);
-            button.Content(box_value(L"Show C++"));
-            auto myMargin = stackPanel.Margin();
-            myMargin.Bottom = -1 * scrollviewer.ActualHeight();
-            stackPanel.Margin(myMargin);
-        }
+        textBox.Text(cppSourceCode);
+        textBox.Visibility(Visibility::Visible);
+        button.Content(box_value(L"Hide C++"));
+        auto myMargin = stackPanel.Margin();
+        myMargin.Bottom = 0; // Get the margin value and update the buttom parameter
+        stackPanel.Margin(myMargin);
+    }
+    else
+    {
+        textBox.Visibility(Visibility::Collapsed);
+        button.Content(box_value(L"Show C++"));
+        auto myMargin = stackPanel.Margin();
+        myMargin.Bottom = -1 * scrollviewer.ActualHeight();
+        stackPanel.Margin(myMargin);
     }
 }
-
-
-
-
-
-
-
+} // namespace winrt::CppWinUIGallery::implementation

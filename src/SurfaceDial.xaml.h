@@ -1,64 +1,70 @@
 #pragma once
 
 #include "SurfaceDial.g.h"
+#include "winrt/Windows.Foundation.h"
 #include "winrt/Windows.System.Threading.h"
 #include "winrt/Windows.UI.Xaml.Controls.h"
 #include "winrt/Windows.UI.Xaml.Input.h"
-#include "winrt/Windows.UI.Xaml.Shapes.h"
 #include "winrt/Windows.UI.Xaml.Media.h"
-#include "winrt/Windows.Foundation.h"
+#include "winrt/Windows.UI.Xaml.Shapes.h"
 #include "winrt/Windows.UI.Xaml.h"
 
 namespace winrt::CppWinUIGallery::implementation
 {
-    struct SurfaceDial : SurfaceDialT<SurfaceDial>
+struct SurfaceDial : SurfaceDialT<SurfaceDial>
+{
+    SurfaceDial()
     {
-        SurfaceDial()
-        {
-            
-            // Xaml objects should not call InitializeComponent during construction.
-            // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
-        }
 
-        int32_t MyProperty();
-        void MyProperty(int32_t value);
+        // Xaml objects should not call InitializeComponent during construction.
+        // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
+    }
 
-        void hoverSection_PointerEntered(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
-        void hoverSection_PointerExited(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
-        winrt::Microsoft::UI::Xaml::DispatcherTimer m_timer{ nullptr };
-        winrt::Microsoft::UI::Xaml::Shapes::Path m_previousMenuSection{ nullptr };
-        void UpdateApplicationName(hstring const& sectionName);
-        int m_currentIndex{ 0 };
+    int32_t MyProperty();
+    void MyProperty(int32_t value);
 
-      
-        winrt::Microsoft::UI::Xaml::Shapes::Path m_currentHoverSection{ nullptr };
-     
-        void hoverSection_Tapped(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::TappedRoutedEventArgs const& e);
-        void winrt::CppWinUIGallery::implementation::SurfaceDial::ClickAnimation_Completed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::Foundation::IInspectable const& e);
-        void WindowsPage_PointerWheelChanged(
-            winrt::Windows::Foundation::IInspectable const& sender,
-            winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
-        bool m_isEnterKeyPressed = false;  
-        void winrt::CppWinUIGallery::implementation::SurfaceDial::PageKeyDown(
-            winrt::Windows::Foundation::IInspectable const& sender,
-            winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
-        void StackPanel_KeyDown(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
-        bool ignorePointerEvents = false;
+    void hoverSection_PointerEntered(winrt::Windows::Foundation::IInspectable const &sender,
+                                     winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const &e);
+    void hoverSection_PointerExited(winrt::Windows::Foundation::IInspectable const &sender,
+                                    winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const &e);
+    winrt::Microsoft::UI::Xaml::DispatcherTimer m_timer{nullptr};
+    winrt::Microsoft::UI::Xaml::Shapes::Path m_previousMenuSection{nullptr};
+    void UpdateApplicationName(hstring const &sectionName);
+    int m_currentIndex{0};
 
-        auto hoverSectionById(int id);
-        auto menuSectionById(int id);
-        void Flyout_Opened(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::Foundation::IInspectable const& e);
-        void Flyout_Closed(winrt::Windows::Foundation::IInspectable const& sender, winrt::Windows::Foundation::IInspectable const& e);
+    winrt::Microsoft::UI::Xaml::Shapes::Path m_currentHoverSection{nullptr};
 
-        void ShowSourceCode_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
-        void ShowCppCode_Click(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+    void hoverSection_Tapped(winrt::Windows::Foundation::IInspectable const &sender,
+                             winrt::Microsoft::UI::Xaml::Input::TappedRoutedEventArgs const &e);
+    void winrt::CppWinUIGallery::implementation::SurfaceDial::ClickAnimation_Completed(
+        winrt::Windows::Foundation::IInspectable const &sender, winrt::Windows::Foundation::IInspectable const &e);
+    void WindowsPage_PointerWheelChanged(winrt::Windows::Foundation::IInspectable const &sender,
+                                         winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const &e);
+    bool m_isEnterKeyPressed = false;
+    void winrt::CppWinUIGallery::implementation::SurfaceDial::PageKeyDown(
+        winrt::Windows::Foundation::IInspectable const &sender,
+        winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const &e);
+    void StackPanel_KeyDown(winrt::Windows::Foundation::IInspectable const &sender,
+                            winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const &e);
+    bool ignorePointerEvents = false;
 
-    };
-}
+    auto hoverSectionById(int id);
+    auto menuSectionById(int id);
+    void Flyout_Opened(winrt::Windows::Foundation::IInspectable const &sender,
+                       winrt::Windows::Foundation::IInspectable const &e);
+    void Flyout_Closed(winrt::Windows::Foundation::IInspectable const &sender,
+                       winrt::Windows::Foundation::IInspectable const &e);
+
+    void ShowSourceCode_Click(winrt::Windows::Foundation::IInspectable const &sender,
+                              winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e);
+    void ShowCppCode_Click(winrt::Windows::Foundation::IInspectable const &sender,
+                           winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e);
+};
+} // namespace winrt::CppWinUIGallery::implementation
 
 namespace winrt::CppWinUIGallery::factory_implementation
 {
-    struct SurfaceDial : SurfaceDialT<SurfaceDial, implementation::SurfaceDial>
-    {
-    };
-}
+struct SurfaceDial : SurfaceDialT<SurfaceDial, implementation::SurfaceDial>
+{
+};
+} // namespace winrt::CppWinUIGallery::factory_implementation
