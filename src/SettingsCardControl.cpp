@@ -1,7 +1,8 @@
+#include "pch.h"
+
 #include "SettingsCardControl.h"
 
 #include "SettingsCardControl.g.cpp"
-#include "pch.h"
 
 namespace winrt::CppWinUIGallery::implementation
 {

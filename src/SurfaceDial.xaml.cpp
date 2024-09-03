@@ -1,5 +1,6 @@
-#include "SurfaceDial.xaml.h"
 #include "pch.h"
+
+#include "SurfaceDial.xaml.h"
 #if __has_include("SurfaceDial.g.cpp")
 #include "SurfaceDial.g.cpp"
 #endif

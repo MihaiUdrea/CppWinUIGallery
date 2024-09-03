@@ -1,5 +1,6 @@
-#include "ConnectedAnimation.xaml.h"
 #include "pch.h"
+
+#include "ConnectedAnimation.xaml.h"
 #if __has_include("ConnectedAnimation.g.cpp")
 #include "ConnectedAnimation.g.cpp"
 #endif

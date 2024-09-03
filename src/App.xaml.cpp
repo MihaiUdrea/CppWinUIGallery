@@ -1,6 +1,8 @@
-#include "App.xaml.h"
-#include "MainWindow.xaml.h"
 #include "pch.h"
+
+#include "App.xaml.h"
+
+#include "MainWindow.xaml.h"
 
 using namespace winrt;
 using namespace Microsoft::UI::Xaml;

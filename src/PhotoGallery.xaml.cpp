@@ -1,5 +1,6 @@
-#include "PhotoGallery.xaml.h"
 #include "pch.h"
+
+#include "PhotoGallery.xaml.h"
 #if __has_include("PhotoGallery.g.cpp")
 #include "PhotoGallery.g.cpp"
 #endif

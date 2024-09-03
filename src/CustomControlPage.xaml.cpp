@@ -1,5 +1,6 @@
-#include "CustomControlPage.xaml.h"
 #include "pch.h"
+
+#include "CustomControlPage.xaml.h"
 #if __has_include("CustomControlPage.g.cpp")
 #include "CustomControlPage.g.cpp"
 #endif

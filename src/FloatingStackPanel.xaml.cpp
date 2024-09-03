@@ -1,5 +1,6 @@
-#include "FloatingStackPanel.xaml.h"
 #include "pch.h"
+
+#include "FloatingStackPanel.xaml.h"
 #if __has_include("FloatingStackPanel.g.cpp")
 #include "FloatingStackPanel.g.cpp"
 #endif

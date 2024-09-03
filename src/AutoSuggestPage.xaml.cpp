@@ -1,5 +1,6 @@
-#include "AutoSuggestPage.xaml.h"
 #include "pch.h"
+
+#include "AutoSuggestPage.xaml.h"
 #if __has_include("AutoSuggestPage.g.cpp")
 #include "AutoSuggestPage.g.cpp"
 #endif

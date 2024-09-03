@@ -1,5 +1,6 @@
-#include "TitleBarPage.xaml.h"
 #include "pch.h"
+
+#include "TitleBarPage.xaml.h"
 #if __has_include("TitleBarPage.g.cpp")
 #include "TitleBarPage.g.cpp"
 #endif

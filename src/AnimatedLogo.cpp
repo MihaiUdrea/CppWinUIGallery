@@ -43,8 +43,9 @@
 // | Gradient stops           |     - |
 // | CompositionVisualSurface |     - |
 // ------------------------------------
-#include "AnimatedLogo.h"
 #include "pch.h"
+
+#include "AnimatedLogo.h"
 #if __has_include("AnimatedLogo.g.cpp")
 #include "AnimatedLogo.g.cpp"
 #endif

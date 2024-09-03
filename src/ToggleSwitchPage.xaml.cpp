@@ -1,5 +1,6 @@
-#include "ToggleSwitchPage.xaml.h"
 #include "pch.h"
+
+#include "ToggleSwitchPage.xaml.h"
 #if __has_include("ToggleSwitchPage.g.cpp")
 #include "ToggleSwitchPage.g.cpp"
 #endif

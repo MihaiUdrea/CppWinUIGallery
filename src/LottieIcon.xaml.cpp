@@ -1,5 +1,6 @@
-#include "LottieIcon.xaml.h"
 #include "pch.h"
+
+#include "LottieIcon.xaml.h"
 #if __has_include("LottieIcon.g.cpp")
 #include "LottieIcon.g.cpp"
 #endif

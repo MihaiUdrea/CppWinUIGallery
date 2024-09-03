@@ -1,5 +1,6 @@
-#include "PVSlider.xaml.h"
 #include "pch.h"
+
+#include "PVSlider.xaml.h"
 #if __has_include("PVSlider.g.cpp")
 #include "PVSlider.g.cpp"
 #include "PVSlider.g.h"

@@ -44,8 +44,9 @@
 // | Gradient stops           |     - |
 // | CompositionVisualSurface |     - |
 // ------------------------------------
-#include "TransparentLottie.h"
 #include "pch.h"
+
+#include "TransparentLottie.h"
 #if __has_include("TransparentLottie.g.cpp")
 #include "TransparentLottie.g.cpp"
 #endif
