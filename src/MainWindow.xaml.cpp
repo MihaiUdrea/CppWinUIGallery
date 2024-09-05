@@ -243,12 +243,23 @@ void MainWindow::NavViewSearchBox_TextChanged(
     // Controls::ControlTemplate myTemplate;
     // myTemplate.TargetType(Windows::UI::Xaml::Interop::TypeName{ L"AutoSuggestBox" });
 
+    auto overlayIcon = NavviewSearchBox().GetTemplateChild(L"searchIconOverlay").as<Controls::TextBlock>();
+
     if (args.Reason() == winrt::Microsoft::UI::Xaml::Controls::AutoSuggestionBoxTextChangeReason::UserInput)
     {
         std::vector<std::string> suitableItems;
 
         std::vector<std::string> splitText;
         auto senderText = to_string(sender.Text());
+
+        if (senderText == "")
+        {
+            overlayIcon.Visibility(Visibility::Visible);
+        }
+        else
+        {
+            overlayIcon.Visibility(Visibility::Collapsed);
+        }
 
         // Convert sender text to lowercase
         std::transform(senderText.begin(), senderText.end(), senderText.begin(), ::tolower);
@@ -353,6 +364,38 @@ void MainWindow::NavViewSearchBox_TextChanged(
         // sender.ItemsSource(col);
     }
 }
+
+void MainWindow::SearchBox_KeyDown(winrt::Windows::Foundation::IInspectable const &sender,
+                                   winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const &e)
+{
+    auto mySearchBox = NavviewSearchBox().GetTemplateChild(L"SearchBox").as<Controls::AutoSuggestBox>();
+    auto overlayIcon = NavviewSearchBox().GetTemplateChild(L"searchIconOverlay").as<Controls::TextBlock>();
+
+    overlayIcon.Visibility(Visibility::Collapsed); // Responsive
+
+    if (mySearchBox.Text() == L"" && e.Key() == Windows::System::VirtualKey::Back)
+        overlayIcon.Visibility(Visibility::Visible);
+}
+
+void MainWindow::SearchBox_GotFocus(winrt::Windows::Foundation::IInspectable const &sender,
+                                    winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
+{
+    auto mySearchBox = NavviewSearchBox().GetTemplateChild(L"SearchBox").as<Controls::AutoSuggestBox>();
+    auto overlayIcon = NavviewSearchBox().GetTemplateChild(L"searchIconOverlay").as<Controls::TextBlock>();
+
+    if (mySearchBox.Text() != L"") //             ICON OVERLAY BUG: After being in out of focus with an element selected
+                                   //             inside the search box, when being selected back on focus the Text
+                                   //             atribute behaves like if it contains an empty string
+        overlayIcon.Visibility(Visibility::Collapsed);
+}
+
+void MainWindow::SearchBox_LostFocus(winrt::Windows::Foundation::IInspectable const &sender,
+                                     winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
+{
+    auto overlayIcon = NavviewSearchBox().GetTemplateChild(L"searchIconOverlay").as<Controls::TextBlock>();
+    overlayIcon.Visibility(Visibility::Visible);
+}
+
 void MainWindow::LottieButton_Click(IInspectable const &sender, RoutedEventArgs const &e)
 {
 
