@@ -48,6 +48,9 @@ struct MainWindow : MainWindowT<MainWindow>
                              winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e);
     void LottieButton_Click(IInspectable const &sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e);
     bool isPressed = false;
+    void SearchBox_KeyDown(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::KeyRoutedEventArgs const& e);
+    void SearchBox_GotFocus(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
+    void SearchBox_LostFocus(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::RoutedEventArgs const& e);
 };
 } // namespace winrt::CppWinUIGallery::implementation
 
