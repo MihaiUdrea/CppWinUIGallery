@@ -1,0 +1,10 @@
+namespace CppWinUIGallery
+{
+    [default_interface]
+    runtimeclass FlipViewPage : Microsoft.UI.Xaml.Controls.Page
+    {
+        FlipViewPage();
+        Int32 MyProperty;
+
+    }
+}

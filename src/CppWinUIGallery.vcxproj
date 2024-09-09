@@ -25,7 +25,7 @@
     <WindowsTargetPlatformMinVersion>10.0.17763.0</WindowsTargetPlatformMinVersion>
     <UseWinUI>true</UseWinUI>
     <WindowsPackageType>None</WindowsPackageType>
-	<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
+    <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <WinUISDKReferences>false</WinUISDKReferences>
     <EnableMsixTooling>true</EnableMsixTooling>
   </PropertyGroup>
@@ -127,6 +127,10 @@
       <DependentUpon>CustomControlPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClInclude>
+    <ClInclude Include="FlipViewPage.h">
+      <DependentUpon>FlipViewPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClInclude>
     <ClInclude Include="FloatingElementPage.xaml.h">
       <DependentUpon>FloatingElementPage.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -195,6 +199,9 @@
     <Page Include="CustomControlPage.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="FlipViewPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="FloatingElementPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -244,6 +251,10 @@
     </ClCompile>
     <ClCompile Include="CustomControlPage.xaml.cpp">
       <DependentUpon>CustomControlPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </ClCompile>
+    <ClCompile Include="FlipViewPage.cpp">
+      <DependentUpon>FlipViewPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </ClCompile>
     <ClCompile Include="FloatingElementPage.xaml.cpp">
@@ -316,6 +327,11 @@
     </Midl>
     <Midl Include="CustomControlPage.idl">
       <DependentUpon>CustomControlPage.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Midl>
+    <Midl Include="FlipItem.idl" />
+    <Midl Include="FlipViewPage.idl">
+      <DependentUpon>FlipViewPage.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Midl>
     <Midl Include="FloatingElementPage.idl">
