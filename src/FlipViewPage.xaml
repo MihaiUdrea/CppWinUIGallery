@@ -12,7 +12,7 @@
 
         <StackPanel Orientation="Vertical">
 
-        <FlipView x:Name="StoreFlipView" MaxWidth="800" Height="600" Loaded="FlipView_Loaded">
+            <FlipView x:Name="StoreFlipView" MaxWidth="800" Height="600" Loaded="FlipView_Loaded">
             <FlipView.Items>
                 <FlipViewItem Name="Item1"/>
                 <!--<Image Source="ms-appx:///Assets/ai_logo.png" AutomationProperties.Name="Cliff"/>
@@ -49,6 +49,34 @@
                Foreground="White" Padding="15,20"/>
 
         </Grid>-->
+
+            <ListView
+    ScrollViewer.HorizontalScrollMode="Auto"
+    ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+    ScrollViewer.VerticalScrollMode="Disabled"
+    ScrollViewer.VerticalScrollBarVisibility="Hidden"
+    Height="200" Width="500"
+    SelectionMode="Single">
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Border Width="100" Height="150" Margin="10" Background="LightGray">
+                            <TextBlock Text="{Binding}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+                <!-- Sample data -->
+                <x:String>Item 1</x:String>
+                <x:String>Item 2</x:String>
+                <x:String>Item 3</x:String>
+                <x:String>Item 4</x:String>
+                <x:String>Item 5</x:String>
+                <x:String>Item 6</x:String>
+            </ListView>
 
         </StackPanel>
 
