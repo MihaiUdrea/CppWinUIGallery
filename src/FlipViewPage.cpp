@@ -35,10 +35,14 @@ void FlipViewPage::FlipView_Loaded(winrt::Windows::Foundation::IInspectable cons
 {
     auto items = single_threaded_observable_vector<CppWinUIGallery::FlipItem>();
     items.Append(make<FlipItem>(L"ms-appx:///Assets/ai_logo.png", L"Cliff"));
+    items.Append(make<FlipItem>(L"ms-appx:///Assets/awr_logo.png", L"Cliff"));
+    items.Append(make<FlipItem>(L"ms-appx:///Assets/clang_logo.png", L"Cliff"));
+    items.Append(make<FlipItem>(L"ms-appx:///Assets/caphyon_logo.png", L"Cliff"));
 
     /*auto item = make<FlipItem>();
     items.Append(item);*/
-    StoreFlipView().ItemsSource(items);
+    StoreListView().ItemsSource(items);
+
 }
 
 } // namespace winrt::CppWinUIGallery::implementation

@@ -18,6 +18,8 @@ struct FlipViewPage : FlipViewPageT<FlipViewPage>
     void MyProperty(int32_t value);
     void FlipView_Loaded(winrt::Windows::Foundation::IInspectable const &sender,
                          winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e);
+
+
 };
 
 struct FlipItem : FlipItemT<FlipItem>
