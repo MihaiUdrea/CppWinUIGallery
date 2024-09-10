@@ -10,14 +10,16 @@
     <ScrollViewer HorizontalScrollBarVisibility="Disabled" 
             VerticalScrollBarVisibility="Auto">
 
-        <StackPanel Orientation="Vertical">
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top">
 
-            <FlipView x:Name="StoreFlipView" MaxWidth="800" Height="600" Loaded="FlipView_Loaded">
+
+        <!--<FlipView x:Name="StoreFlipView" MaxWidth="800" Height="600" Loaded="FlipView_Loaded">
+
             <FlipView.Items>
                 <FlipViewItem Name="Item1"/>
-                <!--<Image Source="ms-appx:///Assets/ai_logo.png" AutomationProperties.Name="Cliff"/>
+                --><!--<Image Source="ms-appx:///Assets/ai_logo.png" AutomationProperties.Name="Cliff"/>
                 <Image Source="ms-appx:///Assets/bytes.png" AutomationProperties.Name="Grapes"/>
-                <Image Source="ms-appx:///Assets/R.png" AutomationProperties.Name="Rainier"/>-->
+                <Image Source="ms-appx:///Assets/R.png" AutomationProperties.Name="Rainier"/>--><!--
             </FlipView.Items>
             
 
@@ -35,10 +37,35 @@
                         </Grid>
                     </DataTemplate>
             </FlipView.ItemTemplate>
-        </FlipView>
+        </FlipView>-->
 
+            <ListView
+                Loaded="FlipView_Loaded"
+                x:Name="StoreListView"
+                ScrollViewer.HorizontalScrollMode="Auto"
+                ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                ScrollViewer.VerticalScrollMode="Disabled"
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                Height="500" Width="2000"  VerticalAlignment="Top"
+                SelectionMode="Single">
+                
+                <ListView.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Height="500" Orientation="Horizontal"></StackPanel>
+                    </ItemsPanelTemplate>
+                </ListView.ItemsPanel>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:FlipItem">
+                        <Border Width="270" CornerRadius="15" VerticalAlignment="Center" Height="480" Margin="-5" Background="#70FFFFFF">
+                            <Image  Source="{x:Bind Image}" Canvas.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+             
+            </ListView>
 
-        <!--<Grid Width="800" Height="600">
+   
+            <!--<Grid Width="800" Height="600">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="550"/>
                     <RowDefinition Height="*"/>
