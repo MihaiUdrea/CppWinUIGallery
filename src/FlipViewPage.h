@@ -10,10 +10,11 @@ struct FlipViewPage : FlipViewPageT<FlipViewPage>
 
     FlipViewPage()
     {
-        // Xaml objects should not call InitializeComponent during construction.
-        // See https://github.com/microsoft/cppwinrt/tree/master/nuget#initializecomponent
-    }
+        InitializeComponent();
+        Init();
+    };
 
+    void Init();
     int32_t MyProperty();
     void MyProperty(int32_t value);
     void FlipView_Loaded(winrt::Windows::Foundation::IInspectable const &sender,
@@ -21,6 +22,9 @@ struct FlipViewPage : FlipViewPageT<FlipViewPage>
 
     void StoreListView_SelectionChanged(winrt::Windows::Foundation::IInspectable const &sender,
                                         winrt::Microsoft::UI::Xaml::Controls::SelectionChangedEventArgs const &e);
+
+    Microsoft::UI::Xaml::FrameworkElement SearchSubItemInTree(hstring subItemClassName,
+                                                              Microsoft::UI::Xaml::FrameworkElement item);
 
   private:
     decltype(single_threaded_observable_vector<FlipItem>()) items = single_threaded_observable_vector<FlipItem>();
