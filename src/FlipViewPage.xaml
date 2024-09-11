@@ -42,11 +42,12 @@
             <ListView
                 Loaded="FlipView_Loaded"
                 x:Name="StoreListView"
+                SelectionChanged="StoreListView_SelectionChanged"
                 ScrollViewer.HorizontalScrollMode="Auto"
                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                 ScrollViewer.VerticalScrollMode="Disabled"
                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                Height="500" Width="2000"  VerticalAlignment="Top"
+                Height="500" Width="840"  VerticalAlignment="Top"
                 SelectionMode="Single">
                 
                 <ListView.ItemsPanel>
@@ -56,8 +57,8 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate x:DataType="local:FlipItem">
-                        <Border Width="270" CornerRadius="15" VerticalAlignment="Center" Height="480" Margin="-5" Background="#70FFFFFF">
-                            <Image  Source="{x:Bind Image}" Canvas.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Border Width="270" x:Name="myItem" CornerRadius="15" VerticalAlignment="Center" Height="480" Margin="-5" Background="#70FFFFFF">
+                            <Image Width="Auto"  x:Name="myImage"  Source="{x:Bind Image}" Canvas.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </DataTemplate>
                 </ListView.ItemTemplate>

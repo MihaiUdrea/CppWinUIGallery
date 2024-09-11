@@ -19,7 +19,11 @@ struct FlipViewPage : FlipViewPageT<FlipViewPage>
     void FlipView_Loaded(winrt::Windows::Foundation::IInspectable const &sender,
                          winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e);
 
+    void StoreListView_SelectionChanged(winrt::Windows::Foundation::IInspectable const &sender,
+                                        winrt::Microsoft::UI::Xaml::Controls::SelectionChangedEventArgs const &e);
 
+  private:
+    decltype(single_threaded_observable_vector<FlipItem>()) items = single_threaded_observable_vector<FlipItem>();
 };
 
 struct FlipItem : FlipItemT<FlipItem>
