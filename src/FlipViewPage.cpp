@@ -31,6 +31,19 @@ FlipItem::FlipItem(hstring image, hstring name)
     this->m_name = name;
 }
 
+void FlipViewPage::Init()
+{
+
+    items.Append(make<FlipItem>(L"ms-appx:///Assets/ai_logo.png", L"Cliff"));
+    items.Append(make<FlipItem>(L"ms-appx:///Assets/awr_logo.png", L"Cliff"));
+    items.Append(make<FlipItem>(L"ms-appx:///Assets/clang_logo.png", L"Cliff"));
+    items.Append(make<FlipItem>(L"ms-appx:///Assets/caphyon_logo.png", L"Cliff"));
+
+    /*auto item = make<FlipItem>();
+    items.Append(item);*/
+    StoreListView().ItemsSource(items);
+}
+
 Microsoft::UI::Xaml::FrameworkElement FlipViewPage::SearchSubItemInTree(hstring subItemClassName, FrameworkElement item)
 {
 
@@ -93,17 +106,22 @@ void FlipViewPage::StoreListView_SelectionChanged(
         throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
 }
 
-void FlipViewPage::Init()
+void FlipViewPage::StoreListView_PointerWheelChanged(winrt::Windows::Foundation::IInspectable const &sender,
+                                                     winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const &e)
 {
+    auto pointer = e.GetCurrentPoint(nullptr);
+    auto delta = pointer.Properties().MouseWheelDelta();
 
-    items.Append(make<FlipItem>(L"ms-appx:///Assets/ai_logo.png", L"Cliff"));
-    items.Append(make<FlipItem>(L"ms-appx:///Assets/awr_logo.png", L"Cliff"));
-    items.Append(make<FlipItem>(L"ms-appx:///Assets/clang_logo.png", L"Cliff"));
-    items.Append(make<FlipItem>(L"ms-appx:///Assets/caphyon_logo.png", L"Cliff"));
+    if (delta < 0) // Mouse Down
+    {
+        StoreListView().SelectedIndex(1);
+    }
+    else
+    {
+        int foo = 1;
+    }
 
-    /*auto item = make<FlipItem>();
-    items.Append(item);*/
-    StoreListView().ItemsSource(items);
+    e.Handled(true);
 }
 
 } // namespace winrt::CppWinUIGallery::implementation

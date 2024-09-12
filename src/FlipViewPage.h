@@ -28,6 +28,8 @@ struct FlipViewPage : FlipViewPageT<FlipViewPage>
 
   private:
     decltype(single_threaded_observable_vector<FlipItem>()) items = single_threaded_observable_vector<FlipItem>();
+public:
+    void StoreListView_PointerWheelChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
 };
 
 struct FlipItem : FlipItemT<FlipItem>

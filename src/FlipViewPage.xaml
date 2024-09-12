@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <ScrollViewer HorizontalScrollBarVisibility="Disabled" 
+    <ScrollViewer x:Name="RootScrollViewer"
+        HorizontalScrollBarVisibility="Disabled" 
             VerticalScrollBarVisibility="Auto">
 
         <StackPanel Orientation="Vertical" VerticalAlignment="Top">
@@ -43,25 +44,65 @@
                 Loaded="FlipView_Loaded"
                 x:Name="StoreListView"
                 SelectionChanged="StoreListView_SelectionChanged"
-                ScrollViewer.HorizontalScrollMode="Auto"
+                PointerWheelChanged="StoreListView_PointerWheelChanged"
+                ScrollViewer.HorizontalScrollMode="Disabled"
                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                 ScrollViewer.VerticalScrollMode="Disabled"
                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                Height="500" Width="840"  VerticalAlignment="Top"
+                Height="500" Width="1200"  VerticalAlignment="Top"
                 SelectionMode="Single">
-                
+
+
+                <ListView.ItemContainerTransitions>
+                    <TransitionCollection>
+                        <ReorderThemeTransition PickerFlyoutBase.Title="ScrollViewer"/>
+                    </TransitionCollection>
+                </ListView.ItemContainerTransitions>
+
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Height="500" Orientation="Horizontal"></StackPanel>
+                        <StackPanel Height="500" Orientation="Horizontal" Margin="80,0" ></StackPanel>
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
+                    
+
                     <DataTemplate x:DataType="local:FlipItem">
+
+                        
                         <Border Width="270" x:Name="myItem" CornerRadius="15" VerticalAlignment="Center" Height="480" Margin="-5" Background="#70FFFFFF">
                             <Image Width="Auto"  x:Name="myImage"  Source="{x:Bind Image}" Canvas.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                         </Border>
                     </DataTemplate>
+                    
                 </ListView.ItemTemplate>
+
+                
+
+
+                <!--<ListViewItem>
+                    
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <revealBrushPresent:Setter Target="Root.(media:RevealBrush.State)" Value="Pressed" xmlns:revealBrushPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsTypePresent(Microsoft.UI.Xaml.Media.RevealBrush)" />
+                                    <Setter Target="Root.RevealBorderBrush" Value="0" />
+
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="PressedSelected">
+                                <VisualState.Setters>
+                                    <revealBrushPresent:Setter Target="Root.(media:RevealBrush.State)" Value="Pressed" xmlns:revealBrushPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsTypePresent(Microsoft.UI.Xaml.Media.RevealBrush)" />
+                                    <Setter Target="Root.RevealBorderBrush" Value="0" />
+
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ListViewItem>-->
              
             </ListView>
 
