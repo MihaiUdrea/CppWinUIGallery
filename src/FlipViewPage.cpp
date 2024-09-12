@@ -66,18 +66,18 @@ void FlipViewPage::FlipView_Loaded(winrt::Windows::Foundation::IInspectable cons
                                    winrt::Microsoft::UI::Xaml::RoutedEventArgs const &e)
 {
 
-    if (auto item = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.ListViewItem", StoreListView()))
-        item.Width(600);
-    else
-        throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
-
-    if (auto image = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.Image", StoreListView()))
-    {
-        auto border = image.Parent().as<FrameworkElement>();
-        border.Width(600);
-    }
-    else
-        throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
+    // if (auto item = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.ListViewItem", StoreListView()))
+    //     item.Width(600);
+    // else
+    //     throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
+    //
+    // if (auto image = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.Image", StoreListView()))
+    //{
+    //     auto border = image.Parent().as<FrameworkElement>();
+    //     border.Width(600);
+    // }
+    // else
+    //     throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
 }
 
 void FlipViewPage::StoreListView_SelectionChanged(
@@ -85,25 +85,72 @@ void FlipViewPage::StoreListView_SelectionChanged(
     winrt::Microsoft::UI::Xaml::Controls::SelectionChangedEventArgs const &e)
 {
     auto selectedIndex = StoreListView().SelectedIndex();
-    for (int index = 0; index < selectedIndex; index++)
-    {
-        auto item = items.GetAt(0);
-        items.RemoveAt(0);
-        items.Append(item);
-    }
 
-    if (auto item = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.ListViewItem", StoreListView()))
-        item.Width(600);
+    if (auto scrollViewer = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.ScrollViewer", StoreListView())
+                                .as<Controls::ScrollViewer>())
+    {
+        if (selectedIndex > lastIndex)
+        {
+            scrollViewer.ChangeView(scrollViewer.HorizontalOffset() + 270.0, 0.0, 1.0);
+            elementPosition += 270.0;
+        }
+
+        else if (selectedIndex < lastIndex)
+        {
+            scrollViewer.ChangeView(scrollViewer.HorizontalOffset() - 270.0, 0.0, 1.0);
+            elementPosition -= 270.0;
+        }
+
+        DispatcherTimer dispatherTimer;
+        dispatherTimer.Tick([this, selectedIndex, scrollViewer, dispatherTimer](auto, auto) {
+            for (int index = 0; index < selectedIndex - 1; index++)
+            {
+                auto item = items.GetAt(0);
+                lastIndex--;
+                items.RemoveAt(0);
+                items.Append(item);
+                scrollViewer.ChangeView(scrollViewer.HorizontalOffset() - 270.0, 0.0, 1.0, true);
+                int foo = 1;
+
+                // double horizontalOffset = scrollViewer.HorizontalOffset();
+                // double viewportWidth = scrollViewer.ViewportWidth();
+                // double elementWitdth = 270.0;
+
+                // Get the position of the element relative to the ScrollViewer
+                // Media::GeneralTransform transform = item.TransformToVisual(scrollViewer);
+                // Windows::Foundation::Point elementPosition =
+                //    transform.TransformPoint(Windows::Foundation::Point(0, 0)); // Top-left corner of the element
+
+                // bool IsInVisualFromLeft = elementPosition + elementWitdth > horizontalOffset;
+                // IsInVisualFromLeft;
+                // if (!IsInVisualFromLeft)
+                //{
+                //     items.RemoveAt(0);
+                //     items.Append(item);
+                // }
+            }
+            dispatherTimer.Stop();
+        });
+        dispatherTimer.Interval(Windows::Foundation::TimeSpan(1000000));
+        dispatherTimer.Start();
+    }
     else
         throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
 
-    if (auto image = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.Image", StoreListView()))
+    if (auto firstItem = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.ListViewItem", StoreListView()))
+        firstItem.Width(270);
+    else
+        throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
+
+    if (auto firstImage = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.Image", StoreListView()))
     {
-        auto border = image.Parent().as<FrameworkElement>();
-        border.Width(600);
+        auto border = firstImage.Parent().as<FrameworkElement>();
+        border.Width(270);
     }
     else
         throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
+
+    lastIndex = selectedIndex;
 }
 
 void FlipViewPage::StoreListView_PointerWheelChanged(winrt::Windows::Foundation::IInspectable const &sender,
@@ -114,7 +161,15 @@ void FlipViewPage::StoreListView_PointerWheelChanged(winrt::Windows::Foundation:
 
     if (delta < 0) // Mouse Down
     {
-        StoreListView().SelectedIndex(1);
+        // DispatcherTimer dispatherTimer;
+        // dispatherTimer.Tick([this, dispatherTimer](auto, auto) {
+        //     StoreListView().SelectedIndex(lastIndex + 1);
+        //     dispatherTimer.Stop();
+        // });
+        // dispatherTimer.Interval(Windows::Foundation::TimeSpan(1000000));
+        // dispatherTimer.Start();
+
+        DispatcherQueue().TryEnqueue([this]() { StoreListView().SelectedIndex(lastIndex + 1); });
     }
     else
     {

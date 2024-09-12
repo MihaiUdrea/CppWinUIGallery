@@ -40,7 +40,12 @@
             </FlipView.ItemTemplate>
         </FlipView>-->
 
-            <ListView
+
+            
+
+
+
+                <ListView
                 Loaded="FlipView_Loaded"
                 x:Name="StoreListView"
                 SelectionChanged="StoreListView_SelectionChanged"
@@ -49,38 +54,39 @@
                 ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                 ScrollViewer.VerticalScrollMode="Disabled"
                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
-                Height="500" Width="1200"  VerticalAlignment="Top"
+                ScrollViewer.CanContentRenderOutsideBounds="True"
+                Height="500" Width="700"  VerticalAlignment="Top"
                 SelectionMode="Single">
 
 
-                <ListView.ItemContainerTransitions>
-                    <TransitionCollection>
-                        <ReorderThemeTransition PickerFlyoutBase.Title="ScrollViewer"/>
-                    </TransitionCollection>
-                </ListView.ItemContainerTransitions>
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <ReorderThemeTransition PickerFlyoutBase.Title="ScrollViewer"/>
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
 
-                <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <StackPanel Height="500" Orientation="Horizontal" Margin="80,0" ></StackPanel>
-                    </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-                <ListView.ItemTemplate>
-                    
-
-                    <DataTemplate x:DataType="local:FlipItem">
-
-                        
-                        <Border Width="270" x:Name="myItem" CornerRadius="15" VerticalAlignment="Center" Height="480" Margin="-5" Background="#70FFFFFF">
-                            <Image Width="Auto"  x:Name="myImage"  Source="{x:Bind Image}" Canvas.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </DataTemplate>
-                    
-                </ListView.ItemTemplate>
-
-                
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Height="500" Orientation="Horizontal" Margin="80,0" ></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
 
 
-                <!--<ListViewItem>
+                        <DataTemplate x:DataType="local:FlipItem">
+
+
+                            <Border Width="270" x:Name="myItem" CornerRadius="15" VerticalAlignment="Center" Height="480" Margin="-5" Background="#70FFFFFF">
+                                <Image Width="Auto"  x:Name="myImage"  Source="{x:Bind Image}" Canvas.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+
+
+
+                    <!--<ListViewItem>
                     
                     <VisualStateManager.VisualStateGroups>
                         <VisualStateGroup>
@@ -103,11 +109,12 @@
                         </VisualStateGroup>
                     </VisualStateManager.VisualStateGroups>
                 </ListViewItem>-->
-             
-            </ListView>
 
-   
-            <!--<Grid Width="800" Height="600">
+                </ListView>
+
+
+
+                <!--<Grid Width="800" Height="600">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="550"/>
                     <RowDefinition Height="*"/>

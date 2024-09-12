@@ -1,7 +1,7 @@
 namespace CppWinUIGallery
 {
     [default_interface]
-     runtimeclass FlipItem
+     runtimeclass FlipItem : Microsoft.UI.Xaml.FrameworkElement
     {
         FlipItem();
         String Image;

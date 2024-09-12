@@ -25,11 +25,13 @@ struct FlipViewPage : FlipViewPageT<FlipViewPage>
 
     Microsoft::UI::Xaml::FrameworkElement SearchSubItemInTree(hstring subItemClassName,
                                                               Microsoft::UI::Xaml::FrameworkElement item);
+    void StoreListView_PointerWheelChanged(winrt::Windows::Foundation::IInspectable const &sender,
+                                           winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const &e);
 
   private:
     decltype(single_threaded_observable_vector<FlipItem>()) items = single_threaded_observable_vector<FlipItem>();
-public:
-    void StoreListView_PointerWheelChanged(winrt::Windows::Foundation::IInspectable const& sender, winrt::Microsoft::UI::Xaml::Input::PointerRoutedEventArgs const& e);
+    int lastIndex = 0;
+    double elementPosition = 0;
 };
 
 struct FlipItem : FlipItemT<FlipItem>
