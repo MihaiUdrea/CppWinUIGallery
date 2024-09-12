@@ -20,6 +20,7 @@
     <Page Include="Themes\Generic.xaml" />
     <Page Include="SurfaceDial.xaml" />
     <Page Include="CustomControlPage.xaml" />
+    <Page Include="FlipViewPage.xaml" />
   </ItemGroup>
   <ItemGroup>
     <Midl Include="MainWindow.idl" />
@@ -29,6 +30,7 @@
     <Midl Include="TransparentLottie.idl">
       <Filter>TransparentLottieFolder</Filter>
     </Midl>
+    <Midl Include="FlipItem.idl" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp" />
@@ -140,9 +142,6 @@
   </ItemGroup>
   <ItemGroup>
     <Manifest Include="app.manifest" />
-  </ItemGroup>
-  <ItemGroup>
-    <AppxManifest Include="Package.appxmanifest" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

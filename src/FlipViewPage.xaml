@@ -1,0 +1,133 @@
+﻿<Page
+    x:Class="CppWinUIGallery.FlipViewPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:CppWinUIGallery"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ScrollViewer x:Name="RootScrollViewer"
+        HorizontalScrollBarVisibility="Disabled" 
+            VerticalScrollBarVisibility="Auto">
+
+        <StackPanel Orientation="Vertical" VerticalAlignment="Top">
+
+
+        <!--<FlipView x:Name="StoreFlipView" MaxWidth="800" Height="600" Loaded="FlipView_Loaded">
+
+            <FlipView.Items>
+                <FlipViewItem Name="Item1"/>
+                --><!--<Image Source="ms-appx:///Assets/ai_logo.png" AutomationProperties.Name="Cliff"/>
+                <Image Source="ms-appx:///Assets/bytes.png" AutomationProperties.Name="Grapes"/>
+                <Image Source="ms-appx:///Assets/R.png" AutomationProperties.Name="Rainier"/>--><!--
+            </FlipView.Items>
+            
+
+            <FlipView.ItemTemplate>
+                <DataTemplate x:DataType="local:FlipItem">
+                        <Grid Width="800" Height="600">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="550"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Image Grid.Row="0" Source="{x:Bind Image}" Stretch="UniformToFill"/>
+                            <Border Grid.Row="1" Background="#A5000000" Height="80" VerticalAlignment="Bottom"/>
+                            <TextBlock Grid.Row="1" Text="{x:Bind Name}" FontFamily="Segoe UI" FontSize="26.667" 
+                            Foreground="White" Padding="15,20"/>
+                        </Grid>
+                    </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>-->
+
+
+            
+
+
+
+                <ListView
+                Loaded="FlipView_Loaded"
+                x:Name="StoreListView"
+                SelectionChanged="StoreListView_SelectionChanged"
+                PointerWheelChanged="StoreListView_PointerWheelChanged"
+                ScrollViewer.HorizontalScrollMode="Disabled"
+                ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                ScrollViewer.VerticalScrollMode="Disabled"
+                ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                ScrollViewer.CanContentRenderOutsideBounds="True"
+                Height="500" Width="700"  VerticalAlignment="Top"
+                SelectionMode="Single">
+
+
+                    <ListView.ItemContainerTransitions>
+                        <TransitionCollection>
+                            <ReorderThemeTransition PickerFlyoutBase.Title="ScrollViewer"/>
+                        </TransitionCollection>
+                    </ListView.ItemContainerTransitions>
+
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Height="500" Orientation="Horizontal" Margin="80,0" ></StackPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+
+
+                        <DataTemplate x:DataType="local:FlipItem">
+
+
+                            <Border Width="270" x:Name="myItem" CornerRadius="15" VerticalAlignment="Center" Height="480" Margin="-5" Background="#70FFFFFF">
+                                <Image Width="Auto"  x:Name="myImage"  Source="{x:Bind Image}" Canvas.ZIndex="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </DataTemplate>
+
+                    </ListView.ItemTemplate>
+
+
+
+
+                    <!--<ListViewItem>
+                    
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup>
+
+                            <VisualState x:Name="Pressed">
+                                <VisualState.Setters>
+                                    <revealBrushPresent:Setter Target="Root.(media:RevealBrush.State)" Value="Pressed" xmlns:revealBrushPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsTypePresent(Microsoft.UI.Xaml.Media.RevealBrush)" />
+                                    <Setter Target="Root.RevealBorderBrush" Value="0" />
+
+                                </VisualState.Setters>
+                            </VisualState>
+
+                            <VisualState x:Name="PressedSelected">
+                                <VisualState.Setters>
+                                    <revealBrushPresent:Setter Target="Root.(media:RevealBrush.State)" Value="Pressed" xmlns:revealBrushPresent="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsTypePresent(Microsoft.UI.Xaml.Media.RevealBrush)" />
+                                    <Setter Target="Root.RevealBorderBrush" Value="0" />
+
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                </ListViewItem>-->
+
+                </ListView>
+
+
+
+                <!--<Grid Width="800" Height="600">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="550"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            <Image Grid.Row="0" Source="ms-appx:///Assets/ai_logo.png" Stretch="UniformToFill"/>
+            <Border Grid.Row="1" Background="#A5000000" Height="80" VerticalAlignment="Bottom"/>
+            <TextBlock Grid.Row="1" Text="Cliff" FontFamily="Segoe UI" FontSize="26.667" 
+               Foreground="White" Padding="15,20"/>
+
+        </Grid>-->
+
+
+        </StackPanel>
+
+    </ScrollViewer>
+</Page>

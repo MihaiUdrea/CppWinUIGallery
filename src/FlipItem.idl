@@ -1,0 +1,10 @@
+namespace CppWinUIGallery
+{
+    [default_interface]
+     runtimeclass FlipItem
+    {
+        FlipItem();
+        String Image;
+        String Name;
+    }
+}
