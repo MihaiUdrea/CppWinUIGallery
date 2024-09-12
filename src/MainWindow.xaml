@@ -19,9 +19,12 @@
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
                 >-->
-    <Page>
 
-        <Page.Resources>
+        
+
+    <Grid x:Name="Root" MinWidth="200">
+
+        <Grid.Resources>
             <Style x:Key="CustomAutoSuggestBox" TargetType="AutoSuggestBox">
                 <Setter Property="Name" Value="NavViewSearchBox"/>
                 <Setter Property="Template">
@@ -77,13 +80,11 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-            
-            
-            
-        </Page.Resources>
-        
 
-    <Grid x:Name="Root" MinWidth="200">
+
+
+        </Grid.Resources>
+
 
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -178,7 +179,7 @@
                             <FontIcon Glyph="&#xE80A;"/>
                         </NavigationViewItem.Icon>
                         <NavigationViewItem.MenuItems>
-                            <NavigationViewItem Tag="CppWinUIGallery.FlipViewPage" Content="FlipView" ToolTipService.ToolTip="FlipView"/>
+                            <NavigationViewItem Tag="CppWinUIGallery.FlipViewPage" Content="ListView" ToolTipService.ToolTip="ListView"/>
                         </NavigationViewItem.MenuItems>
                     </NavigationViewItem>
 
@@ -225,6 +226,5 @@
             </StackPanel>
         </Button>-->
     </Grid>
-    </Page>
 
 </Window>

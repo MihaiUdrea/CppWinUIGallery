@@ -137,18 +137,18 @@ void FlipViewPage::StoreListView_SelectionChanged(
     else
         throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
 
-    if (auto firstItem = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.ListViewItem", StoreListView()))
-        firstItem.Width(270);
-    else
-        throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
-
-    if (auto firstImage = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.Image", StoreListView()))
-    {
-        auto border = firstImage.Parent().as<FrameworkElement>();
-        border.Width(270);
-    }
-    else
-        throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
+    // if (auto firstItem = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.ListViewItem", StoreListView()))
+    //     firstItem.Width(270);
+    // else
+    //     throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
+    //
+    // if (auto firstImage = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.Image", StoreListView()))
+    //{
+    //     auto border = firstImage.Parent().as<FrameworkElement>();
+    //     border.Width(270);
+    // }
+    // else
+    //     throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
 
     lastIndex = selectedIndex;
 }
