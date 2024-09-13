@@ -55,7 +55,7 @@
                 ScrollViewer.VerticalScrollMode="Disabled"
                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
                 ScrollViewer.CanContentRenderOutsideBounds="True"
-                Height="500" Width="700"  VerticalAlignment="Top"
+                Height="500" Width="1200"  VerticalAlignment="Top"
                 SelectionMode="Single">
 
 

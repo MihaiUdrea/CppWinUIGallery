@@ -35,7 +35,13 @@
             </local:SettingsCardControl.RightSideContent>
         </local:SettingsCardControl>
 
-        
+        <local:SettingsCardControl Title="App theme" Subtitle="Select which app theme to display" Icon="&#xE790;">
+            <local:SettingsCardControl.RightSideContent>
+                <Button Content="a"/>
+            </local:SettingsCardControl.RightSideContent>
+        </local:SettingsCardControl>
+
+
 
 
     </StackPanel>
