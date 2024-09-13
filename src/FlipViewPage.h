@@ -31,7 +31,7 @@ struct FlipViewPage : FlipViewPageT<FlipViewPage>
 
   private:
     decltype(single_threaded_observable_vector<FlipItem>()) items = single_threaded_observable_vector<FlipItem>();
-    int lastIndex = -1;
+    int lastIndex = 1;
     double elementPosition = 0;
 };
 

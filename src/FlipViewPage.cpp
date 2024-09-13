@@ -84,6 +84,11 @@ void FlipViewPage::FlipView_Loaded(winrt::Windows::Foundation::IInspectable cons
     }
     else
         throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
+
+    int last = items.Size() - 1;
+    auto item = items.GetAt(last);
+    items.RemoveAt(last);
+    items.InsertAt(0, item);
 }
 
 void FlipViewPage::StoreListView_SelectionChanged(
@@ -99,45 +104,82 @@ void FlipViewPage::StoreListView_SelectionChanged(
         {
             scrollViewer.ChangeView(scrollViewer.HorizontalOffset() + 600.0, 0.0, 1.0);
             elementPosition += 600.0;
+
+            DispatcherTimer dispatherTimer;
+            dispatherTimer.Tick([this, selectedIndex, scrollViewer, dispatherTimer](auto, auto) {
+                for (int index = 0; index < selectedIndex - 1; index++)
+                {
+                    auto item = items.GetAt(0);
+                    lastIndex--;
+                    items.RemoveAt(0);
+                    items.Append(item);
+                    scrollViewer.ChangeView(scrollViewer.HorizontalOffset() - 600.0, 0.0, 1.0, true);
+
+                    // double horizontalOffset = scrollViewer.HorizontalOffset();
+                    // double viewportWidth = scrollViewer.ViewportWidth();
+                    // double elementWitdth = 270.0;
+
+                    // Get the position of the element relative to the ScrollViewer
+                    // Media::GeneralTransform transform = item.TransformToVisual(scrollViewer);
+                    // Windows::Foundation::Point elementPosition =
+                    //    transform.TransformPoint(Windows::Foundation::Point(0, 0)); // Top-left corner of the element
+
+                    // bool IsInVisualFromLeft = elementPosition + elementWitdth > horizontalOffset;
+                    // IsInVisualFromLeft;
+                    // if (!IsInVisualFromLeft)
+                    //{
+                    //     items.RemoveAt(0);
+                    //     items.Append(item);
+                    // }
+                }
+                dispatherTimer.Stop();
+            });
+            dispatherTimer.Interval(Windows::Foundation::TimeSpan(1000000));
+            dispatherTimer.Start();
         }
 
         else if (selectedIndex < lastIndex)
         {
             scrollViewer.ChangeView(scrollViewer.HorizontalOffset() - 600.0, 0.0, 1.0);
             elementPosition -= 600.0;
+
+            DispatcherTimer dispatherTimer;
+            dispatherTimer.Tick([this, selectedIndex, scrollViewer, dispatherTimer](auto, auto) {
+                if (selectedIndex == 0)
+                {
+                    int last = items.Size() - 1;
+                    for (int index = last; index > selectedIndex + 2; index--)
+                    {
+                        auto item = items.GetAt(last);
+                        lastIndex++;
+                        items.RemoveAt(last);
+                        items.InsertAt(0, item);
+                        scrollViewer.ChangeView(scrollViewer.HorizontalOffset() - 600.0, 0.0, 1.0, true);
+
+                        // double horizontalOffset = scrollViewer.HorizontalOffset();
+                        // double viewportWidth = scrollViewer.ViewportWidth();
+                        // double elementWitdth = 270.0;
+
+                        // Get the position of the element relative to the ScrollViewer
+                        // Media::GeneralTransform transform = item.TransformToVisual(scrollViewer);
+                        // Windows::Foundation::Point elementPosition =
+                        //    transform.TransformPoint(Windows::Foundation::Point(0, 0)); // Top-left corner of the
+                        //    element
+
+                        // bool IsInVisualFromLeft = elementPosition + elementWitdth > horizontalOffset;
+                        // IsInVisualFromLeft;
+                        // if (!IsInVisualFromLeft)
+                        //{
+                        //     items.RemoveAt(0);
+                        //     items.Append(item);
+                        // }
+                    }
+                    dispatherTimer.Stop();
+                }
+            });
+            dispatherTimer.Interval(Windows::Foundation::TimeSpan(1000000));
+            dispatherTimer.Start();
         }
-
-        DispatcherTimer dispatherTimer;
-        dispatherTimer.Tick([this, selectedIndex, scrollViewer, dispatherTimer](auto, auto) {
-            for (int index = 0; index < selectedIndex - 1; index++)
-            {
-                auto item = items.GetAt(0);
-                lastIndex--;
-                items.RemoveAt(0);
-                items.Append(item);
-                scrollViewer.ChangeView(scrollViewer.HorizontalOffset() - 600.0, 0.0, 1.0, true);
-
-                // double horizontalOffset = scrollViewer.HorizontalOffset();
-                // double viewportWidth = scrollViewer.ViewportWidth();
-                // double elementWitdth = 270.0;
-
-                // Get the position of the element relative to the ScrollViewer
-                // Media::GeneralTransform transform = item.TransformToVisual(scrollViewer);
-                // Windows::Foundation::Point elementPosition =
-                //    transform.TransformPoint(Windows::Foundation::Point(0, 0)); // Top-left corner of the element
-
-                // bool IsInVisualFromLeft = elementPosition + elementWitdth > horizontalOffset;
-                // IsInVisualFromLeft;
-                // if (!IsInVisualFromLeft)
-                //{
-                //     items.RemoveAt(0);
-                //     items.Append(item);
-                // }
-            }
-            dispatherTimer.Stop();
-        });
-        dispatherTimer.Interval(Windows::Foundation::TimeSpan(1000000));
-        dispatherTimer.Start();
     }
     else
         throw std::invalid_argument("NO SUCH ITEM WAS FOUND");
@@ -199,7 +241,7 @@ void FlipViewPage::StoreListView_PointerWheelChanged(winrt::Windows::Foundation:
     }
     else
     {
-        int foo = 1;
+        DispatcherQueue().TryEnqueue([this]() { StoreListView().SelectedIndex(lastIndex - 1); });
     }
 
     e.Handled(true);
