@@ -89,6 +89,10 @@ void FlipViewPage::FlipView_Loaded(winrt::Windows::Foundation::IInspectable cons
     auto item = items.GetAt(last);
     items.RemoveAt(last);
     items.InsertAt(0, item);
+
+    auto scrollViewer = SearchSubItemInTree(L"Microsoft.UI.Xaml.Controls.ScrollViewer", StoreListView(), count)
+                            .as<Controls::ScrollViewer>();
+    scrollViewer.ChangeView(scrollViewer.HorizontalOffset() + 270.0, 0.0, 1.0);
 }
 
 void FlipViewPage::StoreListView_SelectionChanged(
@@ -134,7 +138,7 @@ void FlipViewPage::StoreListView_SelectionChanged(
                 }
                 dispatherTimer.Stop();
             });
-            dispatherTimer.Interval(Windows::Foundation::TimeSpan(1000000));
+            dispatherTimer.Interval(Windows::Foundation::TimeSpan(100000));
             dispatherTimer.Start();
         }
 
@@ -177,7 +181,7 @@ void FlipViewPage::StoreListView_SelectionChanged(
                     dispatherTimer.Stop();
                 }
             });
-            dispatherTimer.Interval(Windows::Foundation::TimeSpan(1000000));
+            dispatherTimer.Interval(Windows::Foundation::TimeSpan(100000));
             dispatherTimer.Start();
         }
     }
